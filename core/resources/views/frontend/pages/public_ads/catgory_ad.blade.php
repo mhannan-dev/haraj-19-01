@@ -289,7 +289,6 @@
      var glovalAdvertiser = "{{ $advertiser }}"
 
     $(document).ready(function () {
-
         getSubcategory();
         categoryTitle();
         getBrand();
@@ -298,9 +297,6 @@
         }
         getLocation();
         showPosition();
-
-
-
     });
     $('.category').on('change', function () {
          $(document).on('click', '.pagination  a', function(event){
@@ -424,8 +420,6 @@
             },
             dataType: 'json',
             success: function (res) {
-                console.log(res);
-
                 var ads = res.results.data;
                 var total = ads.length;
                 $('.total').text(total)
@@ -524,7 +518,6 @@
             },
             dataType: 'json',
             success: function (res) {
-                console.log(res);
                 var ads = res.results.data;
                 var total = ads.length;
                 $('.total').text(total)
@@ -716,7 +709,6 @@
             },
             dataType: 'json',
             success: function (res) {
-
                 var ads = res.results;
                   var total = ads.length;
                 $('.total').text(total)
@@ -819,7 +811,6 @@
             dataType: 'json',
             success: function (res) {
                 var ads = res.results;
-
                 var type = res.type;
                 if(type == 'allow'){
                     var total = ads.length;
