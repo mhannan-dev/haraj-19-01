@@ -100,7 +100,7 @@ class HomeController extends Controller
 
     public function  categoryWiseAds($id)
     {
-        $data['ads'] = Advertisement::with('category', 'city')->where('category_id', $id)->orderBy('id', 'desc')->paginate(getPaginate());
+        $data['ads'] = Advertisement::with('category', 'city')->where('category_id', $id)->orderBy('id', 'desc')->paginate(12);
         $data['ad_under_child_category'] = Advertisement::with('category', 'city')->where('sub_category_id', $id)->orderBy('id', 'desc')->paginate(getPaginate());
         $data['single_category'] = DB::table('categories')->where('id',$id)->where('parent_id', 0)->first();
         $data['category'] = DB::table('categories')->where('parent_id', 0)->get();
@@ -126,7 +126,7 @@ class HomeController extends Controller
     public function fetchSubCategory(Request $request)
     {
         if($request->category_id == 'all_category'){
-            $data['subCategories'] =  DB::table('categories')->where('parent_id','!=', 0)->get();;
+            $data['subCategories'] =  DB::table('categories')->where('parent_id','!=', 0)->get();
             return response()->json($data);
         }else{
             $data['subCategories'] =  DB::table('categories')->where('parent_id',$request->category_id)->where('parent_id','!=', 0)->get();;
@@ -150,22 +150,28 @@ class HomeController extends Controller
     public function getAddsByCategoryFilters(Request $request)
     {
         //by only category
-        if ($request->category_id == 'all_category') {
-            $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->orderBy('id', 'desc')->get();
-            return response()->json($data);
-        }else{
-            $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $request->category_id)->orderBy('id', 'desc')->get();
-            return response()->json($data);
+        if ($request->ajax()) {
+            if ($request->category_id == 'all_category') {
+                $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->orderBy('id', 'desc')->paginate(12);
+                $data['pagination'] = (string)  $data['results']->links();
+                return response()->json($data);
+            }else{
+                $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $request->category_id)->orderBy('id', 'desc')->paginate(12);
+                $data['pagination'] = (string)  $data['results']->links();
+                return response()->json($data);
+            }
         }
     }
     public function getAddsBySubCategoryFilters(Request $request)
     {
         //by category and sub-category
         if($request->category_id == 'all_category'){
-            $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('sub_category_id', $request->sub_category)->orderBy('id', 'desc')->get();
+            $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('sub_category_id', $request->sub_category)->orderBy('id', 'desc')->paginate(12);
+            $data['pagination'] = (string)  $data['results']->links();
             return response()->json($data);
         }else{
-            $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('sub_category_id', $request->sub_category)->where('category_id', $request->category_id)->orderBy('id', 'desc')->get();
+            $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('sub_category_id', $request->sub_category)->where('category_id', $request->category_id)->orderBy('id', 'desc')->paginate(12);
+            $data['pagination'] = (string)  $data['results']->links();
             return response()->json($data);
         }
 
@@ -175,10 +181,12 @@ class HomeController extends Controller
         //by category and brand
 
         if($request->category_id == 'all_category'){
-            $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand', $request->brand_id)->orderBy('id', 'desc')->get();
+            $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand_id', $request->brand_id)->orderBy('id', 'desc')->paginate(12);
+             $data['pagination'] = (string)  $data['results']->links();
             return response()->json($data);
         }else{
-            $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand', $request->brand_id)->where('category_id', $request->category_id)->orderBy('id', 'desc')->get();
+            $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand_id', $request->brand_id)->where('category_id', $request->category_id)->orderBy('id', 'desc')->paginate(12);
+             $data['pagination'] = (string)  $data['results']->links();
             return response()->json($data);
         }
 
@@ -238,17 +246,17 @@ class HomeController extends Controller
                     return response()->json($data);
 
                 } elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId == null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand', $brandId)->orderBy('created_at', 'ASC')->get();
+                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('created_at', 'ASC')->get();
                     return response()->json($data);
 
                 }elseif ($categoryId == "all_category" && $subCategoryId != null && $brandId == null) {
                     $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('sub_category_id',$subCategoryId)->orderBy('created_at', 'ASC')->get();
                     return response()->json($data);
                 }elseif ($categoryId == "all_category" && $subCategoryId == null && $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand',$brandId)->orderBy('created_at', 'ASC')->get();
+                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand_id',$brandId)->orderBy('created_at', 'ASC')->get();
                     return response()->json($data);
                 }elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId != null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand', $brandId)->orderBy('created_at', 'ASC')->get();
+                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('created_at', 'ASC')->get();
                     return response()->json($data);
 
                 }
@@ -265,17 +273,17 @@ class HomeController extends Controller
                     return response()->json($data);
 
                 } elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId == null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand', $brandId)->orderBy('price', 'ASC')->get();
+                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('price', 'ASC')->get();
                     return response()->json($data);
 
                 }elseif ($categoryId == "all_category" && $subCategoryId != null && $brandId == null) {
                     $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('sub_category_id',$subCategoryId)->orderBy('price', 'ASC')->get();
                     return response()->json($data);
                 }elseif ($categoryId == "all_category" && $subCategoryId == null && $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand',$brandId)->orderBy('price', 'ASC')->get();
+                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand_id',$brandId)->orderBy('price', 'ASC')->get();
                     return response()->json($data);
                 }elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId != null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand', $brandId)->orderBy('price', 'ASC')->get();
+                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('price', 'ASC')->get();
                     return response()->json($data);
 
                 }
@@ -293,17 +301,17 @@ class HomeController extends Controller
                     return response()->json($data);
 
                 }elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId == null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand', $brandId)->orderBy('price', 'DESC')->get();
+                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('price', 'DESC')->get();
                     return response()->json($data);
 
                 }elseif ($categoryId == "all_category" && $subCategoryId != null && $brandId == null) {
                     $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('sub_category_id',$subCategoryId)->orderBy('price', 'DESC')->get();
                     return response()->json($data);
                 }elseif ($categoryId == "all_category" && $subCategoryId == null && $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand',$brandId)->orderBy('price', 'DESC')->get();
+                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand_id',$brandId)->orderBy('price', 'DESC')->get();
                     return response()->json($data);
                 }elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId != null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand', $brandId)->orderBy('price', 'DESC')->get();
+                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('price', 'DESC')->get();
                     return response()->json($data);
 
                 }
@@ -357,7 +365,7 @@ class HomeController extends Controller
                     return response()->json($data);
 
                 }elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId == null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand', $brandId)->selectRaw("id, advertiser_id, latitude,longitude ,
+                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->selectRaw("id, advertiser_id, latitude,longitude ,
                     category_id,type_id,city_id,sub_category_id,title,slug,price,image,
 
                     ( 6371 * acos( cos( radians(?) ) *
@@ -386,7 +394,7 @@ class HomeController extends Controller
                         ->get();
                     return response()->json($data);
                 }elseif ($categoryId == "all_category" && $subCategoryId == null && $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand',$brandId)->orderBy('price', 'DESC')->selectRaw("id, advertiser_id, latitude,longitude ,
+                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand_id',$brandId)->orderBy('price', 'DESC')->selectRaw("id, advertiser_id, latitude,longitude ,
                     category_id,type_id,city_id,sub_category_id,title,slug,price,image,
 
                     ( 6371 * acos( cos( radians(?) ) *
@@ -400,7 +408,7 @@ class HomeController extends Controller
                         ->get();
                     return response()->json($data);
                 }elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId != null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand', $brandId)->selectRaw("id, advertiser_id, latitude,longitude ,
+                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->selectRaw("id, advertiser_id, latitude,longitude ,
                     category_id,type_id,city_id,sub_category_id,title,slug,price,image,
 
                     ( 6371 * acos( cos( radians(?) ) *
@@ -423,7 +431,7 @@ class HomeController extends Controller
 
     public function childCategoryAds($id)
     {
-        $data['ads'] = Advertisement::with('category', 'city')->where('sub_category_id', $id)->orderBy('id', 'desc')->paginate(getPaginate());
+        $data['ads'] = Advertisement::with('category', 'city')->where('sub_category_id', $id)->orderBy('id', 'desc')->paginate(getPaginate(2));
         $data['cities'] =  City::orderBy('id', 'DESC')->active()->get();
         $data['category'] = DB::table('categories')->where('parent_id', 0)->get();
 
@@ -433,7 +441,7 @@ class HomeController extends Controller
 
     public function cityWiseAds($id)
     {
-        $data['ads'] = Advertisement::with('city')->where('city_id', $id)->orderBy('id', 'desc')->paginate(getPaginate());
+        $data['ads'] = Advertisement::with('city')->where('city_id', $id)->orderBy('id', 'desc')->paginate(getPaginate(12));
         $data['cities'] =  City::orderBy('id', 'DESC')->active()->get();
         return view('frontend.pages.public_ads.city_ad', $data);
     }

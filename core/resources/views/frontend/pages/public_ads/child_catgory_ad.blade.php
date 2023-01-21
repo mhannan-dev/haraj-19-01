@@ -67,13 +67,16 @@
                         <div class="col-xl-12 mb-30">
                             <div class="short-by-area">
                                 <div class="short-by-wrapper">
-                                    <div class="title">367,771 ads in <b>Turkey</b></div>
+                                   @php
+                                    $info = json_decode(json_encode(getIpInfo()), true);
+                                     $country = @implode(',', $info['country']);
+                                    @endphp
+                                    <div class="title"><span class="total">0</span> ads in <b><span>{{ $country != "" ? $country: "Demo Country" }}</span></b></div>
 
                                     <div class="short-by-select-area">
                                         <div class="title overflow-hidden"><b>SORT</b> by : </div>
                                         <select class="nice-select sort_by"  name="sort_by">
                                             <option value="releace_date">Release Date</option>
-                                            {{-- <option value="2">Smart Short</option> --}}
                                             <option value="low_price">Price: Low to High</option>
                                             <option value="high_price">Price: High to Low</option>
                                             <option value="location_distance">by distance</option>
@@ -131,45 +134,53 @@
                                         }
                                     @endphp
 
-                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">
-                                            <div class="product-single-item">
 
-                                                <div class="product-wishlist">
-                                                    <a class="fav-select" data-ad_id="{{ $item->id }}"
-                                                        href="javascript:void(0)">
-                                                        <span>
-                                                            <svg width="24" height="24" viewBox="0 0 24 24"
-                                                                class="sc-AxjAm dJbVhz fav-icon"
-                                                                style="fill:{{ $color }}">
-                                                                <path
-                                                                    d="M16.224 5c-1.504 0-2.89.676-3.802 1.854L12 7.398l-.421-.544A4.772 4.772 0 0 0 7.776 5C5.143 5 3 7.106 3 9.695c0 5.282 6.47 11.125 9.011 11.125 2.542 0 8.99-5.445 8.99-11.125C21 7.105 18.857 5 16.223 5z">
-                                                                </path>
-                                                            </svg>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                    <div class="thumb">
-                                                        <img src="{{asset('core/storage/app/public/advertisement_images/' . $item->image) }}" alt="product">
-                                                    </div>
-                                                    <div class="content">
-                                                        <span class="sub-title">{{ $item->city->title}}</span>
-                                                        <h5 class="title">{{ $item->title }}</h5>
-                                                        <span class="inner-sub-title">{{ $item->category->title}}</span>
-                                                        <h5 class="inner-title">{{ $item->price }} &nbsp;TL</h5>
+
+                                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-6 mb-20 ads">
+                                            <div class="product-single-item active">
+
+                                                    <div class="product-wishlist">
+                                                        <a class="fav-select" data-ad_id="{{ $item->id }}"
+                                                            href="javascript:void(0)">
+                                                            <span>
+                                                                <svg width="24" height="24" viewBox="0 0 24 24"
+                                                                    class="sc-AxjAm dJbVhz fav-icon"
+                                                                    style="fill:{{ $color }}">
+                                                                    <path
+                                                                        d="M16.224 5c-1.504 0-2.89.676-3.802 1.854L12 7.398l-.421-.544A4.772 4.772 0 0 0 7.776 5C5.143 5 3 7.106 3 9.695c0 5.282 6.47 11.125 9.011 11.125 2.542 0 8.99-5.445 8.99-11.125C21 7.105 18.857 5 16.223 5z">
+                                                                    </path>
+                                                                </svg>
+                                                            </span>
+                                                        </a>
                                                     </div>
                                                     <a href="{{ route('frontend.ads.details', [$item->slug, $item->id]) }}">
-                                                        <div class="thumb">
-                                                            <img src="{{ asset('core/storage/app/public/advertisement_images/' . $item->image) }}"
-                                                                alt="product">
+                                                    <div class="product-thumb-slider">
+                                                        <div class="swiper-wrapper">
+                                                            <div class="swiper-slide">
+                                                                <div class="thumb">
+                                                                    <img src="{{ asset('core/storage/app/public/advertisement_images/' . $item->image) }}" alt="product">
+                                                                </div>
+                                                            </div>
+
                                                         </div>
-                                                        <div class="content">
-                                                            <span class="sub-title">{{ $item->city->title }}</span>
-                                                            <h5 class="title">{{ $item->title }}</h5>
-                                                            <span class="inner-sub-title">{{ $item->category->title }}</span>
-                                                            <h5 class="inner-title">{{ $item->price }} &nbsp;TL</h5>
+                                                        <div class="swiper-pagination"></div>
+                                                        <div class="slider-nav-area">
+                                                            <div class="slider-prev slider-nav">
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M8.218 12.01l5.792 5.793a1.56 1.56 0 1 1-2.209 2.208l-6.896-6.896a1.557 1.557 0 0 1-.457-1.104c0-.4.152-.8.457-1.104l6.897-6.898a1.563 1.563 0 0 1 2.208 2.209L8.218 12.01z"></path></svg>
+                                                            </div>
+                                                            <div class="slider-next slider-nav">
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M14.698 12.01l-5.792 5.793a1.56 1.56 0 1 0 2.208 2.208l6.897-6.896a1.56 1.56 0 0 0 0-2.208l-6.897-6.898a1.564 1.564 0 0 0-2.209 0 1.564 1.564 0 0 0 0 2.209l5.793 5.793z"></path></svg>
+                                                            </div>
                                                         </div>
-                                                    </a>
-                                                </div>
+                                                    </div>
+                                                    <div class="content">
+                                                        <span class="sub-title">{{ $item->city->title }}</span>
+                                                        <h5 class="title">{{ $item->title }}</h5>
+                                                        <span class="inner-sub-title">{{ $item->category->title }}</span>
+                                                        <h5 class="inner-title">{{ $item->price }} &nbsp;TL</h5>
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
 
                                 @empty
@@ -181,8 +192,9 @@
                 </div>
             </section>
 
-            <div class="d-flex justify-content-center paginate">
-                <?php echo e(paginateLinks($ads)); ?>
+
+            <div class="d-flex justify-content-center paginate pagination">
+                {{  $ads->links() }}
             </div>
         </div>
     </section>
@@ -227,10 +239,12 @@
     @endauth
 
 
+
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         End Brand
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 @endsection
+
 @push('script')
 <script>
      var glovalAdvertiser = "{{ $advertiser }}"
@@ -240,7 +254,6 @@
         getSubcategory();
         categoryTitle();
         getBrand();
-        getAdsByCategory();
         if(glovalAdvertiser !='' ||  glovalAdvertiser != null){
             getFavRecord();
         }
@@ -248,8 +261,15 @@
         showPosition();
 
 
+
     });
     $('.category').on('change', function () {
+         $(document).on('click', '.pagination  a', function(event){
+	        event.preventDefault();
+	        var page = $(this).attr('href').split('page=')[1];
+	        getAdsByCategory(page);
+
+	    });
         getSubcategory();
         categoryTitle();
         getBrand();
@@ -257,11 +277,21 @@
 
     });
     $('.sub-category').on('change', function () {
+        $(document).on('click', '.pagination  a', function(event){
+	        event.preventDefault();
+	        var page = $(this).attr('href').split('page=')[1];
+            getAdsBySubCategory(page);
+	    });
         categoryTitle();
         getBrand();
         getAdsBySubCategory();
     });
     $('.brand').on('change', function () {
+        $(document).on('click', '.pagination  a', function(event){
+	        event.preventDefault();
+	        var page = $(this).attr('href').split('page=')[1];
+            getAdsByBrands(page);
+	    });
         categoryTitle();
         getAdsByBrands();
     });
@@ -338,12 +368,16 @@
             });
 
     }
-    function getAdsByCategory(){
+
+    function getAdsByCategory(page){
         var categoryId = acceptVar().categorySelect;
         var html = '';
         var paginate = '';
+        var routes = "{{route('frontend.ads.filter.result.category')}}?page="+page;
+
+
         $.ajax({
-            url: "{{route('frontend.ads.filter.result.category')}}",
+            url: routes,
             type: "POST",
             data: {
                 category_id: categoryId,
@@ -351,10 +385,16 @@
             },
             dataType: 'json',
             success: function (res) {
-                var ads = res.results;
+                console.log(res);
+
+                var ads = res.results.data;
+                var total = ads.length;
+                $('.total').text(total)
                 var color = '';
-                paginate += '<div class="d-flex justify-content-center paginate"> </div>';
-                    $(".paginate").html(paginate);
+                paginate += '<div class="d-flex justify-content-center paginate"> '+res.pagination+' </div>';
+                $(".paginate").html(paginate);
+
+
                 if( ads == '' || ads =='[]'){
                     html +=
                         ' <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-xs-12 mb-20">\
@@ -365,7 +405,7 @@
                      $(".ads").html(html);
                 }
                 $.each(ads, function (key, value) {
-                    // console.log(value);
+
                     var advertiser = "{{ $advertiser }}"
                     if(advertiser !='' ||  advertiser != null){
                         var advertiser_id = "{{  $advertiser }}";
@@ -374,11 +414,11 @@
 
                     }
 
-                    var route_url = "{{ url('frontend.ads.details') }}/" + value.slug + "/" + value.id;
+                    var route_url = "{{ url('ads/details') }}/" + value.slug + "/" + value.id;
 
                     html +=
                         ' <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">\
-                                    <div class="product-single-item">\
+                                    <div class="product-single-item active">\
                                             <div class="product-wishlist">\
                                                     <a class="fav-select" data-ad_id="' + value.id + '" href="javascript:void(0)">\
                                                         <span>\
@@ -390,9 +430,24 @@
                                                     </a>\
                                                 </div>\
                                             <a href="'+route_url+'">\
-                                            <div class="thumb">\
-                                                <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + ' " alt="product">\
-                                            </div>\
+                                            <div class="product-thumb-slider">\
+                                                        <div class="swiper-wrapper">\
+                                                            <div class="swiper-slide">\
+                                                                <div class="thumb">\
+                                                                    <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + '" alt="product">\
+                                                                </div>\
+                                                            </div>\
+                                                        </div>\
+                                                        <div class="swiper-pagination"></div>\
+                                                        <div class="slider-nav-area">\
+                                                            <div class="slider-prev slider-nav">\
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M8.218 12.01l5.792 5.793a1.56 1.56 0 1 1-2.209 2.208l-6.896-6.896a1.557 1.557 0 0 1-.457-1.104c0-.4.152-.8.457-1.104l6.897-6.898a1.563 1.563 0 0 1 2.208 2.209L8.218 12.01z"></path></svg>\
+                                                            </div>\
+                                                            <div class="slider-next slider-nav">\
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M14.698 12.01l-5.792 5.793a1.56 1.56 0 1 0 2.208 2.208l6.897-6.896a1.56 1.56 0 0 0 0-2.208l-6.897-6.898a1.564 1.564 0 0 0-2.209 0 1.564 1.564 0 0 0 0 2.209l5.793 5.793z"></path></svg>\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
                                             <div class="content">\
                                                 <span class="sub-title">' + value.city.title + '</span>\
                                                 <h5 class="title">' + value.title + '</h5>\
@@ -405,6 +460,7 @@
 
                      $(".ads").html(html);
 
+
                 });
 
             }
@@ -413,13 +469,14 @@
 
 
     }
-    function getAdsBySubCategory(){
+    function getAdsBySubCategory(page){
         var categoryId = acceptVar().categorySelect;
         var subCategoryId = acceptVar().subCategorySelect;
         var html = '';
         var paginate = '';
+        var routes = "{{route('frontend.ads.filter.result.subcategory')}}?page="+page;
         $.ajax({
-            url: "{{route('frontend.ads.filter.result.subcategory')}}",
+            url:routes,
             type: "POST",
             data: {
                 category_id: categoryId,
@@ -428,9 +485,12 @@
             },
             dataType: 'json',
             success: function (res) {
-                var ads = res.results;
-                paginate += '<div class="d-flex justify-content-center paginate"> </div>';
-                    $(".paginate").html(paginate);
+                console.log(res);
+                var ads = res.results.data;
+                var total = ads.length;
+                $('.total').text(total)
+                paginate += '<div class="d-flex justify-content-center paginate"> '+res.pagination+' </div>';
+                $(".paginate").html(paginate);
                 if( ads == '' || ads =='[]'){
                     html +=
                         ' <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-xs-12 mb-20">\
@@ -449,11 +509,11 @@
 
                     }
 
-                    var route_url = "{{ url('frontend.ads.details') }}/" + value.slug + "/" + value.id;
+                    var route_url = "{{ url('ads/details') }}/" + value.slug + "/" + value.id;
 
                     html +=
                     ' <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">\
-                                    <div class="product-single-item">\
+                                    <div class="product-single-item active">\
                                             <div class="product-wishlist">\
                                                     <a class="fav-select" data-ad_id="' + value.id + '" href="javascript:void(0)">\
                                                         <span>\
@@ -465,9 +525,24 @@
                                                     </a>\
                                                 </div>\
                                             <a href="'+route_url+'">\
-                                            <div class="thumb">\
-                                                <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + ' " alt="product">\
-                                            </div>\
+                                                <div class="product-thumb-slider">\
+                                                        <div class="swiper-wrapper">\
+                                                            <div class="swiper-slide">\
+                                                                <div class="thumb">\
+                                                                    <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + '" alt="product">\
+                                                                </div>\
+                                                            </div>\
+                                                        </div>\
+                                                        <div class="swiper-pagination"></div>\
+                                                        <div class="slider-nav-area">\
+                                                            <div class="slider-prev slider-nav">\
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M8.218 12.01l5.792 5.793a1.56 1.56 0 1 1-2.209 2.208l-6.896-6.896a1.557 1.557 0 0 1-.457-1.104c0-.4.152-.8.457-1.104l6.897-6.898a1.563 1.563 0 0 1 2.208 2.209L8.218 12.01z"></path></svg>\
+                                                            </div>\
+                                                            <div class="slider-next slider-nav">\
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M14.698 12.01l-5.792 5.793a1.56 1.56 0 1 0 2.208 2.208l6.897-6.896a1.56 1.56 0 0 0 0-2.208l-6.897-6.898a1.564 1.564 0 0 0-2.209 0 1.564 1.564 0 0 0 0 2.209l5.793 5.793z"></path></svg>\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
                                             <div class="content">\
                                                 <span class="sub-title">' + value.city.title + '</span>\
                                                 <h5 class="title">' + value.title + '</h5>\
@@ -487,13 +562,14 @@
         });
 
     }
-    function getAdsByBrands(){
+    function getAdsByBrands(page){
         var categoryId = acceptVar().categorySelect;
         var brandId = acceptVar().getBrand;
         var html = '';
         var paginate = '';
+        var routes = "{{route('frontend.ads.filter.result.brand')}}?page="+page;
         $.ajax({
-            url: "{{route('frontend.ads.filter.result.brand')}}",
+            url: routes,
             type: "POST",
             data: {
                 category_id: categoryId,
@@ -502,9 +578,11 @@
             },
             dataType: 'json',
             success: function (res) {
-                var ads = res.results;
-                paginate += '<div class="d-flex justify-content-center paginate"> </div>';
-                    $(".paginate").html(paginate);
+                var ads = res.results.data;
+                var total = ads.length;
+                $('.total').text(total)
+                paginate += '<div class="d-flex justify-content-center paginate"> '+res.pagination+' </div>';
+                $(".paginate").html(paginate);
                 if( ads == '' || ads =='[]'){
                     html +=
                         ' <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-xs-12 mb-20">\
@@ -522,11 +600,11 @@
                         getFavRecord(advertiser_id, advertisement_id);
 
                     }
-                    var route_url = "{{ url('frontend.ads.details') }}/" + value.slug + "/" + value.id;
+                    var route_url = "{{ url('ads/details') }}/" + value.slug + "/" + value.id;
 
                     html +=
                     ' <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">\
-                                    <div class="product-single-item">\
+                                    <div class="product-single-item active">\
                                             <div class="product-wishlist">\
                                                     <a class="fav-select" data-ad_id="' + value.id + '" href="javascript:void(0)">\
                                                         <span>\
@@ -538,9 +616,24 @@
                                                     </a>\
                                                 </div>\
                                             <a href="'+route_url+'">\
-                                            <div class="thumb">\
-                                                <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + ' " alt="product">\
-                                            </div>\
+                                                <div class="product-thumb-slider">\
+                                                        <div class="swiper-wrapper">\
+                                                            <div class="swiper-slide">\
+                                                                <div class="thumb">\
+                                                                    <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + '" alt="product">\
+                                                                </div>\
+                                                            </div>\
+                                                        </div>\
+                                                        <div class="swiper-pagination"></div>\
+                                                        <div class="slider-nav-area">\
+                                                            <div class="slider-prev slider-nav">\
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M8.218 12.01l5.792 5.793a1.56 1.56 0 1 1-2.209 2.208l-6.896-6.896a1.557 1.557 0 0 1-.457-1.104c0-.4.152-.8.457-1.104l6.897-6.898a1.563 1.563 0 0 1 2.208 2.209L8.218 12.01z"></path></svg>\
+                                                            </div>\
+                                                            <div class="slider-next slider-nav">\
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M14.698 12.01l-5.792 5.793a1.56 1.56 0 1 0 2.208 2.208l6.897-6.896a1.56 1.56 0 0 0 0-2.208l-6.897-6.898a1.564 1.564 0 0 0-2.209 0 1.564 1.564 0 0 0 0 2.209l5.793 5.793z"></path></svg>\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
                                             <div class="content">\
                                                 <span class="sub-title">' + value.city.title + '</span>\
                                                 <h5 class="title">' + value.title + '</h5>\
@@ -584,10 +677,14 @@
             },
             dataType: 'json',
             success: function (res) {
+
                 var ads = res.results;
-                console.log(ads);
-                paginate += '<div class="d-flex justify-content-center paginate"> </div>';
-                    $(".paginate").html(paginate);
+                  var total = ads.length;
+                $('.total').text(total)
+
+                $('.total').text(total)
+                paginate += '<div class="d-flex justify-content-center paginate">  </div>';
+                $(".paginate").html(paginate);
                 if( ads == '' || ads =='[]'){
                     html +=
                         ' <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-xs-12 mb-20">\
@@ -607,11 +704,11 @@
 
                     }
 
-                    var route_url = "{{ url('frontend.ads.details') }}/" + value.slug + "/" + value.id;
+                    var route_url = "{{ url('ads/details') }}/" + value.slug + "/" + value.id;
 
                     html +=
                     ' <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">\
-                                    <div class="product-single-item">\
+                                    <div class="product-single-item active">\
                                             <div class="product-wishlist">\
                                                     <a class="fav-select" data-ad_id="' + value.id + '" href="javascript:void(0)">\
                                                         <span>\
@@ -623,9 +720,24 @@
                                                     </a>\
                                                 </div>\
                                             <a href="'+route_url+'">\
-                                            <div class="thumb">\
-                                                <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + ' " alt="product">\
-                                            </div>\
+                                                <div class="product-thumb-slider">\
+                                                        <div class="swiper-wrapper">\
+                                                            <div class="swiper-slide">\
+                                                                <div class="thumb">\
+                                                                    <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + '" alt="product">\
+                                                                </div>\
+                                                            </div>\
+                                                        </div>\
+                                                        <div class="swiper-pagination"></div>\
+                                                        <div class="slider-nav-area">\
+                                                            <div class="slider-prev slider-nav">\
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M8.218 12.01l5.792 5.793a1.56 1.56 0 1 1-2.209 2.208l-6.896-6.896a1.557 1.557 0 0 1-.457-1.104c0-.4.152-.8.457-1.104l6.897-6.898a1.563 1.563 0 0 1 2.208 2.209L8.218 12.01z"></path></svg>\
+                                                            </div>\
+                                                            <div class="slider-next slider-nav">\
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M14.698 12.01l-5.792 5.793a1.56 1.56 0 1 0 2.208 2.208l6.897-6.896a1.56 1.56 0 0 0 0-2.208l-6.897-6.898a1.564 1.564 0 0 0-2.209 0 1.564 1.564 0 0 0 0 2.209l5.793 5.793z"></path></svg>\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
                                             <div class="content">\
                                                 <span class="sub-title">' + value.city.title + '</span>\
                                                 <h5 class="title">' + value.title + '</h5>\
@@ -646,7 +758,6 @@
 
     }
     function allow(){
-
         var categoryId = acceptVar().categorySelect;
         var subCategoryID = acceptVar().subCategorySelect;
         var brandId = acceptVar().getBrand;
@@ -669,14 +780,18 @@
             dataType: 'json',
             success: function (res) {
                 var ads = res.results;
+
                 var type = res.type;
                 if(type == 'allow'){
+                    var total = ads.length;
+                    $('.total').text(total)
                     $('.allowType').text("Disallow")
                 }else{
+
                     window.location.reload();
                 }
-                paginate += '<div class="d-flex justify-content-center paginate"> </div>';
-                    $(".paginate").html(paginate);
+                 paginate += '<div class="d-flex justify-content-center paginate"> </div>';
+                $(".paginate").html(paginate);
                 if( ads == '' || ads =='[]'){
                     html +=
                         ' <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-xs-12 mb-20">\
@@ -695,11 +810,11 @@
 
                     }
 
-                    var route_url = "{{ url('frontend.ads.details') }}/" + value.slug + "/" + value.id;
+                    var route_url = "{{ url('ads/details') }}/" + value.slug + "/" + value.id;
 
                     html +=
                     ' <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">\
-                                    <div class="product-single-item">\
+                                    <div class="product-single-item active">\
                                             <div class="product-wishlist">\
                                                     <a class="fav-select" data-ad_id="' + value.id + '" href="javascript:void(0)">\
                                                         <span>\
@@ -711,9 +826,24 @@
                                                     </a>\
                                                 </div>\
                                             <a href="'+route_url+'">\
-                                            <div class="thumb">\
-                                                <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + ' " alt="product">\
-                                            </div>\
+                                                <div class="product-thumb-slider">\
+                                                        <div class="swiper-wrapper">\
+                                                            <div class="swiper-slide">\
+                                                                <div class="thumb">\
+                                                                    <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + '" alt="product">\
+                                                                </div>\
+                                                            </div>\
+                                                        </div>\
+                                                        <div class="swiper-pagination"></div>\
+                                                        <div class="slider-nav-area">\
+                                                            <div class="slider-prev slider-nav">\
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M8.218 12.01l5.792 5.793a1.56 1.56 0 1 1-2.209 2.208l-6.896-6.896a1.557 1.557 0 0 1-.457-1.104c0-.4.152-.8.457-1.104l6.897-6.898a1.563 1.563 0 0 1 2.208 2.209L8.218 12.01z"></path></svg>\
+                                                            </div>\
+                                                            <div class="slider-next slider-nav">\
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M14.698 12.01l-5.792 5.793a1.56 1.56 0 1 0 2.208 2.208l6.897-6.896a1.56 1.56 0 0 0 0-2.208l-6.897-6.898a1.564 1.564 0 0 0-2.209 0 1.564 1.564 0 0 0 0 2.209l5.793 5.793z"></path></svg>\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
                                             <div class="content">\
                                                 <span class="sub-title">' + value.city.title + '</span>\
                                                 <h5 class="title">' + value.title + '</h5>\
