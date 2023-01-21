@@ -32,9 +32,11 @@
                             <div class="product-item">
                                 <a href="{{ route('frontend.ads.subcategorywise', $item->id) }}">
                                     <div class="thumb">
-                                        <img data-original={{ asset('core/storage/app/public/category/' . $item->image) }}
+                                        <div class="popular-item-image-wrapper">
+                                            <img data-original={{ asset('core/storage/app/public/category/' . $item->image) }}
                                             src="{{ asset('core/storage/app/public/category/' . $item->image) }}"
                                             alt="product">
+                                        </div>
                                     </div>
                                     <div class="content">
                                         <span>{{ $item->title }}</span>

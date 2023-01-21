@@ -1110,6 +1110,7 @@ blockquote .quote-icon {
   transition: all 0.3s;
 }
 .nav-tabs .nav-link.active {
+  background-color: transparent;
   color: #00AAFF;
   border-bottom: 3px solid #00AAFF;
 }
@@ -2057,7 +2058,7 @@ input::-moz-focus-inner {
   color: #00AAFF !important;
 }
 .btn--base.active:focus, .btn--base.active:hover {
-  color: #ffffff;
+  color: #ffffff !important;
   background: #00AAFF;
 }
 .btn--base:focus, .btn--base:hover {
@@ -3732,8 +3733,14 @@ option {
   }
 }
 
+.header-logo{
+  width: 90px;
+  height: auto;
+  overflow: hidden;
+}
+
 @media only screen and (max-width: 575px) {
-  .header-logo svg {
+  .header-logo img {
     width: 55px;
   }
 }
@@ -4058,7 +4065,7 @@ option {
 }
 .menu-account-wrapper .content .sub-title a {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.7) !important;
   text-decoration-line: underline;
 }
 
@@ -4656,7 +4663,7 @@ option {
 }
 
 .footer-logo {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .footer-logo img {
   max-width: 100px;
@@ -7544,8 +7551,11 @@ option {
 .breadcrumb-wrapper .breadcrumb-search-area .breadcrumb-search-icon {
   position: absolute;
   top: 9px;
-  left: 9px;
+  left: 14px;
   background: transparent;
+  color: #757575;
+  padding: 0;
+  margin: 0;
 }
 .breadcrumb-wrapper .breadcrumb-search-area .breadcrumb-search-icon i {
   font-size: 16px;
@@ -7698,6 +7708,9 @@ option {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .product-details-content .top-area .top-wrapper .opsition-wrapper .opsition-item svg {
   fill: #949494;
@@ -7833,7 +7846,7 @@ option {
   }
 }
 .social-area .social-list {
-  margin: 16px 0;
+  margin: 16px 0 !important;
 }
 .social-area .social-list li + li {
   margin-left: 16px;
@@ -7956,6 +7969,10 @@ option {
   fill: #424242;
 }
 
+.reating-list a{
+  font-size: 14px;
+}
+
 .reating-list li {
   display: inline-block;
 }
@@ -7974,11 +7991,12 @@ option {
 .seller-profile-card-bottom-wrapper .seller-profile-bottom-btn {
   padding-bottom: 16px;
 }
-.seller-profile-card-bottom-wrapper .seller-profile-bottom-btn a {
+.seller-profile-card-bottom-wrapper .seller-profile-bottom-btn .btn--base {
   font-size: 12px;
   font-weight: 600;
-  margin-top: 4px;
   padding: 3px 15px;
+  display: inline-block !important;
+  width: auto !important;
 }
 .seller-profile-card-bottom-wrapper .send-chat-btn button, .seller-profile-card-bottom-wrapper .send-chat-btn input[type=button], .seller-profile-card-bottom-wrapper .send-chat-btn input[type=reset], .seller-profile-card-bottom-wrapper .send-chat-btn input[type=submit] {
   background-color: rgba(0, 170, 255, 0.5);
@@ -8579,12 +8597,12 @@ option {
 }
 
 .setting-side-nav .setting-nav-list li a {
-  color: #424242;
+  color: #424242 !important;
   font-size: 16px;
   line-height: 24px;
 }
 .setting-side-nav .setting-nav-list li a.active {
-  color: #2c2c2c;
+  color: #2c2c2c !important;
   font-weight: 700;
 }
 @media only screen and (max-width: 575px) {
@@ -9660,7 +9678,7 @@ option {
   padding: 4px 8px;
 }
 .profile-view-left-content-wrapper .profile-view-left-item .profile-view-left-content-list {
-  padding: 8px;
+  padding: 8px !important;
 }
 .profile-view-left-content-wrapper .profile-view-left-item .profile-view-left-content-list li {
   padding: 4px 0;
@@ -10077,7 +10095,7 @@ option {
   content: "\f105";
   font-family: "Font Awesome 5 Free";
   font-size: 22px;
-  top: 15px;
+  top: 12px;
   right: 10px;
   font-weight: 900;
 }
@@ -10168,7 +10186,7 @@ option {
 .sell-add-info-area .change-cetagory-link {
   font-size: 14px;
   font-weight: 700;
-  color: #00AAFF;
+  color: #00AAFF !important;
   text-decoration: underline;
   padding-left: 15px;
 }
@@ -10533,7 +10551,7 @@ option {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 10px;
+  padding: 10px !important;
 }
 @media only screen and (max-width: 440px) {
   .my-ads-card-item .my-ads-card-wrapper .my-ads-status-list {
@@ -11179,4 +11197,12 @@ option {
 .my-ads-card-action-btn .opsition-list .opsition-link:hover{
   color: #fff !important;
   background-color: #00AAFF;
+}
+
+
+/* wrapper */
+.popular-item-image-wrapper{
+  overflow: hidden;
+  width: 70%;
+  height: auto;
 }

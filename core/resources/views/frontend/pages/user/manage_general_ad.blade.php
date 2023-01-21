@@ -16,6 +16,7 @@
                                         <a href="">{{ $category->title ?? null }}</a>
                                     </li>
                                 </ul>
+                                
                                 <a href="{{ route('frontend.user.post.ad') }}" class="change-cetagory-link">Change</a>
 
                             </div>

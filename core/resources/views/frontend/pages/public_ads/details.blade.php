@@ -55,7 +55,7 @@
                             @foreach ($details->images as $item)
                                 <div class="swiper-slide">
                                     <div class="item-details-thumb">
-                                        <a class="img-popup" data-rel="lightcase:myCollection" href="">
+                                        <a class="img-popup" data-rel="lightcase:myCollection" href="{{ asset('core/storage/app/public/advertisement_images/' . $item->images) }}">
                                             <img src="{{ asset('core/storage/app/public/advertisement_images/' . $item->images) }}"
                                                 alt="item-banner">
                                         </a>
@@ -118,16 +118,14 @@
                                                     $color = '';
                                                 }
                                             @endphp
-                                            <a class="fav-select" data-ad_id="{{ $details->id }}"
+                                            <a class="fav-select opsition-item" data-ad_id="{{ $details->id }}"
                                                 href="javascript:void(0)">
-                                                <span>
-                                                    <svg width="36" height="36" viewBox="0 0 24 24"
-                                                        class="sc-AxjAm dJbVhz fav-icon" style="fill:{{ $color }}">
-                                                        <path
-                                                            d="M16.224 5c-1.504 0-2.89.676-3.802 1.854L12 7.398l-.421-.544A4.772 4.772 0 0 0 7.776 5C5.143 5 3 7.106 3 9.695c0 5.282 6.47 11.125 9.011 11.125 2.542 0 8.99-5.445 8.99-11.125C21 7.105 18.857 5 16.223 5z">
-                                                        </path>
-                                                    </svg>
-                                                </span>
+                                                <svg width="36" height="36" viewBox="0 0 24 24"
+                                                    class="sc-AxjAm dJbVhz fav-icon" style="fill:{{ $color }}">
+                                                    <path
+                                                        d="M16.224 5c-1.504 0-2.89.676-3.802 1.854L12 7.398l-.421-.544A4.772 4.772 0 0 0 7.776 5C5.143 5 3 7.106 3 9.695c0 5.282 6.47 11.125 9.011 11.125 2.542 0 8.99-5.445 8.99-11.125C21 7.105 18.857 5 16.223 5z">
+                                                    </path>
+                                                </svg>
                                             </a>
                                             <!-- ShareThis BEGIN -->
                                             <div class="sharethis-inline-share-buttons"></div>
@@ -329,8 +327,18 @@
                     @endif
                 </div>
                 <div class="social-area">
-                    <span class="title">@lang('Share this listing')</span>
-                    <div class="sharethis-inline-share-buttons share-icon-bottom"></div>
+                    <span class="title">Share this listing, “İphone 13 pro max 128gb Silver”, with your friends</span>
+                    <ul class="social-list">
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M13.213 5.22c-.89.446-.606 3.316-.606 3.316h3.231v2.907h-3.23v10.359H8.773V11.444H6.39V8.536h2.423c-.221 0 .12-2.845.146-3.114.136-1.428 1.19-2.685 2.544-3.153 1.854-.638 3.55-.286 5.385.17l-.484 2.504s-2.585-.455-3.191.277z"></path></svg>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M21.744 6.236a7.945 7.945 0 0 1-1.383.466 4.313 4.313 0 0 0 1.138-1.813.226.226 0 0 0-.33-.263 7.982 7.982 0 0 1-2.116.874.56.56 0 0 1-.502-.125 4.325 4.325 0 0 0-2.862-1.08c-.457 0-.918.07-1.37.211a4.19 4.19 0 0 0-2.825 3.02 4.614 4.614 0 0 0-.102 1.592.16.16 0 0 1-.174.175 11.342 11.342 0 0 1-7.795-4.165.226.226 0 0 0-.37.029 4.322 4.322 0 0 0-.587 2.175 4.32 4.32 0 0 0 1.29 3.083 3.876 3.876 0 0 1-.987-.382.226.226 0 0 0-.336.195 4.33 4.33 0 0 0 2.527 3.99 3.873 3.873 0 0 1-.821-.069.226.226 0 0 0-.258.291 4.335 4.335 0 0 0 3.424 2.949 7.982 7.982 0 0 1-4.47 1.358h-.5c-.155 0-.285.1-.325.249a.343.343 0 0 0 .165.379 11.872 11.872 0 0 0 5.965 1.608c1.834 0 3.549-.364 5.098-1.081a11.258 11.258 0 0 0 3.73-2.795 12.254 12.254 0 0 0 2.284-3.826c.508-1.356.776-2.804.776-4.186v-.066c0-.222.1-.43.276-.573a8.55 8.55 0 0 0 1.72-1.888c.126-.188-.073-.424-.28-.332z"></path></svg>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path clip-rule="evenodd" d="M4 4a2 2 0 0 0-2 2v11.25a2 2 0 0 0 2 2h16.333a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4zm14.065 2.97a.924.924 0 0 1 1.143 1.454l-3.781 2.97 3.78 2.97a.924.924 0 0 1-1.142 1.454l-4.134-3.249-1.194.938a.92.92 0 0 1-1.142 0l-1.192-.938-4.134 3.249a.924.924 0 0 1-1.143-1.454l3.781-2.97-3.781-2.97A.923.923 0 1 1 6.269 6.97l5.898 4.634 5.898-4.634z"></path></svg>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -599,6 +599,23 @@ class HomeController extends Controller
 
     public function checkEmail(Request $request)
     {
+        $data = $request->all();
+        $rules = [
+            'checkingEmail' => 'required|email:rfc,dns',
+        ];
+        //Validation message
+        $customMessage = [
+            'checkingEmail.required' => 'Name is required',
+            'checkingEmail.email' => 'Please provide valid email',
+        ];
+        $validator = Validator::make($data, $rules, $customMessage);
+        // Check validation failure
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 1,
+                'message' => $validator->errors()
+            ]);
+        }
         $email = $request->checkingEmail;
 
         $advertiser = Advertiser::where('status', 1)->where('email', $email)->first();
@@ -628,6 +645,9 @@ class HomeController extends Controller
                 'status' => false
             ]);
         } else {
+            if (session()->has('user_email')) {
+                session()->forget('user_email');
+            }
             return response()->json([
                 'status' => true
             ]);
@@ -718,11 +738,7 @@ class HomeController extends Controller
                 </div>
                 ';
             } else {
-                $output .= '
-                <div id="load_more" class="load-more-btn text-center mt-60">
-                    <button type="button" name="load_more_button" class="btn--base">Not Found</button>
-                </div>
-                ';
+                $output .= '';
             }
             echo $output;
         }

@@ -18,14 +18,25 @@
                                 </li>
                             </ul>
                         </div>
+                        <div class="inbox-search-area">
+                            <input type="text" placeholder="Search area" class="form--control" autocomplete="off">
+                            <button class="cross-btn"><i class="las la-times-circle"></i></button>
+                        </div>
                     </div>
                     <div class="chat-left-body">
+                        <span class="left-body-title">Quick Filters</span>
                         <div class="quick-filter-tab">
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">All</button>
+                                    <button class="nav-link" id="unread-tab" data-bs-toggle="tab" data-bs-target="#unread" type="button" role="tab" aria-controls="unread" aria-selected="false">Unread</button>
+                                    <button class="nav-link" id="important-tab" data-bs-toggle="tab" data-bs-target="#important" type="button" role="tab" aria-controls="important" aria-selected="false">Important</button>
+                                </div>
+                            </nav>
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="all" role="tabpanel"
                                     aria-labelledby="all-tab">
                                     @foreach ($message_users as $message_user)
-                                        {{-- @dd($message_user->toArray()); --}}
                                         @php
                                             $my_id = Auth::guard('advertiser')->user()->id;
                                         @endphp
@@ -48,7 +59,7 @@
                                                     })
                                                     ->count();
                                             @endphp
-                                            <div class="chat-item active user" id="{{ $user->id }}">
+                                            <div class="chat-item user" id="{{ $user->id }}">
                                                 <div class="chat-user-area">
                                                     <div class="chat-user-thumb">
                                                         <img src="@if ($user->image) {{ URL::asset('core/storage/app/public/user/' . $user->image) }} @else {{ asset('assets/images/default.png') }} @endif"
@@ -116,7 +127,7 @@
                                                     ->count();
 
                                             @endphp
-                                            <div class="chat-item active user" id="{{ $user->id }}">
+                                            <div class="chat-item user" id="{{ $user->id }}">
                                                 <div class="chat-user-area">
                                                     <div class="chat-user-thumb">
                                                         <img src="@if ($user->image) {{ URL::asset('core/storage/app/public/user/' . $user->image) }} @else {{ asset('assets/images/default.png') }} @endif"
@@ -148,9 +159,312 @@
                                         @endif
                                     @endforeach
                                 </div>
+                                <div class="tab-pane fade" id="unread" role="tabpanel" aria-labelledby="unread-tab">
+                                    <div class="chat-item">
+                                        <div class="chat-user-area">
+                                            <div class="chat-user-thumb">
+                                                <img src="assets/images/product-item/image.webp" alt="product">
+                                                <div class="chat-user-thumb-profile">
+                                                    <img src="assets/images/profile/1.webp" alt="seller-profile">
+                                                </div>
+                                            </div>
+                                            <div class="chat-user-content">
+                                                <h4 class="title">Öner Çelik</h4>
+                                                <span class="sub-title">Cocktail dress</span>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user-action-area">
+                                            <span class="chat-user-action-title">03:57</span>
+                                            <button class="chat-user-action-opsition-btn">
+                                                <svg width="24px" height="24px" viewBox="0 0 1024 1024" data-aut-id="icon" fill="#002f34a3" fill-rule="evenodd"><path class="rui-10_kq" d="M512 725.333c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 440.889c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 156.444c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111z"></path></svg>
+                                            </button>
+                                            <ul class="custom-dropdown-list">
+                                                <li>
+                                                    <button type="button">Delete Chat</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Delete multiple chats</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Mark as important</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="important" role="tabpanel" aria-labelledby="important-tab">
+                                    <div class="chat-item">
+                                        <div class="chat-user-area">
+                                            <div class="chat-user-thumb">
+                                                <img src="assets/images/product-item/image.webp" alt="product">
+                                                <div class="chat-user-thumb-profile">
+                                                    <img src="assets/images/profile/1.webp" alt="seller-profile">
+                                                </div>
+                                            </div>
+                                            <div class="chat-user-content">
+                                                <h4 class="title">Öner Çelik</h4>
+                                                <span class="sub-title">Cocktail dress</span>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user-action-area">
+                                            <span class="chat-user-action-title">03:57</span>
+                                            <button class="chat-user-action-opsition-btn">
+                                                <svg width="24px" height="24px" viewBox="0 0 1024 1024" data-aut-id="icon" fill="#002f34a3" fill-rule="evenodd"><path class="rui-10_kq" d="M512 725.333c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 440.889c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 156.444c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111z"></path></svg>
+                                            </button>
+                                            <ul class="custom-dropdown-list">
+                                                <li>
+                                                    <button type="button">Delete Chat</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Delete multiple chats</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Mark as important</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="chat-item">
+                                        <div class="chat-user-area">
+                                            <div class="chat-user-thumb">
+                                                <img src="assets/images/product-item/image.webp" alt="product">
+                                                <div class="chat-user-thumb-profile">
+                                                    <img src="assets/images/profile/1.webp" alt="seller-profile">
+                                                </div>
+                                            </div>
+                                            <div class="chat-user-content">
+                                                <h4 class="title">Öner Çelik</h4>
+                                                <span class="sub-title">Cocktail dress</span>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user-action-area">
+                                            <span class="chat-user-action-title">03:57</span>
+                                            <button class="chat-user-action-opsition-btn">
+                                                <svg width="24px" height="24px" viewBox="0 0 1024 1024" data-aut-id="icon" fill="#002f34a3" fill-rule="evenodd"><path class="rui-10_kq" d="M512 725.333c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 440.889c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 156.444c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111z"></path></svg>
+                                            </button>
+                                            <ul class="custom-dropdown-list">
+                                                <li>
+                                                    <button type="button">Delete Chat</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Delete multiple chats</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Mark as important</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    {{-- <div class="chat-left-body">
+                        <span class="left-body-title">Quick Filters</span>
+                        <div class="quick-filter-tab">
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">All</button>
+                                    <button class="nav-link" id="unread-tab" data-bs-toggle="tab" data-bs-target="#unread" type="button" role="tab" aria-controls="unread" aria-selected="false">Unread</button>
+                                    <button class="nav-link" id="important-tab" data-bs-toggle="tab" data-bs-target="#important" type="button" role="tab" aria-controls="important" aria-selected="false">Important</button>
+                                </div>
+                            </nav>
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                                    <div class="chat-item">
+                                        <div class="chat-user-area">
+                                            <div class="chat-user-thumb">
+                                                <img src="assets/images/product-item/image.webp" alt="product">
+                                                <div class="chat-user-thumb-profile">
+                                                    <img src="assets/images/profile/1.webp" alt="seller-profile">
+                                                </div>
+                                            </div>
+                                            <div class="chat-user-content">
+                                                <h4 class="title">Öner Çelik</h4>
+                                                <span class="sub-title">Cocktail dress</span>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user-action-area">
+                                            <span class="chat-user-action-title">03:57</span>
+                                            <button class="chat-user-action-opsition-btn">
+                                                <svg width="24px" height="24px" viewBox="0 0 1024 1024" data-aut-id="icon" fill="#002f34a3" fill-rule="evenodd"><path class="rui-10_kq" d="M512 725.333c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 440.889c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 156.444c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111z"></path></svg>
+                                            </button>
+                                            <ul class="custom-dropdown-list">
+                                                <li>
+                                                    <button type="button">Delete Chat</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Delete multiple chats</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Mark as important</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="chat-item">
+                                        <div class="chat-user-area">
+                                            <div class="chat-user-thumb">
+                                                <img src="assets/images/product-item/image.webp" alt="product">
+                                                <div class="chat-user-thumb-profile">
+                                                    <img src="assets/images/profile/1.webp" alt="seller-profile">
+                                                </div>
+                                            </div>
+                                            <div class="chat-user-content">
+                                                <h4 class="title">Öner Çelik</h4>
+                                                <span class="sub-title">Cocktail dress</span>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user-action-area">
+                                            <span class="chat-user-action-title">03:57</span>
+                                            <button class="chat-user-action-opsition-btn">
+                                                <svg width="24px" height="24px" viewBox="0 0 1024 1024" data-aut-id="icon" fill="#002f34a3" fill-rule="evenodd"><path class="rui-10_kq" d="M512 725.333c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 440.889c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 156.444c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111z"></path></svg>
+                                            </button>
+                                            <ul class="custom-dropdown-list">
+                                                <li>
+                                                    <button type="button">Delete Chat</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Delete multiple chats</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Mark as important</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="chat-item">
+                                        <div class="chat-user-area">
+                                            <div class="chat-user-thumb">
+                                                <img src="assets/images/product-item/image.webp" alt="product">
+                                                <div class="chat-user-thumb-profile">
+                                                    <img src="assets/images/profile/1.webp" alt="seller-profile">
+                                                </div>
+                                            </div>
+                                            <div class="chat-user-content">
+                                                <h4 class="title">Öner Çelik</h4>
+                                                <span class="sub-title">Cocktail dress</span>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user-action-area">
+                                            <span class="chat-user-action-title">03:57</span>
+                                            <button class="chat-user-action-opsition-btn">
+                                                <svg width="24px" height="24px" viewBox="0 0 1024 1024" data-aut-id="icon" fill="#002f34a3" fill-rule="evenodd"><path class="rui-10_kq" d="M512 725.333c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 440.889c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 156.444c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111z"></path></svg>
+                                            </button>
+                                            <ul class="custom-dropdown-list">
+                                                <li>
+                                                    <button type="button">Delete Chat</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Delete multiple chats</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Mark as important</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="unread" role="tabpanel" aria-labelledby="unread-tab">
+                                    <div class="chat-item">
+                                        <div class="chat-user-area">
+                                            <div class="chat-user-thumb">
+                                                <img src="assets/images/product-item/image.webp" alt="product">
+                                                <div class="chat-user-thumb-profile">
+                                                    <img src="assets/images/profile/1.webp" alt="seller-profile">
+                                                </div>
+                                            </div>
+                                            <div class="chat-user-content">
+                                                <h4 class="title">Öner Çelik</h4>
+                                                <span class="sub-title">Cocktail dress</span>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user-action-area">
+                                            <span class="chat-user-action-title">03:57</span>
+                                            <button class="chat-user-action-opsition-btn">
+                                                <svg width="24px" height="24px" viewBox="0 0 1024 1024" data-aut-id="icon" fill="#002f34a3" fill-rule="evenodd"><path class="rui-10_kq" d="M512 725.333c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 440.889c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 156.444c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111z"></path></svg>
+                                            </button>
+                                            <ul class="custom-dropdown-list">
+                                                <li>
+                                                    <button type="button">Delete Chat</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Delete multiple chats</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Mark as important</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="important" role="tabpanel" aria-labelledby="important-tab">
+                                    <div class="chat-item">
+                                        <div class="chat-user-area">
+                                            <div class="chat-user-thumb">
+                                                <img src="assets/images/product-item/image.webp" alt="product">
+                                                <div class="chat-user-thumb-profile">
+                                                    <img src="assets/images/profile/1.webp" alt="seller-profile">
+                                                </div>
+                                            </div>
+                                            <div class="chat-user-content">
+                                                <h4 class="title">Öner Çelik</h4>
+                                                <span class="sub-title">Cocktail dress</span>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user-action-area">
+                                            <span class="chat-user-action-title">03:57</span>
+                                            <button class="chat-user-action-opsition-btn">
+                                                <svg width="24px" height="24px" viewBox="0 0 1024 1024" data-aut-id="icon" fill="#002f34a3" fill-rule="evenodd"><path class="rui-10_kq" d="M512 725.333c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 440.889c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 156.444c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111z"></path></svg>
+                                            </button>
+                                            <ul class="custom-dropdown-list">
+                                                <li>
+                                                    <button type="button">Delete Chat</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Delete multiple chats</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Mark as important</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="chat-item">
+                                        <div class="chat-user-area">
+                                            <div class="chat-user-thumb">
+                                                <img src="assets/images/product-item/image.webp" alt="product">
+                                                <div class="chat-user-thumb-profile">
+                                                    <img src="assets/images/profile/1.webp" alt="seller-profile">
+                                                </div>
+                                            </div>
+                                            <div class="chat-user-content">
+                                                <h4 class="title">Öner Çelik</h4>
+                                                <span class="sub-title">Cocktail dress</span>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user-action-area">
+                                            <span class="chat-user-action-title">03:57</span>
+                                            <button class="chat-user-action-opsition-btn">
+                                                <svg width="24px" height="24px" viewBox="0 0 1024 1024" data-aut-id="icon" fill="#002f34a3" fill-rule="evenodd"><path class="rui-10_kq" d="M512 725.333c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 440.889c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 156.444c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111z"></path></svg>
+                                            </button>
+                                            <ul class="custom-dropdown-list">
+                                                <li>
+                                                    <button type="button">Delete Chat</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Delete multiple chats</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Mark as important</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
                 </div>
                 <div class="chat-right-area">
                     <div id="messages">

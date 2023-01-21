@@ -30,12 +30,12 @@
                                             <div class="avater-preview-area">
                                                 <div class="avatar-preview">
                                                     {{-- @dd($user->image); --}}
-                                                    @if (isset($user->image))
+
                                                         <div class="profilePicPreview bg_img"
-                                                            data-background="{{ asset('core/storage/app/public/user/' . $user->image) }}">
+                                                        @if (isset($user->image)) data-background="{{ asset('core/storage/app/public/user/' . $user->image) }}" @else data-background="{{ asset('assets/images/default.png') }}"@endif>
                                                         </div>
-                                                    @endif
-                                                    <img id="pic" class="profilePicPreview bg_img mt-2"/>
+
+                                                    {{-- <img id="pic" class="profilePicPreview bg_img mt-2"/> --}}
                                                 </div>
                                             </div>
                                             <div class="avater-edit-area">
@@ -48,12 +48,9 @@
                                                         method="POST" enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="avatar-edit">
-                                                            <input name="image" type=file
-                                                                oninput="pic.src=window.URL.createObjectURL(this.files[0])"
-                                                                class="" name="image" id="profilePicUpload2"
-                                                                accept=".png, .jpg, .jpeg" required=""
-                                                                autocomplete="off">
-                                                            {{-- <label for="profilePicUpload2" class="text-light">Image</label> --}}
+                                                            <input type="file" class="profilePicUpload" name="image" id="profilePicUpload2"
+                                                            accept=".png, .jpg, .jpeg" required="">
+                                                            <label for="profilePicUpload2" class="text-light">Image</label>
                                                             <button type="submit"
                                                                 class="btn--base w-100 mt-2">Update</button>
                                                         </div>

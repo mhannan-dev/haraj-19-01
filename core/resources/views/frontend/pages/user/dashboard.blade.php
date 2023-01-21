@@ -38,7 +38,7 @@
                                                 <div class="my-ads-card-wrapper">
                                                     <div class="my-ads-card-header">
                                                         <h3 class="my-ads-card-header-title">@lang('From '): <span>
-                                                                {{ diffForHumans($item->created_at) }}
+                                                                {{ $item->created_at->format('d M y') }}
                                                             </span></h3>
                                                         <div class="my-ads-card-action-btn">
                                                             <button class="opsition-btn">
@@ -58,9 +58,6 @@
                                                                         <span>@lang('Remove')</span>
                                                                     </button>
                                                                 </form>
-                                                                <a href="{{ route('frontend.user.sellFaster') }}" class="opsition-link">
-                                                                    <span>@lang('Sell faster')</span>
-                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -142,23 +139,7 @@
                                                                 </form> --}}
 
 
-                                                                @if ($item->status == 1)
-                                                                    <a href="{{ route('frontend.user.edit.ad', $item->id) }}"
-                                                                        class="dropdown-menu__item d-flex align-items-center px-3 py-2"><span
-                                                                            class="dropdown-menu__caption">@lang('Edit now')</span>
-                                                                    </a>
 
-                                                                    <a href="#">
-                                                                        <span
-                                                                            class="dropdown-menu__caption">@lang('Sell faster')</span>
-                                                                    </a>
-
-                                                                    <a title="Change" item_id="{{ $item['id'] }}"
-                                                                        id="item_{{ $item['id'] }}"
-                                                                        href="javascript:void(0)">
-                                                                        <span>@lang('Mark as Sold')</span>
-                                                                    </a>
-                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>

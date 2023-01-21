@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" @if (session()->get('lang') == 'ar') dir="rtl" @endif>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +42,7 @@
         <link rel="stylesheet" href="{{ URL::asset('assets/frontend') }}/css/rtl.css">
     @endif
 
-    <style>
+    {{-- <style>
         a {
             text-decoration: none;
         }
@@ -60,7 +61,7 @@
             background-color: #F5F5F5;
             padding: 25px 45px;
         }
-    </style>
+    </style> --}}
     <script type='text/javascript'
         src='//platform-api.sharethis.com/js/sharethis.js#property=633927585a306f001995daca&product=sticky-share-buttons'
         async='async'></script>
@@ -83,8 +84,7 @@
                             <div class="header-menu-content">
                                 <div class="header-logo">
                                     <a href="{{ url('/') }}">
-                                        <img width="125" height="auto"
-                                            src="{{ getImage(imagePath()['logoIcon']['path'] . '/logo.png', '?' . time()) }}"
+                                        <img src="{{ getImage(imagePath()['logoIcon']['path'] . '/logo.png', '?' . time()) }}"
                                             alt="Logo" class="Headerstyle__LogoStyled-x7dkhw-2 jTcymi">
                                     </a>
                                 </div>
@@ -137,9 +137,11 @@
                                         </div>
                                     </div>
                                 @endif
-                                <div class="menu-toggler">
-                                    <i class="fas fa-bars"></i>
-                                </div>
+                                @if (!isset(Auth::guard('advertiser')->user()->id))
+                                    <div class="menu-toggler">
+                                        <i class="fas fa-bars"></i>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -168,7 +170,7 @@
                                 <a
                                     href="{{ route('frontend.user.view.profile', Auth::guard('advertiser')->user()->id) }}">{{ Auth::guard('advertiser') ? Auth::guard('advertiser')->user()->first_name : '' }}</a>
                             </h5>
-                            <span class="sub-title"><a href="">@lang('You are logged in now')</a></span>
+                            <span class="sub-title"><a href="{{ route('frontend.user.view.profile', Auth::guard('advertiser')->user()->id) }}">@lang('View and edit profile')</a></span>
                         </div>
                     </div>
                 @else
@@ -346,7 +348,7 @@
                             </div>
                             <div class="banner-logo-area">
                                 <div class="banner-logo">
-                                    <img src="{{ URL::asset('assets/frontend') }}/images/banner/banner-2.webp"
+                                    <img src="{{ getImage(imagePath()['logoIcon']['path'] . '/whiteLogo.png', '?' . time()) }}"
                                         alt="logo">
                                 </div>
                             </div>
@@ -396,6 +398,7 @@
                             </div>
                             <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 mb-20">
                                 <div class="footer-widget">
+                                    <h4 class="title">Usefull Link</h4>
                                     <ul class="footer-list">
                                         <li><a href="{{ route('frontend.cms.section', 'about-us') }}">About Us</a>
                                         </li>
@@ -408,7 +411,7 @@
                             </div>
                             <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 mb-20">
                                 <div class="footer-widget">
-                                    <h4 class="title">Download the app</h4>
+                                    <h4 class="title">Download app</h4>
                                     <ul class="footer-app-list">
                                         <li><a href="#"><img
                                                     src="{{ URL::asset('assets/frontend') }}/images/footer/footer_app_store.svg"
@@ -570,9 +573,8 @@
                                 </div>
                                 <div class="modal-account-wrapper">
                                     <div class="form-group email_field">
-                                        <input type="email" value="{{ old('email') }}" class="form--control"
-                                            placeholder="E-mail address" id="emailField" name="email"
-                                            placeholder="@lang('Enter email address')" required>
+                                        <input type="email" class="form--control" placeholder="E-mail address"
+                                            id="emailField" name="email" placeholder="@lang('Enter email address')" required>
                                     </div>
                                     <div class="form-group loader d-none" id="">
                                         <img src="{{ asset('assets/images/loader.gif') }}" width="100" />
@@ -681,9 +683,11 @@
                                     </div>
                                     <div class="form-group">
                                         <button type="text" class="btn--base w-100"
-                                            id="varButton">@lang('Go on')</button>
+                                            id="varButton">@lang('Submit')</button>
+                                    </div>
+                                    <div class="form-group">
                                         <button type="text" class="btn--base w-100"
-                                            id="varButton">@lang('Go on')</button>
+                                            id="backEmailModal">@lang('Back')</button>
                                     </div>
                                 </div>
                             </div>
@@ -931,9 +935,8 @@
         $(document).ready(function() {
             // console.log('ready');
             $("#emailButton").click(function(e) {
-                let checkingEmail = $('#emailField').val();
-                // console.log(checkingEmail);
                 e.preventDefault();
+                let checkingEmail = $('#emailField').val();
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -951,19 +954,19 @@
                         console.log(resp);
                         $('.email_field').removeClass('d-none');
                         $('.loader').addClass('d-none');
-                        if (resp.status == true) {
-                            $('#emailModal').modal('hide');
-                            $('#passModal').modal('show');
-                            $('#login_email').text("{{ session()->get('user_email') }}");
-                            notify('success', resp.message);
+                        if (resp.status == 1) {
+                            $('#emailModal').modal('show');
+                            notify('error', resp.message.checkingEmail);
                         } else if (resp.status == false) {
                             $('#emailModal').modal('hide');
                             $('#varModal').modal('show');
                             $('#var_email').text("{{ session()->get('user_email') }}");
                             notify('success', resp.message);
-                        } else if (resp.status == 1) {
-                            $('#emailModal').modal('show');
-                            notify('error', resp.message.checkingEmail);
+                        } else if (resp.status == true) {
+                            $('#emailModal').modal('hide');
+                            $('#passModal').modal('show');
+                            $('#login_email').text("{{ session()->get('user_email') }}");
+                            notify('success', resp.message);
                         }
                     }
                 });
@@ -974,6 +977,12 @@
     <script>
         $(document).ready(function() {
             // console.log('ready');
+            $("#backEmailModal").click(function(e) {
+                e.preventDefault();
+                $('#varModal').modal('hide');
+                $('#emailModal').modal('show');
+                $('#emailField').val("{{ session()->get('user_email') }}");
+            });
             $("#varButton").click(function(e) {
                 let varCode = $('#varCode').val();
                 // console.log(varCode);

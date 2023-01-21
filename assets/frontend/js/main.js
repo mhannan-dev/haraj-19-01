@@ -480,7 +480,7 @@ $('.account-control-btn-three-email').on('click', function () {
 })
 
 $(document).on("click",".opsition-btn",function(){
-  $(".opsition-list").slideToggle();
+  $(this).parents('.my-ads-card-action-btn').find('.opsition-list').slideToggle();
 });
 
 $(document).on("click",".chat-right-cross-btn",function(){

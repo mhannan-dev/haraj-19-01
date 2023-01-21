@@ -76,7 +76,8 @@ class UserController extends Controller
     }
     public function sellerPublicProfile($id)
     {
-        $data['seller'] = Advertiser::with('ads')->findOrFail($id);
+        $data['seller'] = Advertiser::with('ads', 'city')->findOrFail($id);
+        // dd($data['seller']);
         $data['soldAds'] = Advertisement::where('advertiser_id', $id)->where('status', 2)->select('id', 'city_id', 'advertiser_id', 'price', 'image', 'category_id')->get();
         // dd($data['soldAds']);
         return view('frontend.pages.public_ads.user_listing', $data);
