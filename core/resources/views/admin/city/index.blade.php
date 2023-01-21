@@ -52,29 +52,40 @@
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->slug }}</td>
                                     <td>
-                                        @if ($item['status'] == 1)
-                                            <a class="item_status" id="item-{{ $item['id'] }}"
-                                                item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
-                                                href="javascript:void(0)">
-                                                <i class="las la-check-circle icon-size text-success" status="Active"></i>
-                                            </a>
-                                        @else
-                                            <a class="item_status" id="item-{{ $item['id'] }}"
-                                                item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
-                                                href="javascript:void(0)">
-                                                <i class="las la-times-circle icon-size text-danger" status="In Active"></i>
-                                            </a>
+                                        @if (hasAccessAbility('city_status_change', $roles))
+                                            @if ($item['status'] == 1)
+                                                <a class="item_status" id="item-{{ $item['id'] }}"
+                                                    item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
+                                                    href="javascript:void(0)">
+                                                    <i class="las la-check-circle icon-size text-success"
+                                                        status="Active"></i>
+                                                </a>
+                                            @else
+                                                <a class="item_status" id="item-{{ $item['id'] }}"
+                                                    item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
+                                                    href="javascript:void(0)">
+                                                    <i class="las la-times-circle icon-size text-danger"
+                                                        status="In Active"></i>
+                                                </a>
+                                            @endif
                                         @endif
                                     </td>
-                                    <td><a title="@lang('Edit')" href="{{ route('admin.city.edit', $item['id']) }}"
-                                            class="btn btn-warning btn-sm">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a href="{{ route('admin.city.delete', $item['id']) }}"
-                                            onclick="return confirm('Are you sure?')">
-                                            <button type="button" class="btn btn-sm btn-danger"><i class="la la-trash"></i>
-                                            </button>
-                                        </a>
+                                    <td>
+                                        @if (hasAccessAbility('edit_city', $roles))
+                                            <a title="@lang('Edit')"
+                                                href="{{ route('admin.city.edit', $item['id']) }}"
+                                                class="btn btn-warning btn-sm">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        @endif
+                                        @if (hasAccessAbility('delete_city', $roles))
+                                            <a href="{{ route('admin.city.delete', $item['id']) }}"
+                                                onclick="return confirm('Are you sure?')">
+                                                <button type="button" class="btn btn-sm btn-danger"><i
+                                                        class="la la-trash"></i>
+                                                </button>
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

@@ -6,7 +6,8 @@
             class="form-control form--control {{ $errors->has('category_id') ? 'is-invalid' : '' }}">
             <option value="">--Select--</option>
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                <option value="{{ $category->id }}" @if (isset($row) && $row->brand_id == $row['brand_id']) selected @endif>
+                    {{ $category->title }}</option>
             @endforeach
         </select>
         @if ($errors->has('category_id'))

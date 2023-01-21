@@ -1,4 +1,5 @@
 <div class="sidebar__menu-wrapper">
+    {{-- @dd($roles); --}}
     <ul class="sidebar__menu">
         @if (hasAccessAbility('view_dashboard', $roles))
             <li class="sidebar-menu-item {{ Request::is('dashboard') ? 'active' : '' }}">
@@ -281,7 +282,6 @@
                             Information</span>
                     </a>
                 </li>
-
             </ul>
         </li>
     </ul>

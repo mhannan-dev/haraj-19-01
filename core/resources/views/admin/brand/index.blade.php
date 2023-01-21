@@ -5,6 +5,9 @@
 @section('page-name')
     Brand List
 @endsection
+@php
+    $roles = userRolePermissionArray();
+@endphp
 @section('content')
     @include('admin.brand._breadcam')
     <div class="row">
@@ -31,29 +34,41 @@
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->slug }}</td>
                                     <td>
-                                        @if ($item['status'] == 1)
-                                            <a class="item_status" id="item-{{ $item['id'] }}"
-                                                item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
-                                                href="javascript:void(0)">
-                                                <i class="las la-check-circle icon-size text-success" status="Active"></i>
-                                            </a>
-                                        @else
-                                            <a class="item_status" id="item-{{ $item['id'] }}"
-                                                item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
-                                                href="javascript:void(0)">
-                                                <i class="las la-times-circle icon-size text-danger" status="In Active"></i>
-                                            </a>
+                                        @if (hasAccessAbility('status_change_brand', $roles))
+                                            @if ($item['status'] == 1)
+                                                <a class="item_status" id="item-{{ $item['id'] }}"
+                                                    item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
+                                                    href="javascript:void(0)">
+                                                    <i class="las la-check-circle icon-size text-success"
+                                                        status="Active"></i>
+                                                </a>
+                                            @else
+                                                <a class="item_status" id="item-{{ $item['id'] }}"
+                                                    item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
+                                                    href="javascript:void(0)">
+                                                    <i class="las la-times-circle icon-size text-danger"
+                                                        status="In Active"></i>
+                                                </a>
+                                            @endif
                                         @endif
 
                                     </td>
-                                    <td><a title="@lang('Edit')" href="{{ route('admin.brand.edit', $item['id']) }}"
-                                            class="btn btn-warning btn-sm">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a onclick="return confirm('Are you sure?')" href="{{ route('admin.brand.delete', $item['id']) }}">
-                                            <button type="button" class="btn btn-sm btn-danger"><i class="la la-trash"></i>
-                                            </button>
-                                        </a>
+                                    <td>
+                                        @if (hasAccessAbility('edit_brand', $roles))
+                                            <a title="@lang('Edit')"
+                                                href="{{ route('admin.brand.edit', $item['id']) }}"
+                                                class="btn btn-warning btn-sm">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        @endif
+                                        @if (hasAccessAbility('delete_brand', $roles))
+                                            <a onclick="return confirm('Are you sure?')"
+                                                href="{{ route('admin.brand.delete', $item['id']) }}">
+                                                <button type="button" class="btn btn-sm btn-danger"><i
+                                                        class="la la-trash"></i>
+                                                </button>
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
