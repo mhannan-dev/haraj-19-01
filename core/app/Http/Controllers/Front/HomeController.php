@@ -431,7 +431,8 @@ class HomeController extends Controller
 
     public function childCategoryAds($id)
     {
-        $data['ads'] = Advertisement::with('category', 'city')->where('sub_category_id', $id)->orderBy('id', 'desc')->paginate(getPaginate(2));
+       
+        $data['ads'] = Advertisement::with('category', 'city')->where('sub_category_id', $id)->orderBy('id', 'desc')->paginate(getPaginate(12));
         $data['cities'] =  City::orderBy('id', 'DESC')->active()->get();
         $data['category'] = DB::table('categories')->where('parent_id', 0)->get();
 

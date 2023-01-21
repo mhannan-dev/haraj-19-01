@@ -250,6 +250,7 @@
      var glovalAdvertiser = "{{ $advertiser }}"
 
     $(document).ready(function () {
+
         getSubcategory();
         categoryTitle();
         getBrand();
