@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
-use App\Http\Controllers\BaseController;
 use App\Models\AdComplain;
 use App\Models\Advertisement;
 use App\Models\Advertiser;
@@ -12,12 +11,13 @@ use App\Models\Category;
 
 class DashboardController extends Controller
 {
+
     /**
      * The Guard implementation.
      *
      * @var Authenticator
      */
-    protected $auth;
+    //protected $auth;
 
     /**
      * Create a new authentication controller instance.
@@ -26,10 +26,11 @@ class DashboardController extends Controller
      * @return void
      */
 
-    public function __construct(Guard $auth)
-    {
-        $this->auth = $auth;
-    }
+    // public function __construct(Guard $auth)
+    // {
+    //     $this->auth = $auth;
+    //     dd($auth);
+    // }
 
     public function getIndex()
     {
@@ -42,7 +43,6 @@ class DashboardController extends Controller
 
         $data['categoryCount'] = Category::parent()->count();
         $data['lastWeekCategoryCount'] = Category::parent()->where('created_at', '>=', $myDate)->count();
-
 
         $data['reportCount'] = AdComplain::count();
         $data['lastWeekReportCount'] = AdComplain::where('created_at', '>=', $myDate)->count();

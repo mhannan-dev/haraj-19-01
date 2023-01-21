@@ -4,9 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Services\Access;
-use Redirect;
-use Session;
-
 class CheckPermission
 {
     public function handle($request, Closure $next, $permission = null)

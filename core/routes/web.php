@@ -33,9 +33,7 @@ Route::get('cc', function () {
     return "Cleared!";
 });
 
-
-
-Route::get('admin', ['as' => 'getLogin', 'uses' => '\App\Http\Controllers\Admin\AdminAuthController@getLogin']);
+Route::get('admin', ['uses' => '\App\Http\Controllers\Admin\AdminAuthController@getLogin'])->name('login');
 Route::post('admin/login', ['as' => 'postLogin', 'uses' => '\App\Http\Controllers\Admin\AdminAuthController@postLogin']);
 Route::get('logout', ['as' => 'logout', 'uses' => '\App\Http\Controllers\Admin\AdminAuthController@getLogout']);
 
@@ -47,6 +45,9 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => ['auth']
     Route::get('admin-user/{id}/edit', ['middleware' => 'acl:edit_admin_user', 'as' => 'admin-user.edit', 'uses' => '\App\Http\Controllers\Admin\AdminUserController@getEdit']);
     Route::post('admin-user/{id}/update', ['middleware' => 'acl:edit_admin_user', 'as' => 'admin-user.update', 'uses' => '\App\Http\Controllers\Admin\AdminUserController@putUpdate']);
     Route::get('admin-user/{id}/delete', ['middleware' => 'acl:delete_admin_user', 'as' => 'admin-user.delete', 'uses' => '\App\Http\Controllers\Admin\AdminUserController@getDelete']);
+
+    Route::any('pwd/change/change/{id}', ['as' => 'admin.admin-user.password', 'uses' => '\App\Http\Controllers\Admin\AdminUserController@passwordChange']);
+    // Route::any('pwd/change/change/{id}', ['as' => 'admin.admin-user.password', 'uses' => '\App\Http\Controllers\Admin\AdminUserController@passwordChange']);
     // User-Group
     Route::get('user-group', ['middleware' => 'acl:view_user_group', 'as' => 'user-group', 'uses' => '\App\Http\Controllers\Admin\UserGroupController@getIndex']);
     Route::get('user-group/new', ['middleware' => 'acl:new_user_group', 'as' => 'user-group.new', 'uses' => '\App\Http\Controllers\Admin\UserGroupController@getCreate']);
@@ -156,7 +157,7 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
     });
     Route::post('check/email', [HomeController::class, 'checkEmail'])->name('email.check');
     Route::post('check/code', [HomeController::class, 'checkCode'])->name('code.check');
-    Route::match(['get', 'post'], 'login', [UserController::class, 'getLogin'])->name('login');
+    Route::match(['get', 'post'], 'login', [UserController::class, 'getLogin'])->name('user.login');
     Route::match(['GET', 'POST'], 'forgot/password', [UserController::class, 'forgotPassword'])->name('forgot.password');
 
     Route::prefix('user')->name('user.')->group(function () {
@@ -170,7 +171,6 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
             Route::match(['get', 'post'], '/profile-update/{id}', [DashboardController::class, 'profile'])->name('update.profile');
             Route::get('profile/{id}', [DashboardController::class, 'profileView'])->name('view.profile');
             Route::match(['get', 'post'], '/update/photo/{id?}', [DashboardController::class, 'profileUpdatePhoto'])->name('update.photo');
-            // Route::get('update/photo', [DashboardController::class, 'profileUpdatePhoto'])->name('update.photo');
             Route::post('update/password', [DashboardController::class, 'updateCurrentPassword'])->name('update.password');
             Route::post('check-current-pwd', [DashboardController::class, 'check_current_pwd'])->name('check.password');
             Route::get('mobile-no/show/{id}/{show_mobile_no}', [DashboardController::class, 'chageMobileNoStatus'])->name('mobile.status');
@@ -186,7 +186,7 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
             Route::post('store/ad', [AdvertisementController::class, 'adStore'])->name('adStore');
             Route::match(['get', 'post'], 'proceed/to/pay', [FeatureAdController::class, 'proceedToPay'])->name('sellFaster');
             Route::match(['get', 'post'], '/manage/ad/{category_id}/{sub_category_id}', [AdvertisementController::class, 'postAdForm'])->name('ad.form');
-            // Route::get('manage/ad/{category_id}/{sub_category_id}', [AdvertisementController::class, 'postAdForm'])->name('ad.form');
+
             Route::get('ad/category', [AdvertisementController::class, 'adCategoryId'])->name('category.id');
             Route::get('logout',  [UserController::class, 'logout'])->name('logout');
             Route::get('other/device/logout',  [UserController::class, 'authenticated'])->name('device.logout');
