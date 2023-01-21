@@ -6,7 +6,7 @@
     @lang('Pages')
 @endsection
 @php
- ;
+    $roles = userRolePermissionArray();
 @endphp
 @section('content')
     <div class="dashboard-title-part">
@@ -21,10 +21,12 @@
             </a>
         </div>
         <div class="view-prodact">
+            @if (hasAccessAbility('create_page', $roles))
             <a href="{{ route('admin.cms.create') }}">
                 <i class="las la-plus"></i>
                 <span>@lang('Add Page')</span>
             </a>
+            @endif
         </div>
     </div>
 
@@ -48,33 +50,40 @@
                                 <td>{{ $page->slug }}</td>
                                 <td>{{ $page->description }}</td>
                                 <td>
-                                    @if ($page['status'] == 1)
-                                        <a title="Change" page_id="{{ $page['id'] }}" class="text-success page_status"
-                                            id="page_{{ $page['id'] }}" href="javascript:void(0)">
-                                            Active
-                                        </a>
-                                    @else
-                                        <a title="Change" class="page_status text-warning" id="page_{{ $page['id'] }}"
-                                            page_id="{{ $page['id'] }}" href="javascript:void(0)">In
-                                            Active
-                                        </a>
+                                    @if (hasAccessAbility('status_page', $roles))
+                                        @if ($page['status'] == 1)
+                                            <a title="Change" page_id="{{ $page['id'] }}" class="text-success page_status"
+                                                id="page_{{ $page['id'] }}" href="javascript:void(0)">
+                                                Active
+                                            </a>
+                                        @else
+                                            <a title="Change" class="page_status text-warning" id="page_{{ $page['id'] }}"
+                                                page_id="{{ $page['id'] }}" href="javascript:void(0)">In
+                                                Active
+                                            </a>
+                                        @endif
                                     @endif
                                 </td>
                                 <td>
-                                    <a title="@lang('Edit')" href="{{ route('admin.cms.edit', $page['id']) }}"
-                                        class="btn btn-warning btn-sm">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a href="{{ route('admin.cms.delete', $page['id']) }}" onclick="return confirm('Are you sure?')">
-                                        <button type="button" class="btn btn-sm btn-danger"><i
-                                                class="la la-trash"></i>
-                                        </button>
-                                    </a>
+                                    @if (hasAccessAbility('edit_page', $roles))
+                                        <a title="@lang('Edit')" href="{{ route('admin.cms.edit', $page['id']) }}"
+                                            class="btn btn-warning btn-sm">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    @endif
+                                    @if (hasAccessAbility('delete_page', $roles))
+                                        <a href="{{ route('admin.cms.delete', $page['id']) }}"
+                                            onclick="return confirm('Are you sure?')">
+                                            <button type="button" class="btn btn-sm btn-danger"><i class="la la-trash"></i>
+                                            </button>
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td class="text-muted text-center" colspan="100%">{{ $emptyMessage ? $emptyMessage : 'No data found'   }}</td>
+                                <td class="text-muted text-center" colspan="100%">
+                                    {{ $emptyMessage ? $emptyMessage : 'No data found' }}</td>
                             </tr>
                         @endforelse
 
@@ -114,5 +123,4 @@
             });
         });
     </script>
-
 @endsection

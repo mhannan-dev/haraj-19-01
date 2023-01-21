@@ -9,14 +9,8 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
     Route::get('optimize', ['middleware' => 'acl:general_settings', 'as' => 'optimize', 'uses' => '\App\Http\Controllers\Admin\GeneralSettingController@optimize']);
     Route::get('logo/icon', ['middleware' => 'acl:general_settings', 'as' => 'logo.icon.get', 'uses' => '\App\Http\Controllers\Admin\GeneralSettingController@logoIcon']);
     Route::post('logo/icon', ['middleware' => 'acl:general_settings', 'as' => 'logo.icon.post', 'uses' => '\App\Http\Controllers\Admin\GeneralSettingController@logoIconUpdate']);
-    Route::get('seo/manage', ['middleware' => 'acl:general_settings', 'as' => 'seo.page', 'uses' => '\App\Http\Controllers\Admin\GeneralSettingController@seoPage']);
-    Route::post('seo/update/{key}', ['middleware' => 'acl:general_settings', 'as' => 'seo.update', 'uses' => '\App\Http\Controllers\Admin\GeneralSettingController@seoUpdate']);
-
-    Route::group(['prefix' => 'extensions', 'as' => 'extensions.'], function () {
-        Route::get('list', ['middleware' => 'acl:view_extension', 'as' => 'index', 'uses' => '\App\Http\Controllers\Admin\ExtensionController@index']);
-        Route::post('update/{id}', ['middleware' => 'acl:update_extension', 'as' => 'update', 'uses' => '\App\Http\Controllers\Admin\ExtensionController@update']);
-        Route::post('status/change', ['middleware' => 'acl:status_change_extension', 'as' => 'status', 'uses' => '\App\Http\Controllers\Admin\ExtensionController@statusChange']);
-    });
+    Route::get('seo/manage', ['middleware' => 'acl:manage_seo', 'as' => 'seo.page', 'uses' => '\App\Http\Controllers\Admin\GeneralSettingController@seoPage']);
+    Route::post('seo/update/{key}', ['middleware' => 'acl:manage_seo', 'as' => 'seo.update', 'uses' => '\App\Http\Controllers\Admin\GeneralSettingController@seoUpdate']);
 
     Route::group(['prefix' => 'apps', 'as' => 'apps.'], function () {
         Route::match(['get', 'post'], 'index', [GeneralSettingController::class, 'appsSettings'])->name('index');
@@ -36,7 +30,7 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
 
 Route::group(['prefix' => 'currency', 'as' => 'currency.'], function () {
     Route::get('list', ['middleware' => 'acl:currency_view', 'as' => 'index', 'uses' => '\App\Http\Controllers\Admin\CurrencyController@currencies']);
-    Route::match(['GET', 'POST'], 'currency/manage/{id?}', ['as' => 'manage', 'uses' => '\App\Http\Controllers\Admin\CurrencyController@addEditCurrency']);
+    Route::match(['GET', 'POST'], 'currency/manage/{id?}', ['middleware' => 'acl:currency_add_edit', 'as' => 'manage', 'uses' => '\App\Http\Controllers\Admin\CurrencyController@addEditCurrency']);
     Route::post('status/change', ['middleware' => 'acl:currency_status_change', 'as' => 'status', 'uses' => '\App\Http\Controllers\Admin\CurrencyController@statusChange']);
     Route::post('api-key/update', ['middleware' => 'acl:currency_api_key_update', 'as' => 'api.update', 'uses' => '\App\Http\Controllers\Admin\CurrencyController@updateApiKey']);
 });

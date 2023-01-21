@@ -21,4 +21,8 @@ class ContactController extends Controller
         return view('admin.user_query.index', compact('emptyMessage'))
             ->withRows($this->resp->data);
     }
+    public function reply(Request $request)
+    {
+        dd('reply');
+    }
 }

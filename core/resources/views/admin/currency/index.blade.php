@@ -5,6 +5,9 @@
 @section('page-name')
     Currency
 @endsection
+@php
+    $roles = userRolePermissionArray();
+@endphp
 @section('content')
     <div class="dashboard-title-part">
         <h5 class="title">Dashboard</h5>
@@ -18,14 +21,12 @@
             </a>
         </div>
         <div class="view-prodact">
-            <a href="{{ route('admin.currency.manage') }}">
-                <i class="las la-plus"></i>
-                <span>Add Currency</span>
-            </a>
-            {{-- <a href="" data-bs-toggle="modal" data-bs-target="#currencyApi">
-                <i class="las la-key"></i>
-                <span>@lang('Currency Api Key')</span>
-            </a> --}}
+            @if (hasAccessAbility('currency_add_edit', $roles))
+                <a href="{{ route('admin.currency.manage') }}">
+                    <i class="las la-plus"></i>
+                    <span>Add Currency</span>
+                </a>
+            @endif
         </div>
     </div>
 
@@ -51,29 +52,33 @@
                                         {{ $item->currency_code }}
                                     </span>
                                 </td>
-
                                 <td data-label="@lang('Currency')"><span
                                         class="font-weight-bold">{{ $item->currency_symbol }}</span></td>
-
-
                                 <td data-label="@lang('Status')">
-                                    @if ($item['status'] == 1)
-                                        <a class="item_status" id="item-{{ $item['id'] }}" item_id="{{ $item['id'] }}"
-                                            id="item_{{ $item['id'] }}" href="javascript:void(0)">
-                                            <i class="las la-check-circle icon-size text-success" status="Active"></i>
-                                        </a>
-                                    @else
-                                        <a class="item_status" id="item-{{ $item['id'] }}" item_id="{{ $item['id'] }}"
-                                            id="item_{{ $item['id'] }}" href="javascript:void(0)">
-                                            <i class="las la-times-circle icon-size text-danger" status="In Active"></i>
-                                        </a>
+                                    @if (hasAccessAbility('currency_status_change', $roles))
+                                        @if ($item['status'] == 1)
+                                            <a class="item_status" id="item-{{ $item['id'] }}"
+                                                item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
+                                                href="javascript:void(0)">
+                                                <i class="las la-check-circle icon-size text-success" status="Active"></i>
+                                            </a>
+                                        @else
+                                            <a class="item_status" id="item-{{ $item['id'] }}"
+                                                item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
+                                                href="javascript:void(0)">
+                                                <i class="las la-times-circle icon-size text-danger" status="In Active"></i>
+                                            </a>
+                                        @endif
                                     @endif
+
                                 </td>
                                 <td data-label="@lang('Action')">
-                                    <a title="@lang('Edit')" class="btn btn-primary"
-                                        href="{{ route('admin.currency.manage', $item->id) }}">
-                                        <i class="las la-edit text--shadow"></i>
-                                    </a>
+                                    @if (hasAccessAbility('currency_add_edit', $roles))
+                                        <a title="@lang('Edit')" class="btn btn-primary"
+                                            href="{{ route('admin.currency.manage', $item->id) }}">
+                                            <i class="las la-edit text--shadow"></i>
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @empty

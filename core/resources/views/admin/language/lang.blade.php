@@ -5,6 +5,10 @@
 @section('page-name')
     Language
 @endsection
+@php
+    $roles = userRolePermissionArray();
+@endphp
+
 @push('custom_css')
     <style>
         .form-select {
@@ -26,25 +30,13 @@
                 <span class="active-path g-color">Language</span>
             </a>
         </div>
-        {{-- <select class="footer-language-select langSel form--control">
-            @foreach ($languages as $item)
-                <option value="{{ $item->code }}" @if (session('lang') == $item->code) selected @endif>
-                    {{ __($item->name) }}</option>
-            @endforeach
-        </select> --}}
-
-        {{-- <select class="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select> --}}
-
         <div class="view-prodact">
-            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <i class="las la-plus"></i>
-                New Language
-            </a>
+            @if (hasAccessAbility('language_create', $roles))
+                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <i class="las la-plus"></i>
+                    New Language
+                </a>
+            @endif
         </div>
     </div>
     <div class="row">
@@ -75,21 +67,27 @@
                                     @endif
                                 </td>
                                 <td data-label="@lang('Action')">
-                                    <a href="{{ route('admin.language.key', $item->id) }}" class="icon-btn btn--success"
-                                        data-toggle="tooltip" title="@lang('Translate')">
-                                        <i class="la la-code"></i>
-                                    </a>
-
-                                    <a href="{{ route('admin.language.edit', $item->id) }}" class="btn--primary"
-                                        title="@lang('Edit')">
-                                        <i class="la la-edit"></i>
-                                    </a>
-                                    @if ($item->id != 1)
-                                        <a onclick="return confirm('Are you sure?')" href="javascript:void(0)" class="icon-btn btn--danger ml-1 deleteBtn"
-                                            title="@lang('Delete')" data-toggle="tooltip"
-                                            data-url="{{ route('admin.language.delete', $item->id) }}">
-                                            <i class="la la-trash"></i>
+                                    @if (hasAccessAbility('language_edit', $roles))
+                                        <a href="{{ route('admin.language.key', $item->id) }}" class="icon-btn btn--success"
+                                            data-toggle="tooltip" title="@lang('Translate')">
+                                            <i class="la la-code"></i>
                                         </a>
+                                    @endif
+                                    @if (hasAccessAbility('language_edit', $roles))
+                                        <a href="{{ route('admin.language.edit', $item->id) }}" class="btn--primary"
+                                            title="@lang('Edit')">
+                                            <i class="la la-edit"></i>
+                                        </a>
+                                    @endif
+                                    @if (hasAccessAbility('language_delete', $roles))
+                                        @if ($item->id != 1)
+                                            <a onclick="return confirm('Are you sure?')" href="javascript:void(0)"
+                                                class="icon-btn btn--danger ml-1 deleteBtn" title="@lang('Delete')"
+                                                data-toggle="tooltip"
+                                                data-url="{{ route('admin.language.delete', $item->id) }}">
+                                                <i class="la la-trash"></i>
+                                            </a>
+                                        @endif
                                     @endif
 
                                 </td>

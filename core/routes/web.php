@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\CMSPage;
 use App\Events\MessageEvent;
 use Illuminate\Http\Request;
@@ -39,9 +40,7 @@ Route::post('admin/login', ['as' => 'postLogin', 'uses' => '\App\Http\Controller
 Route::get('logout', ['as' => 'logout', 'uses' => '\App\Http\Controllers\Admin\AdminAuthController@getLogout']);
 
 Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
-    //Role and Permission System Route
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => '\App\Http\Controllers\Admin\DashboardController@getIndex']);
-
     Route::get('admin-users', ['middleware' => 'acl:view_admin_user', 'as' => 'admin-user', 'uses' => '\App\Http\Controllers\Admin\AdminUserController@getIndex']);
     Route::get('admin-user/new', ['middleware' => 'acl:add_admin_user', 'as' => 'admin-user.new', 'uses' => '\App\Http\Controllers\Admin\AdminUserController@getCreate']);
     Route::post('admin-user/store', ['middleware' => 'acl:add_admin_user', 'as' => 'admin-user.store', 'uses' => '\App\Http\Controllers\Admin\AdminUserController@postStore']);
@@ -78,7 +77,6 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => ['auth']
     Route::post('permission/store', ['middleware' => 'acl:new_action', 'as' => 'permission.store', 'uses' => '\App\Http\Controllers\Admin\PermissionController@postStore']);
     Route::get('permission/{id}/edit', ['middleware' => 'acl:edit_action', 'as' => 'permission.edit', 'uses' => '\App\Http\Controllers\Admin\PermissionController@getEdit']);
     Route::post('permission/{id}/update', ['middleware' => 'acl:edit_action', 'as' => 'permission.update', 'uses' => '\App\Http\Controllers\Admin\PermissionController@putUpdate']);
-    //Route::get('permission/{id}/delete', ['middleware' => 'acl:delete_action', 'as' => 'permission.delete', 'uses' => 'PermissionController@getDelete']);
     Route::get('permission/{id}/delete', '\App\Http\Controllers\Admin\PermissionController@getDelete')->name('permission.delete');
 
     Route::get('transaction', ['middleware' => 'acl:view_transactions', 'as' => 'transaction.index', 'uses' => '\App\Http\Controllers\Admin\TransactionController@getIndex']);
@@ -88,7 +86,6 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => ['auth']
     require_once __DIR__ . '/admin/settings.php';
     require_once __DIR__ . '/admin/gateways.php';
     require_once __DIR__ . '/admin/extra.php';
-    require_once __DIR__ . '/admin/support-ticket.php';
     require_once __DIR__ . '/admin/language.php';
     require_once __DIR__ . '/admin/frontend.php';
     require_once __DIR__ . '/admin/category.php';
@@ -210,7 +207,7 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
         Route::post('get/adds/brand', [HomeController::class, 'getAddsByBrandFilters'])->name('filter.result.brand');
         Route::post('get/adds/sort', [HomeController::class, 'getAddsBySortFilters'])->name('filter.result.sort');
         Route::post('get/adds/by/location', [HomeController::class, 'getAddsByLocation'])->name('allow.location');
-        Route::post('check/fav',[HomeController::class, 'checkFav'])->name('check.fav');
+        Route::post('check/fav', [HomeController::class, 'checkFav'])->name('check.fav');
         Route::get('sub/category/{id}', [HomeController::class, 'childCategoryAds'])->name('subcategorywise');
         Route::get('details/{slug}/{id}', [HomeController::class, 'details'])->name('details');
         // Route::get('all', [HomeController::class, 'allAds'])->name('see.all');
