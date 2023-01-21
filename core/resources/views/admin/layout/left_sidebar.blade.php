@@ -204,86 +204,102 @@
                 </ul>
             </li>
         @endif
-        <li class="sidebar-menu-item sidebar-dropdown {{ Request::is('payment/gateway*') ? 'active' : ' ' }}">
-            <a href="#">
-                <i class="menu-icon las la-cog"></i>
-                <span class="menu-title">Payment Gateways</span>
-            </a>
-            <ul class="sidebar-submenu {{ Request::is('payment/gateway*') ? 'd-block' : ' ' }}">
-                <li class="sidebar-menu-item">
-                    <a href="{{ route('admin.gateway.automatic.index') }}" class="nav-link">
-                        <i class="menu-icon las la-dot-circle"></i>
-                        <span
-                            class="menu-title {{ Request::is('payment/gateway/automatic/index') ? 'text--base' : ' ' }}">Automatic</span>
-                    </a>
+        @if (hasAccessAbility('view_payment_gateway', $roles))
+            <li class="sidebar-menu-item sidebar-dropdown {{ Request::is('payment/gateway*') ? 'active' : ' ' }}">
+                <a href="#">
+                    <i class="menu-icon las la-cog"></i>
+                    <span class="menu-title">Payment Gateways</span>
+                </a>
+                <ul class="sidebar-submenu {{ Request::is('payment/gateway*') ? 'd-block' : ' ' }}">
+                    <li class="sidebar-menu-item">
+                        <a href="{{ route('admin.gateway.automatic.index') }}" class="nav-link">
+                            <i class="menu-icon las la-dot-circle"></i>
+                            <span
+                                class="menu-title {{ Request::is('payment/gateway/automatic/index') ? 'text--base' : ' ' }}">Automatic</span>
+                        </a>
 
-                </li>
-            </ul>
+                    </li>
+                </ul>
 
-        </li>
-
-        <li class="sidebar-menu-item {{ Request::is('currency/list') ? 'active' : '' }}">
-            <a href="{{ route('admin.currency.index') }}" class="nav-link">
-                <i class="menu-icon las la-dot-circle"></i>
-                <span class="menu-title">@lang('Currency')</span>
-            </a>
-        </li>
-
+            </li>
+        @endif
+        @if (hasAccessAbility('currency_view', $roles))
+            <li class="sidebar-menu-item {{ Request::is('currency/list') ? 'active' : '' }}">
+                <a href="{{ route('admin.currency.index') }}" class="nav-link">
+                    <i class="menu-icon las la-dot-circle"></i>
+                    <span class="menu-title">@lang('Currency')</span>
+                </a>
+            </li>
+        @endif
+        @if (hasAccessAbility('language_view', $roles))
+            <li class="sidebar-menu-item">
+                <a href="{{ route('admin.language.index') }}">
+                    <i class="menu-icon las la-language"></i>
+                    <span
+                        class="menu-title {{ Request::is('language/list') ? 'text--base' : ' ' }}">@lang('Language')</span>
+                </a>
+            </li>
+        @endif
+        @if (hasAccessAbility('view_pages', $roles))
+            <li class="sidebar-menu-item">
+                <a href="{{ route('admin.cms.index') }}">
+                    <i class="menu-icon las la-language"></i>
+                    <span class="menu-title {{ Request::is('pages') ? 'text--base' : ' ' }}">@lang('Manage Page')</span>
+                </a>
+            </li>
+        @endif
+        @if (hasAccessAbility('view_contact_query', $roles))
+            <li class="sidebar-menu-item">
+                <a href="{{ url('contact/index') }}">
+                    <i class="menu-icon las la-language"></i>
+                    <span
+                        class="menu-title {{ Request::is('contact') ? 'text--base' : ' ' }}">@lang('Contact Query')</span>
+                </a>
+            </li>
+        @endif
+        @if (hasAccessAbility('manage_seo', $roles))
+            <li class="sidebar-menu-item">
+                <a href="{{ route('admin.setting.seo.page') }}">
+                    <i class="menu-icon las la-globe"></i>
+                    <span class="menu-title">SEO Manager</span>
+                </a>
+            </li>
+        @endif
         <li class="sidebar-menu-item">
-            <a href="{{ route('admin.language.index') }}">
-                <i class="menu-icon las la-language"></i>
-                <span
-                    class="menu-title {{ Request::is('language/list') ? 'text--base' : ' ' }}">@lang('Language')</span>
-            </a>
-        </li>
-        <li class="sidebar-menu-item">
-            <a href="{{ route('admin.cms.index') }}">
-                <i class="menu-icon las la-language"></i>
-                <span class="menu-title {{ Request::is('pages') ? 'text--base' : ' ' }}">@lang('Manage Page')</span>
-            </a>
-        </li>
-        <li class="sidebar-menu-item">
-            <a href="{{ url('contact/index') }}">
-                <i class="menu-icon las la-language"></i>
-                <span class="menu-title {{ Request::is('contact') ? 'text--base' : ' ' }}">@lang('Contact Query')</span>
-            </a>
-        </li>
-        <li class="sidebar-menu-item">
-            <a href="{{ route('admin.setting.seo.page') }}">
-                <i class="menu-icon las la-globe"></i>
-                <span class="menu-title">SEO Manager</span>
-            </a>
-        </li>
-        <li class="sidebar-menu-item">
-            <a href="{{ url('web/visiting/history') }}">
-                <i class="menu-icon las la-globe"></i>
-                <span class="menu-title {{ Request::is('web/visiting/history') ? 'text--base' : ' ' }}">Visitor
-                    History</span>
-            </a>
+            @if (hasAccessAbility('visiting_history', $roles))
+                <a href="{{ url('web/visiting/history') }}">
+                    <i class="menu-icon las la-globe"></i>
+                    <span class="menu-title {{ Request::is('web/visiting/history') ? 'text--base' : ' ' }}">Visitor
+                        History</span>
+                </a>
+            @endif
         </li>
 
-
-        <li class="sidebar-menu-item sidebar-dropdown {{ Request::is('extra*') ? 'active' : ' ' }}">
-            <a href="#">
-                <i class="menu-icon las la-cog"></i>
-                <span class="menu-title">Extra</span>
-            </a>
-            <ul class="sidebar-submenu {{ Request::is('extra*') ? 'd-block' : ' ' }}">
-                <li class="sidebar-menu-item">
-                    <a href="{{ route('admin.extra.clear.cache') }}" class="nav-link">
-                        <i class="menu-icon las la-dot-circle"></i>
-                        <span class="menu-title {{ Request::is('extra') ? 'text--base' : ' ' }}">Clear Cache</span>
-                    </a>
-                </li>
-                <li class="sidebar-menu-item">
-                    <a href="{{ route('admin.extra.system.info') }}" class="nav-link">
-                        <i class="menu-icon las la-dot-circle"></i>
-                        <span class="menu-title {{ Request::is('extra/system/info') ? 'text--base' : ' ' }}">System
-                            Information</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
+        @if (hasAccessAbility('extra', $roles))
+            <li class="sidebar-menu-item sidebar-dropdown {{ Request::is('extra*') ? 'active' : ' ' }}">
+                <a href="#">
+                    <i class="menu-icon las la-cog"></i>
+                    <span class="menu-title">Extra</span>
+                </a>
+                <ul class="sidebar-submenu {{ Request::is('extra*') ? 'd-block' : ' ' }}">
+                    <li class="sidebar-menu-item">
+                        <a href="{{ route('admin.extra.clear.cache') }}" class="nav-link">
+                            <i class="menu-icon las la-dot-circle"></i>
+                            <span class="menu-title {{ Request::is('extra') ? 'text--base' : ' ' }}">Clear
+                                Cache</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="{{ route('admin.extra.system.info') }}" class="nav-link">
+                            <i class="menu-icon las la-dot-circle"></i>
+                            <span
+                                class="menu-title {{ Request::is('extra/system/info') ? 'text--base' : ' ' }}">System
+                                Information</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        @endif
     </ul>
     </li>
     </ul>

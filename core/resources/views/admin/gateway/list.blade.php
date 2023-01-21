@@ -5,6 +5,9 @@
 @section('page-name')
     Payment Gateways
 @endsection
+@php
+    $roles = userRolePermissionArray();
+@endphp
 @section('content')
     <div class="dashboard-title-part">
         <h5 class="title">Dashboard</h5>
@@ -52,16 +55,20 @@
                                     </div>
                                 </td>
                                 <td data-label="@lang('Status')">
-                                    @if ($item['status'] == 1)
-                                        <a class="item_status" id="item-{{ $item['id'] }}" item_id="{{ $item['id'] }}"
-                                            id="item_{{ $item['id'] }}" href="javascript:void(0)">
-                                            <i class="las la-check-circle icon-size text-success" status="Active"></i>
-                                        </a>
-                                    @else
-                                        <a class="item_status" id="item-{{ $item['id'] }}" item_id="{{ $item['id'] }}"
-                                            id="item_{{ $item['id'] }}" href="javascript:void(0)">
-                                            <i class="las la-times-circle icon-size text-danger" status="In Active"></i>
-                                        </a>
+                                    @if (hasAccessAbility('payment_gateway_status_change', $roles))
+                                        @if ($item['status'] == 1)
+                                            <a class="item_status" id="item-{{ $item['id'] }}"
+                                                item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
+                                                href="javascript:void(0)">
+                                                <i class="las la-check-circle icon-size text-success" status="Active"></i>
+                                            </a>
+                                        @else
+                                            <a class="item_status" id="item-{{ $item['id'] }}"
+                                                item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
+                                                href="javascript:void(0)">
+                                                <i class="las la-times-circle icon-size text-danger" status="In Active"></i>
+                                            </a>
+                                        @endif
                                     @endif
                                 </td>
                                 <td data-label="@lang('Action')">

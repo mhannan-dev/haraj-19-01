@@ -545,7 +545,7 @@
         </div>
     </div>
     <!--~~~~~~~Login Emain Input Modal~~~~~~~~-->
-    <form action="{{ route('frontend.login') }}" method="post">
+    <form action="{{ route('frontend.user.login') }}" method="post">
         @csrf
         <div class="modal account-modal" data-bs-backdrop="static" id="emailModal" tabindex="-1"
             aria-labelledby="emailModalLabel" aria-hidden="true">

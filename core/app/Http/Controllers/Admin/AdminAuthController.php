@@ -1,7 +1,9 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
-use App\Models\User;
+
 use App\Models\Auth;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Session;
@@ -42,6 +44,7 @@ class AdminAuthController extends Controller
     public function getLogin()
     {
         if (!$this->auth->check()) {
+            // dd('ok++');
             return view('admin.auth.admin_login');
         } else {
             return redirect('dashboard');
@@ -58,29 +61,22 @@ class AdminAuthController extends Controller
 
         Session::flush();
         $this->auth->logout();
-        return redirect()->route('getLogin');
-
+        return redirect('admin');
     }
 
     public function postLogin(LoginRequest $request)
     {
+
         $email = $request->input('email');
         $password = $request->input('password');
         $user = Auth::where(['email' => $email])->where(function ($query) {
             $query->where('user_type', 0);
         })->first();
-
         if ($this->hasExist($user)) {
-            if ($this->auth->attempt(['email' => $email, 'password' => $password, 'user_type' => 0], $request->has('remember'))) {
-                if (auth()->user()->is_user == 1) {
-                    return redirect('dashboard');
-                } else {
-                    return back();
-                }
-
+            if ($this->auth->attempt(['email' => $email, 'password' => $password, 'user_type' => 0])) {
+                return redirect('dashboard');
             }
         }
-
         return redirect()->back()->withErrors([
             'email' => 'The credentials you entered did not match our records. Try again?',
         ]);
@@ -91,5 +87,4 @@ class AdminAuthController extends Controller
         if (!empty($user_array)) return true;
         return false;
     }
-
 }
