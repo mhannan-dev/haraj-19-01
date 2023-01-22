@@ -156,6 +156,51 @@
         </section>
     @endif
     <!--~~~~~~~~~~~~~~~~~End Product~~~~~~~~~~~~~-->
+    <!--~~~~~~~~~~~~~~~Start Product~~~~~~~~~~~~~~~~~~~~~-->
+
+    @if (isset($mac_wise_ads) && count($mac_wise_ads) > 0)
+        <section class="product-section pt-30 pb-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section-header-wrapper">
+                            <div class="section-header">
+                                <h3 class="section-title">@lang('Your interests')</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center mb-20-none">
+                    @foreach ($mac_wise_ads as $item)
+                        {{-- @dd($item) --}}
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">
+                            @if ($item->is_featured == 1)
+                                <span class="plan-badge-top">@lang('Featured')</span>
+                            @endif
+                            <div class="product-single-item">
+                                <a href="{{ route('frontend.ads.details', [$item->ad->slug, $item->ad->id]) }}">
+                                    <div class="thumb">
+                                        @if (isset($item->ad->image))
+                                            <img src="{{ asset('core/storage/app/public/advertisement_images/' . $item->ad->image) }}"
+                                                alt="AdImage">
+                                        @endif
+                                    </div>
+                                    <div class="content">
+                                        <span class="sub-title">{{ $item->ad->city->title ?? '' }}</span>
+                                        <h5 class="title">{{ $item->ad ? $item->ad->title : '' }}</h5>
+                                        <span
+                                            class="inner-sub-title">{{ $item->ad ? $item->ad->category->title : '' }}</span>
+                                        <h5 class="inner-title">{{ $item->ad ? $item->ad->price : '' }}
+                                            {{ $item->ad ? $currency->currency_code : '' }}</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
     <section class="product-section pt-30 pb-80">
         <div class="justify-content-center d-flex loader" id="">
             <img src="{{ asset('assets/images/loader.gif') }}" width="100" />

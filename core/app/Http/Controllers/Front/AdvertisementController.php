@@ -45,7 +45,6 @@ class AdvertisementController extends Controller
         $brands = DB::table('brands')->where('category_id', $category->id)->get();
         $title = "New ad";
         $buttonText = "Save";
-
         return view('frontend.pages.forms.default', compact('category', 'brands', 'sub_category', 'buttonText', 'title'));
     }
 
@@ -65,7 +64,7 @@ class AdvertisementController extends Controller
                     'image' => 'required'
                 ];
                 $validationMessages = [
-                    'brand_id.required' => 'brand_id is required',
+                    'brand_id.required' => 'Brand is required',
                     'description.required' => 'Description is required',
                     'condition.required' => 'Condition is required',
                     'image.required' => 'Thumbnail is required',
@@ -93,7 +92,7 @@ class AdvertisementController extends Controller
                 if ($request->model) {
                     $adv->model = $data['model'];
                 }
-                //dd('ok');
+                // dd($request->all());
                 if ($request->title == null) {
                     $adv->title = $data['brand_id'] . ' ' . $data['model'] . ' ' . $data['year_of_manufacture'];
                 }
@@ -107,6 +106,11 @@ class AdvertisementController extends Controller
                         'Display' => $data['Display'] ? $data['Display'] : null,
                         'Memory' => $data['Memory'] ? $data['Memory'] : null,
                         'Battery' => $data['Battery'] ? $data['Battery'] : null
+                    ]);
+                }
+                if ($data['category_type'] == "sports") {
+                    $adv->details_informations = json_encode([
+                        'sports_type' => $data['sports_type'] ? $data['sports_type'] : null,
                     ]);
                 }
                 // if ($data['category_type'] == "electronics") {
@@ -275,7 +279,7 @@ class AdvertisementController extends Controller
                 $brand_ids = DB::table('brand_ids')->where('category_id', $category->id)->get();
             }
         }
-        if($id != null) {
+        if ($id != null) {
             if (Category::find($id) == null) {
                 // dd('datd');
                 // Update Coupon Code

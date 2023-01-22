@@ -157,7 +157,7 @@
                                     {{-- @dd('ok mobile form working and ad posting successfull'); --}}
                                     @include('frontend.pages.forms.mobiles')
                                 @elseif($sub_category->category_type == 'sports')
-                                    @dd('Form for sports');
+                                    @include('frontend.pages.forms._sports')
                                 @elseif($sub_category->category_type == 'electronics')
                                     @include('frontend.pages.forms.electronics')
                                 @elseif($sub_category->category_type == 'home_and_garden')

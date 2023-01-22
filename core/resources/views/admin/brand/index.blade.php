@@ -41,7 +41,7 @@
                             <th scope="col">@lang('Category ')</th>
                             <th scope="col">@lang('Name')</th>
                             <th scope="col">@lang('Slug')</th>
-                            <th scope="col">@lang('')</th>
+                            <th scope="col">@lang('Status')</th>
                             <th scope="col">@lang('Action')</th>
                         </tr>
                     </thead>

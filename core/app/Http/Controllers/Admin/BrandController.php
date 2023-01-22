@@ -54,7 +54,7 @@ class BrandController extends Controller
         if (!$this->resp->status) {
             return redirect()->route($this->resp->redirect_to)->with($this->resp->redirect_class, $this->resp->msg);
         }
-        $categories = Category::where('parent_id', '!=' , 0)->where('status', 1)->get();
+        $categories = Category::parent()->active()->get();
         return view('admin.brand.edit', compact('buttonText', 'categories'))->withRow($this->resp->data);
     }
 
