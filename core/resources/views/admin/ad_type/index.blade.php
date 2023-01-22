@@ -76,7 +76,7 @@
                                     </td>
                                     <td>${{ $item->price }}</td>
                                     <td>
-                                        {{ $item->duration }} hours
+                                        {{ $item->duration }} @lang('hours')
                                     </td>
                                     <td>
                                         @if (hasAccessAbility('edit_type', $roles))
