@@ -134,7 +134,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Contact Number</label>
+                                    <label>@lang('Contact Number')</label>
                                     <div class="controls">
                                         {!! Form::text('mobile_no', $user->mobile_no, [
                                             'class' => 'form-control form--control',
@@ -186,7 +186,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Can Login</label>
+                                    <label>@lang('Can Login')</label>
                                     <div class="controls">
                                         {!! Form::select('can_login', ['1' => 'Yes', '0' => 'No'], $user->can_login, [
                                             'class' => 'form-control form--control',

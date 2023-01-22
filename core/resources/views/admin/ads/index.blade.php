@@ -64,15 +64,15 @@
         <div class="col-md-4 mb-3">
             <select class="form--control form-control" name="status">
                 <option value="" selected>--@lang('Status')--</option>
-                <option value="1">Active</option>
-                <option value="2">Sold</option>
+                <option value="1">@lang('Active')</option>
+                <option value="2">@lang('Sold')</option>
             </select>
         </div>
         <div class="col-md-4 mb-3">
             <div class="row mb-10-none">
                 <div class="check-feature">
                     <input type="checkbox" class="w-auto" name="is_featured" autocomplete="off" value="1">
-                    <span>Is Featured</span>
+                    <span>@lang('Is Featured')</span>
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@
             <button type="submit" class="btn btn--base">@lang('Apply')</button>
         </div>
         <div class="col-md-2">
-            <button type="submit" class="btn btn--base float-end">Total ad {{ $ads->count() }} </button>
+            <button type="submit" class="btn btn--base float-end">@lang('Total ad') {{ $ads->count() }} </button>
         </div>
     </form>
 
@@ -102,7 +102,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @dd($ads) --}}
+                          
                             @forelse($ads as $advert)
                                 <tr>
                                     <td>{{ $advert->title }}</td>

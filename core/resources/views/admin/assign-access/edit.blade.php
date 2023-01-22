@@ -19,7 +19,7 @@
     <div class="col-md-12">
         <div class="card" style="height: 582.5px;">
             <div class="card-header">
-                <h4 class="card-title" id="basic-layout-colored-form-control">User Profile</h4>
+                <h4 class="card-title" id="basic-layout-colored-form-control">@lang('User') @lang('Profile')</h4>
                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -43,7 +43,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label><strong>Role Name :</strong></label>
+                                    <label><strong>@lang('Role') @lang('Name') :</strong></label>
                                     <div class="controls">
                                         {!! Form::text('role_name',$role->role_name, [ 'class' => 'form-control', 'data-validation-required-message' => 'This field is required', 'placeholder' => 'Enter group name', 'tabindex' => 1 ]) !!}
                                     </div>
@@ -63,9 +63,8 @@
                         <table class="table table-bordered table-hover">
                             <thead class="bg-primary bg-darken-1 text-white text-center">
                             <tr>
-                                <th>Menu</th>
-                                <th>Action</th>
-                                
+                                <th>@lang('Menu')</th>
+                                <th>@lang('Action')</th>
                             </tr>
                             </thead>
                             <tbody class="text-center">
@@ -103,11 +102,11 @@
                     <div class="form-actions text-center">
                         <a href="{{ route('admin.role') }}">
                             <button type="button" class="btn btn-warning mr-1">
-                                <i class="ft-x"></i> Cancel
+                                <i class="ft-x"></i> @lang('Cancel')
                             </button>
                         </a>
                         <button type="submit" class="btn bg-primary bg-darken-1 text-white">
-                            <i class="la la-check-square-o"></i> Save changes
+                            <i class="la la-check-square-o"></i> @lang('Save') @lang('changes')
                         </button>
                     </div>
                     {!! Form::close() !!}

@@ -42,11 +42,11 @@
                 <div class="card-body">
                     {!! Form::open(['url' => ['posted/ad/update', $item->id], 'method' => 'post']) !!}
                     <div class="form-body">
-                        <h4 class="form-section"></i>Advertisement Information</h4>
+                        <h4 class="form-section"></i>@lang('Advertisement Information')</h4>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Category</label>
+                                    <label>@lang('Category')</label>
                                     <input title="Read only" type="text" value="{{ $item->category->title }}"
                                         name="category_id" class="form-control form--control" readonly>
                                     <input type="hidden" value="{{ $item->category_id }}" name="category_id"
@@ -55,7 +55,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Brand <span class="text-danger">*</span></label>
+                                    <label>@lang('Brand')<span class="text-danger">*</span></label>
                                     <select name="brand" class="form--control">
                                         @foreach ($brands as $br)
                                             <option value="{{ $br->id }}"
@@ -72,7 +72,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Model <span class="text-danger">*</span></label>
+                                    <label>@lang('Model') <span class="text-danger">*</span></label>
                                     <input type="text" name="model" value="{{ $item->model }}"
                                         class="form-control form--control" placeholder="Model" required>
                                 </div>
@@ -84,7 +84,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Year <span class="text-danger">*</span></label>
+                                    <label>@lang('Year') <span class="text-danger">*</span></label>
                                     <input type="text" name="year_of_manufacture"
                                         value="{{ $item->year_of_manufacture }}" class="form-control form--control"
                                         placeholder="Year" required>
@@ -97,7 +97,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Color <span class="text-danger">*</span></label>
+                                    <label>@lang('Color') <span class="text-danger">*</span></label>
                                     <input type="text" name="color" value="{{ $item->color }}"
                                         class="form-control form--control" placeholder="Color" required>
                                 </div>
@@ -109,8 +109,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-    
-                                    <label>Edition <span class="text-danger">*</span></label>
+                                    <label>@lang('Edition') <span class="text-danger">*</span></label>
                                     <input type="text" name="edition" value="{{ $item->edition }}"
                                         class="form-control form--control" placeholder="Edition" required>
                                 </div>
@@ -122,7 +121,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Condition <span class="text-danger">*</span></label>
+                                    <label>@lang('Condition') <span class="text-danger">*</span></label>
                                     <input type="text" name="condition" value="{{ $item->condition }}"
                                         class="form-control form--control" placeholder="Condition" required>
                                 </div>
@@ -134,7 +133,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Price <span class="text-danger">*</span></label>
+                                    <label>@lang('Price') <span class="text-danger">*</span></label>
                                     <input type="text" name="price" value="{{ $item->price }}"
                                         class="form-control form--control" placeholder="Price" required>
                                 </div>
@@ -147,7 +146,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn--base">
-                        Update
+                        @lang('Update')
                     </button>
                     {!! Form::close() !!}
                 </div>

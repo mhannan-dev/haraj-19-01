@@ -2,24 +2,23 @@
 @section('role','active')
 @section('Role Management','open')
 @section('title')
-    Role
+    @lang('Role')
 @endsection
 @section('page-name')
-    Role Management
+    @lang('Role') @lang('Management')
 @endsection
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a>
+    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">@lang('Dashboard')</a>
     </li>
-    <li class="breadcrumb-item"><a href="{{ route('admin.role') }}">Role</a>
+    <li class="breadcrumb-item"><a href="{{ route('admin.role') }}">@lang('Role')</a>
     </li>
-    <li class="breadcrumb-item active">New Role
+    <li class="breadcrumb-item active">@lang('New Role')
     </li>
 @endsection
 @section('content')
     <div class="card" style="height: 582.5px;">
         <div class="card-header">
-            <h4 class="card-title" id="basic-layout-colored-form-control"><i class="ft-plus text-primary"></i> Add New
-                Role</h4>
+            <h4 class="card-title" id="basic-layout-colored-form-control"><i class="ft-plus text-primary"></i> @lang('Add') @lang('New') @lang('Role')</h4>
             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
             <div class="heading-elements">
                 <ul class="list-inline mb-0">
@@ -38,7 +37,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label><strong>Role Name :</strong></label>
+                                <label><strong>@lang('Role') @lang('Name') :</strong></label>
                                 <div class="controls">
                                     {!! Form::text('role_name', null, [ 'class' => 'form-control mb-1', 'data-validation-required-message' => 'This field is required', 'placeholder' => 'Enter group name', 'tabindex' => 1 ]) !!}
                                 </div>
@@ -54,15 +53,12 @@
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover">
                         <thead class="bg-primary bg-darken-1 text-white text-center">
-
                             <tr>
-                                <th>Menu</th>
-                                <th>Action</th>
+                                <th>@lang('Menu')</th>
+                                <th>@lang('Action')</th>
                             </tr>
-
                         </thead>
                         <tbody class="text-center">
-
                              @foreach($groups as $group)
                                 <tr>
                                     <td>
@@ -92,7 +88,6 @@
                                     </td>
                                 </tr>
                             @endforeach
-
                         </tbody>
                     </table>
                 </div>

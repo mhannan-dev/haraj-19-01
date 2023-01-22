@@ -27,7 +27,6 @@
             </a>
         </div>
     </div>
-
     <form class="row" action="{{ url()->current() }}" method="GET">
         <div class="col-md-4">
             <input type="text" name="search" class="form-control form--control" placeholder="@lang('Searh for advertiser.........')">
@@ -68,7 +67,7 @@
                                 <tr>
                                     <td>
 
-                                        {{  $user ? $user->fullname : $user->first_name  }}
+                                        {{ $user ? $user->fullname : $user->first_name }}
                                     </td>
                                     <td>{{ $user ? $user->email : '' }}</td>
                                     <td>{{ $user ? $user->mobile_no : '' }}</td>
