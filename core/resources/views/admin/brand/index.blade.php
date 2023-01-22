@@ -37,12 +37,12 @@
                 <table class="custom-table small">
                     <thead>
                         <tr>
-                            <th scope="col">SL</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Slug</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">@lang('SL').</th>
+                            <th scope="col">@lang('Category ')</th>
+                            <th scope="col">@lang('Name')</th>
+                            <th scope="col">@lang('Slug')</th>
+                            <th scope="col">@lang('')</th>
+                            <th scope="col">@lang('Action')</th>
                         </tr>
                     </thead>
                     <tbody>

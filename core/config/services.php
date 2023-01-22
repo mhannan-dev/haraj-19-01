@@ -32,12 +32,12 @@ return [
     'facebook' => [
         'client_id' => '2650095211790400',
         'client_secret' => '05469bed1f42a63402919913f95a0f53',
-        'redirect' => 'https://hannan.appdevs.net/haraj-19-01/login/facebook/callback',
+        'redirect' => 'https://hannan.appdevs.net/haraj-1901/login/facebook/callback',
     ],
     'google' => [
         'client_id' => '874978806897-bkr7at610eusfho813pl7gu90ana1dnf.apps.googleusercontent.com',
         'client_secret' => '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',
-        'redirect' => 'https://hannan.appdevs.net/haraj-19-01/login/google/callback',
+        'redirect' => 'https://hannan.appdevs.net/haraj-1901/login/google/callback',
     ],
     'stripe' => [
         'secret' => env('STRIPE_SECRET'),

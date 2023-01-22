@@ -31,13 +31,16 @@ class BrandController extends Controller
     {
         $data['brand'] = new Brand();
         $data['buttonText'] = "Save";
-        // $data['categories'] = DB::table('categories')->select('id', 'title','category_type')->where('status', '=', 1)->get();
         $data['categories'] = Category::parent()->active()->get();
         return view('admin.brand.create', $data);
     }
 
     public function postStore(BrandStoreRequest $request)
     {
+        $brandCheck = Brand::where('category_id')->where('title', $request->title)->count();
+        if ($brandCheck > 0) {
+            return back()->with('error', 'Brand already exist');
+        }
         $this->resp = $this->brand->postStore($request);
         return redirect()->route($this->resp->redirect_to)->with($this->resp->redirect_class, $this->resp->msg);
     }
