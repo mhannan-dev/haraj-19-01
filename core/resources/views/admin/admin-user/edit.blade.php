@@ -206,10 +206,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>@lang('form.admin_user_form_field_group_name')</label>
+
                                     <div class="controls">
+                                        <label>@lang('form.new_group_form_filed_role')</label>
                                         {!! Form::select('user_group', $userGroup, $user->user_group_id, [
                                             'class' => 'form-control form--control',
-                                            'placeholder' => 'Select Group name',
+                                            'placeholder' => 'Select role name',
+                                            'data-validation-required-message' => __('form.field_required'),
                                         ]) !!}
                                     </div>
                                     @if ($errors->has('user_group'))

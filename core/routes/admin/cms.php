@@ -14,5 +14,5 @@ Route::group(['prefix' => 'cms', 'as' => 'cms.'], function () {
 });
 Route::group(['prefix' => 'contact', 'as' => 'contact.'], function () {
     Route::get('index', ['middleware' => 'acl:view_contact_query', 'as' => 'index', 'uses' => '\App\Http\Controllers\Admin\ContactController@getIndex']);
-    Route::post('reply', ['middleware' => 'acl:contact_reply', 'as' => 'index', 'uses' => '\App\Http\Controllers\Admin\ContactController@reply']);
+    Route::any('reply/{id?}', ['middleware' => 'acl:contact_reply', 'as' => 'reply', 'uses' => '\App\Http\Controllers\Admin\ContactController@reply']);
 });
