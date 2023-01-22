@@ -24,7 +24,7 @@
     </div>
 
     <div class="col-6 mb-2">
-        <label for="duration_hours">@lang('Hours') @include('admin.partials._utils')</label>
+        <label for="duration_hours">@lang('Days') @include('admin.partials._utils')</label>
         <input id="duration_hours" name="duration_hours" class="form-control form--control" type="number"
             value="{{ @old('duration_hours', $row['duration_hours']) }}" />
         @if ($errors->has('duration_hours'))

@@ -42,7 +42,7 @@ class AdvertisementController extends Controller
     {
         $category = DB::table('categories')->where('id', $category_id)->first();
         $sub_category = DB::table('categories')->where('id', $sub_category_id)->first();
-        $brands = DB::table('brands')->where('category_id', $sub_category->id)->get();
+        $brands = DB::table('brands')->where('category_id', $category->id)->get();
         $title = "New ad";
         $buttonText = "Save";
 
@@ -51,14 +51,12 @@ class AdvertisementController extends Controller
 
     public function adStore(Request $request)
     {
-
-
-        // dd($request->all());
         $adv = new Advertisement();
         try {
             if ($request->isMethod('POST')) {
                 $data = $request->all();
                 $rules = [
+                    'brand_id' => 'required',
                     'description' => 'required',
                     'condition' => 'required',
                     'price' => 'required',
@@ -67,6 +65,7 @@ class AdvertisementController extends Controller
                     'image' => 'required'
                 ];
                 $validationMessages = [
+                    'brand_id.required' => 'brand_id is required',
                     'description.required' => 'Description is required',
                     'condition.required' => 'Condition is required',
                     'image.required' => 'Thumbnail is required',
@@ -77,8 +76,7 @@ class AdvertisementController extends Controller
                 $this->validate($request, $rules, $validationMessages);
                 $adv->advertiser_id = Auth::guard('advertiser')->user()->id;
                 $adv->category_id = $data['category_id'];
-                $adv->category_id = $data['category_id'];
-                $adv->category_id = $data['category_id'];
+                $adv->brand_id = $data['brand_id'];
                 $adv->sub_category_id = $data['sub_category_id'];
                 $adv->latitude = $data['latitude'] ?? null;
                 $adv->longitude = $data['longitude'] ?? null;
@@ -95,8 +93,9 @@ class AdvertisementController extends Controller
                 if ($request->model) {
                     $adv->model = $data['model'];
                 }
+                //dd('ok');
                 if ($request->title == null) {
-                    $adv->title = $data['brand'] . ' ' . $data['model'] . ' ' . $data['year_of_manufacture'];
+                    $adv->title = $data['brand_id'] . ' ' . $data['model'] . ' ' . $data['year_of_manufacture'];
                 }
 
                 $adv->status = 1;
@@ -139,7 +138,7 @@ class AdvertisementController extends Controller
                 }
 
                 $adv->location_embeded_map = $data['location_embeded_map'] ? $data['location_embeded_map'] : null;
-                $adv->brand = $data['brand'] ? $data['brand'] : null;
+                $adv->brand_id = $data['brand_id'] ? $data['brand_id'] : null;
                 if ($request->color) {
                     $adv->color = $data['color'] ? $data['color'] : null;
                 }
@@ -230,7 +229,7 @@ class AdvertisementController extends Controller
                 $adv->authenticity = $data['authenticity'];
                 $adv->edition = $data['edition'] ? $data['edition'] : null;
                 $adv->location_embeded_map = $data['location_embeded_map'] ? $data['location_embeded_map'] : null;
-                $adv->brand = $data['brand'] ? $data['brand'] : null;
+                $adv->brand_id = $data['brand_id'] ? $data['brand_id'] : null;
                 $adv->color = $data['color'] ? $data['color'] : null;
                 $adv->image = Generals::update('image/', $adv->image, 'png', $request->file('image'));
                 $adv->save();
@@ -270,10 +269,10 @@ class AdvertisementController extends Controller
                 $notify[] = ['success', 'Ad saved successfully!!'];
                 $category = DB::table('categories')->where('parent_id', '=', 0)->where('id', $id)->first();
 
-                $brands = DB::table('brands')->where('category_id', $category->id)->get();
+                $brand_ids = DB::table('brand_ids')->where('category_id', $category->id)->get();
             } else {
                 $category = DB::table('categories')->where('parent_id', '=', 0)->first();
-                $brands = DB::table('brands')->where('category_id', $category->id)->get();
+                $brand_ids = DB::table('brand_ids')->where('category_id', $category->id)->get();
             }
         }
         if($id != null) {
@@ -285,7 +284,7 @@ class AdvertisementController extends Controller
                 $buttonText = "Update";
                 $notify[] = ['success', 'Ad updated successfully!!'];
                 $category = DB::table('categories')->where('parent_id', '=', 0)->where('id', $adv->category_id)->first();
-                $brands = DB::table('brands')->where('category_id', $category->id)->get();
+                $brand_ids = DB::table('brand_ids')->where('category_id', $category->id)->get();
             }
         }
         //exit();
@@ -295,7 +294,7 @@ class AdvertisementController extends Controller
             //Validation rules
             $rules = [
                 'title' => 'required',
-                'brand' => 'required|numeric',
+                'brand_id' => 'required|numeric',
                 'price' => 'required|numeric|gt:0',
                 'description' => 'required',
                 'image' => 'required',
@@ -307,8 +306,8 @@ class AdvertisementController extends Controller
             //Validation message
             $customMessage = [
                 'title.required' => 'Title is required',
-                'brand.required' => 'Brand is required',
-                'price.numeric' => 'Invalid Brand',
+                'brand_id.required' => 'brand_id is required',
+                'price.numeric' => 'Invalid brand_id',
                 'price.required' => 'Price is required',
                 'price.gt' => 'Price must be greater then 0',
                 'description.required' => 'Description is required',
@@ -361,7 +360,7 @@ class AdvertisementController extends Controller
             }
 
             $adv->location_embeded_map = $data['location_embeded_map'] ? $data['location_embeded_map'] : null;
-            $adv->brand = $data['brand'] ? $data['brand'] : null;
+            $adv->brand_id = $data['brand_id'] ? $data['brand_id'] : null;
             if ($request->color) {
                 $adv->color = $data['color'] ? $data['color'] : null;
             }
@@ -389,7 +388,7 @@ class AdvertisementController extends Controller
         // if (Category::findOrFail($id)) {
 
         // dd($category);
-        return view('frontend.pages.user.manage_general_ad', compact('category', 'brands', 'buttonText', 'adv'));
+        return view('frontend.pages.user.manage_general_ad', compact('category', 'brand_ids', 'buttonText', 'adv'));
         // }
     }
 

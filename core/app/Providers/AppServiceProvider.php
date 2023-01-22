@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $activeTemplate = activeTemplate();
-        $currency = Currency::select('currency_code', 'currency_symbol')->where('status', '=', 1)->where('is_default', '=', 1)->first();
+        $currency = Currency::select('currency_code', 'currency_symbol')->where('status', '=', 1)->first();
         $general = GeneralSetting::with('currency')->first();
 
         $viewShare['general'] = $general ? $general : '';

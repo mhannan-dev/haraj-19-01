@@ -39,8 +39,8 @@ class SocialAuthController extends Controller
                 $notify[] = ['success', 'Login successful'];
                 return redirect()->route('frontend.user.post.ad')->withNotify($notify);
             }
-        } catch (Exception $ex) {
-            dd($ex->getMessage());
+        } catch (Exception $e) {
+            info($e);
         }
     }
     public function redirectToGoogle()
@@ -74,7 +74,7 @@ class SocialAuthController extends Controller
                 return redirect()->route('frontend.user.post.ad')->withNotify($notify);
             }
         } catch (Exception $e) {
-            dd($e->getMessage());
+            info($e);
         }
     }
 }

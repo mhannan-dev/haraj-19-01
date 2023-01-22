@@ -46,8 +46,8 @@
                                                 </div>
                                             @endif
                                             <div class="form-group">
-                                                <label>Brand <span class="text--danger">*</span></label>
-                                                <select class="form--control" name="brand">
+                                                <label>@lang('Brand ') <span class="text--danger">*</span></label>
+                                                <select class="form--control" name="brand_id">
                                                     <option value="">Select Brand</option>
                                                     @foreach ($brands as $brand)
                                                         <option value="{{ $brand->id }}">{{ $brand->title }}</option>

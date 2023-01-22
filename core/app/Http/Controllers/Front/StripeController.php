@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use Stripe\Token;
 use Stripe\Charge;
 use Stripe\Stripe;
 use App\Models\Payment;
@@ -11,7 +12,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Stripe\Token;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class StripeController extends Controller
 {
@@ -24,26 +26,38 @@ class StripeController extends Controller
     public function stripePost(Request $request)
     {
         $feature_ad = DB::table('ad_types')->where('id', '=', $request->feature_ad_id)->first();
-
+        $data = $request->all();
+        $rules = [
+            'card_name' => 'required',
+            'card_number' => 'required',
+            'card_expiry_month' => 'required',
+            'card_expiry_year' => 'required',
+            'card_cvc' => 'required',
+        ];
+        //Validation message
+        $customMessage = [
+            'card_name.required' => 'Card name is required',
+            'card_number.required' => 'Number is required',
+            'card_expiry_month.required' => 'Month is required',
+            'card_expiry_year.required' => 'Year is required',
+            'card_cvc.required' => 'CVC is required'
+        ];
+        $validator = Validator::make($data, $rules, $customMessage);
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator);
+        }
         Stripe::setApiKey(env('STRIPE_SECRET'));
-
         Stripe::setApiVersion("2020-03-02");
         $token = Token::create(array(
             "card" => array(
-                "name" => "$request->card_name",
-                "number" => "$request->card_number",
-                "exp_month" => $request->card_expiry_month,
-                "exp_year" => $request->card_expiry_year,
-                "cvc" => "$request->card_cvc",
+                "name" => $data['card_name'],
+                "number" => $data['card_number'],
+                "exp_month" => $data['card_expiry_month'],
+                "exp_year" => $data['card_expiry_year'],
+                "cvc" => $data['card_cvc'],
             )
         ));
-        // $payment = Charge::create(array(
-        //     "card" => $request->stripecardToken,
-        //     "amount" => $request->feature_ad_price,
-        //     "currency" => "USD",
-        //     "customer" => null,
-        //     "description" => "Feature ad Payment",
-        // ));
+
         $payment = Charge::create(array(
             'card' => $token['id'],
             'currency' => "USD",
@@ -51,12 +65,11 @@ class StripeController extends Controller
             'description' => 'Feature ad Payment',
         ));
         if (isset($payment->id)) {
-
             $last_ad_id = session()->get('advertisement_id');
             $new_ad = Advertisement::findOrFail($last_ad_id);
             $new_ad->ad_type_id = $feature_ad->id;
             $adCreatedDate  = $new_ad->created_at;
-            $new_ad->feature_expire_date = $adCreatedDate->addDays($feature_ad->duration_days);
+            $new_ad->feature_expire_date = $adCreatedDate->addDays($feature_ad->duration);
             $new_ad->is_featured = 1;
             $new_ad->update();
 
