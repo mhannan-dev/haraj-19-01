@@ -28,7 +28,7 @@
     </div>
     <div class="user-detail-area">
         <div class="user-info-header two">
-            <h5 class="title">Site Settings</h5>
+            <h5 class="title">@lang('Site Settings')</h5>
         </div>
         <div class="row">
             <div class="col-lg-12">
@@ -38,17 +38,17 @@
                         <div class="dashboard-form">
                             <div class="row justify-content-center mb-10-none ps-3 pe-3">
                                 <div class="col-md-6 form-group">
-                                    <label>Site Title</label>
+                                    <label>@lang('Site Title') <span class="text-danger">*</span> </label>
                                     <input type="text" name="sitename" class="form--control" placeholder="0"
                                         value="{{ $general->sitename ?? '' }}">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label>Site subtitle</label>
+                                    <label>@lang('Site subtitle') <span class="text-danger">*</span></label>
                                     <input type="text" name="site_sub_title" class="form--control" placeholder="0"
                                         value="{{ $general->site_sub_title ?? '' }}">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label>Timezone</label>
+                                    <label>@lang('Timezone')</label>
                                     <select class="form--control" name='timezone'>
                                         @foreach ($timezones as $timezone)
                                             <option value="'{{ @$timezone }}'"
@@ -58,8 +58,10 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    @php($currency_code = DB::table('general_settings')->select('cur_text')->first())
-                                    <label>Select Currency</label>
+                                    @php(
+    $currency_code = DB::table('general_settings')->select('cur_text')->first()
+)
+                                    <label>@lang('Select Currency')</label>
                                     <select class="form--control" name='cur_text'>
                                         @foreach ($currencies as $currency)
                                             <option value="{{ $currency->currency_code }}"
@@ -71,15 +73,22 @@
                                 </div>
                             </div>
                             <div class="row text-center pt-30 mb-10-none">
-                                <div class="col-md-6 form-group">
-                                    <label>User Registration</label>
+                                <div class="col-md-4 form-group">
+                                    <label>@lang('User Registration')</label>
                                     <input type="checkbox" data-width="100%" data-size="large" data-onstyle="-success"
                                         data-offstyle="-danger" data-toggle="toggle" data-on="Activated"
                                         data-off="Deactivated" name="registration"
                                         @if ($general->registration) checked @endif>
                                 </div>
-                                <div class="col-md-6 form-group">
-                                    <label>Email Verification</label>
+                                <div class="col-md-4 form-group">
+                                    <label>@lang('Email Verification')</label>
+                                    <input type="checkbox" data-width="100%" data-size="large" data-onstyle="-success"
+                                        data-offstyle="-danger" data-toggle="toggle" data-on="Activated"
+                                        data-off="Deactivated" name="ev"
+                                        @if ($general->ev) checked @endif>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label>@lang('Email Notification')</label>
                                     <input type="checkbox" data-width="100%" data-size="large" data-onstyle="-success"
                                         data-offstyle="-danger" data-toggle="toggle" data-on="Activated"
                                         data-off="Deactivated" name="ev"
@@ -89,7 +98,7 @@
                         </div>
                         <div class="info-two-btn mt-30">
                             <button type="submit" class="btn btn--base w-100"><i class="las la-cloud-upload-alt"></i>
-                                Update</button>
+                                @lang('Update')</button>
                         </div>
                     </form>
                 </div>

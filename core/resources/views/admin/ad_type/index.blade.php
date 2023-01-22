@@ -17,9 +17,9 @@
             </a>
             <i class="las la-angle-right"></i>
             @if (hasAccessAbility('view_ad_type', $roles))
-            <a href="{{ route('admin.type.index') }}">
-                <span class="active-path g-color">@lang('Ad Packages')</span>
-            </a>
+                <a href="{{ route('admin.type.index') }}">
+                    <span class="active-path g-color">@lang('Ad Packages')</span>
+                </a>
             @endif
         </div>
         <div class="view-prodact">
@@ -55,23 +55,28 @@
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->slug }}</td>
                                     <td>
-                                        @if ($item['status'] == 1)
-                                            <a class="item_status" id="item-{{ $item['id'] }}"
-                                                item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
-                                                href="javascript:void(0)">
-                                                <i class="las la-check-circle icon-size text-success" status="Active"></i>
-                                            </a>
-                                        @else
-                                            <a class="item_status" id="item-{{ $item['id'] }}"
-                                                item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
-                                                href="javascript:void(0)">
-                                                <i class="las la-times-circle icon-size text-danger" status="In Active"></i>
-                                            </a>
+                                        @if (hasAccessAbility('type_status_change', $roles))
+                                            @if ($item['status'] == 1)
+                                                <a class="item_status" id="item-{{ $item['id'] }}"
+                                                    item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
+                                                    href="javascript:void(0)">
+                                                    <i class="las la-check-circle icon-size text-success"
+                                                        status="Active"></i>
+                                                </a>
+                                            @else
+                                                <a class="item_status" id="item-{{ $item['id'] }}"
+                                                    item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
+                                                    href="javascript:void(0)">
+                                                    <i class="las la-times-circle icon-size text-danger"
+                                                        status="In Active"></i>
+                                                </a>
+                                            @endif
                                         @endif
+
                                     </td>
                                     <td>${{ $item->price }}</td>
                                     <td>
-                                        {{ $item->duration }} hours
+                                        {{ $item->duration }} @lang('hours')
                                     </td>
                                     <td>
                                         @if (hasAccessAbility('edit_type', $roles))

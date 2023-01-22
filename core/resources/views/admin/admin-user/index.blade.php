@@ -1,15 +1,15 @@
 @extends('admin.layout.master')
 @section('admin-user', 'active')
 @section('title')
-    Admin User
+    @lang('Admin User')
 @endsection
 @section('page-name')
-    Admin User
+    @lang('Admin User')
 @endsection
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a>
+    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">@lang('Dashboard')</a>
     </li>
-    <li class="breadcrumb-item active">web User
+    <li class="breadcrumb-item active">@lang('Admin User')
     </li>
 @endsection
 @php
@@ -43,19 +43,18 @@
                     <table class="custom-table small">
                         <thead>
                             <tr>
-                                <th>Sl.</th>
-                                <th>Image</th>
-                                <th>Full Name</th>
-                                <th>Email</th>
-                                <th>Mobile no</th>
-                                <th>Group</th>
-                                <th>Role</th>
-                                <th>Action</th>
+                                <th>@lang('Sl.')</th>
+                                <th>@lang('Image')</th>
+                                <th>@lang('Full Name')</th>
+                                <th>@lang('Email')</th>
+                                <th>@lang('Mobile no')</th>
+                                <th>@lang('Group')</th>
+                                <th>@lang('Role')</th>
+                                <th>@lang('Action')</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($rows as $row)
-                                {{-- @dd($row) --}}
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>
@@ -69,7 +68,6 @@
                                     <td>{{ $row->group_name }}</td>
                                     <td>{{ $row->role_name }}</td>
                                     <td>
-                                        {{-- @dd($row) --}}
                                             @if (hasAccessAbility('edit_admin_user', $roles))
                                                 <a href="{{ route('admin.admin-user.edit', [$row->auth_id]) }}">
                                                     <button type="button" class="btn btn-sm btn-outline-primary mr-1"><i

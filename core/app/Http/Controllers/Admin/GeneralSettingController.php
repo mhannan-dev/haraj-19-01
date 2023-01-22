@@ -25,12 +25,7 @@ class GeneralSettingController extends Controller
 
     public function update(Request $request)
     {
-        $request->validate([
-            'base_color' => 'nullable', 'regex:/^[a-f0-9]{6}$/i',
-            'secondary_color' => 'nullable', 'regex:/^[a-f0-9]{6}$/i',
-            'timezone' => 'required',
-        ]);
-
+        
         $general = GeneralSetting::first();
         $general->ev = $request->ev ? 1 : 0;
         $general->en = $request->en ? 1 : 0;
@@ -55,9 +50,7 @@ class GeneralSettingController extends Controller
         $general->secondary_color = $request->secondary_color;
         $general->component_color = $request->component_color;
         $general->otp_expiration = $request->otp_expiration;
-        $general->domain_name = $request->domain_name;
-        // $general->google_play_status = $request->google_play_status ? 1 : 0;
-        // $general->ios_status = $request->ios_status ? 1 : 0;
+
         $general->save();
         $timezoneFile = config_path('timezone.php');
         $content = '<?php $timezone = ' . $request->timezone . ' ?>';

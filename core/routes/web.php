@@ -209,7 +209,7 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
         Route::post('get/adds/brand', [HomeController::class, 'getAddsByBrandFilters'])->name('filter.result.brand');
         Route::post('get/adds/sort', [HomeController::class, 'getAddsBySortFilters'])->name('filter.result.sort');
         Route::post('get/adds/by/location', [HomeController::class, 'getAddsByLocation'])->name('allow.location');
-        Route::post('check/fav', [HomeController::class, 'checkFav'])->name('check.fav');
+        Route::post('check/fav',[HomeController::class, 'checkFav'])->name('check.fav');
         Route::get('sub/category/{id}', [HomeController::class, 'childCategoryAds'])->name('subcategorywise');
         Route::get('details/{slug}/{id}', [HomeController::class, 'details'])->name('details');
         // Route::get('all', [HomeController::class, 'allAds'])->name('see.all');

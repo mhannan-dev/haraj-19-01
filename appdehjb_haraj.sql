@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 21, 2023 at 07:11 AM
+-- Generation Time: Jan 21, 2023 at 03:27 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.0.22
 
@@ -47,7 +47,7 @@ CREATE TABLE `admin_users` (
 --
 
 INSERT INTO `admin_users` (`id`, `first_name`, `last_name`, `designation`, `auth_id`, `profile_pic`, `profile_pic_url`, `pic_mime_type`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Super', 'Admin', 'Super Admin', 1, 'profile_11102022_1665485097.jpg', 'http://localhost/haraj_final/profile/profile_11102022_1665485097.jpg', NULL, 1, NULL, '2022-10-11 04:44:57', NULL),
+(1, 'Super', 'Admin', 'Super Admin', 1, 'profile_21012023_1674308915.jpg', 'http://localhost/haraj-19/profile/profile_21012023_1674308915.jpg', NULL, 1, NULL, '2023-01-21 07:48:35', NULL),
 (4, 'Test', 'User', 'Developer', 4, 'profile_20-01-2023_1674231616.jpg', NULL, NULL, 1, '2023-01-20 10:20:16', '2023-01-20 10:35:19', NULL),
 (5, 'Basic', 'User', 'Engineer', 5, 'profile_21-01-2023_1674275919.png', NULL, NULL, 1, '2023-01-20 22:38:39', '2023-01-20 22:38:39', NULL);
 
@@ -405,9 +405,9 @@ CREATE TABLE `auths` (
 --
 
 INSERT INTO `auths` (`id`, `first_name`, `last_name`, `username`, `email`, `mobile_no`, `password`, `model_id`, `gender`, `dob`, `about`, `facebook_id`, `google_id`, `activation_code`, `salt`, `activation_code_expire`, `is_first_login`, `user_type`, `can_login`, `status`, `created_by`, `updated_by`, `remember_token`, `created_at`, `updated_at`, `image`, `is_user`) VALUES
-(1, 'Muhammad', 'Hannan', 'admin@admin.com', 'admin@admin.com', '01744894492', '$2y$10$yRiqZPnaJo0dEZwapoCbnupdqOX.1fpE12AkgbswRl919vEE3Jrnq', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 1, 1, 0, 0, NULL, NULL, '2022-10-01 11:26:18', NULL, 0),
+(1, 'Muhammad', 'Hannan', 'admin@admin.com', 'admin@admin.com', '01744894492', '$2y$10$ZkcvxlTOVUm/oTu3ZZwLYe1YEfpcWkmxxPJo9AjFwy3jvnhevCX0q', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 1, 1, 0, 0, NULL, NULL, '2022-10-01 11:26:18', NULL, 0),
 (4, NULL, NULL, 'user123', 'admin@gmail.com', '01717121213', '$2y$10$L/g4mEP3.ATdBXWuf8OQdOjHNTD4qZLDlwFCDiEvl7GQQNolJFFGG', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 1, 1, 0, 0, NULL, '2023-01-20 10:20:16', '2023-01-20 10:20:16', NULL, 0),
-(5, NULL, NULL, 'basic_user1', 'basicuser1@gmail.com', '01212141414', '$2y$10$2wSNFGAKAmMZ/1hF3mg9/.O9ufXef4NoKJy5qcp0BuspxGCDq3MdO', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 1, 1, 0, 0, NULL, '2023-01-20 22:38:39', '2023-01-20 22:38:39', NULL, 0);
+(5, NULL, NULL, 'basic_user1', 'basicuser1@gmail.com', '01212141414', '$2y$10$M4YqeOcST.WYH4xe.De42OFUVOFe33E/V/lK6a0X2XaOOTyF2xHPK', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 1, 1, 0, 0, NULL, '2023-01-20 22:38:39', '2023-01-20 22:38:39', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -481,8 +481,7 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`id`, `category_id`, `title`, `slug`, `status`, `created_at`, `updated_at`) VALUES
-(1, 20, 'MI', 'mi', 1, '2023-01-11 23:44:22', '2023-01-20 04:12:33'),
-(2, 18, 'Category wise brand', 'category-wise-brand', 1, '2023-01-15 22:24:26', '2023-01-20 04:12:34');
+(3, 20, 'Walton update', 'walton-update', 1, '2023-01-21 01:36:56', '2023-01-21 01:38:50');
 
 -- --------------------------------------------------------
 
@@ -551,8 +550,7 @@ CREATE TABLE `cities` (
 --
 
 INSERT INTO `cities` (`id`, `country_id`, `title`, `slug`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Ankara', 'ankara', 0, NULL, '2023-01-20 04:38:10'),
-(2, 1, 'Istanbul', 'istanbul', 0, NULL, '2023-01-20 04:38:11');
+(1, 1, 'Ankara Change by Basic user', 'ankara-change-by-basic-user', 1, NULL, '2023-01-21 01:28:11');
 
 -- --------------------------------------------------------
 
@@ -617,7 +615,7 @@ CREATE TABLE `currencies` (
 --
 
 INSERT INTO `currencies` (`id`, `currency_code`, `currency_symbol`, `currency_fullname`, `currency_type`, `rate`, `is_default`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'USD', '$', 'USD', 1, '100.00000000', 1, 1, '2022-10-18 23:19:36', '2023-01-19 13:37:31');
+(1, 'USD', '$', 'USD Update', 1, '100.00000000', 0, 1, '2022-10-18 23:19:36', '2023-01-21 03:02:25');
 
 -- --------------------------------------------------------
 
@@ -1212,7 +1210,36 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `permission_group_id`, 
 (35, 'edit_category', 'Edit', 11, 1, NULL, '2023-01-20 09:30:32', '2023-01-20 09:32:39'),
 (36, 'status_change_category', 'Status', 11, 1, NULL, '2023-01-20 09:31:00', '2023-01-20 09:32:58'),
 (37, 'view_brand', 'View', 14, 1, NULL, '2023-01-20 22:26:40', '2023-01-20 22:26:40'),
-(38, 'create_city', 'Create', 12, 1, NULL, '2023-01-20 22:54:03', '2023-01-20 22:54:03');
+(38, 'create_city', 'Create', 12, 1, NULL, '2023-01-20 22:54:03', '2023-01-20 22:54:03'),
+(39, 'city_status_change', 'Status', 12, 1, NULL, '2023-01-21 01:21:22', '2023-01-21 01:21:22'),
+(40, 'edit_city', 'Edit', 12, 1, NULL, '2023-01-21 01:26:47', '2023-01-21 01:26:47'),
+(41, 'delete_city', 'Delete', 12, 1, NULL, '2023-01-21 01:27:04', '2023-01-21 01:27:04'),
+(42, 'delete_brand', 'Delete', 14, 1, NULL, '2023-01-21 01:30:55', '2023-01-21 01:30:55'),
+(43, 'edit_brand', 'Edit', 14, 1, NULL, '2023-01-21 01:31:11', '2023-01-21 01:31:11'),
+(44, 'status_change_brand', 'Status', 14, 1, NULL, '2023-01-21 01:31:47', '2023-01-21 01:31:47'),
+(45, 'create_brand', 'Create', 14, 1, NULL, '2023-01-21 01:35:55', '2023-01-21 01:35:55'),
+(46, 'view_payment_gateway', 'View', 15, 1, NULL, '2023-01-21 02:42:33', '2023-01-21 02:42:33'),
+(47, 'payment_gateway_status_change', 'Status', 15, 1, NULL, '2023-01-21 02:43:48', '2023-01-21 02:43:48'),
+(48, 'currency_view', 'View', 16, 1, NULL, '2023-01-21 02:50:47', '2023-01-21 02:50:47'),
+(49, 'currency_status_change', 'Status', 16, 1, NULL, '2023-01-21 02:52:31', '2023-01-21 02:52:31'),
+(50, 'currency_add_edit', 'Create', 16, 1, NULL, '2023-01-21 02:55:48', '2023-01-21 02:55:48'),
+(51, 'language_view', 'View', 17, 1, NULL, '2023-01-21 03:06:22', '2023-01-21 03:06:22'),
+(52, 'language_create', 'Create', 17, 1, NULL, '2023-01-21 03:09:15', '2023-01-21 03:09:15'),
+(53, 'language_delete', 'Delete', 17, 1, NULL, '2023-01-21 03:11:09', '2023-01-21 03:11:09'),
+(54, 'language_edit', 'Edit', 17, 1, NULL, '2023-01-21 03:11:32', '2023-01-21 03:11:32'),
+(55, 'view_pages', 'View', 18, 1, NULL, '2023-01-21 03:18:00', '2023-01-21 03:18:00'),
+(56, 'create_page', 'Create', 18, 1, NULL, '2023-01-21 03:20:30', '2023-01-21 03:20:30'),
+(57, 'edit_page', 'Edit', 18, 1, NULL, '2023-01-21 03:20:48', '2023-01-21 03:20:48'),
+(58, 'delete_page', 'Delete', 18, 1, NULL, '2023-01-21 03:23:37', '2023-01-21 03:23:37'),
+(59, 'status_page', 'Status', 18, 1, NULL, '2023-01-21 03:26:32', '2023-01-21 03:26:32'),
+(60, 'view_contact_query', 'View', 19, 1, NULL, '2023-01-21 03:33:08', '2023-01-21 03:33:08'),
+(61, 'contact_reply', 'Reply', 19, 1, NULL, '2023-01-21 03:44:46', '2023-01-21 03:44:46'),
+(62, 'visiting_history', 'History', 20, 1, NULL, '2023-01-21 03:56:43', '2023-01-21 03:56:43'),
+(63, 'extra', 'View', 21, 1, NULL, '2023-01-21 04:06:03', '2023-01-21 04:06:03'),
+(64, 'manage_seo', 'Update', 22, 1, NULL, '2023-01-21 04:11:03', '2023-01-21 04:11:03'),
+(65, 'type_status_change', 'Status', 13, 1, NULL, '2023-01-21 09:14:17', '2023-01-21 09:14:17'),
+(66, 'delete_type', 'Delete', 13, 1, NULL, '2023-01-21 09:14:33', '2023-01-21 09:14:33'),
+(67, 'edit_type', 'Edit', 13, 1, NULL, '2023-01-21 09:21:21', '2023-01-21 09:21:21');
 
 -- --------------------------------------------------------
 
@@ -1247,7 +1274,15 @@ INSERT INTO `permission_groups` (`id`, `group_name`, `status`, `deleted_at`, `cr
 (11, 'Manage Category', 1, NULL, '2022-10-22 12:07:24', '2022-10-22 12:07:24'),
 (12, 'Manage City', 1, NULL, '2022-10-22 12:07:35', '2022-10-22 12:07:35'),
 (13, 'Manage Ad Package', 1, NULL, '2022-10-22 12:07:57', '2022-10-22 12:07:57'),
-(14, 'Manage Brand', 1, NULL, '2023-01-20 22:24:48', '2023-01-20 22:24:48');
+(14, 'Manage Brand', 1, NULL, '2023-01-20 22:24:48', '2023-01-20 22:24:48'),
+(15, 'Payment Gateways', 1, NULL, '2023-01-21 02:42:00', '2023-01-21 02:42:00'),
+(16, 'Currency', 1, NULL, '2023-01-21 02:50:14', '2023-01-21 02:50:14'),
+(17, 'Language', 1, NULL, '2023-01-21 03:05:32', '2023-01-21 03:05:32'),
+(18, 'Manage Page', 1, NULL, '2023-01-21 03:17:46', '2023-01-21 03:17:46'),
+(19, 'Contact query', 1, NULL, '2023-01-21 03:32:31', '2023-01-21 03:32:31'),
+(20, 'Visiting history', 1, NULL, '2023-01-21 03:56:10', '2023-01-21 03:56:10'),
+(21, 'Extra', 1, NULL, '2023-01-21 04:05:26', '2023-01-21 04:05:26'),
+(22, 'Manage seo', 1, NULL, '2023-01-21 04:10:14', '2023-01-21 04:10:14');
 
 -- --------------------------------------------------------
 
@@ -1337,7 +1372,7 @@ CREATE TABLE `role_permission` (
 INSERT INTO `role_permission` (`id`, `permissions`, `role_id`, `created_at`, `updated_at`) VALUES
 (1, ',view_dashboard,', 1, '2022-09-27 23:39:54', '2022-09-27 23:39:54'),
 (2, ',view_category,', 3, '2022-10-01 11:21:12', '2023-01-20 22:23:14'),
-(3, ',view_city,create_city,view_brand,', 4, '2023-01-20 22:28:36', '2023-01-20 22:54:29');
+(3, ',view_ad_type,type_status_change,delete_type,edit_type,view_brand,delete_brand,edit_brand,status_change_brand,create_brand,', 4, '2023-01-20 22:28:36', '2023-01-21 09:21:49');
 
 -- --------------------------------------------------------
 
@@ -1968,7 +2003,7 @@ ALTER TABLE `banners`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -2100,13 +2135,13 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `permission_groups`
 --
 ALTER TABLE `permission_groups`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

@@ -67,7 +67,6 @@ class AdminUserController extends Controller
     public function putUpdate(AdminUserRequest $request, $id)
     {
         $this->resp = $this->user->postUpdate($request, $id);
-
         return redirect()->route($this->resp->redirect_to)->with($this->resp->redirect_class, $this->resp->msg);
     }
 

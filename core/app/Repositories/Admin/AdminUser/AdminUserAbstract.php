@@ -32,7 +32,7 @@ class AdminUserAbstract implements AdminUserInterface
             ->join('auth_roles', 'auth_roles.auth_id', '=', 'auths.id')
             ->leftJoin ('roles', 'roles.id', '=', 'auth_roles.role_id')
             ->leftJoin ('user_groups', 'user_groups.id', '=', 'auth_roles.user_group_id')
-            ->select('auths.username','auths.email','auths.mobile_no','auths.can_login','admin_users.first_name','admin_users.last_name','admin_users.designation','admin_users.auth_id','admin_users.profile_pic','admin_users.profile_pic_url','admin_users.status', 'user_groups.group_name','roles.role_name')->get();
+            ->select('auths.username','auths.email','auths.mobile_no','auths.can_login','admin_users.first_name','admin_users.last_name','admin_users.designation','admin_users.auth_id','admin_users.profile_pic','admin_users.profile_pic_url','admin_users.status', 'user_groups.group_name','user_groups.id','roles.role_name')->get();
 
         return $this->formatResponse(true, '', 'admin', $data);
     }
@@ -75,7 +75,7 @@ class AdminUserAbstract implements AdminUserInterface
 
         } catch (\Exception $e) {
             DB::rollback();
-            dd($e);
+            info($e);
             return $this->formatResponse(false, $e->getMessage(), 'admin.admin-user');
         }
 
@@ -112,7 +112,7 @@ class AdminUserAbstract implements AdminUserInterface
             if($request->user_group != "")
             {
                 $userGroup = UserGroup::where('id',$request->user_group)->first();
-                $roleAuth = AuthRole::where('Auth_id',$id)->first();
+                $roleAuth = AuthRole::where('auth_id',$id)->first();
                 $roleAuth->role_id = $userGroup->role_id;
                 $roleAuth->user_group_id = $request->user_group;
                 $roleAuth->update();
