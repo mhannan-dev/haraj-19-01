@@ -5,7 +5,7 @@
         <h1 class="sell-header-title pb-10">@lang('Login')</h1>
         <div class="row justify-content-center mb-30">
             <div class="col-xl-6 mb-30">
-                    <form action="{{ route('frontend.login') }}" method="post">
+                    <form action="{{ route('frontend.user.login') }}" method="post">
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">@lang('Email')</label>

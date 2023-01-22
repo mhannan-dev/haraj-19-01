@@ -1,27 +1,27 @@
 @extends('admin.layout.master')
 @section('admin-user', 'active')
 @section('title')
-    Admin | Edit
+    @lang('Admin') | @lang('Edit')
 @endsection
 @section('page-name')
-    Edit Admin User
+    @lang('Edit') @lang('Admin') @lang('User')
 @endsection
 @section('content')
     <div class="dashboard-title-part">
-        <h5 class="title">Dashboard</h5>
+        <h5 class="title">@lang('Dashboard')</h5>
         <div href="" class="dashboard-path">
             <a href={{ route('admin.dashboard') }}>
-                <span class="main-path">Dashboards</span>
+                <span class="main-path">@lang('Dashboards')</span>
             </a>
             <i class="las la-angle-right"></i>
             <a href="{{ route('admin.admin-user') }}">
-                <span class="active-path g-color">Admin Users</span>
+                <span class="active-path g-color">@lang('Admin Users')</span>
             </a>
         </div>
         <div class="view-prodact">
             <a href="{{ route('admin.admin-user.new') }}">
                 <i class="las la-plus align-middle me-1"></i>
-                <span>Create Admin User</span>
+                <span>@lang('Create Admin User')</span>
             </a>
         </div>
     </div>
@@ -38,11 +38,11 @@
                         {!! Form::open(['route' => ['admin.admin-user.update', $user->auth_id], 'method' => 'post', 'files' => true]) !!}
                         @csrf
                         <div class="form-body">
-                            <h4 class="form-section"></i>User Information</h4>
+                            <h4 class="form-section"></i>@lang('User Information')</h4>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>First Name</label>
+                                        <label>@lang('First Name')</label>
                                         <div class="controls">
                                             {!! Form::text('first_name', $user->first_name, [
                                                 'class' => 'form-control form--control',
@@ -60,7 +60,7 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Last Name</label>
+                                        <label>@lang('Last Name')</label>
                                         <div class="controls">
                                             {!! Form::text('last_name', $user->last_name, [
                                                 'class' => 'form-control form--control',
@@ -79,7 +79,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Designation</label>
+                                        <label>@lang('Designation')</label>
                                         <div class="controls">
                                             {!! Form::text('designation', $user->designation, [
                                                 'class' => 'form-control form--control',
@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status</label>
+                                        <label>@lang('Status')</label>
                                         <div class="controls">
                                             {!! Form::select('status', ['1' => 'Yes', '0' => 'No'], $user->status, [
                                                 'class' => 'form-control form--control',
@@ -113,11 +113,11 @@
                                 </div>
                             </div>
                         </div>
-                        <h4 class="form-section"><i class="ft-mail"></i> Contact Info &amp; Bio</h4>
+                        <h4 class="form-section"><i class="ft-mail"></i> @lang('Contact Info') &amp; @lang('Bio')</h4>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Username</label>
+                                    <label>@lang('Username')</label>
                                     <div class="controls">
                                         {!! Form::text('username', $user->username, [
                                             'class' => 'form-control form--control',
@@ -151,7 +151,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
+                            <label>@lang('Email')</label>
                             <div class="controls">
                                 {!! Form::text('email', $user->email, [
                                     'class' => 'form-control form--control',
@@ -169,7 +169,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Gender</label>
+                                    <label>@lang('Gender')</label>
                                     <div class="controls">
                                         {!! Form::select('gender', ['1' => 'Male', '0' => 'Female'], $user->gender, [
                                             'class' => 'form-control form--control',
@@ -237,7 +237,7 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn--base">
-                            Save
+                            @lang('Save')
                         </button>
                         {!! Form::close() !!}
                     </div>
