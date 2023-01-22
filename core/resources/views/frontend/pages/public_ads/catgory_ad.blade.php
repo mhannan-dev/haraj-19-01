@@ -63,8 +63,11 @@
             <div class="col-xl-12 mb-30">
                 <div class="short-by-area">
                     <div class="short-by-wrapper">
-                        <div class="title">367,771 ads in <b>Turkey</b></div>
-
+                        @php
+                        $info = json_decode(json_encode(getIpInfo()), true);
+                         $country = @implode(',', $info['country']);
+                        @endphp
+                        <div class="title"><span class="total">{{ count($ads) }}</span> ads in <b><span>{{ $country != "" ? $country: "Demo Country" }}</span></b></div>
                         <div class="short-by-select-area">
                             <div class="title overflow-hidden"><b>SORT</b> by : </div>
                             <select class="nice-select sort_by"  name="sort_by">
@@ -143,15 +146,6 @@
                                             </span>
                                         </a>
                                     </div>
-                                        <div class="thumb">
-                                            <img src="{{asset('core/storage/app/public/advertisement_images/' . $item->image) }}" alt="product">
-                                        </div>
-                                        <div class="content">
-                                            <span class="sub-title">{{ $item->city->title}}</span>
-                                            <h5 class="title">{{ $item->title }}</h5>
-                                            <span class="inner-sub-title">{{ $item->category->title}}</span>
-                                            <h5 class="inner-title">{{ $item->price }} &nbsp;TL</h5>
-                                        </div>
                                         <a href="{{ route('frontend.ads.details', [$item->slug, $item->id]) }}">
                                             <div class="thumb">
                                                 <img src="{{ asset('core/storage/app/public/advertisement_images/' . $item->image) }}"
@@ -176,8 +170,10 @@
     </div>
 </section>
 
-<div class="d-flex justify-content-center paginate">
-    <?php echo e(paginateLinks($ads)); ?>
+<div class="pagination">
+    <div class="d-flex justify-content-center paginate">
+        <?php echo e(paginateLinks($ads)); ?>
+    </div>
 </div>
 
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -224,572 +220,614 @@
         End Brand
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 @endsection
-{{-- @push('script')
+@push('script')
+
 <script>
-     var glovalAdvertiser = "{{ $advertiser }}"
+    var glovalAdvertiser = "{{ $advertiser }}"
 
-    $(document).ready(function () {
+   $(document).ready(function () {
 
-        getSubcategory();
-        categoryTitle();
-        getBrand();
-        getAdsByCategory();
-        if(glovalAdvertiser !='' ||  glovalAdvertiser != null){
-            getFavRecord();
-        }
-        getLocation();
-        showPosition();
+       getSubcategory();
+       categoryTitle();
+       getBrand();
+       if(glovalAdvertiser !='' ||  glovalAdvertiser != null){
+           getFavRecord();
+       }
+       getLocation();
+       showPosition();
+
+   });
+   $('.category').on('change', function () {
+        $(document).on('click', '.pagination  a', function(event){
+           event.preventDefault();
+           var page = $(this).attr('href').split('page=')[1];
+           getAdsByCategory(page);
+
+       });
+       getSubcategory();
+       categoryTitle();
+       getBrand();
+       getAdsByCategory();
+
+   });
+   $('.sub-category').on('change', function () {
+       $(document).on('click', '.pagination  a', function(event){
+           event.preventDefault();
+           var page = $(this).attr('href').split('page=')[1];
+           getAdsBySubCategory(page);
+       });
+       categoryTitle();
+       getBrand();
+       getAdsBySubCategory();
+   });
+   $('.brand').on('change', function () {
+       $(document).on('click', '.pagination  a', function(event){
+           event.preventDefault();
+           var page = $(this).attr('href').split('page=')[1];
+           getAdsByBrands(page);
+       });
+       categoryTitle();
+       getAdsByBrands();
+   });
+   $('.sort_by').on('change', function () {
+       categoryTitle();
+       sortBy();
+
+   });
+   $('.allow').on('click', function () {
+
+       allow();
+
+   });
+
+   function categoryTitle(){
+       var categoryTitle = acceptVar().categoryTitle;
+       $('.category-title').text(categoryTitle);
+   }
+
+   function getSubcategory(){
+           var categoryId = acceptVar().categorySelect;
+           $(".sub-category").html('');
+           $.ajax({
+               url: "{{route('frontend.ads.fetch.subcategory')}}",
+               type: "POST",
+               data: {
+                   category_id: categoryId,
+                   _token: '{{csrf_token()}}'
+               },
+               dataType: 'json',
+               success: function (res) {
+                   var subCategories = res.subCategories;
+                   if( subCategories == ''){
+                       $('.sub-category').html('<option value="">No Sub Category Available</option>');
+                   }
+                   else{
+                       $('.sub-category').html('<option value="">Select Sub Category</option>');
+
+                   }
+                   $.each(subCategories, function (key, value) {
+                       $(".sub-category").append('<option value="' + value
+                           .id + '">' + value.title + '</option>');
+                   });
+               }
+           });
+
+   }
+   function getBrand(){
+           var brandId = acceptVar().brandSelect;
+           $(".brand").html('');
+           $.ajax({
+               url: "{{route('frontend.ads.fetch.brand')}}",
+               type: "POST",
+               data: {
+                   brand_id: brandId,
+                   _token: '{{csrf_token()}}'
+               },
+               dataType: 'json',
+               success: function (res) {
+                   var brands = res.brands;
+
+                   if( brands == ''){
+                       $('.brand').html('<option value="">No Brand Available</option>');
+                   }else{
+                       $('.brand').html('<option value="">Select Brand </option>');
+
+                   }
+                   $.each(res.brands, function (key, value) {
+
+                       $(".brand").append('<option value="' + value
+                           .id + '" data-brand_title="'+ value.title +'">' + value.title + '</option>');
+                   });
+               }
+           });
+
+   }
+
+   function getAdsByCategory(page){
+       var categoryId = acceptVar().categorySelect;
+       var html = '';
+       var paginate = '';
+       var routes = "{{route('frontend.ads.filter.result.category')}}?page="+page;
 
 
-    });
-    $('.category').on('change', function () {
-        getSubcategory();
-        categoryTitle();
-        getBrand();
-        getAdsByCategory();
+       $.ajax({
+           url: routes,
+           type: "POST",
+           data: {
+               category_id: categoryId,
+               _token: '{{csrf_token()}}'
+           },
+           dataType: 'json',
+           success: function (res) {
+               var ads = res.results.data;
+               var total = ads.length;
+               $('.total').text(total)
+               var color = '';
+               paginate += '<div class="d-flex justify-content-center paginate"> '+res.pagination+' </div>';
+               $(".paginate").html(paginate);
 
-    });
-    $('.sub-category').on('change', function () {
-        categoryTitle();
-        getBrand();
-        getAdsBySubCategory();
-    });
-    $('.brand').on('change', function () {
-        categoryTitle();
-        getAdsByBrands();
-    });
-    $('.sort_by').on('change', function () {
-        categoryTitle();
-        sortBy();
 
-    });
-    $('.allow').on('click', function () {
-        allow();
+               if( ads == '' || ads =='[]'){
+                   html +=
+                       ' <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-xs-12 mb-20">\
+                                   <div class="alert alert-secondary product-single-item" role="alert">\
+                                     <h5 class="text-center text-dark pt-2">No Products Available</h5>\
+                                   </div>\
+                               </div>';
+                    $(".ads").html(html);
+               }
+               $.each(ads, function (key, value) {
 
-    });
+                   var advertiser = "{{ $advertiser }}"
+                   if(advertiser !='' ||  advertiser != null){
+                       var advertiser_id = "{{  $advertiser }}";
+                       var advertisement_id = value.id;
+                       getFavRecord(advertiser_id, advertisement_id);
 
-    function categoryTitle(){
-        var categoryTitle = acceptVar().categoryTitle;
-        $('.category-title').text(categoryTitle);
-    }
+                   }
 
-    function getSubcategory(){
-            var categoryId = acceptVar().categorySelect;
-            $(".sub-category").html('');
-            $.ajax({
-                url: "{{route('frontend.ads.fetch.subcategory')}}",
-                type: "POST",
-                data: {
-                    category_id: categoryId,
-                    _token: '{{csrf_token()}}'
-                },
-                dataType: 'json',
-                success: function (res) {
-                    var subCategories = res.subCategories;
-                    if( subCategories == ''){
-                        $('.sub-category').html('<option value="">No Sub Category Available</option>');
-                    }
-                    else{
-                        $('.sub-category').html('<option value="">Select Sub Category</option>');
+                   var route_url = "{{ url('ads/details') }}/" + value.slug + "/" + value.id;
 
-                    }
-                    $.each(subCategories, function (key, value) {
-                        $(".sub-category").append('<option value="' + value
-                            .id + '">' + value.title + '</option>');
-                    });
-                }
-            });
+                   html +=
+                       ' <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">\
+                                   <div class="product-single-item active">\
+                                           <div class="product-wishlist">\
+                                                   <a class="fav-select" data-ad_id="' + value.id + '" href="javascript:void(0)">\
+                                                       <span>\
+                                                           <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz fav-icon fav-icon'+value.id+'" style="fill:'+color+'">\
+                                                               <path d="M16.224 5c-1.504 0-2.89.676-3.802 1.854L12 7.398l-.421-.544A4.772 4.772 0 0 0 7.776 5C5.143 5 3 7.106 3 9.695c0 5.282 6.47 11.125 9.011 11.125 2.542 0 8.99-5.445 8.99-11.125C21 7.105 18.857 5 16.223 5z">\
+                                                               </path>\
+                                                           </svg>\
+                                                       </span>\
+                                                   </a>\
+                                               </div>\
+                                           <a href="'+route_url+'">\
+                                               <div class="thumb">\
+                                                   <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + '" alt="product">\
+                                            </div>\
+                                           <div class="content">\
+                                               <span class="sub-title">' + value.city.title + '</span>\
+                                               <h5 class="title">' + value.title + '</h5>\
+                                               <span class="inner-sub-title">' + value.category.title + '</span>\
+                                               <h5 class="inner-title">' + value.price + ' &nbsp;TL</h5>\
+                                           </div>\
+                                       </a>\
+                                   </div>\
+                               </div>';
 
-    }
-    function getBrand(){
-            var brandId = acceptVar().brandSelect;
-            $(".brand").html('');
-            $.ajax({
-                url: "{{route('frontend.ads.fetch.brand')}}",
-                type: "POST",
-                data: {
-                    brand_id: brandId,
-                    _token: '{{csrf_token()}}'
-                },
-                dataType: 'json',
-                success: function (res) {
-                    var brands = res.brands;
+                    $(".ads").html(html);
 
-                    if( brands == ''){
-                        $('.brand').html('<option value="">No Brand Available</option>');
-                    }else{
-                        $('.brand').html('<option value="">Select Brand </option>');
 
-                    }
-                    $.each(res.brands, function (key, value) {
+               });
 
-                        $(".brand").append('<option value="' + value
-                            .id + '" data-brand_title="'+ value.title +'">' + value.title + '</option>');
-                    });
-                }
-            });
+           }
+       });
 
-    }
-    function getAdsByCategory(){
-        var categoryId = acceptVar().categorySelect;
-        var html = '';
-        var paginate = '';
-        $.ajax({
-            url: "{{route('frontend.ads.filter.result.category')}}",
-            type: "POST",
-            data: {
-                category_id: categoryId,
-                _token: '{{csrf_token()}}'
-            },
-            dataType: 'json',
-            success: function (res) {
-                var ads = res.results;
-                var color = '';
+
+
+   }
+   function getAdsBySubCategory(page){
+       var categoryId = acceptVar().categorySelect;
+       var subCategoryId = acceptVar().subCategorySelect;
+       var html = '';
+       var paginate = '';
+       var routes = "{{route('frontend.ads.filter.result.subcategory')}}?page="+page;
+       $.ajax({
+           url:routes,
+           type: "POST",
+           data: {
+               category_id: categoryId,
+               sub_category: subCategoryId,
+               _token: '{{csrf_token()}}'
+           },
+           dataType: 'json',
+           success: function (res) {
+               var ads = res.results.data;
+               var total = ads.length;
+               var color = '';
+               $('.total').text(total)
+               paginate += '<div class="d-flex justify-content-center paginate"> '+res.pagination+' </div>';
+               $(".paginate").html(paginate);
+               if( ads == '' || ads =='[]'){
+                   html +=
+                       ' <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-xs-12 mb-20">\
+                                   <div class="alert alert-secondary product-single-item" role="alert">\
+                                   <h5 class="text-center text-dark pt-2">No Products Available</h5>\
+                                   </div>\
+                               </div>';
+                   $(".ads").html(html);
+               }
+               $.each(ads, function (key, value) {
+                   var advertiser = "{{ $advertiser }}"
+                   if(advertiser !='' ||  advertiser != null){
+                       var advertiser_id = "{{  $advertiser }}";
+                       var advertisement_id = value.id;
+                       getFavRecord(advertiser_id, advertisement_id);
+
+                   }
+
+                   var route_url = "{{ url('ads/details') }}/" + value.slug + "/" + value.id;
+
+                   html +=
+                   ' <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">\
+                                   <div class="product-single-item active">\
+                                           <div class="product-wishlist">\
+                                                   <a class="fav-select" data-ad_id="' + value.id + '" href="javascript:void(0)">\
+                                                       <span>\
+                                                           <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz fav-icon fav-icon'+value.id+'" style="fill:'+color+'">\
+                                                               <path d="M16.224 5c-1.504 0-2.89.676-3.802 1.854L12 7.398l-.421-.544A4.772 4.772 0 0 0 7.776 5C5.143 5 3 7.106 3 9.695c0 5.282 6.47 11.125 9.011 11.125 2.542 0 8.99-5.445 8.99-11.125C21 7.105 18.857 5 16.223 5z">\
+                                                               </path>\
+                                                           </svg>\
+                                                       </span>\
+                                                   </a>\
+                                               </div>\
+                                           <a href="'+route_url+'">\
+                                               <div class="thumb">\
+                                                   <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + '" alt="product">\
+                                            </div>\
+                                           <div class="content">\
+                                               <span class="sub-title">' + value.city.title + '</span>\
+                                               <h5 class="title">' + value.title + '</h5>\
+                                               <span class="inner-sub-title">' + value.category.title + '</span>\
+                                               <h5 class="inner-title">' + value.price + ' &nbsp;TL</h5>\
+                                           </div>\
+                                       </a>\
+                                   </div>\
+                               </div>';
+
+
+                   $(".ads").html(html);
+
+               });
+
+
+           }
+       });
+
+   }
+   function getAdsByBrands(page){
+       var categoryId = acceptVar().categorySelect;
+       var brandId = acceptVar().getBrand;
+       var html = '';
+       var paginate = '';
+       var routes = "{{route('frontend.ads.filter.result.brand')}}?page="+page;
+       $.ajax({
+           url: routes,
+           type: "POST",
+           data: {
+               category_id: categoryId,
+               brand_id: brandId,
+               _token: '{{csrf_token()}}'
+           },
+           dataType: 'json',
+           success: function (res) {
+               var ads = res.results.data;
+               var total = ads.length;
+               var color = '';
+               $('.total').text(total)
+               paginate += '<div class="d-flex justify-content-center paginate"> '+res.pagination+' </div>';
+               $(".paginate").html(paginate);
+               if( ads == '' || ads =='[]'){
+                   html +=
+                       ' <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-xs-12 mb-20">\
+                                   <div class="alert alert-secondary product-single-item" role="alert">\
+                                   <h5 class="text-center text-dark pt-2">No Products Available</h5>\
+                                   </div>\
+                               </div>';
+                   $(".ads").html(html);
+               }
+               $.each(ads, function (key, value) {
+                   var advertiser = "{{ $advertiser }}"
+                   if(advertiser !='' ||  advertiser != null){
+                       var advertiser_id = "{{  $advertiser }}";
+                       var advertisement_id = value.id;
+                       getFavRecord(advertiser_id, advertisement_id);
+
+                   }
+                   var route_url = "{{ url('ads/details') }}/" + value.slug + "/" + value.id;
+
+                   html +=
+                   '<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">\
+                                   <div class="product-single-item active">\
+                                           <div class="product-wishlist">\
+                                                   <a class="fav-select" data-ad_id="' + value.id + '" href="javascript:void(0)">\
+                                                       <span>\
+                                                           <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz fav-icon fav-icon'+value.id+'" style="fill:'+color+'">\
+                                                               <path d="M16.224 5c-1.504 0-2.89.676-3.802 1.854L12 7.398l-.421-.544A4.772 4.772 0 0 0 7.776 5C5.143 5 3 7.106 3 9.695c0 5.282 6.47 11.125 9.011 11.125 2.542 0 8.99-5.445 8.99-11.125C21 7.105 18.857 5 16.223 5z">\
+                                                               </path>\
+                                                           </svg>\
+                                                       </span>\
+                                                   </a>\
+                                               </div>\
+                                           <a href="'+route_url+'">\
+                                               <div class="thumb">\
+                                                   <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + '" alt="product">\
+                                            </div>\
+                                           <div class="content">\
+                                               <span class="sub-title">' + value.city.title + '</span>\
+                                               <h5 class="title">' + value.title + '</h5>\
+                                               <span class="inner-sub-title">' + value.category.title + '</span>\
+                                               <h5 class="inner-title">' + value.price + ' &nbsp;TL</h5>\
+                                           </div>\
+                                       </a>\
+                                   </div>\
+                               </div>';
+
+                   $(".ads").html(html);
+
+               });
+
+
+           }
+       });
+
+   }
+   function sortBy(){
+       var categoryId = acceptVar().categorySelect;
+       var subCategoryID = acceptVar().subCategorySelect;
+       var brandId = acceptVar().getBrand;
+       var sortBy = acceptVar().sortBy;
+       var latitude = acceptVar().latitude;
+
+       var longitude = acceptVar().longitude;
+       var html = '';
+       var paginate = '';
+       $.ajax({
+           url: "{{route('frontend.ads.filter.result.sort')}}",
+           type: "POST",
+           data: {
+               category_id: categoryId,
+               sub_category_id: subCategoryID,
+               brand_id: brandId,
+               sort_type: sortBy,
+               latitude: latitude,
+               longitude: longitude,
+               _token: '{{csrf_token()}}'
+           },
+           dataType: 'json',
+           success: function (res) {
+
+               var ads = res.results;
+                 var total = ads.length;
+               $('.total').text(total)
+               $('.total').text(total)
+               var color = '';
+               paginate += '<div class="d-flex justify-content-center paginate">  </div>';
+               $(".paginate").html(paginate);
+               if( ads == '' || ads =='[]'){
+                   html +=
+                       ' <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-xs-12 mb-20">\
+                                   <div class="alert alert-secondary product-single-item" role="alert">\
+                                   <h5 class="text-center text-dark pt-2">No Products Available</h5>\
+                                   </div>\
+                               </div>';
+                   $(".ads").html(html);
+               }
+               $.each(ads, function (key, value) {
+
+                   var advertiser = "{{ $advertiser }}"
+                   if(advertiser !='' ||  advertiser != null){
+                       var advertiser_id = "{{  $advertiser }}";
+                       var advertisement_id = value.id;
+                       getFavRecord(advertiser_id, advertisement_id);
+
+                   }
+
+                   var route_url = "{{ url('ads/details') }}/" + value.slug + "/" + value.id;
+
+                   html +=
+                   '<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">\
+                                   <div class="product-single-item active">\
+                                           <div class="product-wishlist">\
+                                                   <a class="fav-select" data-ad_id="' + value.id + '" href="javascript:void(0)">\
+                                                       <span>\
+                                                           <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz fav-icon fav-icon'+value.id+'" style="fill:'+color+'">\
+                                                               <path d="M16.224 5c-1.504 0-2.89.676-3.802 1.854L12 7.398l-.421-.544A4.772 4.772 0 0 0 7.776 5C5.143 5 3 7.106 3 9.695c0 5.282 6.47 11.125 9.011 11.125 2.542 0 8.99-5.445 8.99-11.125C21 7.105 18.857 5 16.223 5z">\
+                                                               </path>\
+                                                           </svg>\
+                                                       </span>\
+                                                   </a>\
+                                               </div>\
+                                           <a href="'+route_url+'">\
+                                               <div class="thumb">\
+                                                   <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + '" alt="product">\
+                                            </div>\
+                                           <div class="content">\
+                                               <span class="sub-title">' + value.city.title + '</span>\
+                                               <h5 class="title">' + value.title + '</h5>\
+                                               <span class="inner-sub-title">' + value.category.title + '</span>\
+                                               <h5 class="inner-title">' + value.price + ' &nbsp;TL</h5>\
+                                           </div>\
+                                       </a>\
+                                   </div>\
+                               </div>';
+
+                   $(".ads").html(html);
+
+               });
+
+
+           }
+       });
+
+   }
+   function allow(){
+       var categoryId = acceptVar().categorySelect;
+       var subCategoryID = acceptVar().subCategorySelect;
+       var brandId = acceptVar().getBrand;
+       var latitude = acceptVar().latitude;
+       var longitude = acceptVar().longitude;
+
+       var html = '';
+       var paginate = '';
+       $.ajax({
+           url: "{{route('frontend.ads.allow.location')}}",
+           type: "POST",
+           data: {
+               category_id: categoryId,
+               sub_category_id: subCategoryID,
+               brand_id: brandId,
+               latitude: latitude,
+               longitude: longitude,
+               _token: '{{csrf_token()}}'
+           },
+           dataType: 'json',
+           success: function (res) {
+               var ads = res.results;
+               var type = res.type;
+               var color = '';
+               if(type == 'allow'){
+                   var total = ads.length;
+                   $('.total').text(total)
+                   $('.allowType').text("Disallow")
+               }else{
+
+                   window.location.reload();
+               }
                 paginate += '<div class="d-flex justify-content-center paginate"> </div>';
-                    $(".paginate").html(paginate);
-                if( ads == '' || ads =='[]'){
-                    html +=
-                        ' <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-xs-12 mb-20">\
-                                    <div class="alert alert-secondary product-single-item" role="alert">\
-                                      <h5 class="text-center text-dark pt-2">No Products Available</h5>\
-                                    </div>\
-                                </div>';
-                     $(".ads").html(html);
-                }
-                $.each(ads, function (key, value) {
-                    // console.log(value);
-                    var advertiser = "{{ $advertiser }}"
-                    if(advertiser !='' ||  advertiser != null){
-                        var advertiser_id = "{{  $advertiser }}";
-                        var advertisement_id = value.id;
-                        getFavRecord(advertiser_id, advertisement_id);
+               $(".paginate").html(paginate);
+               if( ads == '' || ads =='[]'){
+                   html +=
+                       ' <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-xs-12 mb-20">\
+                                   <div class="alert alert-secondary product-single-item" role="alert">\
+                                   <h5 class="text-center text-dark pt-2">No Products Available</h5>\
+                                   </div>\
+                               </div>';
+                   $(".ads").html(html);
+               }
+               $.each(ads, function (key, value) {
+                   var advertiser = "{{ $advertiser }}"
+                   if(advertiser !='' ||  advertiser != null){
+                       var advertiser_id = "{{  $advertiser }}";
+                       var advertisement_id = value.id;
+                       getFavRecord(advertiser_id, advertisement_id);
 
-                    }
+                   }
 
-                    var route_url = "{{ url('frontend.ads.details') }}/" + value.slug + "/" + value.id;
+                   var route_url = "{{ url('ads/details') }}/" + value.slug + "/" + value.id;
 
-                    html +=
-                        ` <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">
-                                    <div class="product-single-item">
-                                            <div class="product-wishlist">
-                                                    <a class="fav-select" data-ad_id="` + value.id + `" href="javascript:void(0)">
-                                                        <span>
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz fav-icon fav-icon`+value.id+`" style="fill:`+color+`">
-                                                                <path d="M16.224 5c-1.504 0-2.89.676-3.802 1.854L12 7.398l-.421-.544A4.772 4.772 0 0 0 7.776 5C5.143 5 3 7.106 3 9.695c0 5.282 6.47 11.125 9.011 11.125 2.542 0 8.99-5.445 8.99-11.125C21 7.105 18.857 5 16.223 5z">
-                                                                </path>
-                                                            </svg>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                            <a href="`+route_url+`">
-                                            <div class="thumb">
-                                                <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/` +value.image + ` " alt="product">
-                                            </div>
-                                            <div class="content">
-                                                <span class="sub-title">` + value.city.title + `</span>
-                                                <h5 class="title">` + value.title + `</h5>
-                                                <span class="inner-sub-title">` + value.category.title + `</span>
-                                                <h5 class="inner-title">` + value.price + ` &nbsp;TL</h5>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>`;
-
-                     $(".ads").html(html);
-
-                });
-
-            }
-        });
-
-
-
-    }
-    function getAdsBySubCategory(){
-        var categoryId = acceptVar().categorySelect;
-        var subCategoryId = acceptVar().subCategorySelect;
-        var html = '';
-        var paginate = '';
-        $.ajax({
-            url: "{{route('frontend.ads.filter.result.subcategory')}}",
-            type: "POST",
-            data: {
-                category_id: categoryId,
-                sub_category: subCategoryId,
-                _token: '{{csrf_token()}}'
-            },
-            dataType: 'json',
-            success: function (res) {
-                var ads = res.results;
-                paginate += '<div class="d-flex justify-content-center paginate"> </div>';
-                    $(".paginate").html(paginate);
-                if( ads == '' || ads =='[]'){
-                    html +=
-                        ' <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-xs-12 mb-20">\
-                                    <div class="alert alert-secondary product-single-item" role="alert">\
-                                    <h5 class="text-center text-dark pt-2">No Products Available</h5>\
-                                    </div>\
-                                </div>';
-                    $(".ads").html(html);
-                }
-                $.each(ads, function (key, value) {
-                    var advertiser = "{{ $advertiser }}"
-                    if(advertiser !='' ||  advertiser != null){
-                        var advertiser_id = "{{  $advertiser }}";
-                        var advertisement_id = value.id;
-                        getFavRecord(advertiser_id, advertisement_id);
-
-                    }
-
-                    var route_url = "{{ url('frontend.ads.details') }}/" + value.slug + "/" + value.id;
-
-                    html +=
-                    ' <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">\
-                                    <div class="product-single-item">\
-                                            <div class="product-wishlist">\
-                                                    <a class="fav-select" data-ad_id="' + value.id + '" href="javascript:void(0)">\
-                                                        <span>\
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz fav-icon fav-icon'+value.id+'" style="fill:">\
-                                                                <path d="M16.224 5c-1.504 0-2.89.676-3.802 1.854L12 7.398l-.421-.544A4.772 4.772 0 0 0 7.776 5C5.143 5 3 7.106 3 9.695c0 5.282 6.47 11.125 9.011 11.125 2.542 0 8.99-5.445 8.99-11.125C21 7.105 18.857 5 16.223 5z">\
-                                                                </path>\
-                                                            </svg>\
-                                                        </span>\
-                                                    </a>\
-                                                </div>\
-                                            <a href="'+route_url+'">\
-                                            <div class="thumb">\
-                                                <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + ' " alt="product">\
+                   html +=
+                   '<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">\
+                                   <div class="product-single-item active">\
+                                           <div class="product-wishlist">\
+                                                   <a class="fav-select" data-ad_id="' + value.id + '" href="javascript:void(0)">\
+                                                       <span>\
+                                                           <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz fav-icon fav-icon'+value.id+'" style="fill:'+color+'">\
+                                                               <path d="M16.224 5c-1.504 0-2.89.676-3.802 1.854L12 7.398l-.421-.544A4.772 4.772 0 0 0 7.776 5C5.143 5 3 7.106 3 9.695c0 5.282 6.47 11.125 9.011 11.125 2.542 0 8.99-5.445 8.99-11.125C21 7.105 18.857 5 16.223 5z">\
+                                                               </path>\
+                                                           </svg>\
+                                                       </span>\
+                                                   </a>\
+                                               </div>\
+                                           <a href="'+route_url+'">\
+                                               <div class="thumb">\
+                                                   <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + '" alt="product">\
                                             </div>\
-                                            <div class="content">\
-                                                <span class="sub-title">' + value.city.title + '</span>\
-                                                <h5 class="title">' + value.title + '</h5>\
-                                                <span class="inner-sub-title">' + value.category.title + '</span>\
-                                                <h5 class="inner-title">' + value.price + ' &nbsp;TL</h5>\
-                                            </div>\
-                                        </a>\
-                                    </div>\
-                                </div>';
+                                           <div class="content">\
+                                               <span class="sub-title">' + value.city.title + '</span>\
+                                               <h5 class="title">' + value.title + '</h5>\
+                                               <span class="inner-sub-title">' + value.category.title + '</span>\
+                                               <h5 class="inner-title">' + value.price + ' &nbsp;TL</h5>\
+                                           </div>\
+                                       </a>\
+                                   </div>\
+                               </div>';
 
-                    $(".ads").html(html);
+                   $(".ads").html(html);
 
-                });
+               });
 
+           }
+       });
 
-            }
-        });
-
-    }
-    function getAdsByBrands(){
-        var categoryId = acceptVar().categorySelect;
-        var brandId = acceptVar().getBrand;
-        var html = '';
-        var paginate = '';
-        $.ajax({
-            url: "{{route('frontend.ads.filter.result.brand')}}",
-            type: "POST",
-            data: {
-                category_id: categoryId,
-                brand_id: brandId,
-                _token: '{{csrf_token()}}'
-            },
-            dataType: 'json',
-            success: function (res) {
-                var ads = res.results;
-                paginate += '<div class="d-flex justify-content-center paginate"> </div>';
-                    $(".paginate").html(paginate);
-                if( ads == '' || ads =='[]'){
-                    html +=
-                        ' <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-xs-12 mb-20">\
-                                    <div class="alert alert-secondary product-single-item" role="alert">\
-                                    <h5 class="text-center text-dark pt-2">No Products Available</h5>\
-                                    </div>\
-                                </div>';
-                    $(".ads").html(html);
-                }
-                $.each(ads, function (key, value) {
-                    var advertiser = "{{ $advertiser }}"
-                    if(advertiser !='' ||  advertiser != null){
-                        var advertiser_id = "{{  $advertiser }}";
-                        var advertisement_id = value.id;
-                        getFavRecord(advertiser_id, advertisement_id);
-
-                    }
-                    var route_url = "{{ url('frontend.ads.details') }}/" + value.slug + "/" + value.id;
-
-                    html +=
-                    ' <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">\
-                                    <div class="product-single-item">\
-                                            <div class="product-wishlist">\
-                                                    <a class="fav-select" data-ad_id="' + value.id + '" href="javascript:void(0)">\
-                                                        <span>\
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz fav-icon fav-icon'+value.id+'" style="fill:">\
-                                                                <path d="M16.224 5c-1.504 0-2.89.676-3.802 1.854L12 7.398l-.421-.544A4.772 4.772 0 0 0 7.776 5C5.143 5 3 7.106 3 9.695c0 5.282 6.47 11.125 9.011 11.125 2.542 0 8.99-5.445 8.99-11.125C21 7.105 18.857 5 16.223 5z">\
-                                                                </path>\
-                                                            </svg>\
-                                                        </span>\
-                                                    </a>\
-                                                </div>\
-                                            <a href="'+route_url+'">\
-                                            <div class="thumb">\
-                                                <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + ' " alt="product">\
-                                            </div>\
-                                            <div class="content">\
-                                                <span class="sub-title">' + value.city.title + '</span>\
-                                                <h5 class="title">' + value.title + '</h5>\
-                                                <span class="inner-sub-title">' + value.category.title + '</span>\
-                                                <h5 class="inner-title">' + value.price + ' &nbsp;TL</h5>\
-                                            </div>\
-                                        </a>\
-                                    </div>\
-                                </div>';
-
-                    $(".ads").html(html);
-
-                });
+   }
+     // Outside foreach
+     if(glovalAdvertiser !='' ||  glovalAdvertiser != null){
+       function getFavRecord(advertiser_id, advertisement_id)
+       {
+           var advertiser_id = advertiser_id;
+           var advertisement_id = advertisement_id;
+           var elem =".fav-icon"+advertisement_id;
+           var ads = $('.fav-select').data('ad_id');
+           $.ajax({
+               headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               },
+               type: "POST",
+               url: "{{route('frontend.ads.check.fav')}}",
+               data: {
+                   advertiser_id: advertiser_id,
+                   advertisement_id: advertisement_id,
+               },
+               success: function(resp) {
+                   if (resp.status != null) {
+                       if(resp.status.advertisement_id == advertisement_id){
+                           $(elem).attr('style', 'fill:red');
+                       }
+                   }
+               }
+           });
 
 
-            }
-        });
-
-    }
-    function sortBy(){
-        var categoryId = acceptVar().categorySelect;
-        var subCategoryID = acceptVar().subCategorySelect;
-        var brandId = acceptVar().getBrand;
-        var sortBy = acceptVar().sortBy;
-        var latitude = acceptVar().latitude;
-
-        var longitude = acceptVar().longitude;
-        var html = '';
-        var paginate = '';
-        $.ajax({
-            url: "{{route('frontend.ads.filter.result.sort')}}",
-            type: "POST",
-            data: {
-                category_id: categoryId,
-                sub_category_id: subCategoryID,
-                brand_id: brandId,
-                sort_type: sortBy,
-                latitude: latitude,
-                longitude: longitude,
-                _token: '{{csrf_token()}}'
-            },
-            dataType: 'json',
-            success: function (res) {
-                var ads = res.results;
-                console.log(ads);
-                paginate += '<div class="d-flex justify-content-center paginate"> </div>';
-                    $(".paginate").html(paginate);
-                if( ads == '' || ads =='[]'){
-                    html +=
-                        ' <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-xs-12 mb-20">\
-                                    <div class="alert alert-secondary product-single-item" role="alert">\
-                                    <h5 class="text-center text-dark pt-2">No Products Available</h5>\
-                                    </div>\
-                                </div>';
-                    $(".ads").html(html);
-                }
-                $.each(ads, function (key, value) {
-
-                    var advertiser = "{{ $advertiser }}"
-                    if(advertiser !='' ||  advertiser != null){
-                        var advertiser_id = "{{  $advertiser }}";
-                        var advertisement_id = value.id;
-                        getFavRecord(advertiser_id, advertisement_id);
-
-                    }
-
-                    var route_url = "{{ url('frontend.ads.details') }}/" + value.slug + "/" + value.id;
-
-                    html +=
-                    ' <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">\
-                                    <div class="product-single-item">\
-                                            <div class="product-wishlist">\
-                                                    <a class="fav-select" data-ad_id="' + value.id + '" href="javascript:void(0)">\
-                                                        <span>\
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz fav-icon fav-icon'+value.id+'" style="fill:">\
-                                                                <path d="M16.224 5c-1.504 0-2.89.676-3.802 1.854L12 7.398l-.421-.544A4.772 4.772 0 0 0 7.776 5C5.143 5 3 7.106 3 9.695c0 5.282 6.47 11.125 9.011 11.125 2.542 0 8.99-5.445 8.99-11.125C21 7.105 18.857 5 16.223 5z">\
-                                                                </path>\
-                                                            </svg>\
-                                                        </span>\
-                                                    </a>\
-                                                </div>\
-                                            <a href="'+route_url+'">\
-                                            <div class="thumb">\
-                                                <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + ' " alt="product">\
-                                            </div>\
-                                            <div class="content">\
-                                                <span class="sub-title">' + value.city.title + '</span>\
-                                                <h5 class="title">' + value.title + '</h5>\
-                                                <span class="inner-sub-title">' + value.category.title + '</span>\
-                                                <h5 class="inner-title">' + value.price + ' &nbsp;TL</h5>\
-                                            </div>\
-                                        </a>\
-                                    </div>\
-                                </div>';
-
-                    $(".ads").html(html);
-
-                });
+       }
+       }
 
 
-            }
-        });
+   function acceptVar() {
 
-    }
-    function allow(){
+           var categorySelect = $("select[name=category] :selected").val();
+           var categoryTitle = $("select[name=category] :selected").data('category_title');
+           var brandSelect = $("select[name=category] :selected").val();
+           var subCategorySelect = $("select[name=sub_category] :selected").val();
+           var getBrand = $("select[name=brand] :selected").val();
+           var sortBy = $("select[name=sort_by] :selected").val();
+           var latitude = $("input[name=latitude]").val();
+           var longitude = $("input[name=longitude]").val();
+           return {
+               categorySelect:categorySelect,
+               categoryTitle:categoryTitle,
+               brandSelect:brandSelect,
+               subCategorySelect:subCategorySelect,
+               getBrand:getBrand,
+               sortBy:sortBy,
+               latitude:latitude,
+               longitude:longitude,
+           };
+   }
+   var x = document.getElementById("demo");
+   function getLocation() {
+   if (navigator.geolocation) {
+       navigator.geolocation.getCurrentPosition(showPosition);
+   } else {
+       x.innerHTML = "Geolocation is not supported by this browser.";
+   }
+   }
 
-        var categoryId = acceptVar().categorySelect;
-        var subCategoryID = acceptVar().subCategorySelect;
-        var brandId = acceptVar().getBrand;
-        var latitude = acceptVar().latitude;
-        var longitude = acceptVar().longitude;
-
-        var html = '';
-        var paginate = '';
-        $.ajax({
-            url: "{{route('frontend.ads.allow.location')}}",
-            type: "POST",
-            data: {
-                category_id: categoryId,
-                sub_category_id: subCategoryID,
-                brand_id: brandId,
-                latitude: latitude,
-                longitude: longitude,
-                _token: '{{csrf_token()}}'
-            },
-            dataType: 'json',
-            success: function (res) {
-                var ads = res.results;
-                var type = res.type;
-                if(type == 'allow'){
-                    $('.allowType').text("Disallow")
-                }else{
-                    window.location.reload();
-                }
-                paginate += '<div class="d-flex justify-content-center paginate"> </div>';
-                    $(".paginate").html(paginate);
-                if( ads == '' || ads =='[]'){
-                    html +=
-                        ' <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-xs-12 mb-20">\
-                                    <div class="alert alert-secondary product-single-item" role="alert">\
-                                    <h5 class="text-center text-dark pt-2">No Products Available</h5>\
-                                    </div>\
-                                </div>';
-                    $(".ads").html(html);
-                }
-                $.each(ads, function (key, value) {
-                    var advertiser = "{{ $advertiser }}"
-                    if(advertiser !='' ||  advertiser != null){
-                        var advertiser_id = "{{  $advertiser }}";
-                        var advertisement_id = value.id;
-                        getFavRecord(advertiser_id, advertisement_id);
-
-                    }
-
-                    var route_url = "{{ url('frontend.ads.details') }}/" + value.slug + "/" + value.id;
-
-                    html +=
-                    ' <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20">\
-                                    <div class="product-single-item">\
-                                            <div class="product-wishlist">\
-                                                    <a class="fav-select" data-ad_id="' + value.id + '" href="javascript:void(0)">\
-                                                        <span>\
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz fav-icon fav-icon'+value.id+'" style="fill:">\
-                                                                <path d="M16.224 5c-1.504 0-2.89.676-3.802 1.854L12 7.398l-.421-.544A4.772 4.772 0 0 0 7.776 5C5.143 5 3 7.106 3 9.695c0 5.282 6.47 11.125 9.011 11.125 2.542 0 8.99-5.445 8.99-11.125C21 7.105 18.857 5 16.223 5z">\
-                                                                </path>\
-                                                            </svg>\
-                                                        </span>\
-                                                    </a>\
-                                                </div>\
-                                            <a href="'+route_url+'">\
-                                            <div class="thumb">\
-                                                <img src="{{ asset('core/storage/app/public/advertisement_images/') }}/' +value.image + ' " alt="product">\
-                                            </div>\
-                                            <div class="content">\
-                                                <span class="sub-title">' + value.city.title + '</span>\
-                                                <h5 class="title">' + value.title + '</h5>\
-                                                <span class="inner-sub-title">' + value.category.title + '</span>\
-                                                <h5 class="inner-title">' + value.price + ' &nbsp;TL</h5>\
-                                            </div>\
-                                        </a>\
-                                    </div>\
-                                </div>';
-
-                    $(".ads").html(html);
-
-                });
-
-            }
-        });
-
-    }
-      // Outside foreach
-      if(glovalAdvertiser !='' ||  glovalAdvertiser != null){
-        function getFavRecord(advertiser_id, advertisement_id)
-        {
-            var advertiser_id = advertiser_id;
-            var advertisement_id = advertisement_id;
-            var elem =".fav-icon"+advertisement_id;
-            var ads = $('.fav-select').data('ad_id');
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: "POST",
-                url: "{{route('frontend.ads.check.fav')}}",
-                data: {
-                    advertiser_id: advertiser_id,
-                    advertisement_id: advertisement_id,
-                },
-                success: function(resp) {
-                    if (resp.status != null) {
-                        if(resp.status.advertisement_id == advertisement_id){
-                            $(elem).attr('style', 'fill:red');
-                        }
-                    }
-                }
-            });
-
-
-        }
-        }
-
-
-    function acceptVar() {
-
-            var categorySelect = $("select[name=category] :selected").val();
-            var categoryTitle = $("select[name=category] :selected").data('category_title');
-            var brandSelect = $("select[name=category] :selected").val();
-            var subCategorySelect = $("select[name=sub_category] :selected").val();
-            var getBrand = $("select[name=brand] :selected").val();
-            var sortBy = $("select[name=sort_by] :selected").val();
-            var latitude = $("input[name=latitude]").val();
-            var longitude = $("input[name=longitude]").val();
-            return {
-                categorySelect:categorySelect,
-                categoryTitle:categoryTitle,
-                brandSelect:brandSelect,
-                subCategorySelect:subCategorySelect,
-                getBrand:getBrand,
-                sortBy:sortBy,
-                latitude:latitude,
-                longitude:longitude,
-            };
-    }
-    var x = document.getElementById("demo");
-    function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-    }
-
-    function showPosition(position) {
-        $("input[name=latitude]").val(position.coords.latitude);
-        $("input[name=longitude]").val(position.coords.longitude);
-    }
+   function showPosition(position) {
+       $("input[name=latitude]").val(position.coords.latitude);
+       $("input[name=longitude]").val(position.coords.longitude);
+   }
 
 </script>
-@endpush --}}
+
+@endpush
