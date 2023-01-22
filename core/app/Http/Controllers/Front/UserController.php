@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -91,6 +92,22 @@ class UserController extends Controller
         // dd($request->all());
         if ($request->isMethod('post')) {
             $data = $request->all();
+            $rules = [
+                'checkingEmail' => 'required|email:rfc,dns',
+            ];
+            //Validation message
+            $customMessage = [
+                'checkingEmail.required' => 'Name is required',
+                'checkingEmail.email' => 'Please provide valid email',
+            ];
+            $validator = Validator::make($data, $rules, $customMessage);
+            // Check validation failure
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => 'invalid',
+                    'message' => $validator->errors()
+                ]);
+            }
             $emailCount = Advertiser::where('email', $data['checkingEmail'])->count();
             if ($emailCount == 0) {
                 $message = "This email does not exist";
@@ -101,7 +118,7 @@ class UserController extends Controller
             } else {
                 //$email = $data['pwd_recovery_email'];
                 try {
-                    $random_password = rand(1111, 9999);
+                    $random_password = rand(111111, 999999);
                     $new_password = Hash::make($random_password);
                     //Update password
                     Advertiser::where('email', $data['checkingEmail'])->update(['password' => $new_password]);
@@ -112,7 +129,7 @@ class UserController extends Controller
                 } catch (\Exception $th) {
                     return response()->json([
                         'status' => false,
-                        'message' => $th
+                        'message' => $th->getMessage()
                     ]);
                 }
             }

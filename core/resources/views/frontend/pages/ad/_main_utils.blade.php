@@ -21,6 +21,7 @@
         @endforeach
     </div>
 </div>
+
 <script>
     function openPage(page) {
         window.location.href = page

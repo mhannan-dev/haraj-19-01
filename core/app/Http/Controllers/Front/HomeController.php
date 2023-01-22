@@ -608,6 +608,9 @@ class HomeController extends Controller
 
     public function checkEmail(Request $request)
     {
+        if (session()->has('code')) {
+            session()->forget('code');
+        }
         $data = $request->all();
         $rules = [
             'checkingEmail' => 'required|email:rfc,dns',
@@ -621,7 +624,7 @@ class HomeController extends Controller
         // Check validation failure
         if ($validator->fails()) {
             return response()->json([
-                'status' => 1,
+                'status' => 'invalid',
                 'message' => $validator->errors()
             ]);
         }
@@ -631,7 +634,6 @@ class HomeController extends Controller
         // dd($user);
         if (!$advertiser) {
             session()->put('user_email', $email);
-
             $data = (object)[
                 'email' => $email,
                 'first_name' => 'Unknown',
@@ -639,10 +641,7 @@ class HomeController extends Controller
             ];
 
             try {
-                if (session()->has('code')) {
-                    session()->forget('code');
-                }
-                $code = rand();
+                $code = rand(111111, 999999);
                 session()->put('code', $code);
                 sendEmail($data, 'EVER_CODE', [
                     'code' => $code
@@ -654,13 +653,10 @@ class HomeController extends Controller
                 'status' => false
             ]);
         } else {
-            if (session()->has('user_email')) {
-                session()->forget('user_email');
-            }
+            session()->put('user_email', $email);
             return response()->json([
                 'status' => true
             ]);
-            session()->put('user_email', $email);
         }
     }
 
@@ -1069,5 +1065,24 @@ class HomeController extends Controller
     public function deleteConversation($user_id)
     {
         dd($user_id);
+    }
+
+    public function unreadMessage($id)
+    {
+        $check_unread = Message::where('from', $id)
+            ->where('is_read', 0)->where('deleted_from', 0)->where('deleted_to', 0)
+            ->orderBy('created_at', 'desc')->get();
+            $unread_message = [];
+        foreach($check_unread as $unread) {
+            $messages = MessageUser::where('from', $unread->from)->orWhere('to', $unread->id)
+            ->where('is_deleted_from', 0)->where('is_deleted_to', 0)
+            ->orderBy('date', 'desc')->get();
+            $unread_message[] = $messages;
+        }
+        return response()->json([
+            'status' => true,
+            'data' => $unread_message
+        ]);
+        // dd($unread_message);
     }
 }
