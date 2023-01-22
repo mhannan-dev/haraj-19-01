@@ -5,9 +5,11 @@
 @section('category-name')
     @lang('Categories')
 @endsection
-
+@php
+    $roles = userRolePermissionArray();
+@endphp
 @section('content')
-    @include('admin.category._breadcrumb')
+
     <div class="row">
         <div class="col-lg-12">
             <div class="table-wrapper table-responsive">
@@ -19,6 +21,7 @@
                             <th scope="col">@lang('Name')</th>
                             <th scope="col">@lang('Slug')</th>
                             <th scope="col">@lang('Icon')</th>
+                            <th scope="col">@lang('Image')</th>
                             <th scope="col">@lang('Status')</th>
                             <th scope="col">@lang('Action')</th>
                         </tr>
@@ -41,30 +44,44 @@
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->slug }}</td>
                                     <td>{!! $item->icon !!}</i></td>
+                                    <td><img src="{{ asset('core/storage/app/public/category/' . $item->image) }}"
+                                            alt="Image" width="40"></td>
                                     <td>
-                                        @if ($item['status'] == 1)
-                                            <a class="item_status" id="item-{{ $item['id'] }}"
-                                                item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
-                                                href="javascript:void(0)">
-                                                <i class="las la-check-circle icon-size text-success" status="Active"></i>
-                                            </a>
-                                        @else
-                                            <a class="item_status" id="item-{{ $item['id'] }}"
-                                                item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
-                                                href="javascript:void(0)">
-                                                <i class="las la-times-circle icon-size text-danger" status="In Active"></i>
+                                        @if (hasAccessAbility('status_change_category', $roles))
+                                            @if ($item['status'] == 1)
+                                                <a class="item_status" id="item-{{ $item['id'] }}"
+                                                    item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
+                                                    href="javascript:void(0)">
+                                                    <i class="las la-check-circle icon-size text-success"
+                                                        status="Active"></i>
+                                                </a>
+                                            @else
+                                                <a class="item_status" id="item-{{ $item['id'] }}"
+                                                    item_id="{{ $item['id'] }}" id="item_{{ $item['id'] }}"
+                                                    href="javascript:void(0)">
+                                                    <i class="las la-times-circle icon-size text-danger"
+                                                        status="In Active"></i>
+                                                </a>
+                                            @endif
+                                        @endif
+
+                                    </td>
+                                    <td>
+                                        @if (hasAccessAbility('edit_category', $roles))
+                                            <a title="@lang('Edit')"
+                                                href="{{ route('admin.category.edit', $item['id']) }}"
+                                                class="btn btn-warning btn-sm">
+                                                <i class="fa fa-edit"></i>
                                             </a>
                                         @endif
-                                    </td>
-                                    <td><a title="@lang('Edit')"
-                                            href="{{ route('admin.category.edit', $item['id']) }}"
-                                            class="btn btn-warning btn-sm">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a href="{{ route('admin.category.delete', $item['id']) }}" onclick="return confirm('Are you sure?')">
-                                            <button type="button" class="btn btn-sm btn-danger"><i class="la la-trash"></i>
-                                            </button>
-                                        </a>
+                                        @if (hasAccessAbility('delete_category', $roles))
+                                            <a href="{{ route('admin.category.delete', $item['id']) }}"
+                                                onclick="return confirm('Are you sure?')">
+                                                <button type="button" class="btn btn-sm btn-danger"><i
+                                                        class="la la-trash"></i>
+                                                </button>
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

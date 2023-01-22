@@ -89,8 +89,8 @@ class CategoryAbstract implements CategoryInterface
                 if (Storage::disk('public')->exists('category/' . $category->image)) {
                     Storage::disk('public')->delete('category/' . $category->image);
                 }
-                $postImage = Image::make($image)->resize(550, 480)->save(storage_path('category'));
-                Storage::disk('public')->put('category/' . $imageName, $postImage);
+                $catImage = Image::make($image)->resize(550, 480)->save(storage_path('category'))->stream("webp", 100);
+                Storage::disk('public')->put('category/' . $imageName, $catImage);
             } else {
 
                 $imageName = $category->image;
