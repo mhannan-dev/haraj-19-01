@@ -9,6 +9,7 @@ use App\Http\Helpers\Generals;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
+use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -102,8 +103,8 @@ class DashboardController extends Controller
     {
         $userDetails = Advertiser::find($id);
         $advertisements = Advertisement::with('advertiser', 'city', 'category', 'images')->where('advertiser_id', $id)->get();
-        $soldAdvertisements = Advertisement::where('advertiser_id', $id)->where('status', 2)->select('id','city_id','advertiser_id', 'price', 'image','category_id')->get();
-        return view('frontend.pages.user.profile_view', compact('userDetails', 'advertisements','soldAdvertisements'));
+        $soldAdvertisements = Advertisement::where('advertiser_id', $id)->where('status', 2)->select('id', 'city_id', 'advertiser_id', 'price', 'image', 'category_id')->get();
+        return view('frontend.pages.user.profile_view', compact('userDetails', 'advertisements', 'soldAdvertisements'));
     }
     public function profileUpdatePhoto(Request $request, $id = null)
     {
@@ -139,7 +140,11 @@ class DashboardController extends Controller
         $message_users = MessageUser::where('from', Auth::guard('advertiser')->user()->id)->where('is_deleted_from', 0)
             ->orWhere('to', Auth::guard('advertiser')->user()->id)->where('is_deleted_to', 0)
             ->orderBy('date', 'desc')->get();
-        return view('frontend.pages.user.chat_page', compact('message_users'));
+        $importent_users = MessageUser::where('from', Auth::guard('advertiser')->user()->id)->orWhere('to', Auth::guard('advertiser')->user()->id)
+            ->where('is_deleted_from', 0)->where('is_deleted_to', 0)->where('is_important_to', 1)->where('is_important_from', 0)
+            ->orderBy('date', 'desc')->get();
+        
+        return view('frontend.pages.user.chat_page', compact('message_users', 'importent_users'));
     }
     public function chatDeleteAll(Request $request)
     {

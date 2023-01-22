@@ -99,10 +99,16 @@
 
                                 </div>
                                 <div class="header-action">
+                                    @if (Auth::guard('advertiser')->check())
+                                        <a href="{{ route('frontend.user.post.ad') }}" class="btn--base"><i
+                                                class="fas fa-camera"></i>
+                                            @lang('Sell')</a>
+                                    @else
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#accountModal"
+                                            class="btn--base"><i class="fas fa-camera"></i>
+                                            @lang('Sell')</a>
+                                    @endif
 
-                                    <a href="{{ route('frontend.user.post.ad') }}" class="btn--base"><i
-                                            class="fas fa-camera"></i>
-                                        @lang('Sell')</a>
                                     @if (!Auth::guard('advertiser')->check())
                                         <a href="#" class="btn--base active" data-bs-toggle="modal"
                                             data-bs-target="#accountModal">@lang('Log In')</a>
@@ -170,7 +176,8 @@
                                 <a
                                     href="{{ route('frontend.user.view.profile', Auth::guard('advertiser')->user()->id) }}">{{ Auth::guard('advertiser') ? Auth::guard('advertiser')->user()->first_name : '' }}</a>
                             </h5>
-                            <span class="sub-title"><a href="{{ route('frontend.user.view.profile', Auth::guard('advertiser')->user()->id) }}">@lang('View and edit profile')</a></span>
+                            <span class="sub-title"><a
+                                    href="{{ route('frontend.user.view.profile', Auth::guard('advertiser')->user()->id) }}">@lang('View and edit profile')</a></span>
                         </div>
                     </div>
                 @else
@@ -227,15 +234,16 @@
                                         </svg>
                                         @lang('Settings')</a>
                                 </li>
-                                {{-- <li><a href="#">
-                                    <svg width="24px" height="24px" viewBox="0 0 1024 1024" data-aut-id="icon"
-                                        class="" fill-rule="evenodd">
-                                        <path class="rui-2Xn3A"
-                                            d="M512.001 938.665C747.642 938.665 938.667 747.64 938.667 511.999C938.667 276.357 747.642 85.332 512.001 85.332C276.359 85.332 85.334 276.357 85.334 511.999C85.334 747.64 276.359 938.665 512.001 938.665ZM682.667 565.332C712.122 565.332 736.001 541.454 736.001 511.999C736.001 482.544 712.122 458.665 682.667 458.665H565.334V341.332C565.334 311.877 541.456 287.999 512.001 287.999C482.545 287.999 458.667 311.877 458.667 341.332V458.665H341.334C311.879 458.665 288.001 482.544 288.001 511.999C288.001 541.454 311.879 565.332 341.334 565.332H458.667V682.665C458.667 712.121 482.545 735.999 512.001 735.999C541.456 735.999 565.334 712.121 565.334 682.665V565.332H682.667Z">
-                                        </path>
-                                    </svg>
-                                    @lang('install') {{ $general->sitename($pageTitle ?? '') }} @lang('app')</a>
-                            </li> --}}
+                                <li><a href="#" onclick="alert('App not available right now!')">
+                                        <svg width="24px" height="24px" viewBox="0 0 1024 1024"
+                                            data-aut-id="icon" class="" fill-rule="evenodd">
+                                            <path class="rui-2Xn3A"
+                                                d="M512.001 938.665C747.642 938.665 938.667 747.64 938.667 511.999C938.667 276.357 747.642 85.332 512.001 85.332C276.359 85.332 85.334 276.357 85.334 511.999C85.334 747.64 276.359 938.665 512.001 938.665ZM682.667 565.332C712.122 565.332 736.001 541.454 736.001 511.999C736.001 482.544 712.122 458.665 682.667 458.665H565.334V341.332C565.334 311.877 541.456 287.999 512.001 287.999C482.545 287.999 458.667 311.877 458.667 341.332V458.665H341.334C311.879 458.665 288.001 482.544 288.001 511.999C288.001 541.454 311.879 565.332 341.334 565.332H458.667V682.665C458.667 712.121 482.545 735.999 512.001 735.999C541.456 735.999 565.334 712.121 565.334 682.665V565.332H682.667Z">
+                                            </path>
+                                        </svg>
+                                        @lang('install') {{ $general->sitename($pageTitle ?? '') }}
+                                        @lang('app')</a>
+                                </li>
                                 <li>
                                     <a href="{{ url('user/logout') }}">
                                         <svg width="24px" height="24px" viewBox="0 0 1024 1024"
@@ -292,6 +300,16 @@
                                             </path>
                                         </svg>
                                         @lang('Help')</a>
+                                </li>
+                                <li><a href="#" onclick="alert('App not available right now!')">
+                                        <svg width="24px" height="24px" viewBox="0 0 1024 1024"
+                                            data-aut-id="icon" class="" fill-rule="evenodd">
+                                            <path class="rui-2Xn3A"
+                                                d="M512.001 938.665C747.642 938.665 938.667 747.64 938.667 511.999C938.667 276.357 747.642 85.332 512.001 85.332C276.359 85.332 85.334 276.357 85.334 511.999C85.334 747.64 276.359 938.665 512.001 938.665ZM682.667 565.332C712.122 565.332 736.001 541.454 736.001 511.999C736.001 482.544 712.122 458.665 682.667 458.665H565.334V341.332C565.334 311.877 541.456 287.999 512.001 287.999C482.545 287.999 458.667 311.877 458.667 341.332V458.665H341.334C311.879 458.665 288.001 482.544 288.001 511.999C288.001 541.454 311.879 565.332 341.334 565.332H458.667V682.665C458.667 712.121 482.545 735.999 512.001 735.999C541.456 735.999 565.334 712.121 565.334 682.665V565.332H682.667Z">
+                                            </path>
+                                        </svg>
+                                        @lang('install') {{ $general->sitename($pageTitle ?? '') }}
+                                        @lang('app')</a>
                                 </li>
                                 <li>
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#accountModal">
@@ -580,9 +598,6 @@
                                         <img src="{{ asset('assets/images/loader.gif') }}" width="100" />
                                     </div>
                                     <div class="form-group email_field">
-                                        {{-- <button type="text" class="btn--base w-100" data-bs-toggle="modal"
-                                            id="emailButton" data-bs-target="#passModal"
-                                            data-bs-dismiss="modal">@lang('Go on')</button> --}}
                                         <button type="text" class="btn--base w-100"
                                             id="emailButton">@lang('Go on')</button>
                                     </div>
@@ -724,7 +739,7 @@
                                     </div>
                                     <div class="modal-wrapper-content">
                                         <h3 class="title">@lang('Please enter email')</h3>
-                                        <p>@lang('Enter your registered')</p>
+                                        <p>@lang('Enter your registered email')</p>
                                     </div>
                                     <div class="modal-account-wrapper">
                                         <div class="form-group loader d-none" id="">
@@ -937,6 +952,7 @@
             $("#emailButton").click(function(e) {
                 e.preventDefault();
                 let checkingEmail = $('#emailField').val();
+                        console.log(checkingEmail);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -954,19 +970,20 @@
                         console.log(resp);
                         $('.email_field').removeClass('d-none');
                         $('.loader').addClass('d-none');
-                        if (resp.status == 1) {
-                            $('#emailModal').modal('show');
-                            notify('error', resp.message.checkingEmail);
+                        if (resp.status == true) {
+                            $('#emailModal').modal('hide');
+                            $('#passModal').modal('show');
+                            $('#login_email').text("{{ session()->get('user_email') }}");
+                            notify('success', resp.message);
                         } else if (resp.status == false) {
                             $('#emailModal').modal('hide');
                             $('#varModal').modal('show');
                             $('#var_email').text("{{ session()->get('user_email') }}");
                             notify('success', resp.message);
-                        } else if (resp.status == true) {
-                            $('#emailModal').modal('hide');
-                            $('#passModal').modal('show');
-                            $('#login_email').text("{{ session()->get('user_email') }}");
-                            notify('success', resp.message);
+                        }
+                        if (resp.status == 'invalid') {
+                            $('#emailModal').modal('show');
+                            notify('error', resp.message.checkingEmail);
                         }
                     }
                 });
@@ -1023,7 +1040,7 @@
             // console.log('ready');
             $("#forPassButton").click(function(e) {
                 let checkingEmail = $('#pwd_recovery_email').val();
-                // console.log(checkingEmail);
+
                 e.preventDefault();
                 $.ajax({
                     headers: {
@@ -1039,18 +1056,21 @@
                         $('.loader').removeClass('d-none');
                     },
                     success: function(resp) {
+                        console.log(resp);
                         $('.email_field').removeClass('d-none');
                         $('.loader').addClass('d-none');
                         if (resp.status == true) {
                             $('#forget_pwd_email_modal').modal('hide');
                             $('#passModal').modal('show');
                             notify('success', resp.message);
-                            // $('#login_email').text("{{ session()->get('user_email') }}");
                         } else if (resp.status == false) {
                             $('#passModal').modal('hide');
                             $('#forget_pwd_email_modal').modal('show');
                             notify('success', resp.message);
-                            // $('#var_email').text("{{ session()->get('user_email') }}");
+                        }
+                        if (resp.status == 'invalid') {
+                            $('#forget_pwd_email_modal').modal('show');
+                            notify('error', resp.message.checkingEmail);
                         }
                     }
                 });

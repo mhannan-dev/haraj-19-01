@@ -130,6 +130,8 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
     route::post('/unblock-user-ajax', [HomeController::class, 'unblockUser']);
     route::post('mark-as-important-ajax', [HomeController::class, 'markAsImportant']);
 
+    Route::get('unread-message/{id}', [HomeController::class, 'unreadMessage'])->name('unreadMessage');
+
     Route::post('send/message', function (Request $request) {
         event(new MessageEvent($request->first_name, $request->messeges));
         return ['success' => true];
