@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 22, 2023 at 02:22 PM
+-- Generation Time: Jan 23, 2023 at 11:48 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.0.22
 
@@ -99,15 +99,13 @@ CREATE TABLE `advertisements` (
 --
 
 INSERT INTO `advertisements` (`id`, `advertiser_id`, `category_id`, `type_id`, `city_id`, `sub_category_id`, `title`, `slug`, `price`, `image`, `description`, `condition`, `authenticity`, `brand_id`, `model`, `color`, `edition`, `year_of_manufacture`, `features`, `details_informations`, `status`, `is_price_negotiable`, `created_at`, `updated_at`, `feature_expire_date`, `view_count`, `location_embeded_map`, `fuel_type`, `is_featured`, `latitude`, `longitude`, `ad_type_id`, `meta_tags`, `meta_title`) VALUES
-(118, 3, 18, 0, 1, 20, 'testttttt', 'testttttt', '5000.00', '1673957936.webp', 'test', 'used', 'Refurbished', 1, 'test', 'dark-blue', '9th', '2017', NULL, NULL, 1, 0, '2023-01-17 06:18:58', '2023-01-17 06:18:58', NULL, 2, 'test', NULL, 0, '24.6151', '89.808', NULL, 'test', 'test'),
-(119, 3, 18, 0, 1, NULL, 'test', 'test', '20000.00', '1673958727.webp', 'test', 'used', 'Original', 2, 'A20', 'light-blue', '10th', '2018', NULL, NULL, 1, 0, '2023-01-17 06:32:14', '2023-01-20 02:47:01', NULL, 7, 'test', NULL, 0, '23.85633650187151', '90.35275792413435', NULL, 'test', 'test'),
-(120, 3, 18, 0, 1, NULL, 'rarar', 'rarar', '499.00', '1673958953.webp', 'test', 'new', 'Original', 2, 'ADS', 'dark-green', '8th', '2017', NULL, NULL, 1, 0, '2023-01-17 06:35:54', '2023-01-20 03:12:43', NULL, 5, 'test', NULL, 0, '23.85645200772521', '90.35271744633472', NULL, 'test', 'test'),
 (121, 4, 18, 0, 1, 20, 'test', 'test', '500.00', '1674037054.webp', 'test', 'used', 'Refurbished', 1, 'teset', 'light-blue', '7th', '2017', NULL, NULL, 1, 0, '2023-01-18 04:17:35', '2023-01-20 03:11:05', NULL, 3, 'test', NULL, 0, '23.85624178300702', '90.3524957914746', NULL, 'test', 'test'),
-(122, 1, 22, 0, 1, 25, 'Oppo mobile mobile data', 'oppo-mobile-mobile-data', '12500.00', '1674384459.png', 'Oppo mobile mobile data', 'new', 'Original', 1, NULL, 'dark-grey', '8th', NULL, NULL, '{\"NETWORK\":\"5G\",\"Display\":\"Amuled\",\"Memory\":\"5000\",\"Battery\":\"5000\"}', 1, 0, '2023-01-22 04:47:39', '2023-01-22 05:14:10', '2023-01-25 04:47:39', 1, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m3!3e6!4m0!4m0!5e0!3m2!1sen!2sbd!4v1674382881583!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 1, NULL, NULL, 1, 'Tag1', 'Meta'),
-(123, 1, 26, 0, 1, 27, 'Football For Sale', 'football-for-sale', '20000.00', '1674389112.png', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'like-new', NULL, 4, NULL, NULL, NULL, NULL, NULL, '{\"sports_type\":\"Football\"}', 1, 0, '2023-01-22 06:05:12', '2023-01-22 06:05:50', '2023-01-29 06:05:12', 0, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674388034910!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 1, NULL, NULL, 5, 'Tag1', 'Meta title'),
-(124, 1, 29, 0, 1, 30, '7 A21 2012', '7-a21-2012', '3300000.00', '1674390486.png', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'new', 'original', 7, 'A21', 'dark-grey', '5th', NULL, NULL, '{\"transmission\":\"automatic\",\"body_type\":\"hatchback\",\"edition\":\"5th\",\"year_of_manufacture\":\"2012\",\"run_km\":\"25000\",\"engine_cc\":\"2500\",\"year_decade\":\"2014-2024\",\"gear\":\"direct drive\",\"traction\":\"4 wheel drive\"}', 1, 0, '2023-01-22 06:28:06', '2023-01-22 06:28:32', '2023-01-27 06:28:06', 0, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674388034910!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '[\"diesel\",\"petrol\",\"hybrid\",\"electric\"]', 1, '23.856353487742133', '90.35248541082501', 2, 'Tag', 'Meta'),
+(122, 1, 22, 0, 1, 25, 'Oppo mobile mobile data', 'oppo-mobile-mobile-data', '12500.00', '1674384459.png', 'Oppo mobile mobile data', 'new', 'Original', 1, NULL, 'dark-grey', '8th', NULL, NULL, '{\"NETWORK\":\"5G\",\"Display\":\"Amuled\",\"Memory\":\"5000\",\"Battery\":\"5000\"}', 1, 0, '2023-01-22 04:47:39', '2023-01-22 05:14:10', '2023-01-25 04:47:39', 3, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m3!3e6!4m0!4m0!5e0!3m2!1sen!2sbd!4v1674382881583!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 1, NULL, NULL, 1, 'Tag1', 'Meta'),
+(123, 1, 26, 0, 1, 27, 'Football For Sale', 'football-for-sale', '20000.00', '1674389112.png', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'like-new', NULL, 4, NULL, NULL, NULL, NULL, NULL, '{\"sports_type\":\"Football\"}', 1, 0, '2023-01-22 06:05:12', '2023-01-22 06:05:50', '2023-01-29 06:05:12', 13, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674388034910!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 1, NULL, NULL, 5, 'Tag1', 'Meta title'),
+(124, 1, 29, 0, 1, 30, '7 A21 2012', '7-a21-2012', '3300000.00', '1674390486.png', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'new', 'original', 7, 'A21', 'dark-grey', '5th', NULL, NULL, '{\"transmission\":\"automatic\",\"body_type\":\"hatchback\",\"edition\":\"5th\",\"year_of_manufacture\":\"2012\",\"run_km\":\"25000\",\"engine_cc\":\"2500\",\"year_decade\":\"2014-2024\",\"gear\":\"direct drive\",\"traction\":\"4 wheel drive\"}', 1, 0, '2023-01-22 06:28:06', '2023-01-22 06:28:32', '2023-01-27 06:28:06', 5, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674388034910!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '[\"diesel\",\"petrol\",\"hybrid\",\"electric\"]', 1, '23.856353487742133', '90.35248541082501', 2, 'Tag', 'Meta'),
 (125, 1, 31, 0, 1, 32, 'Vaccum', 'vaccum', '27000.00', '1674391617.png', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'like new', NULL, 9, 'Non brand', 'other', NULL, NULL, NULL, NULL, 1, 0, '2023-01-22 06:46:58', '2023-01-22 06:48:42', '2023-01-29 06:46:58', 0, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674388034910!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 1, '23.85629294698326', '90.3524572123766', 5, 'Tag1', 'Meta'),
-(126, 1, 29, 0, 1, 33, '10 A60 2021', '10-a60-2021', '159998.00', '1674392536.jpg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'like new', 'original', 10, 'A60', 'black', NULL, NULL, NULL, '{\"transmission\":null,\"body_type\":\"other\",\"edition\":null,\"year_of_manufacture\":\"2021\",\"run_km\":\"5000\",\"engine_cc\":\"125\",\"year_decade\":\"2003-2013\",\"gear\":\"automatic\",\"traction\":\"other\"}', 1, 0, '2023-01-22 07:02:16', '2023-01-22 07:02:16', NULL, 0, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674388034910!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '[\"diesel\",\"petrol\",\"hybrid\"]', 0, '23.85626236301955', '90.35246953498239', NULL, 'Tag', 'Meta');
+(126, 1, 29, 0, 1, 33, '10 A60 2021', '10-a60-2021', '159998.00', '1674392536.jpg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'like new', 'original', 10, 'A60', 'black', NULL, NULL, NULL, '{\"transmission\":null,\"body_type\":\"other\",\"edition\":null,\"year_of_manufacture\":\"2021\",\"run_km\":\"5000\",\"engine_cc\":\"125\",\"year_decade\":\"2003-2013\",\"gear\":\"automatic\",\"traction\":\"other\"}', 1, 0, '2023-01-22 07:02:16', '2023-01-22 07:02:16', NULL, 19, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674388034910!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '[\"diesel\",\"petrol\",\"hybrid\"]', 0, '23.85626236301955', '90.35246953498239', NULL, 'Tag', 'Meta'),
+(127, 3, 29, 0, 1, 30, '10 A20 2021', '10-a20-2021', '200000.00', '1674448179.jpg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.', 'new', 'original', 10, 'A20', 'light-grey', NULL, NULL, NULL, '{\"transmission\":\"automatic\",\"body_type\":\"estate\",\"edition\":null,\"year_of_manufacture\":\"2021\",\"run_km\":\"5000\",\"engine_cc\":\"125\",\"year_decade\":\"2003-2013\",\"gear\":\"straight\",\"traction\":\"other\"}', 1, 0, '2023-01-22 22:29:40', '2023-01-22 22:29:40', NULL, 1, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7297.116964440375!2d90.36361852698361!3d23.869807105185313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674448069114!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '[\"diesel\",\"petrol\"]', 0, '23.856280696930313', '90.35244215143972', NULL, 'Tag', 'Meta');
 
 -- --------------------------------------------------------
 
@@ -128,9 +126,6 @@ CREATE TABLE `advertisement_advertiser` (
 --
 
 INSERT INTO `advertisement_advertiser` (`id`, `advertisement_id`, `advertiser_id`, `created_at`, `updated_at`) VALUES
-(72, 119, 3, '2023-01-17 23:49:48', '2023-01-17 23:49:48'),
-(75, 120, 4, '2023-01-18 00:18:27', '2023-01-18 00:18:27'),
-(76, 120, 3, '2023-01-18 11:35:22', '2023-01-18 11:35:22'),
 (77, 121, 3, '2023-01-18 11:45:37', '2023-01-18 11:45:37');
 
 -- --------------------------------------------------------
@@ -155,7 +150,11 @@ CREATE TABLE `advertisement_interest_advertisement` (
 INSERT INTO `advertisement_interest_advertisement` (`id`, `interest_advertisement_id`, `visitor_id`, `ip_address`, `updated_at`, `created_at`) VALUES
 (12, 119, 4, '::1', '2023-01-18 08:40:12', '2023-01-18 08:40:12'),
 (13, 120, 4, '::1', '2023-01-18 08:57:48', '2023-01-18 08:57:48'),
-(14, 122, 1, '::1', '2023-01-22 11:16:42', '2023-01-22 11:16:42');
+(14, 122, 1, '::1', '2023-01-22 11:16:42', '2023-01-22 11:16:42'),
+(15, 118, 3, '127.0.0.1', '2023-01-23 04:25:30', '2023-01-23 04:25:30'),
+(16, 126, 3, '127.0.0.1', '2023-01-23 04:31:03', '2023-01-23 04:31:03'),
+(17, 124, 3, '127.0.0.1', '2023-01-23 05:35:18', '2023-01-23 05:35:18'),
+(18, 123, 1, '::1', '2023-01-23 11:05:17', '2023-01-23 11:05:17');
 
 -- --------------------------------------------------------
 
@@ -194,9 +193,9 @@ CREATE TABLE `advertisers` (
 --
 
 INSERT INTO `advertisers` (`id`, `first_name`, `last_name`, `mobile_no`, `designation`, `email`, `username`, `password`, `provider_id`, `city_id`, `registration_code`, `about`, `status`, `show_mobile_no`, `last_seen`, `deleted_at`, `created_at`, `updated_at`, `remember_token`, `image`, `avatar`, `chat_status`, `chat_delete_by`) VALUES
-(1, 'Muhammad', 'Hannan', '01717000000', NULL, 'mdhannan.info@gmail.com', 'mdhannan.info@gmail.com', '$2y$10$cdACBs/iFbgmXKli/K5PpusSRxcf8kDZLtIm7tcXGgCtsPsAOJ0MC', NULL, 1, 882630, 'Laravel Developer', 1, 1, '2023-01-22 14:14:26', NULL, '2022-09-13 18:00:00', '2023-01-22 08:14:26', NULL, '2023-01-22-1674392134.png', NULL, 1, NULL),
-(2, 'Tanvir', 'Ahmed', '01718191912', NULL, 'ahannan.info@gmail.com', 'ahannan.info@gmail.com', '$2y$10$5fNLwnSc8ELo2nXrL.agAuVNw3ft.fcslvuoQ3/JNZzR4gda2HRqe', NULL, 1, 519853, NULL, 1, 1, '2022-10-21 19:40:18', NULL, '2022-10-08 04:14:14', '2022-10-21 13:40:18', NULL, '2022-10-11-1665479537.png', NULL, 1, NULL),
-(3, 'John', 'Doe', '123456789', NULL, 'testuser@gmail.com', 'testuser', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 0, 'test', 1, 1, '2023-01-18 17:45:39', NULL, '2023-01-14 13:15:16', '2023-01-20 02:31:04', NULL, NULL, NULL, 0, NULL),
+(1, 'Muhammad', 'Hannan', '01717000000', NULL, 'mdhannan.info@gmail.com', 'mdhannan.info@gmail.com', '$2y$10$cdACBs/iFbgmXKli/K5PpusSRxcf8kDZLtIm7tcXGgCtsPsAOJ0MC', NULL, 1, 882630, 'Laravel Developer', 1, 1, '2023-01-23 11:14:34', NULL, '2022-09-13 18:00:00', '2023-01-23 05:14:34', NULL, '2023-01-22-1674392134.png', NULL, 1, NULL),
+(2, 'Tanvir', 'Ahmed', '01718191912', NULL, 'ahannan.info@gmail.com', 'ahannan.info@gmail.com', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 519853, NULL, 1, 1, '2023-01-23 10:37:05', NULL, '2022-10-08 04:14:14', '2023-01-23 04:37:05', NULL, '2023-01-23-1674452316.png', NULL, 1, NULL),
+(3, 'John', 'Doe', '123456789', NULL, 'testuser@gmail.com', 'testuser', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 0, 'test', 1, 1, '2023-01-23 05:36:57', NULL, '2023-01-14 13:15:16', '2023-01-22 23:36:57', NULL, NULL, NULL, 0, NULL),
 (4, 'FR', 'Ranad', '123456789', NULL, 'frranad1@gmail.com', 'frranad1-9378', '$2y$10$Vw6DgPqi9cfi46HIPL6ZwOq12A1R4zJTlPMo.DnbwVsGq8sA.yrVa', NULL, 1, 1247185014, 'Test', 1, 1, '2023-01-18 13:02:00', NULL, '2023-01-11 06:39:23', '2023-01-18 07:02:00', NULL, '2023-01-12-1673503312.png', NULL, 0, NULL);
 
 -- --------------------------------------------------------
@@ -351,7 +350,9 @@ INSERT INTO `ad_images` (`id`, `advertisement_id`, `images`, `created_at`, `upda
 (132, 125, '167439161897247.png', '2023-01-22 06:46:59', '2023-01-22 06:46:59'),
 (133, 125, '167439161942642.jpg', '2023-01-22 06:47:00', '2023-01-22 06:47:00'),
 (134, 126, '167439253621324.jpg', '2023-01-22 07:02:17', '2023-01-22 07:02:17'),
-(135, 126, '167439253787077.png', '2023-01-22 07:02:19', '2023-01-22 07:02:19');
+(135, 126, '167439253787077.png', '2023-01-22 07:02:19', '2023-01-22 07:02:19'),
+(136, 127, '167444818051136.jpg', '2023-01-22 22:29:41', '2023-01-22 22:29:41'),
+(137, 127, '167444818154588.png', '2023-01-22 22:29:43', '2023-01-22 22:29:43');
 
 -- --------------------------------------------------------
 
@@ -645,7 +646,7 @@ CREATE TABLE `currencies` (
 --
 
 INSERT INTO `currencies` (`id`, `currency_code`, `currency_symbol`, `currency_fullname`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'USD', '$', 'USD Update', 1, '2022-10-18 23:19:36', '2023-01-21 03:02:25');
+(1, 'USD', '$', 'USD', 1, '2022-10-18 23:19:36', '2023-01-21 03:02:25');
 
 -- --------------------------------------------------------
 
@@ -997,31 +998,43 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `deleted_from`, `deleted_to`, `created_at`, `updated_at`) VALUES
-(43, 2, 1, 'hello', 1, 0, 0, '2022-10-21 12:46:13', '2023-01-22 08:03:42'),
-(44, 2, 1, 'hyyyy', 1, 0, 0, '2022-10-21 12:46:22', '2023-01-22 08:03:42'),
-(45, 2, 1, 'ooooooooo', 1, 0, 0, '2022-10-21 12:46:43', '2023-01-22 08:03:42'),
-(46, 2, 1, 'ooooo', 1, 0, 0, '2022-10-21 12:46:49', '2023-01-22 08:03:42'),
-(47, 2, 1, 'No problem', 1, 0, 0, '2022-10-21 12:47:09', '2023-01-22 08:03:42'),
-(48, 1, 2, 'No problem', 0, 0, 0, '2022-10-22 02:31:08', '2022-10-22 02:31:08'),
-(49, 3, 3, 'Is it still available?', 1, 0, 0, '2023-01-12 00:18:08', '2023-01-18 04:10:39'),
-(50, 3, 3, 'hello', 1, 0, 0, '2023-01-12 00:26:46', '2023-01-18 04:10:39'),
-(51, 3, 3, 'hello', 1, 0, 0, '2023-01-12 00:26:48', '2023-01-18 04:10:39'),
-(52, 3, 3, 'Is it still available?', 1, 0, 0, '2023-01-12 00:51:09', '2023-01-18 04:10:39'),
-(53, 3, 3, 'Is it still available?', 1, 0, 0, '2023-01-12 00:51:09', '2023-01-18 04:10:39'),
-(54, 4, 3, 'Hello', 0, 0, 0, '2023-01-18 04:14:03', '2023-01-18 04:14:03'),
-(55, 4, 3, 'Is the price negotiable?', 0, 0, 0, '2023-01-18 04:38:52', '2023-01-18 04:38:52'),
-(56, 4, 3, 'hi', 0, 0, 0, '2023-01-18 05:55:04', '2023-01-18 05:55:04'),
-(57, 4, 3, 'ji', 0, 0, 0, '2023-01-18 05:55:14', '2023-01-18 05:55:14'),
-(58, 4, 3, 'ji', 0, 0, 0, '2023-01-18 05:55:26', '2023-01-18 05:55:26'),
-(59, 4, 3, 'asdfsdf', 0, 0, 0, '2023-01-18 05:55:30', '2023-01-18 05:55:30'),
-(60, 4, 3, 'hi', 0, 0, 0, '2023-01-18 05:55:42', '2023-01-18 05:55:42'),
-(61, 4, 3, 'test', 0, 0, 0, '2023-01-18 06:01:03', '2023-01-18 06:01:03'),
-(62, 4, 3, 'test', 0, 0, 0, '2023-01-18 06:03:15', '2023-01-18 06:03:15'),
-(63, 4, 3, 'ttttt', 0, 0, 0, '2023-01-18 06:44:39', '2023-01-18 06:44:39'),
-(64, 4, 3, 'fsdf', 0, 0, 0, '2023-01-18 06:44:53', '2023-01-18 06:44:53'),
-(65, 4, 3, 'test', 0, 0, 0, '2023-01-18 06:56:37', '2023-01-18 06:56:37'),
-(66, 4, 3, 'test', 0, 0, 0, '2023-01-18 06:59:07', '2023-01-18 06:59:07'),
-(67, 1, 2, 'hi', 0, 0, 0, '2023-01-22 08:03:27', '2023-01-22 08:03:27');
+(43, 2, 1, 'xyz', 1, 0, 1, '2022-10-21 12:46:13', '2023-01-23 05:02:48'),
+(44, 2, 1, 'hyyyy', 1, 0, 1, '2022-10-21 12:46:22', '2023-01-23 05:02:48'),
+(45, 2, 1, 'Bangladesh', 1, 0, 1, '2022-10-21 12:46:43', '2023-01-23 05:02:48'),
+(46, 2, 1, 'ooooo', 1, 0, 1, '2022-10-21 12:46:49', '2023-01-23 05:02:48'),
+(47, 2, 1, 'No problem', 1, 0, 1, '2022-10-21 12:47:09', '2023-01-23 05:02:48'),
+(48, 1, 2, 'No problem', 1, 1, 0, '2022-10-22 02:31:08', '2023-01-23 05:02:48'),
+(49, 3, 3, 'Is it still available?', 1, 0, 0, '2023-01-12 00:18:08', '2023-01-22 22:23:32'),
+(50, 3, 3, '44', 1, 0, 0, '2023-01-12 00:26:46', '2023-01-22 22:23:32'),
+(51, 3, 3, 'hello', 1, 0, 0, '2023-01-12 00:26:48', '2023-01-22 22:23:32'),
+(52, 3, 3, 'Is it still available?', 1, 0, 0, '2023-01-12 00:51:09', '2023-01-22 22:23:32'),
+(53, 3, 3, 'Is it still available?', 1, 0, 0, '2023-01-12 00:51:09', '2023-01-22 22:23:32'),
+(54, 4, 3, 'Hello', 1, 0, 0, '2023-01-18 04:14:03', '2023-01-22 22:23:13'),
+(55, 4, 3, 'Is the price negotiable?', 1, 0, 0, '2023-01-18 04:38:52', '2023-01-22 22:23:13'),
+(56, 4, 3, 'hi', 1, 0, 0, '2023-01-18 05:55:04', '2023-01-22 22:23:13'),
+(57, 4, 3, 'ji', 1, 0, 0, '2023-01-18 05:55:14', '2023-01-22 22:23:13'),
+(58, 4, 3, 'ji', 1, 0, 0, '2023-01-18 05:55:26', '2023-01-22 22:23:13'),
+(59, 4, 3, 'asdfsdf', 1, 0, 0, '2023-01-18 05:55:30', '2023-01-22 22:23:13'),
+(60, 4, 3, 'hi', 1, 0, 0, '2023-01-18 05:55:42', '2023-01-22 22:23:13'),
+(61, 4, 3, 'test', 1, 0, 0, '2023-01-18 06:01:03', '2023-01-22 22:23:13'),
+(62, 4, 3, 'test', 1, 0, 0, '2023-01-18 06:03:15', '2023-01-22 22:23:13'),
+(63, 4, 3, 'ttttt', 1, 0, 0, '2023-01-18 06:44:39', '2023-01-22 22:23:13'),
+(64, 4, 3, 'fsdf', 1, 0, 0, '2023-01-18 06:44:53', '2023-01-22 22:23:13'),
+(65, 4, 3, 'test', 1, 0, 0, '2023-01-18 06:56:37', '2023-01-22 22:23:13'),
+(66, 4, 3, 'test', 1, 0, 0, '2023-01-18 06:59:07', '2023-01-22 22:23:13'),
+(67, 1, 2, 'hi', 1, 1, 0, '2023-01-22 08:03:27', '2023-01-23 05:02:48'),
+(69, 3, 3, 'Hello testing message', 1, 0, 0, '2023-01-22 22:23:31', '2023-01-22 22:23:32'),
+(71, 2, 1, 'Hello', 1, 0, 1, '2023-01-22 23:37:32', '2023-01-23 05:02:48'),
+(72, 1, 2, 'how are u?', 1, 1, 0, '2023-01-22 23:38:55', '2023-01-23 05:02:48'),
+(73, 1, 2, 'how are u?', 1, 1, 0, '2023-01-22 23:38:56', '2023-01-23 05:02:48'),
+(74, 2, 1, 'Fine', 1, 0, 1, '2023-01-22 23:40:20', '2023-01-23 05:02:48'),
+(75, 2, 1, 'Fine', 1, 0, 1, '2023-01-22 23:40:22', '2023-01-23 05:02:48'),
+(76, 1, 2, 'hi', 1, 1, 0, '2023-01-23 00:12:52', '2023-01-23 05:02:48'),
+(77, 1, 2, 'hhhh', 1, 1, 0, '2023-01-23 00:13:29', '2023-01-23 05:02:48'),
+(78, 1, 2, '221212asfsdfd', 1, 1, 0, '2023-01-23 00:14:48', '2023-01-23 05:02:48'),
+(79, 1, 2, 'okay', 1, 1, 0, '2023-01-23 00:28:48', '2023-01-23 05:02:48'),
+(80, 2, 1, 'asfsdfds', 1, 0, 1, '2023-01-23 00:29:10', '2023-01-23 05:02:48'),
+(81, 1, 2, '4452', 0, 1, 0, '2023-01-23 04:44:59', '2023-01-23 05:02:48');
 
 -- --------------------------------------------------------
 
@@ -1048,9 +1061,10 @@ CREATE TABLE `message_users` (
 --
 
 INSERT INTO `message_users` (`id`, `from`, `to`, `is_block`, `is_deleted_from`, `is_deleted_to`, `is_important_from`, `is_important_to`, `date`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 0, 0, 0, 1, 1, '2023-01-22 14:03:27', '2022-10-21 11:34:16', '2023-01-22 08:03:27'),
-(2, 3, 3, 0, 0, 0, NULL, NULL, '2023-01-12 06:51:09', '2023-01-12 00:18:07', '2023-01-12 00:51:09'),
-(3, 4, 3, 0, 0, 0, NULL, NULL, '2023-01-18 12:59:07', '2023-01-18 04:14:02', '2023-01-18 06:59:07');
+(1, 2, 1, 0, 0, 1, 1, 1, '2023-01-23 10:44:59', '2022-10-21 11:34:16', '2023-01-23 05:02:48'),
+(2, 2, 3, 0, 0, 0, 1, 1, '2023-01-23 04:23:31', '2023-01-12 00:18:07', '2023-01-22 22:23:31'),
+(3, 2, 3, 0, 0, 0, NULL, 1, '2023-01-23 04:23:11', '2023-01-18 04:14:02', '2023-01-22 22:23:11'),
+(4, 3, 1, 0, NULL, NULL, NULL, NULL, '2023-01-23 05:35:26', '2023-01-22 23:35:26', '2023-01-22 23:35:26');
 
 -- --------------------------------------------------------
 
@@ -1528,7 +1542,8 @@ INSERT INTO `user_contacts` (`id`, `advertisement_id`, `message_sender_id`, `adv
 (13, 94, 3, 3, 'test', 120.00, '2023-01-12 00:51:09', '2023-01-12 00:51:09'),
 (14, 94, 3, 3, 'test', 120.00, '2023-01-12 00:51:09', '2023-01-12 00:51:09'),
 (15, 120, 4, 3, 'rarar', 499.00, '2023-01-18 04:14:03', '2023-01-18 04:14:03'),
-(16, 119, 4, 3, 'test', 97.00, '2023-01-18 04:38:52', '2023-01-18 04:38:52');
+(16, 119, 4, 3, 'test', 97.00, '2023-01-18 04:38:52', '2023-01-18 04:38:52'),
+(17, 124, 3, 1, '7 A21 2012', 3300000.00, '2023-01-22 23:35:26', '2023-01-22 23:35:26');
 
 -- --------------------------------------------------------
 
@@ -1939,7 +1954,7 @@ ALTER TABLE `admin_users`
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
 -- AUTO_INCREMENT for table `advertisement_advertiser`
@@ -1951,7 +1966,7 @@ ALTER TABLE `advertisement_advertiser`
 -- AUTO_INCREMENT for table `advertisement_interest_advertisement`
 --
 ALTER TABLE `advertisement_interest_advertisement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `advertisers`
@@ -1969,7 +1984,7 @@ ALTER TABLE `ad_complains`
 -- AUTO_INCREMENT for table `ad_images`
 --
 ALTER TABLE `ad_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT for table `ad_types`
@@ -2101,13 +2116,13 @@ ALTER TABLE `languages`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `message_users`
 --
 ALTER TABLE `message_users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -2185,7 +2200,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_contacts`
 --
 ALTER TABLE `user_contacts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user_groups`

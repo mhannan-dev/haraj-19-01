@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" @if (session()->get('lang') == 'ar') dir="rtl" @endif>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,27 +40,6 @@
     @if (session()->get('lang') == 'ar')
         <link rel="stylesheet" href="{{ URL::asset('assets/frontend') }}/css/rtl.css">
     @endif
-
-    {{-- <style>
-        a {
-            text-decoration: none;
-        }
-
-        .header-search-area .header-search-form {
-            background-color: transparent;
-            padding: 0;
-        }
-
-        .header-search-area .header-search-form .search-icon {
-            position: relative;
-            left: 40px;
-        }
-
-        .header-search-area .header-search-form input {
-            background-color: #F5F5F5;
-            padding: 25px 45px;
-        }
-    </style> --}}
     <script type='text/javascript'
         src='//platform-api.sharethis.com/js/sharethis.js#property=633927585a306f001995daca&product=sticky-share-buttons'
         async='async'></script>
@@ -1160,9 +1138,7 @@
     </script>
     @include('admin.partials.notify')
     <script src="{{ URL::asset('assets/frontend') }}/js/pusher.min.js"></script>
-    {{-- <script src="{{ URL::asset('assets/frontend') }}/js/frontend.js"></script> --}}
     @yield('scripts')
     @stack('script')
 </body>
-
 </html>
