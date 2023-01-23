@@ -318,7 +318,6 @@
             $('#unread-tab').click(function(e) {
                 e.preventDefault();
                 var id = $(this).data('bs_id');
-
                 $.ajax({
                     type: "GET",
                     url: "{{ url('unread-message') }}/" + id,

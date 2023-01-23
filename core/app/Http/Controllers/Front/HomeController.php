@@ -102,7 +102,7 @@ class HomeController extends Controller
     {
         $data['ads'] = Advertisement::with('category', 'city')->where('category_id', $id)->orderBy('id', 'desc')->paginate(12);
         $data['ad_under_child_category'] = Advertisement::with('category', 'city')->where('sub_category_id', $id)->orderBy('id', 'desc')->paginate(getPaginate());
-        $data['single_category'] = DB::table('categories')->where('id',$id)->where('parent_id', 0)->first();
+        $data['single_category'] = DB::table('categories')->where('id', $id)->where('parent_id', 0)->first();
         $data['category'] = DB::table('categories')->where('parent_id', 0)->get();
         $data['sub_category'] =  Category::withCount('subCategories')->orderBy('id', 'DESC')->where('parent_id', 0)->active()->get();
         $data['cities'] =  City::orderBy('id', 'DESC')->active()->get();
@@ -125,25 +125,24 @@ class HomeController extends Controller
 
     public function fetchSubCategory(Request $request)
     {
-        if($request->category_id == 'all_category'){
-            $data['subCategories'] =  DB::table('categories')->where('parent_id','!=', 0)->get();
+        if ($request->category_id == 'all_category') {
+            $data['subCategories'] =  DB::table('categories')->where('parent_id', '!=', 0)->get();
             return response()->json($data);
-        }else{
-            $data['subCategories'] =  DB::table('categories')->where('parent_id',$request->category_id)->where('parent_id','!=', 0)->get();;
+        } else {
+            $data['subCategories'] =  DB::table('categories')->where('parent_id', $request->category_id)->where('parent_id', '!=', 0)->get();;
             return response()->json($data);
         }
-
     }
 
     public function fetchBrand(Request $request)
     {
 
-         //by only category
-         if ($request->brand_id == 'all_category') {
-            $data['brands'] =  DB::table('brands')->orderBy('id',"DESC")->get();
+        //by only category
+        if ($request->brand_id == 'all_category') {
+            $data['brands'] =  DB::table('brands')->orderBy('id', "DESC")->get();
             return response()->json($data);
-        }else{
-            $data['brands'] =  DB::table('brands')->where('category_id',$request->brand_id)->orderBy('id',"DESC")->get();
+        } else {
+            $data['brands'] =  DB::table('brands')->where('category_id', $request->brand_id)->orderBy('id', "DESC")->get();
             return response()->json($data);
         }
     }
@@ -152,11 +151,11 @@ class HomeController extends Controller
         //by only category
         if ($request->ajax()) {
             if ($request->category_id == 'all_category') {
-                $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->orderBy('id', 'desc')->paginate(12);
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->orderBy('id', 'desc')->paginate(12);
                 $data['pagination'] = (string)  $data['results']->links();
                 return response()->json($data);
-            }else{
-                $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $request->category_id)->orderBy('id', 'desc')->paginate(12);
+            } else {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $request->category_id)->orderBy('id', 'desc')->paginate(12);
                 $data['pagination'] = (string)  $data['results']->links();
                 return response()->json($data);
             }
@@ -165,42 +164,40 @@ class HomeController extends Controller
     public function getAddsBySubCategoryFilters(Request $request)
     {
         //by category and sub-category
-        if($request->category_id == 'all_category'){
-            $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('sub_category_id', $request->sub_category)->orderBy('id', 'desc')->paginate(12);
+        if ($request->category_id == 'all_category') {
+            $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('sub_category_id', $request->sub_category)->orderBy('id', 'desc')->paginate(12);
             $data['pagination'] = (string)  $data['results']->links();
             return response()->json($data);
-        }else{
-            $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('sub_category_id', $request->sub_category)->where('category_id', $request->category_id)->orderBy('id', 'desc')->paginate(12);
+        } else {
+            $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('sub_category_id', $request->sub_category)->where('category_id', $request->category_id)->orderBy('id', 'desc')->paginate(12);
             $data['pagination'] = (string)  $data['results']->links();
             return response()->json($data);
         }
-
     }
     public function getAddsByBrandFilters(Request $request)
     {
         //by category and brand
 
-        if($request->category_id == 'all_category'){
-            $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand_id', $request->brand_id)->orderBy('id', 'desc')->paginate(12);
-             $data['pagination'] = (string)  $data['results']->links();
+        if ($request->category_id == 'all_category') {
+            $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('brand_id', $request->brand_id)->orderBy('id', 'desc')->paginate(12);
+            $data['pagination'] = (string)  $data['results']->links();
             return response()->json($data);
-        }else{
-            $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand_id', $request->brand_id)->where('category_id', $request->category_id)->orderBy('id', 'desc')->paginate(12);
-             $data['pagination'] = (string)  $data['results']->links();
+        } else {
+            $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('brand_id', $request->brand_id)->where('category_id', $request->category_id)->orderBy('id', 'desc')->paginate(12);
+            $data['pagination'] = (string)  $data['results']->links();
             return response()->json($data);
         }
-
     }
     public function getAddsByLocation(Request $request)
     {
         //by category and brand
         $allowType = session()->get('allow_type');
-        if($allowType == null){
-            Session::put('allow_type','allow');
-            $latitude =$request->latitude;
-            $longitude =$request->longitude;
+        if ($allowType == null) {
+            Session::put('allow_type', 'allow');
+            $latitude = $request->latitude;
+            $longitude = $request->longitude;
             $radius = 50;
-            $data['results'] = Advertisement::with('category','city','favourite_to_users')->selectRaw("id, advertiser_id, latitude,longitude ,
+            $data['results'] = Advertisement::with('category', 'city', 'favourite_to_users')->selectRaw("id, advertiser_id, latitude,longitude ,
             category_id,type_id,city_id,sub_category_id,title,slug,price,image,
 
             ( 6371 * acos( cos( radians(?) ) *
@@ -210,19 +207,17 @@ class HomeController extends Controller
               sin( radians( latitude ) ) )
             ) AS distance", [$latitude, $longitude, $latitude])
                 ->having("distance", "<", $radius)
-                ->orderBy("distance",'asc')
+                ->orderBy("distance", 'asc')
                 ->get();
             // $data['results'] = [];
-            $data['type'] ="allow";
+            $data['type'] = "allow";
             return response()->json($data);
-        }else{
+        } else {
             session()->forget('allow_type');
             // $data['results'] =[];
-            $data['type'] ="disallow";
+            $data['type'] = "disallow";
             return response()->json($data);
         }
-
-
     }
     public function getAddsBySortFilters(Request $request)
     {
@@ -233,200 +228,181 @@ class HomeController extends Controller
 
 
         //===============releace date Start===================
-            if ($request->sort_type == 'releace_date') {
-                if ($categoryId == 'all_category' &&  $subCategoryId == null &&  $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->orderBy('created_at', 'ASC')->get();
-                    return response()->json($data);
-                } elseif ($categoryId != null &&  $subCategoryId == null &&  $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->orderBy('created_at', 'ASC')->get();
-                    return response()->json($data);
-
-                } elseif ($categoryId != "all_category"  && $categoryId != null &&  $subCategoryId != null &&  $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('sub_category_id', $subCategoryId)->orderBy('created_at', 'ASC')->get();
-                    return response()->json($data);
-
-                } elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId == null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('created_at', 'ASC')->get();
-                    return response()->json($data);
-
-                }elseif ($categoryId == "all_category" && $subCategoryId != null && $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('sub_category_id',$subCategoryId)->orderBy('created_at', 'ASC')->get();
-                    return response()->json($data);
-                }elseif ($categoryId == "all_category" && $subCategoryId == null && $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand_id',$brandId)->orderBy('created_at', 'ASC')->get();
-                    return response()->json($data);
-                }elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId != null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('created_at', 'ASC')->get();
-                    return response()->json($data);
-
-                }
-            }elseif($request->sort_type == 'low_price'){
-                if ($categoryId == 'all_category' &&  $subCategoryId == null &&  $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->orderBy('price', 'ASC')->get();
-                    return response()->json($data);
-                } elseif ($categoryId != null &&  $subCategoryId == null &&  $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->orderBy('price', 'ASC')->get();
-                    return response()->json($data);
-
-                } elseif ($categoryId != "all_category"  && $categoryId != null &&  $subCategoryId != null &&  $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('sub_category_id', $subCategoryId)->orderBy('price', 'ASC')->get();
-                    return response()->json($data);
-
-                } elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId == null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('price', 'ASC')->get();
-                    return response()->json($data);
-
-                }elseif ($categoryId == "all_category" && $subCategoryId != null && $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('sub_category_id',$subCategoryId)->orderBy('price', 'ASC')->get();
-                    return response()->json($data);
-                }elseif ($categoryId == "all_category" && $subCategoryId == null && $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand_id',$brandId)->orderBy('price', 'ASC')->get();
-                    return response()->json($data);
-                }elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId != null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('price', 'ASC')->get();
-                    return response()->json($data);
-
-                }
-
-            }elseif($request->sort_type == 'high_price'){
-                if ($categoryId == 'all_category' &&  $subCategoryId == null &&  $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->orderBy('price', 'DESC')->get();
-                    return response()->json($data);
-                } elseif ($categoryId != null &&  $subCategoryId == null &&  $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->orderBy('price', 'DESC')->get();
-                    return response()->json($data);
-
-                } elseif ($categoryId != "all_category"  && $categoryId != null &&  $subCategoryId != null &&  $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('sub_category_id', $subCategoryId)->orderBy('price', 'DESC')->get();
-                    return response()->json($data);
-
-                }elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId == null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('price', 'DESC')->get();
-                    return response()->json($data);
-
-                }elseif ($categoryId == "all_category" && $subCategoryId != null && $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('sub_category_id',$subCategoryId)->orderBy('price', 'DESC')->get();
-                    return response()->json($data);
-                }elseif ($categoryId == "all_category" && $subCategoryId == null && $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand_id',$brandId)->orderBy('price', 'DESC')->get();
-                    return response()->json($data);
-                }elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId != null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('price', 'DESC')->get();
-                    return response()->json($data);
-
-                }
-
-            }elseif($request->sort_type == 'location_distance'){
-                $latitude =$request->latitude;
-                $longitude =$request->longitude;
-                $radius = 50;
-                if ($categoryId == 'all_category' &&  $subCategoryId == null &&  $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->selectRaw("id, advertiser_id, latitude,longitude ,
-                    category_id,type_id,city_id,sub_category_id,title,slug,price,image,
-
-                    ( 6371 * acos( cos( radians(?) ) *
-                      cos( radians( latitude ) )
-                      * cos( radians( longitude ) - radians(?)
-                      ) + sin( radians(?) ) *
-                      sin( radians( latitude ) ) )
-                    ) AS distance", [$latitude, $longitude, $latitude])
-                        ->having("distance", "<", $radius)
-                        ->orderBy("distance",'asc')
-                        ->get();
-                    return response()->json($data);
-                } elseif ($categoryId != null &&  $subCategoryId == null &&  $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->selectRaw("id, advertiser_id, latitude,longitude ,
-                    category_id,type_id,city_id,sub_category_id,title,slug,price,image,
-
-                    ( 6371 * acos( cos( radians(?) ) *
-                      cos( radians( latitude ) )
-                      * cos( radians( longitude ) - radians(?)
-                      ) + sin( radians(?) ) *
-                      sin( radians( latitude ) ) )
-                    ) AS distance", [$latitude, $longitude, $latitude])
-                        ->having("distance", "<", $radius)
-                        ->orderBy("distance",'asc')
-                        ->get();
-                    return response()->json($data);
-
-                } elseif ($categoryId != "all_category"  && $categoryId != null &&  $subCategoryId != null &&  $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('sub_category_id', $subCategoryId)->selectRaw("id, advertiser_id, latitude,longitude ,
-                    category_id,type_id,city_id,sub_category_id,title,slug,price,image,
-
-                    ( 6371 * acos( cos( radians(?) ) *
-                      cos( radians( latitude ) )
-                      * cos( radians( longitude ) - radians(?)
-                      ) + sin( radians(?) ) *
-                      sin( radians( latitude ) ) )
-                    ) AS distance", [$latitude, $longitude, $latitude])
-                        ->having("distance", "<", $radius)
-                        ->orderBy("distance",'asc')
-                        ->get();
-                    return response()->json($data);
-
-                }elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId == null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->selectRaw("id, advertiser_id, latitude,longitude ,
-                    category_id,type_id,city_id,sub_category_id,title,slug,price,image,
-
-                    ( 6371 * acos( cos( radians(?) ) *
-                      cos( radians( latitude ) )
-                      * cos( radians( longitude ) - radians(?)
-                      ) + sin( radians(?) ) *
-                      sin( radians( latitude ) ) )
-                    ) AS distance", [$latitude, $longitude, $latitude])
-                        ->having("distance", "<", $radius)
-                        ->orderBy("distance",'asc')
-                        ->get();
-                    return response()->json($data);
-
-                }elseif ($categoryId == "all_category" && $subCategoryId != null && $brandId == null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('sub_category_id',$subCategoryId)->orderBy('price', 'DESC')->selectRaw("id, advertiser_id, latitude,longitude ,
-                    category_id,type_id,city_id,sub_category_id,title,slug,price,image,
-
-                    ( 6371 * acos( cos( radians(?) ) *
-                      cos( radians( latitude ) )
-                      * cos( radians( longitude ) - radians(?)
-                      ) + sin( radians(?) ) *
-                      sin( radians( latitude ) ) )
-                    ) AS distance", [$latitude, $longitude, $latitude])
-                        ->having("distance", "<", $radius)
-                        ->orderBy("distance",'asc')
-                        ->get();
-                    return response()->json($data);
-                }elseif ($categoryId == "all_category" && $subCategoryId == null && $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('brand_id',$brandId)->orderBy('price', 'DESC')->selectRaw("id, advertiser_id, latitude,longitude ,
-                    category_id,type_id,city_id,sub_category_id,title,slug,price,image,
-
-                    ( 6371 * acos( cos( radians(?) ) *
-                      cos( radians( latitude ) )
-                      * cos( radians( longitude ) - radians(?)
-                      ) + sin( radians(?) ) *
-                      sin( radians( latitude ) ) )
-                    ) AS distance", [$latitude, $longitude, $latitude])
-                        ->having("distance", "<", $radius)
-                        ->orderBy("distance",'asc')
-                        ->get();
-                    return response()->json($data);
-                }elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId != null &&  $brandId != null) {
-                    $data['results'] =  Advertisement::with('category', 'city','favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->selectRaw("id, advertiser_id, latitude,longitude ,
-                    category_id,type_id,city_id,sub_category_id,title,slug,price,image,
-
-                    ( 6371 * acos( cos( radians(?) ) *
-                      cos( radians( latitude ) )
-                      * cos( radians( longitude ) - radians(?)
-                      ) + sin( radians(?) ) *
-                      sin( radians( latitude ) ) )
-                    ) AS distance", [$latitude, $longitude, $latitude])
-                        ->having("distance", "<", $radius)
-                        ->orderBy("distance",'asc')
-                        ->get();
-                    return response()->json($data);
-
-                }
-
+        if ($request->sort_type == 'releace_date') {
+            if ($categoryId == 'all_category' &&  $subCategoryId == null &&  $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->orderBy('created_at', 'ASC')->get();
+                return response()->json($data);
+            } elseif ($categoryId != null &&  $subCategoryId == null &&  $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->orderBy('created_at', 'ASC')->get();
+                return response()->json($data);
+            } elseif ($categoryId != "all_category"  && $categoryId != null &&  $subCategoryId != null &&  $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->where('sub_category_id', $subCategoryId)->orderBy('created_at', 'ASC')->get();
+                return response()->json($data);
+            } elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId == null &&  $brandId != null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('created_at', 'ASC')->get();
+                return response()->json($data);
+            } elseif ($categoryId == "all_category" && $subCategoryId != null && $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('sub_category_id', $subCategoryId)->orderBy('created_at', 'ASC')->get();
+                return response()->json($data);
+            } elseif ($categoryId == "all_category" && $subCategoryId == null && $brandId != null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('brand_id', $brandId)->orderBy('created_at', 'ASC')->get();
+                return response()->json($data);
+            } elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId != null &&  $brandId != null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('created_at', 'ASC')->get();
+                return response()->json($data);
             }
+        } elseif ($request->sort_type == 'low_price') {
+            if ($categoryId == 'all_category' &&  $subCategoryId == null &&  $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->orderBy('price', 'ASC')->get();
+                return response()->json($data);
+            } elseif ($categoryId != null &&  $subCategoryId == null &&  $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->orderBy('price', 'ASC')->get();
+                return response()->json($data);
+            } elseif ($categoryId != "all_category"  && $categoryId != null &&  $subCategoryId != null &&  $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->where('sub_category_id', $subCategoryId)->orderBy('price', 'ASC')->get();
+                return response()->json($data);
+            } elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId == null &&  $brandId != null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('price', 'ASC')->get();
+                return response()->json($data);
+            } elseif ($categoryId == "all_category" && $subCategoryId != null && $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('sub_category_id', $subCategoryId)->orderBy('price', 'ASC')->get();
+                return response()->json($data);
+            } elseif ($categoryId == "all_category" && $subCategoryId == null && $brandId != null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('brand_id', $brandId)->orderBy('price', 'ASC')->get();
+                return response()->json($data);
+            } elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId != null &&  $brandId != null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('price', 'ASC')->get();
+                return response()->json($data);
+            }
+        } elseif ($request->sort_type == 'high_price') {
+            if ($categoryId == 'all_category' &&  $subCategoryId == null &&  $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->orderBy('price', 'DESC')->get();
+                return response()->json($data);
+            } elseif ($categoryId != null &&  $subCategoryId == null &&  $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->orderBy('price', 'DESC')->get();
+                return response()->json($data);
+            } elseif ($categoryId != "all_category"  && $categoryId != null &&  $subCategoryId != null &&  $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->where('sub_category_id', $subCategoryId)->orderBy('price', 'DESC')->get();
+                return response()->json($data);
+            } elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId == null &&  $brandId != null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('price', 'DESC')->get();
+                return response()->json($data);
+            } elseif ($categoryId == "all_category" && $subCategoryId != null && $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('sub_category_id', $subCategoryId)->orderBy('price', 'DESC')->get();
+                return response()->json($data);
+            } elseif ($categoryId == "all_category" && $subCategoryId == null && $brandId != null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('brand_id', $brandId)->orderBy('price', 'DESC')->get();
+                return response()->json($data);
+            } elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId != null &&  $brandId != null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->orderBy('price', 'DESC')->get();
+                return response()->json($data);
+            }
+        } elseif ($request->sort_type == 'location_distance') {
+            $latitude = $request->latitude;
+            $longitude = $request->longitude;
+            $radius = 50;
+            if ($categoryId == 'all_category' &&  $subCategoryId == null &&  $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->selectRaw("id, advertiser_id, latitude,longitude ,
+                    category_id,type_id,city_id,sub_category_id,title,slug,price,image,
 
-            //===============releace date End===================
+                    ( 6371 * acos( cos( radians(?) ) *
+                      cos( radians( latitude ) )
+                      * cos( radians( longitude ) - radians(?)
+                      ) + sin( radians(?) ) *
+                      sin( radians( latitude ) ) )
+                    ) AS distance", [$latitude, $longitude, $latitude])
+                    ->having("distance", "<", $radius)
+                    ->orderBy("distance", 'asc')
+                    ->get();
+                return response()->json($data);
+            } elseif ($categoryId != null &&  $subCategoryId == null &&  $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->selectRaw("id, advertiser_id, latitude,longitude ,
+                    category_id,type_id,city_id,sub_category_id,title,slug,price,image,
+
+                    ( 6371 * acos( cos( radians(?) ) *
+                      cos( radians( latitude ) )
+                      * cos( radians( longitude ) - radians(?)
+                      ) + sin( radians(?) ) *
+                      sin( radians( latitude ) ) )
+                    ) AS distance", [$latitude, $longitude, $latitude])
+                    ->having("distance", "<", $radius)
+                    ->orderBy("distance", 'asc')
+                    ->get();
+                return response()->json($data);
+            } elseif ($categoryId != "all_category"  && $categoryId != null &&  $subCategoryId != null &&  $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->where('sub_category_id', $subCategoryId)->selectRaw("id, advertiser_id, latitude,longitude ,
+                    category_id,type_id,city_id,sub_category_id,title,slug,price,image,
+
+                    ( 6371 * acos( cos( radians(?) ) *
+                      cos( radians( latitude ) )
+                      * cos( radians( longitude ) - radians(?)
+                      ) + sin( radians(?) ) *
+                      sin( radians( latitude ) ) )
+                    ) AS distance", [$latitude, $longitude, $latitude])
+                    ->having("distance", "<", $radius)
+                    ->orderBy("distance", 'asc')
+                    ->get();
+                return response()->json($data);
+            } elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId == null &&  $brandId != null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->selectRaw("id, advertiser_id, latitude,longitude ,
+                    category_id,type_id,city_id,sub_category_id,title,slug,price,image,
+
+                    ( 6371 * acos( cos( radians(?) ) *
+                      cos( radians( latitude ) )
+                      * cos( radians( longitude ) - radians(?)
+                      ) + sin( radians(?) ) *
+                      sin( radians( latitude ) ) )
+                    ) AS distance", [$latitude, $longitude, $latitude])
+                    ->having("distance", "<", $radius)
+                    ->orderBy("distance", 'asc')
+                    ->get();
+                return response()->json($data);
+            } elseif ($categoryId == "all_category" && $subCategoryId != null && $brandId == null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('sub_category_id', $subCategoryId)->orderBy('price', 'DESC')->selectRaw("id, advertiser_id, latitude,longitude ,
+                    category_id,type_id,city_id,sub_category_id,title,slug,price,image,
+
+                    ( 6371 * acos( cos( radians(?) ) *
+                      cos( radians( latitude ) )
+                      * cos( radians( longitude ) - radians(?)
+                      ) + sin( radians(?) ) *
+                      sin( radians( latitude ) ) )
+                    ) AS distance", [$latitude, $longitude, $latitude])
+                    ->having("distance", "<", $radius)
+                    ->orderBy("distance", 'asc')
+                    ->get();
+                return response()->json($data);
+            } elseif ($categoryId == "all_category" && $subCategoryId == null && $brandId != null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('brand_id', $brandId)->orderBy('price', 'DESC')->selectRaw("id, advertiser_id, latitude,longitude ,
+                    category_id,type_id,city_id,sub_category_id,title,slug,price,image,
+
+                    ( 6371 * acos( cos( radians(?) ) *
+                      cos( radians( latitude ) )
+                      * cos( radians( longitude ) - radians(?)
+                      ) + sin( radians(?) ) *
+                      sin( radians( latitude ) ) )
+                    ) AS distance", [$latitude, $longitude, $latitude])
+                    ->having("distance", "<", $radius)
+                    ->orderBy("distance", 'asc')
+                    ->get();
+                return response()->json($data);
+            } elseif ($categoryId != "all_category" && $categoryId != null &&  $subCategoryId != null &&  $brandId != null) {
+                $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('category_id', $categoryId)->where('brand_id', $brandId)->selectRaw("id, advertiser_id, latitude,longitude ,
+                    category_id,type_id,city_id,sub_category_id,title,slug,price,image,
+
+                    ( 6371 * acos( cos( radians(?) ) *
+                      cos( radians( latitude ) )
+                      * cos( radians( longitude ) - radians(?)
+                      ) + sin( radians(?) ) *
+                      sin( radians( latitude ) ) )
+                    ) AS distance", [$latitude, $longitude, $latitude])
+                    ->having("distance", "<", $radius)
+                    ->orderBy("distance", 'asc')
+                    ->get();
+                return response()->json($data);
+            }
+        }
+
+        //===============releace date End===================
     }
 
     public function childCategoryAds($id)
@@ -1062,21 +1038,17 @@ class HomeController extends Controller
             return redirect()->back()->withNotify($notify);
         }
     }
-    public function deleteConversation($user_id)
-    {
-        dd($user_id);
-    }
 
     public function unreadMessage($id)
     {
         $check_unread = Message::where('from', $id)
             ->where('is_read', 0)->where('deleted_from', 0)->where('deleted_to', 0)
             ->orderBy('created_at', 'desc')->get();
-            $unread_message = [];
-        foreach($check_unread as $unread) {
+        $unread_message = [];
+        foreach ($check_unread as $unread) {
             $messages = MessageUser::where('from', $unread->from)->orWhere('to', $unread->id)
-            ->where('is_deleted_from', 0)->where('is_deleted_to', 0)
-            ->orderBy('date', 'desc')->get();
+                ->where('is_deleted_from', 0)->where('is_deleted_to', 0)
+                ->orderBy('date', 'desc')->get();
             $unread_message[] = $messages;
         }
         return response()->json([
@@ -1085,4 +1057,14 @@ class HomeController extends Controller
         ]);
         // dd($unread_message);
     }
+
+    public function searchMessage(Request $request)
+    {
+        $user_id = auth()->user()->id;
+        $data = $request->all();
+        $messages = Message::with('user')->where('from', $user_id)->where('to', $user_id)->orWhere('message', 'like', '%' . $data['search_msg'] . '%')->get();
+        $messages = json_decode(json_encode($messages), true);
+        return  response()->json(['messages' => $messages]);
+    }
 }
+

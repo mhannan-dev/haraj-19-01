@@ -63,6 +63,4 @@ class Advertiser extends Authenticatable
     {
         return $this->belongsToMany(Advertisement::class)->withTimestamps();
     }
-
-
 }

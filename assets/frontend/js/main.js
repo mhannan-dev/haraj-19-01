@@ -195,7 +195,8 @@ $(".category-filter-wrapper3").click(function(){
   $(".category-filter-list-wrapper3").slideToggle();
 });
 
-$(".chat-user-action-area").on("click", function () {
+
+$(document).on("click",".chat-user-action-area",function(){
   var element = $(this).parent(".chat-item");
   if (element.hasClass("open")) {
     element.removeClass("open");
@@ -221,7 +222,8 @@ $(".cross-btn").click(function(){
   $('.chat-left-area').removeClass('show');
 });
 
-$(".chat-user-area").on("click", function () {
+
+$(document).on("click",".chat-user-area",function(){
   var element = $(this).parent(".chat-item");
   if (element.hasClass("active")) {
   }

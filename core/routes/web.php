@@ -131,6 +131,7 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
     route::post('mark-as-important-ajax', [HomeController::class, 'markAsImportant']);
 
     Route::get('unread-message/{id}', [HomeController::class, 'unreadMessage'])->name('unreadMessage');
+    Route::get('search_message', [HomeController::class, 'searchMessage'])->name('searchMessage');
 
     Route::post('send/message', function (Request $request) {
         event(new MessageEvent($request->first_name, $request->messeges));
@@ -144,8 +145,7 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
     Route::prefix('payment')->name('payment.')->group(function () {
         Route::get('stripe', [StripeController::class, 'stripe'])->name('stripe.form');
         Route::post('stripe', [StripeController::class, 'stripePost'])->name('stripe.post');
-        Route::get('paystack', [PaystackController::class, 'paystack'])->name('paystack.form');
-        Route::get('verify/paystack/{reference}', [PaystackController::class, 'paystackVerify'])->name('paystack.verify');
+
 
         Route::get('handle-payment', [PayPalController::class, 'index'])->name('paypal.index');
         Route::post('charge', [PayPalController::class, 'charge'])->name('paypal.charge');
