@@ -62,22 +62,6 @@ class HomeController extends Controller
         //Taking Visitor Information
         $visitorIp  = $_SERVER['REMOTE_ADDR'];
         $visitorDetails = GeoIP::getLocation($visitorIp);
-        // $checkVisitorIp = VisitorHistory::where('mac_address', $visitorDeviceMac)->first();
-        // dd($visitorDetails->ip);
-        // if ($checkVisitorIp == null) {
-        //     $visitor = new VisitorHistory();
-        //     $visitor->ip_address = $visitorDetails->ip;
-        //     $visitor->mac_address = $visitorDeviceMac;
-        //     $visitor->country = $visitorDetails->country;
-        //     $visitor->city = $visitorDetails->city;
-        //     $visitor->state_name = $visitorDetails->state_name;
-        //     $visitor->lat = $visitorDetails->lat;
-        //     $visitor->lon = $visitorDetails->lon;
-        //     $visitor->user_ip_view_count = 1;
-        //     $visitor->save();
-        // } else {
-        //     DB::table('visitor_histories')->where('mac_address', $checkVisitorIp->mac_address)->increment('user_ip_view_count');
-        // }
         //Taking Visitor Information end code block
         return view('frontend.index', $data);
     }
@@ -655,7 +639,7 @@ class HomeController extends Controller
     {
         $advertiser = Auth::guard('advertiser')->user();
         // dd($advertiser);
-        $currency = Currency::select('currency_code', 'currency_symbol')->where('status', '=', 1)->where('is_default', '=', 1)->first();
+        $currency = Currency::select('currency_code', 'currency_symbol')->where('status', '=', 1)->first();
         if ($request->ajax()) {
             if ($request->id > 0) {
                 $data = Advertisement::where('id', '<', $request->id)->where('is_featured', '=', 0)->orderBy('id', 'DESC')->limit(8)->get();
@@ -1065,6 +1049,9 @@ class HomeController extends Controller
         $messages = Message::with('user')->where('from', $user_id)->where('to', $user_id)->orWhere('message', 'like', '%' . $data['search_msg'] . '%')->get();
         $messages = json_decode(json_encode($messages), true);
         return  response()->json(['messages' => $messages]);
+    }
+    public function deleteConversation(Request $request){
+        dd('Delete All Chat');
     }
 }
 

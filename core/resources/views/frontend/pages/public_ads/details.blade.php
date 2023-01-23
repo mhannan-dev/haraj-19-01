@@ -24,7 +24,7 @@
 @section('content')
     @php
         $advertiser = Auth::guard('advertiser')->user();
-        if(isset($advertiser)) {
+        if (isset($advertiser)) {
             $advertiser = $advertiser->id;
         } else {
             $advertiser = null;
@@ -55,7 +55,8 @@
                             @foreach ($details->images as $item)
                                 <div class="swiper-slide">
                                     <div class="item-details-thumb">
-                                        <a class="img-popup" data-rel="lightcase:myCollection" href="{{ asset('core/storage/app/public/advertisement_images/' . $item->images) }}">
+                                        <a class="img-popup" data-rel="lightcase:myCollection"
+                                            href="{{ asset('core/storage/app/public/advertisement_images/' . $item->images) }}">
                                             <img src="{{ asset('core/storage/app/public/advertisement_images/' . $item->images) }}"
                                                 alt="item-banner">
                                         </a>
@@ -88,122 +89,70 @@
         </section>
     @endif
     <!--~~~~~~~~~End product details galary section~~~~~~~~~~~~~~~~~~~~-->
-
-    <!--~~~~Start Product details section~~~~~~~~~~~~~~~~~-->
     <section class="product-details-sction">
         <div class="container">
             <div class="product-details-wrapper">
                 <div class="row mb-20-none">
-                    <div
-                        class="@if ($details->advertiser->id == $advertiser) col-xl-12 col-lg-12 col-md-12 @else col-xl-9 col-lg-8 col-md-8 @endif mb-20 pe-xl-5">
+                    <div class="col-xl-9 col-lg-8 col-md-8 mb-20 pe-xl-5">
                         <div class="product-details-left">
                             <div class="product-details-content">
                                 <div class="top-area">
                                     <div class="top-wrapper">
-                                        <h2 class="price-title">{{ $details->price }} {{ $currency->currency_code }}</h2>
+                                        <h2 class="price-title">6,150 TL</h2>
                                         <div class="opsition-wrapper">
-                                            @php
-                                                if ($advertiser) {
-                                                    $checkFavourite = DB::table('advertisement_advertiser')
-                                                        ->where('advertiser_id', $advertiser)
-                                                        ->where('advertisement_id', $details->id)
-                                                        ->first();
-                                                    // dd($checkFavourite);
-                                                    if ($checkFavourite != null) {
-                                                        $color = 'red';
-                                                    } else {
-                                                        $color = '';
-                                                    }
-                                                } else {
-                                                    $color = '';
-                                                }
-                                            @endphp
-                                            <a class="fav-select opsition-item" data-ad_id="{{ $details->id }}"
-                                                href="javascript:void(0)">
+                                            <button class="opsition-item">
                                                 <svg width="36" height="36" viewBox="0 0 24 24"
-                                                    class="sc-AxjAm dJbVhz fav-icon" style="fill:{{ $color }}">
+                                                    class="sc-AxjAm dJbVhz">
                                                     <path
                                                         d="M16.224 5c-1.504 0-2.89.676-3.802 1.854L12 7.398l-.421-.544A4.772 4.772 0 0 0 7.776 5C5.143 5 3 7.106 3 9.695c0 5.282 6.47 11.125 9.011 11.125 2.542 0 8.99-5.445 8.99-11.125C21 7.105 18.857 5 16.223 5z">
                                                     </path>
                                                 </svg>
-                                            </a>
-                                            <!-- ShareThis BEGIN -->
-                                            <div class="sharethis-inline-share-buttons"></div>
-                                            <!-- ShareThis END -->
-                                            <!-- Button trigger modal -->
-                                            @if ($details->advertiser->id != $advertiser)
-                                                <button class="opsition-item-reoprt" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal">
-                                                    @lang('Report')
-                                                </button>
-                                            @endif
-
+                                            </button>
+                                            <button class="opsition-item" data-aut-id="btnShare">
+                                                <svg width="24" height="24" viewBox="0 0 24 24"
+                                                    class="sc-AxjAm dJbVhz">
+                                                    <path
+                                                        d="M8.93 11.353a3.01 3.01 0 0 1 .013 1.232l3.949 3.1a3 3 0 1 1-1.035 1.73l-3.949-3.1a3 3 0 1 1-.042-4.665l4.004-3.003a3 3 0 1 1 1.064 1.702L8.93 11.353zM14.8 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM6 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                            <button class="opsition-item-reoprt" data-bs-toggle="modal"
+                                                data-bs-target="#reportModal">Report</button>
                                         </div>
                                     </div>
-                                    <h1 class="top-sub-title">{{ $details->title }}</h1>
+                                    <h1 class="top-sub-title">ACİLL İPHONE X 256 GB YURT DIŞI 4 AY AÇIK HATASIZ</h1>
                                 </div>
                                 <div class="center-area">
                                     <div class="meta-post">
-                                        <a>
-                                            <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz">
+                                        <span><svg width="24" height="24" viewBox="0 0 24 24"
+                                                class="sc-AxjAm dJbVhz">
                                                 <path fill="#ff3f55"
                                                     d="M20.803 13.786c.198 2.348-.552 3.951-2.231 5.777-1.538 1.672-3.667 2.64-5.698 2.64h-1.687c-2.005 0-4.036-.943-5.574-2.642-1.444-1.597-1.892-2.805-1.45-5.068.206-1.056.658-2.014 1.096-2.941.523-1.11 1.018-2.159 1.09-3.318l.078-1.289.595 1.145c.464.894.635 1.609.722 2.446 2.229-3.088 3.2-5.763 2.89-7.961L10.553 2l.547.182c.151.05 3.582 1.251 5.21 6.715.315-.792.185-1.892-.104-2.562l-.55-1.274 1.096.845c.928.716 3.726 4.046 4.05 7.88zM12.48 18c1.369 0 2.475-1.124 2.518-2.559.027-.946-.18-2.208-.846-2.91A1.642 1.642 0 0 0 12.937 12a.419.419 0 0 0-.362.213.437.437 0 0 0-.004.426c.298.54.039 1.15-.142 1.465-.412.72-1.202 1.304-1.763 1.304a.64.64 0 0 1-.15-.017.415.415 0 0 0-.385.106.433.433 0 0 0-.124.387C10.222 17.11 11.262 18 12.48 18z">
                                                 </path>
-                                            </svg>{{ diffForHumans($details->created_at) }}
-                                        </a>
+                                            </svg>2 hours ago</span>
                                         <span><svg width="24" height="24" viewBox="0 0 24 24"
                                                 class="sc-AxjAm dJbVhz">
                                                 <path fill="#757575"
                                                     d="M12.186 8.106a3.733 3.733 0 0 1 3.727 3.728 3.733 3.733 0 0 1-3.727 3.728 3.733 3.733 0 0 1-3.727-3.728 3.733 3.733 0 0 1 3.727-3.728zm0 5.966a2.24 2.24 0 0 0 2.236-2.238 2.237 2.237 0 0 0-4.472 0 2.24 2.24 0 0 0 2.236 2.238zm9.67-2.802c-3.113-4.254-6.476-6.379-9.997-6.266-5.697.165-9.577 6.05-9.74 6.3a.752.752 0 0 0 .02.84c3.152 4.424 6.491 6.661 9.928 6.661.122 0 .244-.004.365-.009 5.645-.258 9.313-6.445 9.466-6.708a.75.75 0 0 0-.042-.818">
                                                 </path>
-                                            </svg>{{ $details->view_count }}</span>
-                                    </div>
-                                    <div class="product-details-list-area">
-                                        @if (!empty($details->details_informations) && $details->details_informations != null)
-                                            <ul class="product-details-list proudct_info">
-                                                @foreach (json_decode($details->details_informations) as $key => $details_info)
-                                                    <li>{{ str_replace('_', ' ', ucfirst($key)) }}</strong>
-                                                        &nbsp;{{ $details_info }}
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        @else
-                                            {{ $details->description }}
-                                        @endif
-                                        @if (isset($details->fuel_type) && $details->fuel_type != null)
-                                            <ul class="product-details-list proudct_info">
-                                                <li>@lang('Fuel Type'): {!! str_replace('"', ' ', (string) $details->fuel_type) !!} </li>
-                                            </ul>
-                                        @endif
+                                            </svg>3</span>
                                     </div>
                                     @if (!empty($details->details_informations) && $details->details_informations != null)
-                                        <div class="product-type-wrapper">
-                                            @foreach (json_decode($details->details_informations) as $key => $details_info)
-                                                <div class="product-type-item">
-                                                    <div class="product-type-icon">
-                                                        <i class="las la-list"></i>
-                                                    </div>
-                                                    <div class="product-type-content">
-                                                        <span
-                                                            class="sub-title">{{ str_replace('_', ' ', ucfirst($key)) }}</span>
-                                                        <h5 class="title">{{ $details_info }}</h5>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                            @if (isset($details->fuel_type) && $details->fuel_type != null)
-                                                <div class="product-type-item">
-                                                    <div class="product-type-icon">
-                                                        <i class="las la-list"></i>
-                                                    </div>
-                                                    <div class="product-type-content">
-                                                        <span class="sub-title">@lang('Fuel Type')</span>
-                                                        <h5 class="title">{!! str_replace('"', ' ', (string) $details->fuel_type) !!}</h5>
-
-                                                    </div>
-
-                                                </div>
-                                            @endif
-
+                                        <div class="product-details-list-area">
+                                            <ul class="product-details-list">
+                                                @foreach (json_decode($details->details_informations) as $key => $details_info)
+                                                    <li> <span>{{ str_replace('_', ' ', ucfirst($key)) }}:-</span>
+                                                        {{ $details_info }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                    @if (isset($details->fuel_type) && $details->fuel_type != null)
+                                        <div class="product-details-list-area">
+                                            <ul class="product-details-list">
+                                                <li> <span>@lang('Fuel Type'):-</span>
+                                                    {!! preg_replace('/[^0-9a-z.,]+/i', '', (string) $details->fuel_type) !!}</li>
+                                            </ul>
                                         </div>
                                     @endif
                                     <div class="bottom-area">
@@ -211,7 +160,7 @@
                                             <h4 class="title">
                                                 @lang('Condition'): @if ($details->condition == 'Like New')
                                                     <img src="{{ URL::asset('assets/frontend') }}/images/icon/1.png"
-                                                        alt="ðŸ‘">
+                                                        alt="👍">
                                                     {{ $details->condition }}
                                                 @else
                                                     {{ $details->condition }}
@@ -228,72 +177,47 @@
                             </div>
                         </div>
                     </div>
-                    @if ($details->advertiser->id != $advertiser)
-                        <div class="col-xl-3 col-lg-4 col-md-4 mb-20">
-                            <div class="product-details-right">
-                                <div class="seller-profile-card-area">
-                                    <div class="seller-profile-card">
-                                        <div class="seller-profile-card-top-wrapper">
-                                            <div class="thumb-area">
-                                                <div class="thumb">
-                                                    <img src="@if ($details->advertiser->image) {{ asset('core/storage/app/public/user/' . $details->advertiser->image) }} @else {{ asset('assets/images/default.png') }} @endif"
-                                                        alt="img">
-                                                </div>
-                                                <div class="thumb-content-area">
-                                                    <div class="thumb-content">
-                                                        <a href="{{ route('frontend.user.public.profile', $details->advertiser_id) }}"
-                                                            class="seller-profile-card-top-link">
-                                                            <span
-                                                                class="title">{{ $details->advertiser->full_name }}</span>
-                                                        </a>
-                                                        <ul class="reating-list" data-bs-toggle="modal"
-                                                            data-bs-target="#rating_modal">
-                                                            <a href="#"
-                                                                class="text-warning">{{ count($user_rating) }}
-                                                                &nbsp; Rating</a>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 mb-20">
+                        <div class="product-details-right">
+                            <div class="seller-profile-card-area">
+                                <div class="seller-profile-card">
+                                    <div class="seller-profile-card-top-wrapper">
+                                        <div class="thumb-area">
+                                            <div class="thumb">
+                                                <img src="@if ($details->advertiser->image) {{ asset('core/storage/app/public/user/' . $details->advertiser->image) }} @else {{ asset('assets/images/default.png') }} @endif"
+                                                    alt="img">
                                             </div>
-                                            <div class="arrow-area">
-                                                <a
-                                                    href="{{ route('frontend.user.public.profile', $details->advertiser_id) }}">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24"
-                                                        fill="#BDBDBD" class="sc-AxjAm dJbVhz">
-                                                        <path
-                                                            d="M14.698 12.01l-5.792 5.793a1.56 1.56 0 1 0 2.208 2.208l6.897-6.896a1.56 1.56 0 0 0 0-2.208l-6.897-6.898a1.564 1.564 0 0 0-2.209 0 1.564 1.564 0 0 0 0 2.209l5.793 5.793z">
-                                                        </path>
-                                                    </svg>
-                                                </a>
+                                            <div class="thumb-content-area">
+                                                <div class="thumb-content">
+                                                    <a href="{{ route('frontend.user.public.profile', $details->advertiser_id) }}"
+                                                        class="seller-profile-card-top-link">
+                                                        <span class="title">{{ $details->advertiser->full_name }}</span>
+                                                    </a>
+                                                    <ul class="reating-list" data-bs-toggle="modal"
+                                                        data-bs-target="#rating_modal">
+                                                        <a href="#" class="text-warning">{{ count($user_rating) }}
+                                                            &nbsp; Rating</a>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="seller-profile-card-bottom-wrapper">
-                                            <span class="title">@lang('Message the seller'):</span>
-                                            <form action="{{ url('user/msg/template') }}" method="POST">
-                                                @csrf
-                                                <div class="seller-profile-bottom-btn">
-                                                    <input type="hidden" name="recever_id"
-                                                        value="{{ $details->advertiser_id }}">
-                                                    <input type="hidden" name="advertisement_id"
-                                                        value="{{ $details->id }}">
-                                                    <input type="hidden" name="advertisement_title"
-                                                        value="{{ $details->title }}">
-                                                    <input type="hidden" name="advertisement_price"
-                                                        value="{{ $details->price }}">
-                                                    <input type="hidden" name="advertiser_id"
-                                                        value="{{ $details->advertiser_id }}">
-
-                                                    <input type="submit" name="message" class="btn--base btn-sm mb-2"
-                                                        value="@lang('Is it still available')?">
-                                                    <input type="submit" name="message" class="btn--base btn-sm mb-2"
-                                                        value="@lang('What condition is it in')?">
-                                                    <input type="submit" name="message" class="btn--base btn-sm"
-                                                        value="@lang('Is the price negotiable')?">
-                                                </div>
-                                            </form>
-                                            <form class="chat-with-seller-form"
-                                                action="{{ route('frontend.detailsSendMessage') }}" method="post">
-                                                @csrf
+                                        <div class="arrow-area">
+                                            <a
+                                                href="{{ route('frontend.user.public.profile', $details->advertiser_id) }}">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="#BDBDBD"
+                                                    class="sc-AxjAm dJbVhz">
+                                                    <path
+                                                        d="M14.698 12.01l-5.792 5.793a1.56 1.56 0 1 0 2.208 2.208l6.897-6.896a1.56 1.56 0 0 0 0-2.208l-6.897-6.898a1.564 1.564 0 0 0-2.209 0 1.564 1.564 0 0 0 0 2.209l5.793 5.793z">
+                                                    </path>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="seller-profile-card-bottom-wrapper">
+                                        <span class="title">@lang('Message the seller'):</span>
+                                        <form action="{{ url('user/msg/template') }}" method="POST">
+                                            @csrf
+                                            <div class="seller-profile-bottom-btn">
                                                 <input type="hidden" name="recever_id"
                                                     value="{{ $details->advertiser_id }}">
                                                 <input type="hidden" name="advertisement_id"
@@ -304,46 +228,77 @@
                                                     value="{{ $details->price }}">
                                                 <input type="hidden" name="advertiser_id"
                                                     value="{{ $details->advertiser_id }}">
-                                                <input type="text" class="form--control mb-2 write_message"
-                                                    placeholder="@lang('Send message to seller')" name="message">
-                                                <div class="send-chat-btn">
-                                                    <button type="submit" class="btn--base w-100">@lang('Send') <i
-                                                            class="las la-paper-plane ms-1"></i></button>
-                                                </div>
-                                            </form>
-                                            @if (isset($advertiser))
-                                                <input type="button" class="btn--base"
-                                                    value="{{ $details->advertiser->mobile_no }}">
-                                            @else
-                                                <a href="#"
-                                                    class="btn btn-light btn-sm btn-block">@lang('Login to see mobile no')</a>
-                                            @endif
 
-                                        </div>
+                                                <input type="submit" name="message" class="btn--base btn-sm mb-2"
+                                                    value="@lang('Is it still available')?">
+                                                <input type="submit" name="message" class="btn--base btn-sm mb-2"
+                                                    value="@lang('What condition is it in')?">
+                                                <input type="submit" name="message" class="btn--base btn-sm"
+                                                    value="@lang('Is the price negotiable')?">
+                                            </div>
+                                        </form>
+                                        <form class="chat-with-seller-form"
+                                            action="{{ route('frontend.detailsSendMessage') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="recever_id"
+                                                value="{{ $details->advertiser_id }}">
+                                            <input type="hidden" name="advertisement_id" value="{{ $details->id }}">
+                                            <input type="hidden" name="advertisement_title"
+                                                value="{{ $details->title }}">
+                                            <input type="hidden" name="advertisement_price"
+                                                value="{{ $details->price }}">
+                                            <input type="hidden" name="advertiser_id"
+                                                value="{{ $details->advertiser_id }}">
+                                            <input type="text" class="form--control mb-2 write_message"
+                                                placeholder="@lang('Send message to seller')" name="message">
+                                            <div class="send-chat-btn">
+                                                <button type="submit" class="btn--base w-100">@lang('Send') <i
+                                                        class="las la-paper-plane ms-1"></i></button>
+                                            </div>
+                                        </form>
+                                        @if (isset($advertiser))
+                                            <input type="button" class="btn--base"
+                                                value="{{ $details->advertiser->mobile_no }}">
+                                        @else
+                                            <a href="#"
+                                                class="btn btn-light btn-sm btn-block">@lang('Login to see mobile no')</a>
+                                        @endif
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    </div>
                 </div>
                 <div class="social-area">
                     <span class="title">Share this listing, “İphone 13 pro max 128gb Silver”, with your friends</span>
                     <ul class="social-list">
                         <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M13.213 5.22c-.89.446-.606 3.316-.606 3.316h3.231v2.907h-3.23v10.359H8.773V11.444H6.39V8.536h2.423c-.221 0 .12-2.845.146-3.114.136-1.428 1.19-2.685 2.544-3.153 1.854-.638 3.55-.286 5.385.17l-.484 2.504s-2.585-.455-3.191.277z"></path></svg>
+                            <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz">
+                                <path
+                                    d="M13.213 5.22c-.89.446-.606 3.316-.606 3.316h3.231v2.907h-3.23v10.359H8.773V11.444H6.39V8.536h2.423c-.221 0 .12-2.845.146-3.114.136-1.428 1.19-2.685 2.544-3.153 1.854-.638 3.55-.286 5.385.17l-.484 2.504s-2.585-.455-3.191.277z">
+                                </path>
+                            </svg>
                         </li>
                         <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path d="M21.744 6.236a7.945 7.945 0 0 1-1.383.466 4.313 4.313 0 0 0 1.138-1.813.226.226 0 0 0-.33-.263 7.982 7.982 0 0 1-2.116.874.56.56 0 0 1-.502-.125 4.325 4.325 0 0 0-2.862-1.08c-.457 0-.918.07-1.37.211a4.19 4.19 0 0 0-2.825 3.02 4.614 4.614 0 0 0-.102 1.592.16.16 0 0 1-.174.175 11.342 11.342 0 0 1-7.795-4.165.226.226 0 0 0-.37.029 4.322 4.322 0 0 0-.587 2.175 4.32 4.32 0 0 0 1.29 3.083 3.876 3.876 0 0 1-.987-.382.226.226 0 0 0-.336.195 4.33 4.33 0 0 0 2.527 3.99 3.873 3.873 0 0 1-.821-.069.226.226 0 0 0-.258.291 4.335 4.335 0 0 0 3.424 2.949 7.982 7.982 0 0 1-4.47 1.358h-.5c-.155 0-.285.1-.325.249a.343.343 0 0 0 .165.379 11.872 11.872 0 0 0 5.965 1.608c1.834 0 3.549-.364 5.098-1.081a11.258 11.258 0 0 0 3.73-2.795 12.254 12.254 0 0 0 2.284-3.826c.508-1.356.776-2.804.776-4.186v-.066c0-.222.1-.43.276-.573a8.55 8.55 0 0 0 1.72-1.888c.126-.188-.073-.424-.28-.332z"></path></svg>
+                            <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz">
+                                <path
+                                    d="M21.744 6.236a7.945 7.945 0 0 1-1.383.466 4.313 4.313 0 0 0 1.138-1.813.226.226 0 0 0-.33-.263 7.982 7.982 0 0 1-2.116.874.56.56 0 0 1-.502-.125 4.325 4.325 0 0 0-2.862-1.08c-.457 0-.918.07-1.37.211a4.19 4.19 0 0 0-2.825 3.02 4.614 4.614 0 0 0-.102 1.592.16.16 0 0 1-.174.175 11.342 11.342 0 0 1-7.795-4.165.226.226 0 0 0-.37.029 4.322 4.322 0 0 0-.587 2.175 4.32 4.32 0 0 0 1.29 3.083 3.876 3.876 0 0 1-.987-.382.226.226 0 0 0-.336.195 4.33 4.33 0 0 0 2.527 3.99 3.873 3.873 0 0 1-.821-.069.226.226 0 0 0-.258.291 4.335 4.335 0 0 0 3.424 2.949 7.982 7.982 0 0 1-4.47 1.358h-.5c-.155 0-.285.1-.325.249a.343.343 0 0 0 .165.379 11.872 11.872 0 0 0 5.965 1.608c1.834 0 3.549-.364 5.098-1.081a11.258 11.258 0 0 0 3.73-2.795 12.254 12.254 0 0 0 2.284-3.826c.508-1.356.776-2.804.776-4.186v-.066c0-.222.1-.43.276-.573a8.55 8.55 0 0 0 1.72-1.888c.126-.188-.073-.424-.28-.332z">
+                                </path>
+                            </svg>
                         </li>
                         <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz"><path clip-rule="evenodd" d="M4 4a2 2 0 0 0-2 2v11.25a2 2 0 0 0 2 2h16.333a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4zm14.065 2.97a.924.924 0 0 1 1.143 1.454l-3.781 2.97 3.78 2.97a.924.924 0 0 1-1.142 1.454l-4.134-3.249-1.194.938a.92.92 0 0 1-1.142 0l-1.192-.938-4.134 3.249a.924.924 0 0 1-1.143-1.454l3.781-2.97-3.781-2.97A.923.923 0 1 1 6.269 6.97l5.898 4.634 5.898-4.634z"></path></svg>
+                            <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz">
+                                <path clip-rule="evenodd"
+                                    d="M4 4a2 2 0 0 0-2 2v11.25a2 2 0 0 0 2 2h16.333a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4zm14.065 2.97a.924.924 0 0 1 1.143 1.454l-3.781 2.97 3.78 2.97a.924.924 0 0 1-1.142 1.454l-4.134-3.249-1.194.938a.92.92 0 0 1-1.142 0l-1.192-.938-4.134 3.249a.924.924 0 0 1-1.143-1.454l3.781-2.97-3.781-2.97A.923.923 0 1 1 6.269 6.97l5.898 4.634 5.898-4.634z">
+                                </path>
+                            </svg>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
-    <!--~~~~~~~~~~~~End Product details section~~~~~~~~~~~~~~~~~-->
 
     @if (count($related_products))
         <section class="product-section pt-30 mb-2">

@@ -13,7 +13,7 @@
                             <button class="inbox-opsition-btn"><i class="fas fa-ellipsis-v"></i></button>
                             <ul class="inbox-opsition-dropdown-list">
                                 <li>
-                                    <a href="{{ url('delete-all-chat') }}" type="button">@lang('Delete All Chat')</a>
+                                    <a href="" type="button">@lang('Delete All Chat')</a>
                                 </li>
                             </ul>
                         </div>
@@ -681,7 +681,7 @@
                                                                 {{ $user->first_name ? $user->first_name : '' }}
                                                                 {{ $user->last_name ? $user->last_name : '' }}
                                                             </h4>
-                                                            
+
                                                             @if ($user->isOnline())
                                                                 <span class="sub-title text-success">Active Now</span>
                                                             @else
