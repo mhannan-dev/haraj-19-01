@@ -227,3 +227,5 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
         Route::get('/' . $page_slug, [HomeController::class, 'cms_page']);
     }
 });
+// test
+
