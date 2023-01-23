@@ -1,13 +1,14 @@
 @extends('frontend.layout.main')
 @section('content')
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                                                                                                                    Start Chat sectio                                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                                                                        Start Chat section
+                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <section class="chat-section pt-30 pb-60">
         <div class="container">
             <div class="chat-main-wrapper">
                 <div class="chat-left-area">
                     <div class="chat-left-header">
-                        <h1 class="title">@lang('INBOX')</h1>
+                        <h1 class="title">INBOX</h1>
                         <div class="action-area">
                             <button class="inbox-search-btn"><i class="fas fa-search"></i></button>
                             <button class="inbox-opsition-btn"><i class="fas fa-ellipsis-v"></i></button>
@@ -23,23 +24,23 @@
                         </div>
                     </div>
                     <div class="chat-left-body">
-                        <span class="left-body-title">@lang('Quick Filters')</span>
+                        <span class="left-body-title">Quick Filters</span>
                         <div class="quick-filter-tab">
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                     <button class="nav-link active" id="all-tab" data-bs-toggle="tab"
                                         data-bs-target="#all" type="button" role="tab" aria-controls="all"
-                                        aria-selected="true">@lang('All')</button>
+                                        aria-selected="true">All</button>
 
                                     <button class="nav-link" id="unread-tab"
                                         data-bs_id="{{ Auth::guard('advertiser')->user()->id }}" data-bs-toggle="tab"
                                         data-bs-target="#unread" type="button" role="tab" aria-controls="unread"
-                                        aria-selected="false">@lang('Unread')</button>
+                                        aria-selected="false">Unread</button>
 
                                     <button class="nav-link" id="important-tab"
                                         data-bs_id="{{ Auth::guard('advertiser')->user()->id }}" data-bs-toggle="tab"
                                         data-bs-target="#important" type="button" role="tab" aria-controls="important"
-                                        aria-selected="false">@lang('Important')</button>
+                                        aria-selected="false">Important</button>
                                 </div>
                             </nav>
                             <div class="tab-content" id="nav-tabContent">
@@ -83,11 +84,15 @@
                                                             {{ $user->first_name ? $user->first_name : '' }}
                                                             {{ $user->last_name ? $user->last_name : '' }}
                                                         </h4>
-
+                                                        <span class="sub-title">
+                                                            @if ($message_user->is_important_from == 1)
+                                                                <i class="fas fa-star"></i>
+                                                            @endif
+                                                        </span>
                                                         @if ($user->isOnline())
-                                                            <span class="sub-title text-success">@lang('Active Now')</span>
+                                                            <span class="sub-title text-success">Active Now</span>
                                                         @else
-                                                            <span class="sub-title text-warning">@lang('left')
+                                                            <span class="sub-title text-warning">left
                                                                 {{ Carbon\Carbon::parse($user->last_seen)->diffForHumans() }}</span>
                                                         @endif
                                                     </div>
@@ -105,7 +110,8 @@
                                                         <ul class="custom-dropdown-list">
                                                             <li>
                                                                 <button type="button" class="markAsImportent"
-                                                                    data-recever_id="{{ $user_id }}">@lang('Mark as important')</button>
+                                                                    data-recever_id="{{ $user_id }}">Mark as
+                                                                    important</button>
                                                             </li>
                                                         </ul>
                                                     </span>
@@ -146,9 +152,13 @@
                                                             {{ $user->first_name ? $user->first_name : '' }}
                                                             {{ $user->last_name ? $user->last_name : '' }}
                                                         </h4>
-
+                                                        <span class="sub-title">
+                                                            @if ($message_user->is_important_to == 1)
+                                                                <i class="fas fa-star"></i>
+                                                            @endif
+                                                        </span>
                                                         @if ($user->isOnline())
-                                                            <span class="sub-title text-success">@lang('Active Now')</span>
+                                                            <span class="sub-title text-success">Active Now</span>
                                                         @else
                                                             <span class="sub-title text-warning">left
                                                                 {{ Carbon\Carbon::parse($user->last_seen)->diffForHumans() }}</span>
@@ -168,14 +178,16 @@
                                                         <li>
                                                             <div>
                                                                 <button type="button" class="deleteConversation"
-                                                                    data-recever_id="{{ $user_id }}">@lang('Delete Chat')</button>
+                                                                    data-recever_id="{{ $user_id }}">Delete
+                                                                    Chat</button>
                                                             </div>
 
                                                         </li>
 
                                                         <li>
                                                             <button type="button" class="markAsImportent"
-                                                                data-recever_id="{{ $user_id }}">@lang('Mark as important')</button>
+                                                                data-recever_id="{{ $user_id }}">Mark as
+                                                                important</button>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -186,156 +198,68 @@
                                 <div class="tab-pane fade" id="unread" role="tabpanel" aria-labelledby="unread-tab">
                                     Unread
                                 </div>
-                                <div class="tab-pane fade" id="important" role="tabpanel"
+                                <div class="tab-pane fade active show" id="important" role="tabpanel"
                                     aria-labelledby="important-tab">
+
                                     @foreach ($message_users as $message_user)
-                                        @if ($message_user->is_important_to == 1)
+                                        @php
+                                            $my_id = Auth::guard('advertiser')->user()->id;
+                                        @endphp
+                                        @if ($my_id == $message_user->from)
                                             @php
-                                                $my_id = Auth::guard('advertiser')->user()->id;
+                                                $self = Auth::guard('advertiser')->user();
+                                                $user = App\Models\Advertiser::findOrFail($message_user->to);
+                                                $user_id = $user->id;
+                                                $messageData = App\Models\Message::where(function ($query) use ($user_id, $my_id) {
+                                                    $query
+                                                        ->where('from', $user_id)
+                                                        ->where('to', $my_id)
+                                                        ->where('is_read', 0);
+                                                })
+                                                    ->orWhere(function ($query) use ($user_id, $my_id) {
+                                                        $query
+                                                            ->where('from', $my_id)
+                                                            ->where('to', $user_id)
+                                                            ->where('is_read', 0);
+                                                    })
+                                                    ->count();
                                             @endphp
-                                            @if ($my_id == $message_user->from)
-                                                @php
-                                                    $self = Auth::guard('advertiser')->user();
-                                                    $user = App\Models\Advertiser::findOrFail($message_user->to);
-                                                    $user_id = $user->id;
-                                                    $messageData = App\Models\Message::where(function ($query) use ($user_id, $my_id) {
-                                                        $query
-                                                            ->where('from', $user_id)
-                                                            ->where('to', $my_id)
-                                                            ->where('is_read', 0);
-                                                    })
-                                                        ->orWhere(function ($query) use ($user_id, $my_id) {
-                                                            $query
-                                                                ->where('from', $my_id)
-                                                                ->where('to', $user_id)
-                                                                ->where('is_read', 0);
-                                                        })
-                                                        ->count();
-                                                @endphp
-                                                <div class="chat-item user" id="{{ $user->id }}">
-                                                    <div class="chat-user-area">
-                                                        <div class="chat-user-thumb">
-                                                            <img src="@if ($user->image) {{ URL::asset('core/storage/app/public/user/' . $user->image) }} @else {{ asset('assets/images/default.png') }} @endif"
-                                                                alt="product">
-                                                            <div class="chat-user-thumb-profile">
-                                                                <img src="@if ($self->image) {{ URL::asset('core/storage/app/public/user/' . $self->image) }} @else {{ asset('assets/images/default.png') }} @endif"
-                                                                    alt="seller-profile">
-                                                            </div>
-                                                        </div>
-                                                        <div class="chat-user-content">
-                                                            <h4 class="title">
-                                                                {{ $user->first_name ? $user->first_name : '' }}
-                                                                {{ $user->last_name ? $user->last_name : '' }}
-                                                            </h4>
-                                                            <span class="sub-title">
-                                                                @if ($message_user->is_important_from == 1)
-                                                                    <i class="fas fa-star"></i>
-                                                                @endif
-                                                            </span>
-                                                            @if ($user->isOnline())
-                                                                <span class="sub-title text-success">Active Now</span>
-                                                            @else
-                                                                <span class="sub-title text-warning">left
-                                                                    {{ Carbon\Carbon::parse($user->last_seen)->diffForHumans() }}</span>
-                                                            @endif
+
+                                            <div class="chat-item">
+                                                <div class="chat-user-area">
+                                                    <div class="chat-user-thumb">
+                                                        <img src="assets/images/product-item/image.webp" alt="product">
+                                                        <div class="chat-user-thumb-profile">
+                                                            <img src="assets/images/profile/1.webp" alt="seller-profile">
                                                         </div>
                                                     </div>
-                                                    <div class="chat-user-action-area">
-                                                        <span>
-                                                            <button class="chat-user-action-opsition-btn">
-                                                                <svg width="24px" height="24px"
-                                                                    viewBox="0 0 1024 1024" data-aut-id="icon"
-                                                                    fill="#002f34a3" fill-rule="evenodd">
-                                                                    <path class="rui-10_kq"
-                                                                        d="M512 725.333c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 440.889c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 156.444c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111z">
-                                                                    </path>
-                                                                </svg>
-                                                            </button>
-                                                            <ul class="custom-dropdown-list">
-                                                                <li>
-                                                                    <button type="button" class="markAsImportent"
-                                                                        data-recever_id="{{ $user_id }}">Mark as
-                                                                        important</button>
-                                                                </li>
-                                                            </ul>
-                                                        </span>
+                                                    <div class="chat-user-content">
+                                                        <h4 class="title">Öner Çelik</h4>
+                                                        <span class="sub-title">Cocktail dress</span>
                                                     </div>
                                                 </div>
-                                            @else
-                                                @php
-                                                    $self = Auth::guard('advertiser')->user();
-                                                    $user = App\Models\Advertiser::findOrFail($message_user->from);
-                                                    $user_id = $user->id;
-                                                    $messageData = App\Models\Message::where(function ($query) use ($user_id, $my_id) {
-                                                        $query
-                                                            ->where('from', $user_id)
-                                                            ->where('to', $my_id)
-                                                            ->where('is_read', 0);
-                                                    })
-                                                        ->orWhere(function ($query) use ($user_id, $my_id) {
-                                                            $query
-                                                                ->where('from', $my_id)
-                                                                ->where('to', $user_id)
-                                                                ->where('is_read', 0);
-                                                        })
-                                                        ->count();
-
-                                                @endphp
-                                                <div class="chat-item user" id="{{ $user->id }}">
-                                                    <div class="chat-user-area">
-                                                        <div class="chat-user-thumb">
-                                                            <img src="@if ($user->image) {{ URL::asset('core/storage/app/public/user/' . $user->image) }} @else {{ asset('assets/images/default.png') }} @endif"
-                                                                alt="product">
-                                                            <div class="chat-user-thumb-profile">
-                                                                <img src="@if ($self->image) {{ URL::asset('core/storage/app/public/user/' . $self->image) }} @else {{ asset('assets/images/default.png') }} @endif"
-                                                                    alt="seller-profile">
-                                                            </div>
-                                                        </div>
-                                                        <div class="chat-user-content">
-                                                            <h4 class="title">
-                                                                {{ $user->first_name ? $user->first_name : '' }}
-                                                                {{ $user->last_name ? $user->last_name : '' }}
-                                                            </h4>
-
-                                                            @if ($user->isOnline())
-                                                                <span class="sub-title text-success">Active Now</span>
-                                                            @else
-                                                                <span class="sub-title text-warning">left
-                                                                    {{ Carbon\Carbon::parse($user->last_seen)->diffForHumans() }}</span>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-user-action-area">
-                                                        <button class="chat-user-action-opsition-btn">
-                                                            <svg width="24px" height="24px" viewBox="0 0 1024 1024"
-                                                                data-aut-id="icon" fill="#002f34a3" fill-rule="evenodd">
-                                                                <path class="rui-10_kq"
-                                                                    d="M512 725.333c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 440.889c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 156.444c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111z">
-                                                                </path>
-                                                            </svg>
-                                                        </button>
-                                                        <ul class="custom-dropdown-list">
-                                                            <li>
-                                                                <div>
-                                                                    <button type="button" class="deleteConversation"
-                                                                        data-recever_id="{{ $user_id }}">Delete
-                                                                        Chat</button>
-                                                                </div>
-
-                                                            </li>
-
-                                                            <li>
-                                                                <button type="button" class="markAsImportent"
-                                                                    data-recever_id="{{ $user_id }}">Mark as
-                                                                    important</button>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                <div class="chat-user-action-area">
+                                                    <span class="chat-user-action-title">03:57</span>
+                                                    <button class="chat-user-action-opsition-btn">
+                                                        <svg width="24px" height="24px" viewBox="0 0 1024 1024"
+                                                            data-aut-id="icon" fill="#002f34a3" fill-rule="evenodd">
+                                                            <path class="rui-10_kq"
+                                                                d="M512 725.333c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 440.889c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 156.444c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111z">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                    <ul class="custom-dropdown-list">
+                                                        <li>
+                                                            <button type="button">Delete Chat</button>
+                                                        </li>
+                                                        <li>
+                                                            <button type="button">Delete multiple chats</button>
+                                                        </li>
+                                                        <li>
+                                                            <button type="button">Mark as important</button>
+                                                        </li>
+                                                    </ul>
                                                 </div>
-                                            @endif
-                                        @else
-                                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                                <p class="nav-link">@lang('Not found')</p>
                                             </div>
                                         @endif
                                     @endforeach
@@ -361,8 +285,8 @@
         </div>
     </section>
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                                                                                                                    End Chat section
-                                                                                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                                                                        End Chat section
+                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 @endsection
 @section('scripts')
     <script>
@@ -391,6 +315,67 @@
                 });
             });
 
+            $('#unread-tab').click(function(e) {
+                e.preventDefault();
+                var id = $(this).data('bs_id');
+
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('unread-message') }}/" + id,
+                    data: "",
+                    cache: false,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        $.each(response.data, function(key, value) {
+                            $('#unread').html().append(`
+                            <div class="chat-item">
+                                        <div class="chat-user-area">
+                                            <div class="chat-user-thumb">
+                                                <img src="assets/images/product-item/image.webp" alt="product">
+                                                <div class="chat-user-thumb-profile">
+                                                    <img src="assets/images/profile/1.webp" alt="seller-profile">
+                                                </div>
+                                            </div>
+                                            <div class="chat-user-content">
+                                                <h4 class="title">Öner Çelik</h4>
+                                                <span class="sub-title">Cocktail dress</span>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user-action-area">
+                                            <span class="chat-user-action-title">03:57</span>
+                                            <button class="chat-user-action-opsition-btn">
+                                                <svg width="24px" height="24px" viewBox="0 0 1024 1024"
+                                                    data-aut-id="icon" fill="#002f34a3" fill-rule="evenodd">
+                                                    <path class="rui-10_kq"
+                                                        d="M512 725.333c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 440.889c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111zM512 156.444c39.111 0 71.111 32 71.111 71.111s-32 71.111-71.111 71.111c-39.111 0-71.111-32-71.111-71.111s32-71.111 71.111-71.111z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                            <ul class="custom-dropdown-list">
+                                                <li>
+                                                    <button type="button">Delete Chat</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Delete multiple chats</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button">Mark as important</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                            `);
+                        });
+                        // scrollToBottom();
+                        // $('#messages').html(response);
+                        // scrollToBottom();
+                        // $('.pending').html(0);
+                    }
+                });
+
+            });
 
             window.Echo.channel('chat').listen('.message', function(e) {
                 if (my_id == e.from) {

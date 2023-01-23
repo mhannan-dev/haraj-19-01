@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 21, 2023 at 03:27 PM
+-- Generation Time: Jan 22, 2023 at 02:22 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.0.22
 
@@ -102,7 +102,12 @@ INSERT INTO `advertisements` (`id`, `advertiser_id`, `category_id`, `type_id`, `
 (118, 3, 18, 0, 1, 20, 'testttttt', 'testttttt', '5000.00', '1673957936.webp', 'test', 'used', 'Refurbished', 1, 'test', 'dark-blue', '9th', '2017', NULL, NULL, 1, 0, '2023-01-17 06:18:58', '2023-01-17 06:18:58', NULL, 2, 'test', NULL, 0, '24.6151', '89.808', NULL, 'test', 'test'),
 (119, 3, 18, 0, 1, NULL, 'test', 'test', '20000.00', '1673958727.webp', 'test', 'used', 'Original', 2, 'A20', 'light-blue', '10th', '2018', NULL, NULL, 1, 0, '2023-01-17 06:32:14', '2023-01-20 02:47:01', NULL, 7, 'test', NULL, 0, '23.85633650187151', '90.35275792413435', NULL, 'test', 'test'),
 (120, 3, 18, 0, 1, NULL, 'rarar', 'rarar', '499.00', '1673958953.webp', 'test', 'new', 'Original', 2, 'ADS', 'dark-green', '8th', '2017', NULL, NULL, 1, 0, '2023-01-17 06:35:54', '2023-01-20 03:12:43', NULL, 5, 'test', NULL, 0, '23.85645200772521', '90.35271744633472', NULL, 'test', 'test'),
-(121, 4, 18, 0, 1, 20, 'test', 'test', '500.00', '1674037054.webp', 'test', 'used', 'Refurbished', 1, 'teset', 'light-blue', '7th', '2017', NULL, NULL, 1, 0, '2023-01-18 04:17:35', '2023-01-20 03:11:05', NULL, 2, 'test', NULL, 0, '23.85624178300702', '90.3524957914746', NULL, 'test', 'test');
+(121, 4, 18, 0, 1, 20, 'test', 'test', '500.00', '1674037054.webp', 'test', 'used', 'Refurbished', 1, 'teset', 'light-blue', '7th', '2017', NULL, NULL, 1, 0, '2023-01-18 04:17:35', '2023-01-20 03:11:05', NULL, 3, 'test', NULL, 0, '23.85624178300702', '90.3524957914746', NULL, 'test', 'test'),
+(122, 1, 22, 0, 1, 25, 'Oppo mobile mobile data', 'oppo-mobile-mobile-data', '12500.00', '1674384459.png', 'Oppo mobile mobile data', 'new', 'Original', 1, NULL, 'dark-grey', '8th', NULL, NULL, '{\"NETWORK\":\"5G\",\"Display\":\"Amuled\",\"Memory\":\"5000\",\"Battery\":\"5000\"}', 1, 0, '2023-01-22 04:47:39', '2023-01-22 05:14:10', '2023-01-25 04:47:39', 1, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m3!3e6!4m0!4m0!5e0!3m2!1sen!2sbd!4v1674382881583!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 1, NULL, NULL, 1, 'Tag1', 'Meta'),
+(123, 1, 26, 0, 1, 27, 'Football For Sale', 'football-for-sale', '20000.00', '1674389112.png', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'like-new', NULL, 4, NULL, NULL, NULL, NULL, NULL, '{\"sports_type\":\"Football\"}', 1, 0, '2023-01-22 06:05:12', '2023-01-22 06:05:50', '2023-01-29 06:05:12', 0, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674388034910!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 1, NULL, NULL, 5, 'Tag1', 'Meta title'),
+(124, 1, 29, 0, 1, 30, '7 A21 2012', '7-a21-2012', '3300000.00', '1674390486.png', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'new', 'original', 7, 'A21', 'dark-grey', '5th', NULL, NULL, '{\"transmission\":\"automatic\",\"body_type\":\"hatchback\",\"edition\":\"5th\",\"year_of_manufacture\":\"2012\",\"run_km\":\"25000\",\"engine_cc\":\"2500\",\"year_decade\":\"2014-2024\",\"gear\":\"direct drive\",\"traction\":\"4 wheel drive\"}', 1, 0, '2023-01-22 06:28:06', '2023-01-22 06:28:32', '2023-01-27 06:28:06', 0, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674388034910!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '[\"diesel\",\"petrol\",\"hybrid\",\"electric\"]', 1, '23.856353487742133', '90.35248541082501', 2, 'Tag', 'Meta'),
+(125, 1, 31, 0, 1, 32, 'Vaccum', 'vaccum', '27000.00', '1674391617.png', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'like new', NULL, 9, 'Non brand', 'other', NULL, NULL, NULL, NULL, 1, 0, '2023-01-22 06:46:58', '2023-01-22 06:48:42', '2023-01-29 06:46:58', 0, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674388034910!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 1, '23.85629294698326', '90.3524572123766', 5, 'Tag1', 'Meta'),
+(126, 1, 29, 0, 1, 33, '10 A60 2021', '10-a60-2021', '159998.00', '1674392536.jpg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'like new', 'original', 10, 'A60', 'black', NULL, NULL, NULL, '{\"transmission\":null,\"body_type\":\"other\",\"edition\":null,\"year_of_manufacture\":\"2021\",\"run_km\":\"5000\",\"engine_cc\":\"125\",\"year_decade\":\"2003-2013\",\"gear\":\"automatic\",\"traction\":\"other\"}', 1, 0, '2023-01-22 07:02:16', '2023-01-22 07:02:16', NULL, 0, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674388034910!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '[\"diesel\",\"petrol\",\"hybrid\"]', 0, '23.85626236301955', '90.35246953498239', NULL, 'Tag', 'Meta');
 
 -- --------------------------------------------------------
 
@@ -149,7 +154,8 @@ CREATE TABLE `advertisement_interest_advertisement` (
 
 INSERT INTO `advertisement_interest_advertisement` (`id`, `interest_advertisement_id`, `visitor_id`, `ip_address`, `updated_at`, `created_at`) VALUES
 (12, 119, 4, '::1', '2023-01-18 08:40:12', '2023-01-18 08:40:12'),
-(13, 120, 4, '::1', '2023-01-18 08:57:48', '2023-01-18 08:57:48');
+(13, 120, 4, '::1', '2023-01-18 08:57:48', '2023-01-18 08:57:48'),
+(14, 122, 1, '::1', '2023-01-22 11:16:42', '2023-01-22 11:16:42');
 
 -- --------------------------------------------------------
 
@@ -188,7 +194,7 @@ CREATE TABLE `advertisers` (
 --
 
 INSERT INTO `advertisers` (`id`, `first_name`, `last_name`, `mobile_no`, `designation`, `email`, `username`, `password`, `provider_id`, `city_id`, `registration_code`, `about`, `status`, `show_mobile_no`, `last_seen`, `deleted_at`, `created_at`, `updated_at`, `remember_token`, `image`, `avatar`, `chat_status`, `chat_delete_by`) VALUES
-(1, 'Muhammad', 'Hannan', '01717121213', NULL, '1mdhannan.info@gmail.com', 'mdhannan.info@gmail.com', '$2y$10$cdACBs/iFbgmXKli/K5PpusSRxcf8kDZLtIm7tcXGgCtsPsAOJ0MC', NULL, 1, 882630, 'Laravel Developer', 1, 1, '2022-11-28 13:37:15', NULL, '2022-09-13 18:00:00', '2022-11-28 07:37:15', NULL, '2022-11-22-1669095354.png', NULL, 1, NULL),
+(1, 'Muhammad', 'Hannan', '01717000000', NULL, 'mdhannan.info@gmail.com', 'mdhannan.info@gmail.com', '$2y$10$cdACBs/iFbgmXKli/K5PpusSRxcf8kDZLtIm7tcXGgCtsPsAOJ0MC', NULL, 1, 882630, 'Laravel Developer', 1, 1, '2023-01-22 14:14:26', NULL, '2022-09-13 18:00:00', '2023-01-22 08:14:26', NULL, '2023-01-22-1674392134.png', NULL, 1, NULL),
 (2, 'Tanvir', 'Ahmed', '01718191912', NULL, 'ahannan.info@gmail.com', 'ahannan.info@gmail.com', '$2y$10$5fNLwnSc8ELo2nXrL.agAuVNw3ft.fcslvuoQ3/JNZzR4gda2HRqe', NULL, 1, 519853, NULL, 1, 1, '2022-10-21 19:40:18', NULL, '2022-10-08 04:14:14', '2022-10-21 13:40:18', NULL, '2022-10-11-1665479537.png', NULL, 1, NULL),
 (3, 'John', 'Doe', '123456789', NULL, 'testuser@gmail.com', 'testuser', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 0, 'test', 1, 1, '2023-01-18 17:45:39', NULL, '2023-01-14 13:15:16', '2023-01-20 02:31:04', NULL, NULL, NULL, 0, NULL),
 (4, 'FR', 'Ranad', '123456789', NULL, 'frranad1@gmail.com', 'frranad1-9378', '$2y$10$Vw6DgPqi9cfi46HIPL6ZwOq12A1R4zJTlPMo.DnbwVsGq8sA.yrVa', NULL, 1, 1247185014, 'Test', 1, 1, '2023-01-18 13:02:00', NULL, '2023-01-11 06:39:23', '2023-01-18 07:02:00', NULL, '2023-01-12-1673503312.png', NULL, 0, NULL);
@@ -336,7 +342,16 @@ INSERT INTO `ad_images` (`id`, `advertisement_id`, `images`, `created_at`, `upda
 (123, 0, '167395924614411.webp', '2023-01-17 06:40:49', '2023-01-17 06:40:49'),
 (124, 0, '167395924910318.webp', '2023-01-17 06:40:51', '2023-01-17 06:40:51'),
 (125, 121, '167403705588980.webp', '2023-01-18 04:17:37', '2023-01-18 04:17:37'),
-(126, 121, '167403705780758.webp', '2023-01-18 04:17:39', '2023-01-18 04:17:39');
+(126, 121, '167403705780758.webp', '2023-01-18 04:17:39', '2023-01-18 04:17:39'),
+(127, 122, '16743844591592.png', '2023-01-22 04:47:41', '2023-01-22 04:47:41'),
+(128, 123, '167438911279791.png', '2023-01-22 06:05:14', '2023-01-22 06:05:14'),
+(129, 123, '167438911497914.png', '2023-01-22 06:05:15', '2023-01-22 06:05:15'),
+(130, 124, '167439048683618.png', '2023-01-22 06:28:08', '2023-01-22 06:28:08'),
+(131, 124, '167439048869666.jpg', '2023-01-22 06:28:09', '2023-01-22 06:28:09'),
+(132, 125, '167439161897247.png', '2023-01-22 06:46:59', '2023-01-22 06:46:59'),
+(133, 125, '167439161942642.jpg', '2023-01-22 06:47:00', '2023-01-22 06:47:00'),
+(134, 126, '167439253621324.jpg', '2023-01-22 07:02:17', '2023-01-22 07:02:17'),
+(135, 126, '167439253787077.png', '2023-01-22 07:02:19', '2023-01-22 07:02:19');
 
 -- --------------------------------------------------------
 
@@ -360,9 +375,9 @@ CREATE TABLE `ad_types` (
 --
 
 INSERT INTO `ad_types` (`id`, `title`, `slug`, `status`, `duration`, `created_at`, `updated_at`, `price`) VALUES
-(1, 'Featured ad for 3 days', 'Featured ad for 3 days', 1, 72, '2023-01-19 14:24:52', '2023-01-19 14:24:52', 800.00),
-(2, 'Featured ad for 7 days', 'Featured ad for 7 days', 1, 100, '2023-01-19 14:27:13', '2023-01-19 14:27:13', 1200.00),
-(5, 'Test Package', 'Test Package', 1, 100, '2023-01-20 05:05:58', '2023-01-20 05:05:58', 120.00);
+(1, 'Featured ad for 3 days', 'Featured ad for 3 days', 1, 3, '2023-01-19 14:24:52', '2023-01-19 14:24:52', 800.00),
+(2, 'Featured ad for 7 days', 'Featured ad for 7 days', 1, 5, '2023-01-19 14:27:13', '2023-01-19 14:27:13', 1200.00),
+(5, 'Test Package', 'Test Package', 1, 7, '2023-01-20 05:05:58', '2023-01-20 05:05:58', 120.00);
 
 -- --------------------------------------------------------
 
@@ -468,8 +483,8 @@ INSERT INTO `banners` (`id`, `title`, `slug`, `banner_image`, `alt`, `link`, `st
 
 CREATE TABLE `brands` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `category_id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0 = Inactive 1 = Active',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -480,8 +495,15 @@ CREATE TABLE `brands` (
 -- Dumping data for table `brands`
 --
 
-INSERT INTO `brands` (`id`, `category_id`, `title`, `slug`, `status`, `created_at`, `updated_at`) VALUES
-(3, 20, 'Walton update', 'walton-update', 1, '2023-01-21 01:36:56', '2023-01-21 01:38:50');
+INSERT INTO `brands` (`id`, `title`, `category_id`, `slug`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Oppo', 22, 'oppo', 1, '2023-01-22 03:40:25', '2023-01-22 03:40:25'),
+(2, 'One Plus', 22, 'one-plus', 1, '2023-01-22 03:40:55', '2023-01-22 03:40:55'),
+(3, 'Real me', 22, 'real-me', 1, '2023-01-22 03:48:05', '2023-01-22 03:48:05'),
+(4, 'Nike', 26, 'nike', 1, '2023-01-22 05:45:42', '2023-01-22 05:45:42'),
+(7, 'Tesla Brand', 29, 'tesla-brand', 1, '2023-01-22 06:22:58', '2023-01-22 06:22:58'),
+(8, 'Samsung', 31, 'samsung', 1, '2023-01-22 06:40:37', '2023-01-22 06:40:37'),
+(9, 'Non brand', 31, 'non-brand', 1, '2023-01-22 06:41:35', '2023-01-22 06:42:10'),
+(10, 'TVS', 29, 'tvs', 1, '2023-01-22 06:58:09', '2023-01-22 06:58:09');
 
 -- --------------------------------------------------------
 
@@ -509,9 +531,19 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `parent_id`, `title`, `slug`, `icon`, `bg_color`, `category_type`, `image`, `wheels`, `status`, `created_at`, `updated_at`) VALUES
-(18, 0, 'Television', 'television', '<i class=\"las la-tv\"></i>', '#ff4d4d', 'electronics', '1673444157.png', NULL, 1, '2023-01-11 07:35:59', '2023-01-20 04:12:12'),
-(19, 0, 'Smart Phone', 'smart-phone', '<i class=\"las la-mobile\"></i>', '#f9eb58', 'mobiles', '1673444234.png', NULL, 1, '2023-01-11 07:37:15', '2023-01-20 04:12:13'),
-(20, 18, 'ranad', 'ranad', '<i class=\"las la-tv\"></i>', '#fdbfbf', 'electronics', '1673501587.webp', NULL, 1, '2023-01-11 23:33:08', '2023-01-11 23:33:08');
+(21, 0, 'Electronics', 'electronics', '<i class=\"fas fa-mobile-alt\"></i>', '#ea3434', 'electronics', '1674379879.png', NULL, 1, '2023-01-22 03:31:20', '2023-01-22 03:31:20'),
+(22, 0, 'Mobile and gadget', 'mobile-and-gadget', '<i class=\"fas fa-mobile-alt\"></i>', '#e52424', 'mobiles', '1674379943.png', NULL, 1, '2023-01-22 03:32:23', '2023-01-22 03:32:23'),
+(23, 21, 'Samsung', 'samsung', '<i class=\"fas fa-mobile-alt\"></i>', '#ca1c1c', 'electronics', '1674380007.png', NULL, 1, '2023-01-22 03:33:28', '2023-01-22 03:33:28'),
+(24, 21, 'Elect One', 'elect-one', '<i class=\"fas fa-mobile-alt\"></i>', '#ce1212', 'electronics', '1674381256.png', NULL, 1, '2023-01-22 03:54:16', '2023-01-22 03:54:16'),
+(25, 22, 'Mob & Gdt', 'mob-gdt', '<i class=\"fas fa-mobile-alt\"></i>', '#a41919', 'mobiles', '1674381300.png', NULL, 1, '2023-01-22 03:55:00', '2023-01-22 03:55:00'),
+(26, 0, 'Sports, Leisure and Games', 'sports-leisure-and-games', '<i class=\"fas fa-basketball-ball\"></i>', '#f85d5d', 'sports', '1674386777.png', NULL, 1, '2023-01-22 05:26:18', '2023-01-22 05:26:18'),
+(27, 26, 'Football', 'football', '<i class=\"fas fa-basketball-ball\"></i>', '#3fee94', 'sports', '1674386898.webp', NULL, 1, '2023-01-22 05:28:18', '2023-01-22 05:28:18'),
+(28, 26, 'Cricket', 'cricket', '<i class=\"fas fa-basketball-ball\"></i>', '#83ece5', 'sports', '1674387881.png', NULL, 1, '2023-01-22 05:44:41', '2023-01-22 05:45:22'),
+(29, 0, 'Vehicles', 'vehicles', '<i class=\"fas fa-mobile-alt\"></i>', '#db9595', 'vehicles', '1674389435.jpg', '3', 1, '2023-01-22 06:10:35', '2023-01-22 06:10:35'),
+(30, 29, 'Car', 'car', '<i class=\"fas fa-mobile-alt\"></i>', '#490909', 'vehicles', '1674389467.png', '3', 1, '2023-01-22 06:11:07', '2023-01-22 06:11:07'),
+(31, 0, 'Home and Garden', 'home-and-garden', '<i class=\"fas fa-mobile-alt\"></i>', '#28d77d', 'home_and_garden', '1674391140.jpg', NULL, 1, '2023-01-22 06:39:03', '2023-01-22 06:39:03'),
+(32, 31, 'Vacuums', 'vacuums', '<i class=\"fas fa-mobile-alt\"></i>', '#3caa3e', 'home_and_garden', '1674391421.png', NULL, 1, '2023-01-22 06:43:42', '2023-01-22 06:44:38'),
+(33, 29, 'Bike', 'bike', '<i class=\"fas fa-mobile-alt\"></i>', '#3abfd9', 'vehicles', '1674392242.png', '2', 1, '2023-01-22 06:57:23', '2023-01-22 06:57:23');
 
 -- --------------------------------------------------------
 
@@ -550,7 +582,8 @@ CREATE TABLE `cities` (
 --
 
 INSERT INTO `cities` (`id`, `country_id`, `title`, `slug`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Ankara Change by Basic user', 'ankara-change-by-basic-user', 1, NULL, '2023-01-21 01:28:11');
+(1, 1, 'Kabul', 'kabul', 1, NULL, '2023-01-22 06:08:00'),
+(2, 1, 'Bamyan', 'bamyan', 1, '2023-01-22 06:08:47', '2023-01-22 06:08:47');
 
 -- --------------------------------------------------------
 
@@ -602,9 +635,6 @@ CREATE TABLE `currencies` (
   `currency_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `currency_symbol` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `currency_fullname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `currency_type` tinyint(4) DEFAULT NULL COMMENT '1 => fiat, 2 => crypto',
-  `rate` decimal(28,8) DEFAULT NULL,
-  `is_default` tinyint(4) NOT NULL DEFAULT '0',
   `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 => active, 0 => inactive',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -614,8 +644,8 @@ CREATE TABLE `currencies` (
 -- Dumping data for table `currencies`
 --
 
-INSERT INTO `currencies` (`id`, `currency_code`, `currency_symbol`, `currency_fullname`, `currency_type`, `rate`, `is_default`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'USD', '$', 'USD Update', 1, '100.00000000', 0, 1, '2022-10-18 23:19:36', '2023-01-21 03:02:25');
+INSERT INTO `currencies` (`id`, `currency_code`, `currency_symbol`, `currency_fullname`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'USD', '$', 'USD Update', 1, '2022-10-18 23:19:36', '2023-01-21 03:02:25');
 
 -- --------------------------------------------------------
 
@@ -705,6 +735,25 @@ INSERT INTO `email_sms_templates` (`id`, `act`, `name`, `subj`, `email_body`, `s
 (1, 'PASS_RESET_CODE', 'Password Reset', 'Password Reset', '<div>We have received a request to reset the password for your account on <b>{{time}} .<br></b></div><div>Requested From IP: <b>{{ip}}</b> using <b>{{browser}}</b> on <b>{{operating_system}} </b>.</div><div><br></div><br><div><div><div>Your account recovery code is:&nbsp;&nbsp; <font size=\"6\"><b>{{code}}</b></font></div><div><br></div></div></div><div><br></div><div><font size=\"4\" color=\"#CC0000\">If you do not wish to reset your password, please disregard this message.&nbsp;</font><br></div><br>', 'Your account recovery code is: {{code}}', ' {\"code\":\"Password Reset Code\",\"ip\":\"IP of User\",\"browser\":\"Browser of User\",\"operating_system\":\"Operating System of User\",\"time\":\"Request Time\"}', 1, 1, '2019-09-24 11:04:05', '2021-01-05 12:49:06'),
 (2, 'PASS_RESET_DONE', 'Password Reset Confirmation', 'You have Reset your password', '<div><p>\r\n    You have successfully reset your password.</p><p>You changed from&nbsp; IP: <b>{{ip}}</b> using <b>{{browser}}</b> on <b>{{operating_system}}&nbsp;</b> on <b>{{time}}</b></p><p><b><br></b></p><p><font color=\"#FF0000\"><b>If you did not changed that, Please contact with us as soon as possible.</b></font><br></p></div>', 'Your password has been changed successfully', '{\"ip\":\"IP of User\",\"browser\":\"Browser of User\",\"operating_system\":\"Operating System of User\",\"time\":\"Request Time\"}', 1, 1, '2019-09-24 11:04:05', '2020-03-06 22:23:47'),
 (3, 'EVER_CODE', 'Email Verification', 'Please verify your email address', '<div><br></div><div>Thanks For joining us. <br></div><div>Please use the below code to verify your email address.<br></div><div><br></div><div>Your email verification code is:<font size=\"6\"><b> {{code}}</b></font></div>', 'Your email verification code is: {{code}}', '{\"code\":\"Verification code\"}', 1, 1, '2019-09-24 11:04:05', '2022-09-28 23:48:53'),
+(4, 'SVER_CODE', 'SMS Verification ', 'Please verify your phone', 'Your phone verification code is: {{code}}', 'Your phone verification code is: {{code}}', '{\"code\":\"Verification code\"}', 0, 1, '2019-09-24 11:04:05', '2020-03-07 13:28:52'),
+(5, '2FA_ENABLE', 'Google Two Factor - Enable', 'Google Two Factor Authentication is now  Enabled for Your Account', '<div>You just enabled Google Two Factor Authentication for Your Account.</div><div><br></div><div>Enabled at <b>{{time}} </b>From IP: <b>{{ip}}</b> using <b>{{browser}}</b> on <b>{{operating_system}} </b>.</div>', 'Your verification code is: {{code}}', '{\"ip\":\"IP of User\",\"browser\":\"Browser of User\",\"operating_system\":\"Operating System of User\",\"time\":\"Request Time\"}', 1, 1, '2019-09-24 11:04:05', '2020-03-07 13:42:59'),
+(6, '2FA_DISABLE', 'Google Two Factor Disable', 'Google Two Factor Authentication is now  Disabled for Your Account', '<div>You just Disabled Google Two Factor Authentication for Your Account.</div><div><br></div><div>Disabled at <b>{{time}} </b>From IP: <b>{{ip}}</b> using <b>{{browser}}</b> on <b>{{operating_system}} </b>.</div>', 'Google two factor verification is disabled', '{\"ip\":\"IP of User\",\"browser\":\"Browser of User\",\"operating_system\":\"Operating System of User\",\"time\":\"Request Time\"}', 1, 1, '2019-09-24 11:04:05', '2020-03-07 13:43:46'),
+(16, 'ADMIN_SUPPORT_REPLY', 'Support Ticket Reply ', 'Reply Support Ticket', '<div><p><span style=\"font-size: 11pt;\" data-mce-style=\"font-size: 11pt;\"><strong>A member from our support team has replied to the following ticket:</strong></span></p><p><b><span style=\"font-size: 11pt;\" data-mce-style=\"font-size: 11pt;\"><strong><br></strong></span></b></p><p><b>[Ticket#{{ticket_id}}] {{ticket_subject}}<br><br>Click here to reply:&nbsp; {{link}}</b></p><p>----------------------------------------------</p><p>Here is the reply : <br></p><p> {{reply}}<br></p></div><div><br></div>', '{{subject}}\r\n\r\n{{reply}}\r\n\r\n\r\nClick here to reply:  {{link}}', '{\"ticket_id\":\"Support Ticket ID\", \"ticket_subject\":\"Subject Of Support Ticket\", \"reply\":\"Reply from Staff/Admin\",\"link\":\"Ticket URL For relpy\"}', 1, 1, '2020-06-08 06:00:00', '2020-05-03 14:24:40'),
+(206, 'DEPOSIT_COMPLETE', 'Automated Deposit - Successful', 'Add money Completed Successfully', '<div>Your payment of <b>{{amount}} {{currency}}</b> is via&nbsp; <b>{{method_name}} </b>has been completed Successfully.<b><br></b></div><div><b><br></b></div><div><b>Details of your Deposit :<br></b></div><div><br></div><div>Amount : {{amount}} {{currency}}</div><div>Charge: <font color=\"#000000\">{{charge}} {{method_currency}}</font></div><div><br></div><div>Conversion Rate : 1 {{currency}} = {{rate}} {{method_currency}}</div><div>Payable : {{method_amount}} {{method_currency}} <br></div><div>Paid via :&nbsp; {{method_name}}</div><div><br></div><div>Transaction Number : {{trx}}</div><div><font size=\"5\"><b><br></b></font></div><div><font size=\"5\">Your current Balance is <b>{{post_balance}} {{currency}}</b></font></div><div><br></div><div><br><br><br></div>', '{{amount}} {{currrency}} Deposit successfully by {{gateway_name}}', '{\"trx\":\"Transaction Number\",\"amount\":\"Request Amount By user\",\"charge\":\"Gateway Charge\",\"currency\":\"Site Currency\",\"rate\":\"Conversion Rate\",\"method_name\":\"Deposit Method Name\",\"method_currency\":\"Deposit Method Currency\",\"method_amount\":\"Deposit Method Amount After Conversion\", \"post_balance\":\"Users Balance After this operation\"}', 1, 1, '2020-06-24 06:00:00', '2021-06-30 18:09:23'),
+(207, 'DEPOSIT_REQUEST', 'Manual Deposit - User Requested', 'Add money Request Submitted Successfully', '<div>Your Add money request of <b>{{amount}} {{currency}}</b> is via&nbsp; <b>{{method_name}} </b>submitted successfully<b> .<br></b></div><div><b><br></b></div><div><b>Details of your Deposit :<br></b></div><div><br></div><div>Amount : {{amount}} {{currency}}</div><div>Charge: <font color=\"#FF0000\">{{charge}} {{method_currency}}</font></div><div><br></div><div>Conversion Rate : 1 {{currency}} = {{rate}} {{method_currency}}</div><div>Payable : {{method_amount}} {{method_currency}} <br></div><div>Pay via :&nbsp; {{method_name}}</div><div><br></div><div>Transaction Number : {{trx}}</div><div><br></div><div><br></div>', '{{amount}} Deposit requested by {{method}}. Charge: {{charge}} . Trx: {{trx}}\r\n', '{\"trx\":\"Transaction Number\",\"amount\":\"Request Amount By user\",\"charge\":\"Gateway Charge\",\"currency\":\"Site Currency\",\"rate\":\"Conversion Rate\",\"method_name\":\"Deposit Method Name\",\"method_currency\":\"Deposit Method Currency\",\"method_amount\":\"Deposit Method Amount After Conversion\"}', 1, 1, '2020-05-31 06:00:00', '2021-06-30 18:10:02'),
+(208, 'DEPOSIT_APPROVE', 'Manual Deposit - Admin Approved', 'Your Deposit is Approved', '<div>Your deposit request of <b>{{amount}} {{currency}}</b> is via&nbsp; <b>{{method_name}} </b>is Approved .<b><br></b></div><div><b><br></b></div><div><b>Details of your Deposit :<br></b></div><div><br></div><div>Amount : {{amount}} {{currency}}</div><div>Charge: <font color=\"#FF0000\">{{charge}} {{currency}}</font></div><div><br></div><div>Conversion Rate : 1 {{currency}} = {{rate}} {{method_currency}}</div><div>Payable : {{method_amount}} {{method_currency}} <br></div><div>Paid via :&nbsp; {{method_name}}</div><div><br></div><div>Transaction Number : {{trx}}</div><div><font size=\"5\"><b><br></b></font></div><div><font size=\"5\">Your current Balance is <b>{{post_balance}} {{currency}}</b></font></div><div><br></div><div><br><br></div>', 'Admin Approve Your {{amount}} {{gateway_currency}} payment request by {{gateway_name}} transaction : {{transaction}}', '{\"trx\":\"Transaction Number\",\"amount\":\"Request Amount By user\",\"charge\":\"Gateway Charge\",\"currency\":\"Site Currency\",\"rate\":\"Conversion Rate\",\"method_name\":\"Deposit Method Name\",\"method_currency\":\"Deposit Method Currency\",\"method_amount\":\"Deposit Method Amount After Conversion\", \"post_balance\":\"Users Balance After this operation\"}', 1, 1, '2020-06-16 06:00:00', '2020-06-14 06:00:00'),
+(209, 'DEPOSIT_REJECT', 'Manual Deposit - Admin Rejected', 'Your Deposit Request is Rejected', '<div>Your deposit request of <b>{{amount}} {{currency}}</b> is via&nbsp; <b>{{method_name}} has been rejected</b>.<b><br></b></div><br><div>Transaction Number was : {{trx}}</div><div><br></div><div>if you have any query, feel free to contact us.<br></div><br><div><br><br></div>\r\n\r\n\r\n\r\n{{rejection_message}}', 'Admin Rejected Your {{amount}} {{gateway_currency}} payment request by {{gateway_name}}\r\n\r\n{{rejection_message}}', '{\"trx\":\"Transaction Number\",\"amount\":\"Request Amount By user\",\"charge\":\"Gateway Charge\",\"currency\":\"Site Currency\",\"rate\":\"Conversion Rate\",\"method_name\":\"Deposit Method Name\",\"method_currency\":\"Deposit Method Currency\",\"method_amount\":\"Deposit Method Amount After Conversion\",\"rejection_message\":\"Rejection message\"}', 1, 1, '2020-06-09 06:00:00', '2020-06-14 06:00:00'),
+(217, 'SEND_INVOICE_MAIL', 'Send Invoice to mail', 'Invoice Of your payment', 'You have an invoice to pay. Please follow the URL below to successful payment.<br><b>Invoice URL : <a class=\"btn btn--info\" href=\" {{url}}\">Click</a><br><br></b><div>You can also download the invoice via below URL,</div><div><b>Download : <a href=\"{{download_url}}\" class=\"btn btn--info\">Download</a></b><br></div>', NULL, '{\"url\":\"invoice url\",\"download_url\":\"Download link of invoice\"}', 1, 1, '2019-09-14 07:14:22', '2021-06-20 17:55:52'),
+(226, 'REQUEST_MONEY', 'Request Money', 'Request Money', '<div>Money Request <b>{{amount}} {{curr_code}}</b> from <b>{{requestor}}</b>&nbsp; at <b>{{time}}</b>.&nbsp;</div><div><br></div><div><b>Requestor Note</b>: {{note}}<br></div>', 'Money Request {{amount}} {{curr_code}} from {{requestor}}  at {{time}}.', '{\"amount\":\"Receive amount\",\"curr_code\":\"currency code\", \"requestor\":\"user name or mail of requestor\",\"time\":\"Request time and date\",\"note\":\"Note from requestor\"}', 1, 1, '2019-09-14 07:14:22', '2021-06-29 22:17:24'),
+(227, 'ACCEPT_REQUEST_MONEY_REQUESTOR', 'Accept request money mail to requestor', 'Accept Request Money', '<div>Your Money Request <b>{{amount}} {{curr_code}}</b> to<b> {{to_requested}}</b>&nbsp; has been accepted at <b>{{time}}</b>.&nbsp; Charge: <b>{{charge}}</b> <b>{{curr_code}}</b></div><div>Your new balance is : <b>{{balance}}</b> <b>{{curr_code}}</b></div><div>TrxID : <b>{{trx}}</b><br></div>', 'Money Request {{amount}} {{curr_code}} from {{requestor}}  at {{time}}.', '{\"amount\":\"Request amount\",\"curr_code\":\"currency code\", \"to_requested\":\"Requeted to whom\",\"time\":\"Request time and date\",\"balance\":\"New Balance\",\"trx\":\"Transaction id\",\"charge\":\"money request charge\"}', 1, 1, '2019-09-14 07:14:22', '2021-06-29 23:03:02'),
+(228, 'ACCEPT_REQUEST_MONEY', 'Accept request money', 'Accept Request Money', '<div>Your\'ve Accepted Money Request <b>{{amount}} {{curr_code}}</b> from&nbsp;<b> {{requestor}}</b>&nbsp; at <b>{{time}}</b>.&nbsp;</div><div>Your new balance is : <b>{{balance}}</b> <b>{{curr_code}}</b></div><div>TrxID : <b>{{trx}}</b><br></div>', 'Your\'ve Accepted Money Request {{amount}} {{curr_code}} from  {{requestor}}  at {{time}}. \r\nYour new balance is : {{balance}} {{curr_code}}\r\nTrxID : {{trx}}', '{\"amount\":\"Request amount\",\"curr_code\":\"currency code\", \"requestor\":\"Requestor\",\"time\":\"Accept time and date\",\"balance\":\"New Balance\",\"trx\":\"Transaction id\"}', 1, 1, '2019-09-14 07:14:22', '2021-06-29 22:50:39'),
+(229, 'GET_INVOICE_PAYMENT', 'Get Invoice Payment', 'Get Invoice Payment', 'Payment <b>{{total_amount}} {{curr_code}}</b>&nbsp; of Invoice <b>#{{invoice_id}} </b>has been received successfully, from <b>{{from_user}}</b> at <b>{{time}}.<br></b><div>You got after charge<b> : {{get_amount}} </b>{{curr_code}} .<br></div><div>Charge : {{charge}} {{curr_code}} .<br>TrxID : {{trx}}.<br><br>Your New Balance is {{post_balance}} {{curr_code}} .<br></div>', 'Payment {{total_amount}} {{curr_code}}  of Invoice #{{invoice_id}} has been received successfully, from {{from_user}} at {{time}}.\r\nYou got after charge : {{get_amount}} {{curr_code}} .\r\nCharge : {{charge}} {{curr_code}} .\r\nTrxID : {{trx}}.\r\n\r\nYour New Balance is {{post_balance}} {{curr_code}} .', '{\"total_amount\":\"invoice total amount\",\"get_amount\":\"get amount after charge\",\"charge\":\"invoice charge\",\"curr_code\":\"currency code\",\"invoice_id\":\"invoice id\",\"time\":\"payment time and date\",\"from_user\":\"from whom get payment\",\"trx\":\"Transaction id\",\"post_balance\":\"post balance\"}', 1, 1, '2019-09-14 07:14:22', '2021-06-30 17:52:12'),
+(230, 'PAY_INVOICE_PAYMENT', 'Pay Invoice Payment', 'Pay Invoice Payment', 'Payment <b>{{total_amount}} {{curr_code}}</b>&nbsp; of Invoice <b>#{{invoice_id}} </b>has been&nbsp; successful, to<b> {{to_user}}</b> at <b>{{time}}.<br></b><div><br></div><div>TrxID : {{trx}}.</div><br>Your New Balance is {{post_balance}} {{curr_code}} .', '', '{\"total_amount\":\"invoice total amount\",\"curr_code\":\"currency code\",\"invoice_id\":\"invoice id\",\"time\":\"payment time and date\",\"to_user\":\"to whom pay the payment\",\"trx\":\"Transaction id\",\"post_balance\":\"post balance\"}', 1, 1, '2019-09-14 07:14:22', '2021-06-30 17:53:35'),
+(231, 'MONEY_IN', 'Money In', 'Money In', '<div>Cash In <b>{{amount}} {{curr_code}}</b> from <b>{{agent}}</b> successful. <br></div>Your New Balance <b>{{balance}} {{curr_code}}</b>. <div>TrxID <b>{{trx}}</b> at <b>{{time}}</b>.</div>', 'Cash In  {{amount}} {{curr_code}} from {{agent}} successful.\r\nYour New Balance {{balance}} {{curr_code}}. TrxID {{trx}} at {{time}}.', '{\"amount\":\"Cash in amount\",\"curr_code\":\"currency code\", \"agent\":\"Agent user name or mail\",\"trx\":\"transaction id\",\"time\":\"cash in time and date\",\"balance\":\"New Balance\"}', 1, 1, '2019-09-14 07:14:22', '2021-08-09 23:53:02'),
+(232, 'MONEY_IN_AGENT', 'Money In  Agent', 'Money In', '<div>Cash In <b>{{amount}} {{curr_code}}</b> to <b>{{user}}</b> successful.&nbsp; Charge {{charge}} {{curr_code}}<br></div><div>Your Remaining Balance <b>{{balance}} {{curr_code}}</b>. </div><div>TrxID <b>{{trx}}</b> at <b>{{time}}</b>.</div>', '<div>Cash in <b>{{amount}} {{curr_code}}</b> to <b>{{user}}</b> successful. <br></div><div>Your Remaining Balance <b>{{balance}} {{curr_code}}</b>. </div><div>TrxID <b>{{trx}}</b> at <b>{{time}}</b>.</div>', '{\"amount\":\"Cash in amount\",\"curr_code\":\"currency code\", \"user\":\"User name or email\",\"trx\":\"transaction id\",\"time\":\"cash in time and date\",\"balance\":\"Remaining Balance\",\"charge\":\"cash in charge\"}', 1, 1, '2019-09-14 07:14:22', '2021-08-09 23:53:14'),
+(233, 'MONEY_IN_COMMISSION_AGENT', 'Money In Commission of Agent', 'Cash In Commission', '<div>Commission of <b>{{amount}} {{curr_code}}</b> Cash in received successfully. <br></div><div>Total Commission : {{commission}} {{curr_Code}}<br></div><div>Your New Balance <b>{{balance}} {{curr_code}}</b>. </div><div>TrxID <b>{{trx}}</b> at <b>{{time}}</b>.</div>', '<div>Commission of <b>{{amount}} {{curr_code}}</b> cash in received successfully. <br></div><div>Your New Balance <b>{{balance}} {{curr_code}}</b>. </div><div>TrxID <b>{{trx}}</b> at <b>{{time}}</b>.</div>', '{\"amount\":\"Cash in amount\",\"curr_code\":\"currency code\", \"trx\":\"transaction id\",\"time\":\"cash in time and date\",\"balance\":\"New Balance\",\"commission\":\"Cash in commission to agent\"}', 1, 1, '2019-09-14 07:14:22', '2021-06-30 20:34:27'),
+(234, 'PAYMENT_VER_CODE', 'Payment Verification', 'Payment Verification', '<div>Please use below code to verify your payment.<br></div><div><br></div><div>Your payment verification code is:<font size=\"6\"><b> {{code}}</b></font></div>', NULL, '{\"code\":\"Verification code\"}', 1, 1, '2019-09-24 11:04:05', '2021-01-03 11:35:10'),
+(235, 'MERCHANT_PAYMENT', 'Merchant Payment', 'Payment Successful.', '<div>Payment <b>{{amount}} {{curr_code}}</b> received from&nbsp;<b>{{</b><span style=\"white-space: nowrap;\"><b style=\"\"><font size=\"3\">customer_name</font></b></span><b>}}</b> successful. <br></div><div>Charge <b>{{charge}} {{curr_code}}</b>, Remaining Balance <b>{{balance}} {{curr_code}}</b>. </div><div>TrxID <b>{{trx}}</b> at <b>{{time}}</b>.</div>', '<div>Payment <b>{{amount}} {{curr_code}}</b> from <b>{{customer_name}}</b> successful. <br></div><div>Charge <b>{{charge}} {{curr_code}}</b>, New Balance  is <b>{{balance}} {{curr_code}}</b>. </div><div>TrxID <b>{{trx}}</b> at <b>{{time}}</b>.</div>', '{\"amount\":\"Payment amount\",\"curr_code\":\"currency code\", \"customer_name\":\"Customer name or mail\",\"charge\":\"Payment charge\",\"trx\":\"transaction id\",\"time\":\"payment time and date\",\"balance\":\"Remaining Balance\"}', 1, 1, '2019-09-14 07:14:22', '2021-08-20 17:33:40'),
 (236, 'OTP', 'OTP Verification', 'OTP Verification', '', '', '{\"code\":\"Verification Code\"}', 1, 1, '2019-09-14 07:14:22', '2021-08-20 17:33:40');
 
 -- --------------------------------------------------------
@@ -835,30 +884,6 @@ INSERT INTO `gateways` (`id`, `name`, `code`, `alias`, `image`, `status`, `gatew
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gateway_currencies`
---
-
-CREATE TABLE `gateway_currencies` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `symbol` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `method_code` int(11) DEFAULT NULL,
-  `gateway_alias` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `min_amount` decimal(24,2) DEFAULT NULL,
-  `max_amount` decimal(24,2) DEFAULT NULL,
-  `percent_charge` decimal(24,2) DEFAULT NULL,
-  `fixed_charge` decimal(24,2) DEFAULT NULL,
-  `rate` decimal(24,2) DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `gateway_parameter` text COLLATE utf8mb4_unicode_ci,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `general_settings`
 --
 
@@ -909,7 +934,7 @@ CREATE TABLE `general_settings` (
 --
 
 INSERT INTO `general_settings` (`id`, `sitename`, `site_sub_title`, `dark`, `cur_text`, `cur_sym`, `email_from`, `sms_api`, `base_color`, `secondary_color`, `component_color`, `mail_config`, `sms_config`, `ev`, `en`, `sv`, `sn`, `otp_expiration`, `otp_verification`, `timezone`, `force_ssl`, `secure_password`, `agree`, `registration`, `withdraw_status`, `deposit_status`, `kyc_verification`, `devlopment_mode`, `active_template`, `email_template`, `fiat_currency_api`, `crypto_currency_api`, `qr_template`, `sys_version`, `cron_run`, `created_at`, `updated_at`, `domain_name`, `apps_settings`) VALUES
-(1, 'Haraz Alyawm title', 'Classified', 0, 'USD', NULL, 'noreply@appdevs.net', 'hi {{name}}, {{message}}', NULL, NULL, NULL, '{\"enc\": \"ssl\", \"host\": \"appdevs.net\", \"name\": \"smtp\", \"port\": \"465\", \"password\": \"QP2fsLk?80Ac\", \"username\": \"noreply@appdevs.net\"}', '{\"from\": \"----------------------\", \"name\": \"clickatell\", \"apiv2_key\": \"-------------------------------\", \"auth_token\": \"---------------------------\", \"account_sid\": \"-----------------------\", \"nexmo_api_key\": \"----------------------\", \"infobip_password\": \"----------------------\", \"infobip_username\": \"--------------\", \"nexmo_api_secret\": \"----------------------\", \"clickatell_api_key\": \"----------------------------\", \"text_magic_username\": \"-----------------------\", \"message_bird_api_key\": \"-------------------\", \"sms_broadcast_password\": \"-----------------------------\", \"sms_broadcast_username\": \"----------------------\"}', 1, 0, 0, 0, NULL, 0, NULL, 0, 0, 0, 1, 0, 0, 0, 0, 'basic', '<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n  <!--[if !mso]><!-->\r\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n  <!--<![endif]-->\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n  <title></title>\r\n  <style type=\"text/css\">\r\n.ReadMsgBody { width: 100%; background-color: #ffffff; }\r\n.ExternalClass { width: 100%; background-color: #ffffff; }\r\n.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; }\r\nhtml { width: 100%; }\r\nbody { -webkit-text-size-adjust: none; -ms-text-size-adjust: none; margin: 0; padding: 0; }\r\ntable { border-spacing: 0; table-layout: fixed; margin: 0 auto;border-collapse: collapse; }\r\ntable table table { table-layout: auto; }\r\n.yshortcuts a { border-bottom: none !important; }\r\nimg:hover { opacity: 0.9 !important; }\r\na { color: #0087ff; text-decoration: none; }\r\n.textbutton a { font-family: \'open sans\', arial, sans-serif !important;}\r\n.btn-link a { color:#FFFFFF !important;}\r\n\r\n@media only screen and (max-width: 480px) {\r\nbody { width: auto !important; }\r\n*[class=\"table-inner\"] { width: 90% !important; text-align: center !important; }\r\n*[class=\"table-full\"] { width: 100% !important; text-align: center !important; }\r\n/* image */\r\nimg[class=\"img1\"] { width: 100% !important; height: auto !important; }\r\n}\r\n</style>\r\n\r\n\r\n\r\n  <p></p><table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#414a51\" align=\"center\">\r\n    <tbody><tr>\r\n      <td height=\"50\"><br></td>\r\n    </tr>\r\n    <tr>\r\n      <td style=\"text-align:center;vertical-align:top;font-size:0;\" align=\"center\">\r\n        <table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">\r\n          <tbody><tr>\r\n            <td width=\"600\" align=\"center\"><br>\r\n              <!--end header-->\r\n              <table class=\"table-inner\" width=\"95%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\r\n                <tbody><tr>\r\n                  <td style=\"text-align:center;vertical-align:top;font-size:0;\" bgcolor=\"#FFFFFF\" align=\"center\">\r\n                    <table width=\"90%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">\r\n                      <tbody><tr>\r\n                        <td height=\"35\"><br></td>\r\n                      </tr>\r\n                      <!--logo-->\r\n                      <tr>\r\n                        <td style=\"vertical-align:top;font-size:0;\" align=\"center\">\r\n                          \r\n                        <br></td>\r\n                      </tr>\r\n                      <!--end logo-->\r\n                      <tr>\r\n                        <td height=\"40\"><br></td>\r\n                      </tr>\r\n                      <!--headline-->\r\n                      <tr>\r\n                        <td style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 22px;color:#414a51;font-weight: bold;\" align=\"center\">Hello {{fullname}}<br></td>\r\n                      </tr>\r\n                      <!--end headline-->\r\n                      <tr>\r\n                        <td style=\"text-align:center;vertical-align:top;font-size:0;\" align=\"center\">\r\n                          <table width=\"40\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">\r\n                            <tbody><tr>\r\n                              <td style=\" border-bottom:3px solid #0087ff;\" height=\"20\"><br></td>\r\n                            </tr>\r\n                          </tbody></table>\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                        <td height=\"20\"><br></td>\r\n                      </tr>\r\n                      <!--content-->\r\n                      <tr>\r\n                        <td style=\"font-family: \'Open sans\', Arial, sans-serif; color:#7f8c8d; font-size:16px; line-height: 28px;\" align=\"left\">{{message}}</td>\r\n                      </tr>\r\n                      <!--end content-->\r\n                      <tr>\r\n                        <td height=\"40\"><br></td>\r\n                      </tr>\r\n              \r\n                    </tbody></table>\r\n                  </td>\r\n                </tr>\r\n                <tr>\r\n                  <td style=\"border-bottom-left-radius:6px;border-bottom-right-radius:6px;\" height=\"45\" bgcolor=\"#f4f4f4\" align=\"center\">\r\n                    <table width=\"90%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">\r\n                      <tbody><tr>\r\n                        <td height=\"10\"><br></td>\r\n                      </tr>\r\n                      <!--preference-->\r\n                      <tr>\r\n                        <td class=\"preference-link\" style=\"font-family: \'Open sans\', Arial, sans-serif; color:#95a5a6; font-size:14px;\" align=\"center\">\r\n                          © 2022 Haraj Alyawm. All Rights Reserved. \r\n                        </td>\r\n                      </tr>\r\n                      <!--end preference-->\r\n                      <tr>\r\n                        <td height=\"10\"><br></td>\r\n                      </tr>\r\n                    </tbody></table>\r\n                  </td>\r\n                </tr>\r\n              </tbody></table>\r\n            </td>\r\n          </tr>\r\n        </tbody></table>\r\n      </td>\r\n    </tr>\r\n    <tr>\r\n      <td height=\"60\"><br></td>\r\n    </tr>\r\n  </tbody></table><p></p>', '14360e0ed85986d6bf9c3aa1a7fd85080000', 'f45ece6d-9f1a-4ed5-841c-647a603d4c0800000', '617569babbeb21635084730.png', NULL, '{\"fiat_cron\":\"2021-10-24T13:28:21.505940Z\",\"crypto_cron\":\"2021-10-24T13:28:16.481555Z\"}', NULL, '2023-01-20 04:53:01', NULL, '{\"google_play_status\":\"on\",\"ios_status\":\"on\",\"play_store_app_link\":\"https:\\/\\/play.google.com\\/store\\/games?hl=en&gl=US&pli=1\",\"ios_app_link\":\"https:\\/\\/www.apple.com\\/iphone\\/\"}');
+(1, 'Haraz Alyawm title', 'Classified', 0, 'USD', NULL, 'noreply@appdevs.net', 'hi {{name}}, {{message}}', NULL, NULL, NULL, '{\"enc\": \"ssl\", \"host\": \"appdevs.net\", \"name\": \"smtp\", \"port\": \"465\", \"password\": \"QP2fsLk?80Ac\", \"username\": \"noreply@appdevs.net\"}', '{\"from\": \"----------------------\", \"name\": \"clickatell\", \"apiv2_key\": \"-------------------------------\", \"auth_token\": \"---------------------------\", \"account_sid\": \"-----------------------\", \"nexmo_api_key\": \"----------------------\", \"infobip_password\": \"----------------------\", \"infobip_username\": \"--------------\", \"nexmo_api_secret\": \"----------------------\", \"clickatell_api_key\": \"----------------------------\", \"text_magic_username\": \"-----------------------\", \"message_bird_api_key\": \"-------------------\", \"sms_broadcast_password\": \"-----------------------------\", \"sms_broadcast_username\": \"----------------------\"}', 1, 0, 0, 0, NULL, 0, NULL, 0, 0, 0, 1, 0, 0, 0, 0, 'basic', '<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n  <!--[if !mso]><!-->\r\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n  <!--<![endif]-->\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n  <title></title>\r\n  <style type=\"text/css\">\r\n.ReadMsgBody { width: 100%; background-color: #ffffff; }\r\n.ExternalClass { width: 100%; background-color: #ffffff; }\r\n.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; }\r\nhtml { width: 100%; }\r\nbody { -webkit-text-size-adjust: none; -ms-text-size-adjust: none; margin: 0; padding: 0; }\r\ntable { border-spacing: 0; table-layout: fixed; margin: 0 auto;border-collapse: collapse; }\r\ntable table table { table-layout: auto; }\r\n.yshortcuts a { border-bottom: none !important; }\r\nimg:hover { opacity: 0.9 !important; }\r\na { color: #0087ff; text-decoration: none; }\r\n.textbutton a { font-family: \'open sans\', arial, sans-serif !important;}\r\n.btn-link a { color:#FFFFFF !important;}\r\n\r\n@media only screen and (max-width: 480px) {\r\nbody { width: auto !important; }\r\n*[class=\"table-inner\"] { width: 90% !important; text-align: center !important; }\r\n*[class=\"table-full\"] { width: 100% !important; text-align: center !important; }\r\n/* image */\r\nimg[class=\"img1\"] { width: 100% !important; height: auto !important; }\r\n}\r\n</style>\r\n\r\n\r\n\r\n  <p></p><table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" bgcolor=\"#414a51\" align=\"center\">\r\n    <tbody><tr>\r\n      <td height=\"50\"><br></td>\r\n    </tr>\r\n    <tr>\r\n      <td style=\"text-align:center;vertical-align:top;font-size:0;\" align=\"center\">\r\n        <table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">\r\n          <tbody><tr>\r\n            <td width=\"600\" align=\"center\"><br>\r\n              <!--end header-->\r\n              <table class=\"table-inner\" width=\"95%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\r\n                <tbody><tr>\r\n                  <td style=\"text-align:center;vertical-align:top;font-size:0;\" bgcolor=\"#FFFFFF\" align=\"center\">\r\n                    <table width=\"90%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">\r\n                      <tbody><tr>\r\n                        <td height=\"35\"><br></td>\r\n                      </tr>\r\n                      <!--logo-->\r\n                      <tr>\r\n                        <td style=\"vertical-align:top;font-size:0;\" align=\"center\">\r\n                          \r\n                        <br></td>\r\n                      </tr>\r\n                      <!--end logo-->\r\n                      <tr>\r\n                        <td height=\"40\"><br></td>\r\n                      </tr>\r\n                      <!--headline-->\r\n                      <tr>\r\n                        <td style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 22px;color:#414a51;font-weight: bold;\" align=\"center\">Hello {{fullname}}<br></td>\r\n                      </tr>\r\n                      <!--end headline-->\r\n                      <tr>\r\n                        <td style=\"text-align:center;vertical-align:top;font-size:0;\" align=\"center\">\r\n                          <table width=\"40\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">\r\n                            <tbody><tr>\r\n                              <td style=\" border-bottom:3px solid #0087ff;\" height=\"20\"><br></td>\r\n                            </tr>\r\n                          </tbody></table>\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                        <td height=\"20\"><br></td>\r\n                      </tr>\r\n                      <!--content-->\r\n                      <tr>\r\n                        <td style=\"font-family: \'Open sans\', Arial, sans-serif; color:#7f8c8d; font-size:16px; line-height: 28px;\" align=\"left\">{{message}}</td>\r\n                      </tr>\r\n                      <!--end content-->\r\n                      <tr>\r\n                        <td height=\"40\"><br></td>\r\n                      </tr>\r\n              \r\n                    </tbody></table>\r\n                  </td>\r\n                </tr>\r\n                <tr>\r\n                  <td style=\"border-bottom-left-radius:6px;border-bottom-right-radius:6px;\" height=\"45\" bgcolor=\"#f4f4f4\" align=\"center\">\r\n                    <table width=\"90%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">\r\n                      <tbody><tr>\r\n                        <td height=\"10\"><br></td>\r\n                      </tr>\r\n                      <!--preference-->\r\n                      <tr>\r\n                        <td class=\"preference-link\" style=\"font-family: \'Open sans\', Arial, sans-serif; color:#95a5a6; font-size:14px;\" align=\"center\">\r\n                          © 2022 Haraj Alyawm. All Rights Reserved. \r\n                        </td>\r\n                      </tr>\r\n                      <!--end preference-->\r\n                      <tr>\r\n                        <td height=\"10\"><br></td>\r\n                      </tr>\r\n                    </tbody></table>\r\n                  </td>\r\n                </tr>\r\n              </tbody></table>\r\n            </td>\r\n          </tr>\r\n        </tbody></table>\r\n      </td>\r\n    </tr>\r\n    <tr>\r\n      <td height=\"60\"><br></td>\r\n    </tr>\r\n  </tbody></table><p></p>', '14360e0ed85986d6bf9c3aa1a7fd85080000', 'f45ece6d-9f1a-4ed5-841c-647a603d4c0800000', '617569babbeb21635084730.png', NULL, '{\"fiat_cron\":\"2021-10-24T13:28:21.505940Z\",\"crypto_cron\":\"2021-10-24T13:28:16.481555Z\"}', NULL, '2023-01-22 00:52:24', NULL, '{\"google_play_status\":\"on\",\"ios_status\":\"on\",\"play_store_app_link\":\"https:\\/\\/play.google.com\\/store\\/games?hl=en&gl=US&pli=1\",\"ios_app_link\":\"https:\\/\\/www.apple.com\\/iphone\\/\"}');
 
 -- --------------------------------------------------------
 
@@ -972,11 +997,11 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `deleted_from`, `deleted_to`, `created_at`, `updated_at`) VALUES
-(43, 2, 1, 'hello', 1, 0, 0, '2022-10-21 12:46:13', '2022-10-22 02:31:16'),
-(44, 2, 1, 'hyyyy', 1, 0, 0, '2022-10-21 12:46:22', '2022-10-22 02:31:16'),
-(45, 2, 1, 'ooooooooo', 1, 0, 0, '2022-10-21 12:46:43', '2022-10-22 02:31:16'),
-(46, 2, 1, 'ooooo', 1, 0, 0, '2022-10-21 12:46:49', '2022-10-22 02:31:16'),
-(47, 2, 1, 'No problem', 1, 0, 0, '2022-10-21 12:47:09', '2022-10-22 02:31:16'),
+(43, 2, 1, 'hello', 1, 0, 0, '2022-10-21 12:46:13', '2023-01-22 08:03:42'),
+(44, 2, 1, 'hyyyy', 1, 0, 0, '2022-10-21 12:46:22', '2023-01-22 08:03:42'),
+(45, 2, 1, 'ooooooooo', 1, 0, 0, '2022-10-21 12:46:43', '2023-01-22 08:03:42'),
+(46, 2, 1, 'ooooo', 1, 0, 0, '2022-10-21 12:46:49', '2023-01-22 08:03:42'),
+(47, 2, 1, 'No problem', 1, 0, 0, '2022-10-21 12:47:09', '2023-01-22 08:03:42'),
 (48, 1, 2, 'No problem', 0, 0, 0, '2022-10-22 02:31:08', '2022-10-22 02:31:08'),
 (49, 3, 3, 'Is it still available?', 1, 0, 0, '2023-01-12 00:18:08', '2023-01-18 04:10:39'),
 (50, 3, 3, 'hello', 1, 0, 0, '2023-01-12 00:26:46', '2023-01-18 04:10:39'),
@@ -995,7 +1020,8 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `deleted_from`
 (63, 4, 3, 'ttttt', 0, 0, 0, '2023-01-18 06:44:39', '2023-01-18 06:44:39'),
 (64, 4, 3, 'fsdf', 0, 0, 0, '2023-01-18 06:44:53', '2023-01-18 06:44:53'),
 (65, 4, 3, 'test', 0, 0, 0, '2023-01-18 06:56:37', '2023-01-18 06:56:37'),
-(66, 4, 3, 'test', 0, 0, 0, '2023-01-18 06:59:07', '2023-01-18 06:59:07');
+(66, 4, 3, 'test', 0, 0, 0, '2023-01-18 06:59:07', '2023-01-18 06:59:07'),
+(67, 1, 2, 'hi', 0, 0, 0, '2023-01-22 08:03:27', '2023-01-22 08:03:27');
 
 -- --------------------------------------------------------
 
@@ -1022,7 +1048,7 @@ CREATE TABLE `message_users` (
 --
 
 INSERT INTO `message_users` (`id`, `from`, `to`, `is_block`, `is_deleted_from`, `is_deleted_to`, `is_important_from`, `is_important_to`, `date`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 0, 0, 0, 1, NULL, '2022-10-22 08:31:08', '2022-10-21 11:34:16', '2022-10-22 02:31:08'),
+(1, 2, 1, 0, 0, 0, 1, 1, '2023-01-22 14:03:27', '2022-10-21 11:34:16', '2023-01-22 08:03:27'),
 (2, 3, 3, 0, 0, 0, NULL, NULL, '2023-01-12 06:51:09', '2023-01-12 00:18:07', '2023-01-12 00:51:09'),
 (3, 4, 3, 0, 0, 0, NULL, NULL, '2023-01-18 12:59:07', '2023-01-18 04:14:02', '2023-01-18 06:59:07');
 
@@ -1150,7 +1176,11 @@ INSERT INTO `payments` (`id`, `payment_id`, `payer_id`, `payer_email`, `amount`,
 (16, 'ch_3M71x4F7YjcJbu9H1VZbfQO0', 'Stripe', NULL, 2000.00, 'usd', 'succeeded', '2022-11-22 13:16:14', '2022-11-22 13:16:14'),
 (17, 'ch_3M71zFF7YjcJbu9H1GarpQXn', 'Stripe', NULL, 2000.00, 'usd', 'succeeded', '2022-11-22 13:18:28', '2022-11-22 13:18:28'),
 (18, 'ch_3M7DUtF7YjcJbu9H0b0d5GaA', 'Stripe', NULL, 2000.00, 'usd', 'succeeded', '2022-11-23 01:35:56', '2022-11-23 01:35:56'),
-(19, 'ch_3M7DbXF7YjcJbu9H0qOizo7k', 'Stripe', NULL, 900.00, 'usd', 'succeeded', '2022-11-23 01:42:48', '2022-11-23 01:42:48');
+(19, 'ch_3M7DbXF7YjcJbu9H0qOizo7k', 'Stripe', NULL, 900.00, 'usd', 'succeeded', '2022-11-23 01:42:48', '2022-11-23 01:42:48'),
+(20, 'ch_3MT1V0IjE4urvMaZ2tSRoJfw', 'CRETIQUEIT', NULL, 800.00, 'usd', 'succeeded', '2023-01-22 05:14:10', '2023-01-22 05:14:10'),
+(21, 'ch_3MT2J0IjE4urvMaZ2ZFl5Jyc', 'CRETIQUEIT', NULL, 120.00, 'usd', 'succeeded', '2023-01-22 06:05:50', '2023-01-22 06:05:50'),
+(22, 'ch_3MT2eyIjE4urvMaZ26E7JtOy', 'CRETIQUEIT', NULL, 1200.00, 'usd', 'succeeded', '2023-01-22 06:28:32', '2023-01-22 06:28:32'),
+(23, 'ch_3MT2yUIjE4urvMaZ0fDDMUC8', 'CRETIQUEIT', NULL, 120.00, 'usd', 'succeeded', '2023-01-22 06:48:42', '2023-01-22 06:48:42');
 
 -- --------------------------------------------------------
 
@@ -1372,7 +1402,7 @@ CREATE TABLE `role_permission` (
 INSERT INTO `role_permission` (`id`, `permissions`, `role_id`, `created_at`, `updated_at`) VALUES
 (1, ',view_dashboard,', 1, '2022-09-27 23:39:54', '2022-09-27 23:39:54'),
 (2, ',view_category,', 3, '2022-10-01 11:21:12', '2023-01-20 22:23:14'),
-(3, ',view_ad_type,type_status_change,delete_type,edit_type,view_brand,delete_brand,edit_brand,status_change_brand,create_brand,', 4, '2023-01-20 22:28:36', '2023-01-21 09:21:49');
+(3, ',view_ad_type,type_status_change,delete_type,edit_type,view_brand,delete_brand,edit_brand,status_change_brand,create_brand,view_contact_query,contact_reply,', 4, '2023-01-20 22:28:36', '2023-01-21 10:34:33');
 
 -- --------------------------------------------------------
 
@@ -1425,27 +1455,6 @@ CREATE TABLE `support_messages` (
   `message` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `support_tickets`
---
-
-CREATE TABLE `support_tickets` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL COMMENT 'FK users table',
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ticket` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subject` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` tinyint(4) NOT NULL COMMENT '0: Open, 1: Answered, 2: Replied, 3: Closed',
-  `priority` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 = Low, 2 = medium, 3 = heigh',
-  `last_reply` datetime DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `user_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1686,8 +1695,7 @@ ALTER TABLE `banners`
 -- Indexes for table `brands`
 --
 ALTER TABLE `brands`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `brands_title_unique` (`title`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `categories`
@@ -1773,12 +1781,6 @@ ALTER TABLE `frontends`
 -- Indexes for table `gateways`
 --
 ALTER TABLE `gateways`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `gateway_currencies`
---
-ALTER TABLE `gateway_currencies`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1892,12 +1894,6 @@ ALTER TABLE `support_messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `support_tickets`
---
-ALTER TABLE `support_tickets`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1943,7 +1939,7 @@ ALTER TABLE `admin_users`
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT for table `advertisement_advertiser`
@@ -1955,7 +1951,7 @@ ALTER TABLE `advertisement_advertiser`
 -- AUTO_INCREMENT for table `advertisement_interest_advertisement`
 --
 ALTER TABLE `advertisement_interest_advertisement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `advertisers`
@@ -1973,7 +1969,7 @@ ALTER TABLE `ad_complains`
 -- AUTO_INCREMENT for table `ad_images`
 --
 ALTER TABLE `ad_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 
 --
 -- AUTO_INCREMENT for table `ad_types`
@@ -2003,13 +1999,13 @@ ALTER TABLE `banners`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `category_items`
@@ -2084,12 +2080,6 @@ ALTER TABLE `gateways`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `gateway_currencies`
---
-ALTER TABLE `gateway_currencies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `general_settings`
 --
 ALTER TABLE `general_settings`
@@ -2111,7 +2101,7 @@ ALTER TABLE `languages`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `message_users`
@@ -2129,7 +2119,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -2183,12 +2173,6 @@ ALTER TABLE `support_attachments`
 -- AUTO_INCREMENT for table `support_messages`
 --
 ALTER TABLE `support_messages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `support_tickets`
---
-ALTER TABLE `support_tickets`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
