@@ -179,7 +179,7 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
             Route::get('ad/edit/{id}', [AdvertisementController::class, 'getEdit'])->name('edit.ad');
             Route::post('ad/update/{id}', [AdvertisementController::class, 'adUpdate'])->name('update.ad');
 
-            Route::match(['get', 'post'], '/others/ad/{id?}', [AdvertisementController::class, 'manageGeneralAd'])->name('general.ad.manage');
+            Route::match(['get', 'post'], '/others/ad/{c_id}/{id?}', [AdvertisementController::class, 'manageGeneralAd'])->name('general.ad.manage');
             Route::match(['get', 'post'], '/remove/img/{id?}', [AdvertisementController::class, 'removeImage'])->name('remove.image');
 
             Route::post('store/ad', [AdvertisementController::class, 'adStore'])->name('adStore');

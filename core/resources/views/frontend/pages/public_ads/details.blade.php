@@ -1,8 +1,11 @@
 @extends('frontend.layout.main')
+@push('page_meta')
+    <meta name="keywords" content="{{ $details->meta_tags }}">
+    <meta name="title" Content="{{ $details->meta_title }}">
+@endpush
 @push('custom_css')
     <link href="//cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/css/star-rating.min.css" media="all"
         rel="stylesheet" type="text/css" />
-    <!-- with v4.1.0 Krajee SVG theme is used as default (and must be loaded as below) - include any of the other theme CSS files as mentioned below (and change the theme property of the plugin) -->
     <link href="//cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/themes/krajee-svg/theme.css" media="all"
         rel="stylesheet" type="text/css" />
 
@@ -298,12 +301,11 @@
                     </div>
                 </div>
                 <div class="social-area">
-                    <span class="title">Share this listing, "{{ $details->title }}", with your friends</span>
+                    <span class="title">@lang('Share this listing'), "{{ $details->title }}", @lang('with your friends')</span>
                     <ul class="social-list">
                         <li>
                             <a target="_blank"
                                 href="{{ 'https://www.facebook.com/sharer/sharer.php?u=' . URL::current() }}">
-                                {{-- <a href="https://www.facebook.com/sharer/sharer.php?u=http://jorenvanhocht.be"> --}}
                                 <svg width="24" height="24" viewBox="0 0 24 24" class="sc-AxjAm dJbVhz">
                                     <path
                                         d="M13.213 5.22c-.89.446-.606 3.316-.606 3.316h3.231v2.907h-3.23v10.359H8.773V11.444H6.39V8.536h2.423c-.221 0 .12-2.845.146-3.114.136-1.428 1.19-2.685 2.544-3.153 1.854-.638 3.55-.286 5.385.17l-.484 2.504s-2.585-.455-3.191.277z">
@@ -491,25 +493,25 @@
                                 data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-url="{{ URL::current() }}">
                                 <i class="lab la-twitter"></i>
-                                Twitter
+                                @lang('Twitter')
                             </button>
                         </div>
                         <div class="col-4 mt-2">
                             <button class="sharer social_btn" data-sharer="facebook" data-url="{{ URL::current() }}">
                                 <i class="lab la-facebook-square"></i>
-                                Facebook
+                                @lang('Facebook')
                             </button>
                         </div>
                         <div class="col-4 mt-2">
                             <button class="sharer social_btn" data-sharer="linkedin" data-url="{{ URL::current() }}">
                                 <i class="lab la-linkedin-in"></i>
-                                Linkedin
+                                @lang('Linkedin')
                             </button>
                         </div>
                         <div class="col-4 mt-2">
                             <button class="sharer social_btn" data-sharer="googleplus" data-url="{{ URL::current() }}">
                                 <i class="lab la-google-plus"></i>
-                                Google Plus
+                                @lang('Google Plus')
                             </button>
                         </div>
                         <div class="col-4 mt-2">
@@ -517,7 +519,7 @@
                                 data-subject="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-url="{{ URL::current() }}">
                                 <i class="las la-envelope"></i>
-                                Email
+                                @lang('Email')
                             </button>
                         </div>
                         <div class="col-4 mt-2">
@@ -525,7 +527,7 @@
                                 data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-url="{{ URL::current() }}">
                                 <i class="lab la-whatsapp"></i>
-                                WhatsApp
+                                @lang('WhatsApp')
                             </button>
                         </div>
                         <div class="col-4 mt-2">
@@ -533,7 +535,7 @@
                                 data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-url="{{ URL::current() }}">
                                 <i class="lab la-telegram"></i>
-                                Telegram
+                                @lang('Telegram')
                             </button>
                         </div>
                         <div class="col-4 mt-2">
@@ -541,13 +543,13 @@
                                 data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-url="{{ URL::current() }}">
                                 <i class="lab la-viber"></i>
-                                Viber
+                                @lang('Viber')
                             </button>
                         </div>
                         <div class="col-4 mt-2">
                             <button class="sharer social_btn" data-sharer="pinterest" data-url="{{ URL::current() }}">
                                 <i class="lab la-pinterest"></i>
-                                Pinterest
+                                @lang('Pinterest')
                             </button>
                         </div>
                         <div class="col-4 mt-2">
@@ -555,7 +557,7 @@
                                 data-caption="{{ 'Hey, Click on this URL : ' . URL::current() }}" data-sharer="tumblr"
                                 data-tags="html,javascript,css,php,ios,android" data-title="Merida Design">
                                 <i class="lab la-tumblr"></i>
-                                Tumblr
+                                @lang('Tumblr')
                             </button>
                         </div>
                         <div class="col-4 mt-2">
@@ -563,13 +565,13 @@
                                 data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-url="{{ URL::current() }}">
                                 <i class="lab la-hacker-news"></i>
-                                Hacker News
+                                @lang('Hacker News')
                             </button>
                         </div>
                         <div class="col-4 mt-2">
                             <button class="sharer social_btn" data-sharer="reddit" data-url="{{ URL::current() }}">
                                 <i class="lab la-reddit"></i>
-                                Reddit
+                                @lang('Reddit')
                             </button>
                         </div>
                         <div class="col-4 mt-2">
@@ -578,7 +580,8 @@
                                 data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-url="{{ URL::current() }}">
                                 <i class="lab la-vk"></i>
-                                VK
+
+                                @lang('Vk')
                             </button>
                         </div>
                         <div class="col-4 mt-2">
@@ -586,7 +589,7 @@
                                 data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-twitter-url="meridadesign" data-url="{{ URL::current() }}">
                                 <i class="lab la-buffer"></i>
-                                Buffer
+                                @lang('Buffer')
                             </button>
                         </div>
                         <div class="col-4 mt-2">
@@ -594,7 +597,7 @@
                                 data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-url="{{ URL::current() }}">
                                 <i class="lab la-xing"></i>
-                                Xing
+                                @lang('Xing')
                             </button>
                         </div>
                     </div>
@@ -636,7 +639,7 @@
     </script>
 
     <script src="//cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/locales/LANG.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sharer.js/0.2.6/sharer.min.js"
+    <script src="//cdnjs.cloudflare.com/ajax/libs/sharer.js/0.2.6/sharer.min.js"
         integrity="sha512-xk5eEidlsrX83GN/H68Wa+kXe8dNImrtotgfcHFt0koTddEjVeUd7Yx0bCKOn2xx7YnIDJXHL6D12GnQxNpPQg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

@@ -16,27 +16,21 @@ class GatewayController extends Controller
     {
         $pageTitle = 'Automatic Gateways';
         $emptyMessage = 'No gateway has been installed.';
-        $gateways = Gateway::automatic()->with('currencies')->get();
+        $gateways = Gateway::automatic()->get();
         return view('admin.gateway.list', compact('pageTitle', 'emptyMessage', 'gateways'));
     }
 
     public function edit($alias)
     {
-        $gateway = Gateway::automatic()->with('currencies')->where('alias', $alias)->firstOrFail();
+        $gateway = Gateway::automatic()->where('alias', $alias)->firstOrFail();
         $pageTitle = 'Update Gateway : ' . $gateway->name;
 
-        $supportedCurrencies = collect(json_decode($gateway->supported_currencies))->except($gateway->currencies->pluck('currency'));
+        $supportedCurrencies = collect(json_decode($gateway->supported_currencies));
 
         $parameters = collect(json_decode($gateway->gateway_parameters));
         $global_parameters = null;
         $hasCurrencies = false;
         $currencyIdx = 1;
-
-        if ($gateway->currencies->count() > 0) {
-            $global_parameters = json_decode($gateway->currencies->first()->gateway_parameter);
-            $hasCurrencies = true;
-        }
-
         return view('admin.gateway.edit', compact('pageTitle', 'gateway', 'supportedCurrencies', 'parameters', 'hasCurrencies', 'currencyIdx', 'global_parameters'));
     }
 
@@ -73,53 +67,53 @@ class GatewayController extends Controller
 
         $gateway_currencies = collect([]);
 
-        if ($request->has('currency')) {
+        // if ($request->has('currency')) {
 
-            foreach ($request->currency as $key => $currency) {
-                $currency_identifier = $this->currencyIdentifier($currency['name'], $gateway->name . ' ' . $currency['currency']);
+        //     foreach ($request->currency as $key => $currency) {
+        //         $currency_identifier = $this->currencyIdentifier($currency['name'], $gateway->name . ' ' . $currency['currency']);
 
-                $param = [];
-                foreach ($parameters->where('global', true) as $pkey => $pram) {
-                    $param[$pkey] = $pram->value;
-                }
+        //         $param = [];
+        //         foreach ($parameters->where('global', true) as $pkey => $pram) {
+        //             $param[$pkey] = $pram->value;
+        //         }
 
-                foreach ($parameters->where('global', false) as $param_key => $param_value) {
-                    $param[$param_key] = $currency['param'][$param_key];
-                }
+        //         foreach ($parameters->where('global', false) as $param_key => $param_value) {
+        //             $param[$param_key] = $currency['param'][$param_key];
+        //         }
 
-                $filename = null;
-                $existing_currency = $gateway->currencies()->where('currency', $currency['currency'])->first();
-                if ($existing_currency) {
-                    $filename = $existing_currency->image;
-                }
-                $uploaded_image = 'currency.' . $key . '.image';
-                if ($request->hasFile($uploaded_image)) {
-                    try {
+        //         $filename = null;
+        //         $existing_currency = $gateway->currencies()->where('currency', $currency['currency'])->first();
+        //         if ($existing_currency) {
+        //             $filename = $existing_currency->image;
+        //         }
+        //         $uploaded_image = 'currency.' . $key . '.image';
+        //         if ($request->hasFile($uploaded_image)) {
+        //             try {
 
-                        $filename = uploadImage($request->file($uploaded_image), $path, $size);
-                    } catch (\Exception $exp) {
-                        $notify[] = ['error', $currency_identifier . ' Image could not be uploaded.'];
-                        return back()->withNotify($notify);
-                    }
-                }
-                $gateway_currency = new GatewayCurrency([
-                    'name' => $currency['name'],
-                    'gateway_alias' => $gateway->alias,
-                    'image' => $filename,
-                    'currency' => $currency['currency'],
-                    'min_amount' => $currency['min_amount'],
-                    'max_amount' => $currency['max_amount'],
-                    'fixed_charge' => $currency['fixed_charge'],
-                    'percent_charge' => $currency['percent_charge'],
-                    'rate' => 1,
-                    'symbol' => $currency['symbol'],
-                    'gateway_parameter' => json_encode($param),
-                ]);
+        //                 $filename = uploadImage($request->file($uploaded_image), $path, $size);
+        //             } catch (\Exception $exp) {
+        //                 $notify[] = ['error', $currency_identifier . ' Image could not be uploaded.'];
+        //                 return back()->withNotify($notify);
+        //             }
+        //         }
+        //         $gateway_currency = new GatewayCurrency([
+        //             'name' => $currency['name'],
+        //             'gateway_alias' => $gateway->alias,
+        //             'image' => $filename,
+        //             'currency' => $currency['currency'],
+        //             'min_amount' => $currency['min_amount'],
+        //             'max_amount' => $currency['max_amount'],
+        //             'fixed_charge' => $currency['fixed_charge'],
+        //             'percent_charge' => $currency['percent_charge'],
+        //             'rate' => 1,
+        //             'symbol' => $currency['symbol'],
+        //             'gateway_parameter' => json_encode($param),
+        //         ]);
 
 
-                $gateway_currencies->push($gateway_currency);
-            }
-        }
+        //         $gateway_currencies->push($gateway_currency);
+        //     }
+        // }
 
         $gateway->currencies()->delete();
 

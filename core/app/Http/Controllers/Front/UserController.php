@@ -84,41 +84,6 @@ class UserController extends Controller
         return view('frontend.pages.public_ads.user_listing', $data);
     }
 
-    public function resendPassword()
-    {
-        $email = session()->get('forgot_email');
-        $emailCount = Advertiser::where('email', $email)->count();
-        if ($emailCount == 0) {
-            $message = "This email does not exist";
-            return response()->json([
-                'status' => false,
-                'message' => $message
-            ]);
-        } else {
-            //$email = $data['pwd_recovery_email'];
-            try {
-                $random_password = rand(111111, 999999);
-                $new_password = Hash::make($random_password);
-                //Update password
-                Advertiser::where('email', $email)->update(['password' => $new_password]);
-                $user = Advertiser::where('email', $email)->first();
-                sendEmail($user, 'EVER_CODE', [
-                    'code' => $random_password
-                ]);
-                $message = "Check your email again for login with new password";
-                return response()->json([
-                    'status' => true,
-                    'message' => $message
-                ]);
-            } catch (\Exception $th) {
-                return response()->json([
-                    'status' => false,
-                    'message' => $th->getMessage()
-                ]);
-            }
-        }
-    }
-
     public function forgotPassword(Request $request)
     {
         Session::forget('error');
@@ -156,11 +121,18 @@ class UserController extends Controller
                     $random_password = rand(111111, 999999);
                     $new_password = Hash::make($random_password);
                     //Update password
-                    Advertiser::where('email', $data['checkingEmail'])->update(['password' => $new_password]);
                     $user = Advertiser::where('email', $data['checkingEmail'])->first();
-                    sendEmail($user, 'EVER_CODE', [
+                    $sendEmail = sendEmail($user, 'EVER_CODE', [
                         'code' => $random_password
                     ]);
+                    if ($sendEmail) {
+                        Advertiser::where('email', $data['checkingEmail'])->update(['password' => $new_password]);
+                    } else {
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'Sorry, Something wrong! try again later'
+                        ]);
+                    }
                 } catch (\Exception $th) {
                     return response()->json([
                         'status' => false,
@@ -175,6 +147,48 @@ class UserController extends Controller
                 'status' => true,
                 'message' => $message
             ]);
+        }
+    }
+    public function resendPassword()
+    {
+        $email = session()->get('forgot_email');
+        $emailCount = Advertiser::where('email', $email)->count();
+        if ($emailCount == 0) {
+            $message = "This email does not exist";
+            return response()->json([
+                'status' => false,
+                'message' => $message
+            ]);
+        } else {
+            //$email = $data['pwd_recovery_email'];
+            try {
+                $random_password = rand(111111, 999999);
+                $new_password = Hash::make($random_password);
+                //Update password
+                Advertiser::where('email', $email)->update(['password' => $new_password]);
+                $user = Advertiser::where('email', $email)->first();
+                $sendEmail = sendEmail($user, 'EVER_CODE', [
+                    'code' => $random_password
+                ]);
+                if ($sendEmail) {
+                    Advertiser::where('email', $email)->update(['password' => $new_password]);
+                    $message = "Check your email again for login with new password";
+                    return response()->json([
+                        'status' => true,
+                        'message' => $message
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Sorry, Something wrong! try again later'
+                    ]);
+                }
+            } catch (\Exception $th) {
+                return response()->json([
+                    'status' => false,
+                    'message' => $th->getMessage()
+                ]);
+            }
         }
     }
 }

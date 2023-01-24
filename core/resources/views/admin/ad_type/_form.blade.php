@@ -26,7 +26,7 @@
     <div class="col-6 mb-2">
         <label for="duration_hours">@lang('Days') @include('admin.partials._utils')</label>
         <input id="duration_hours" name="duration_hours" class="form-control form--control" type="number"
-            value="{{ @old('duration_hours', $row['duration_hours']) }}" />
+        value="{{ @old('duration_hours', $row['duration']) }}"/>
         @if ($errors->has('duration_hours'))
             <div class="invalid-feedback">
                 <strong>{{ $errors->first('duration_hours') }}</strong>

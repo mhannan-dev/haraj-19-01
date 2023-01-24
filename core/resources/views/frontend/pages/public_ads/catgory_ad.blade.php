@@ -1,10 +1,13 @@
 @extends('frontend.layout.main')
+@section('title')
+    @lang('All category advertisement')
+@endsection
 @section('content')
 <div class="breadcrumb-section pt-30">
     <div class="container">
         <ul class="breadcrumb-list">
             <li>
-                <a href="index.html">Home</a>
+                <a href="index.html">@lang('Home')</a>
             </li>
             <li>
                 <a href="#"><i class="las la-angle-right"></i> <span class="category-title">{{ $single_category->title }}</span> </a>
@@ -28,7 +31,7 @@
                     <input type="hidden" name="latitude">
                     <input type="hidden" name="longitude">
                     <select class="category" name="category">
-                        <option value="all_category">All Category</option>
+                        <option value="all_category">@lang('All Category')</option>
                         @foreach($category as $key => $cat)
                         <option value="{{ $cat->id }}" {{ $cat->id == $single_category->id ? 'selected':'' }} data-category_title="{{ $cat->title }}">{{ $cat->title }}</option>
 
@@ -185,7 +188,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="section-header">
-                            <h3 class="section-title">Browse by city</h3>
+                            <h3 class="section-title">@lang('Browse by city')</h3>
                         </div>
                     </div>
                 </div>

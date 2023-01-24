@@ -21,8 +21,8 @@
 
                             </div>
                             <form class="sell-add-info-form"
-                                action="{{ url('user/others/ad', ['c_id' => $category->id, 'id' => $adv->id]) }}"
-                                method="POST" enctype="multipart/form-data">
+                                action="{{ url('user/others/ad', $adv->id) }}" method="post"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="category_id" value="{{ $category->id ?? null }}">
                                 <input type="hidden" name="latitude" id="latitude"
@@ -32,37 +32,36 @@
                                 <div class="row mb-30-none">
                                     <div class="col-xl-8 mb-30">
                                         <div class="sell-add-info-body-wrapper">
-                                            <h3 class="sell-add-info-body-title">ADD SOME INFO</h3>
+                                            <h3 class="sell-add-info-body-title">@lang('ADD SOME INFO')</h3>
                                             <input type="hidden" name="category_id" value="{{ $category->id }}">
                                             <input type="hidden" name="category_type"
                                                 value="{{ $category->category_type }}">
                                             <div class="form-group">
-                                                <label>Advert title <span class="text--danger">*</span></label>
+                                                <label>@lang('Advertisement title') <span class="text--danger">*</span></label>
                                                 <input type="text" id="titleLenth" name="title"
                                                     class="form--control {{ $errors->has('title') ? 'is-invalid' : '' }}"
                                                     placeholder="@lang('Advert title')" value="{{ old('title', $adv->title) }}">
                                                 <div class="text-limit-area">
-                                                    <span>Mention key features of your product (e.g. make, model, age,
-                                                        type)</span>
+                                                    <span>Mention key features of your product (e.g. make, model)</span>
                                                     <span id="text-count">1 </span>/ 100
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Brand <span class="text--danger">*</span></label>
+                                                <label>@lang('Brand ')<span class="text--danger">*</span></label>
                                                 <select class="form--control" name="brand_id">
-                                                    <option value="">Select Brand</option>
+                                                    <option value="">@lang('Select Brand')</option>
                                                     @foreach ($brands as $brand)
                                                         <option value="{{ $brand->id }}" @if (isset($adv) && $adv->brand_id == $brand->id) selected @endif>{{ $brand->title }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group2">
-                                                <label>Explanation <span class="text--danger">*</span></label>
+                                                <label>@lang('Explanation') <span class="text--danger">*</span></label>
                                                 <textarea cols="30" rows="10" id="description"
                                                     class="form--control {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description"
                                                     value="{{ @old('description', $adv->description) }}" placeholder="@lang('Description')">{{ old('description', $adv->description) }}</textarea>
                                                 <div class="text-limit-area">
-                                                    <span>Add information such as status, feature and reason for sale</span>
+                                                    <span>@lang('Add information such as status, feature and reason for sale')</span>
                                                     <span id="text-count">1</span>/1450
                                                 </div>
                                             </div>
@@ -74,7 +73,7 @@
 
                                             </div>
                                             <div class="form-group2 mt-2">
-                                                <label>@lang('Thumbnail')<span class="text--danger">*</span></label>
+                                                <label>@lang('Thumbnail')</label>
                                                 <input type="file"
                                                     class="form--control {{ $errors->has('image') ? 'is-invalid' : '' }}"
                                                     name="image" placeholder="@lang('Thumbnail')" accept="image/*">
@@ -82,18 +81,18 @@
                                             <div class="form-group2 mt-2">
                                                 @if (!empty($adv->image))
                                                     <label for="Image">@lang('Preview Image')</label>
-                                                    <img src="{{ URL::asset('core/storage/app/public/advertisement_images/' . $adv->image) }}"
+                                                    <img src="{{ asset('core/storage/app/public/advertisement_images/' . $adv->image) }}"
                                                         alt="Image" style="height: 100px; width:100px;">
                                                     <a href="{{ route('frontend.user.remove.image', $adv->id) }}"
-                                                        class="text-danger">@lang('Delete')</a>
+                                                        class="btn btn-base text-danger">@lang('Delete')</a>
                                                 @endif
                                             </div>
                                             <div class="form-group2 mt-2">
                                                 <label>@lang('Condition')<span class="text--danger">*</span></label>
                                                 <select name="condition" class="form--control">
-                                                    <option value="new">New</option>
-                                                    <option value="used">Used</option>
-                                                    <option value="like new">Like new</option>
+                                                    <option value="new">@lang('New')</option>
+                                                    <option value="used">@lang('Used')</option>
+                                                    <option value="like new">@lang('Like new')</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -129,7 +128,7 @@
                                         <div class="col-xl-8 mb-30">
                                             <div class="form-group">
                                                 <label>@lang('Meta Title') <span class="text--danger">*</span></label>
-                                                <input type="text" name="meta_title" value="{{ old('meta_title', $adv->meta_title) }}"
+                                                <input type="text" name="meta_title" value="{{ old('meta_title', $adv->title) }}"
                                                     class="form--control" placeholder="@lang('Meta Title')" required>
                                             </div>
                                         </div>
@@ -137,8 +136,8 @@
 
                                 </div>
                                 <div class="sell-add-info-price-wrapper">
-                                    <h3 class="sell-add-info-price-title two">YOU CAN UPLOAD UP TO 10 PHOTOS</h3>
-                                    <span class="image-up-alart-text pb-10">(Alart: Heigh 1000x800 px / size 2MB)</span>
+                                    <h3 class="sell-add-info-price-title two">@lang('YOU CAN UPLOAD UP TO 10 PHOTOS')</h3>
+                                    <span class="image-up-alart-text pb-10">(@lang('Alart: Heigh 1000x800 px / size 2MB'))</span>
                                     <div class="row mb-30-none">
                                         <div class="col-xl-8 mb-30">
                                             <div class="add-more-details-thumb-wrapper">
@@ -158,12 +157,19 @@
                                 @elseif($category->category_type == 'mobiles')
                                     {{-- @dd('ok mobile form working and ad posting successfull'); --}}
                                     @include('frontend.pages.forms.mobiles')
+
                                 @elseif($category->category_type == 'electronics')
+
                                     @include('frontend.pages.forms.electronics')
+
                                 @elseif($category->category_type == 'home_and_garden')
                                     @include('frontend.pages.forms.home_and_garden')
+
                                 @elseif($category->category_type == 'fashion_beauty')
                                     @include('frontend.pages.forms.fashion_beauty')
+
+                                @elseif($category->category_type == 'soft_products')
+                                    @include('frontend.pages.forms._soft_products')
                                 @else
                                     @include('frontend.pages.forms._basic')
                                 @endif
@@ -193,9 +199,10 @@
                                                             <select class="form--control" name="city_id" id="city_id">
                                                                 <option value="">@lang('Select')</option>
                                                                 @foreach (\DB::table('cities')->where('status', 1)->get() as $city)
-                                                                    <option value="{{ $city->id }}" @if (isset($adv) && $adv->city_id == $city->id ) selected @endif>
+                                                                    <option value="{{ $city->id }}" @if (isset($adv) && $adv->city_id == $city->id) selected @endif>
                                                                         {{ $city->title }}
                                                                     </option>
+
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -214,7 +221,7 @@
                                     <div class="row mb-30-none">
                                         <div class="col-xl-8 mb-30">
                                             <div class="sell-add-btn-area">
-                                                <button type="submit" class="btn--base">{{ $buttonText }}</button>
+                                                <button type="submit" class="btn--base">@lang('Save')</button>
                                             </div>
                                         </div>
                                     </div>

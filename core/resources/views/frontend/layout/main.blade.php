@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" @if (session()->get('lang') == 'ar') dir="rtl" @endif>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $general->sitename($pageTitle ?? '') }}</title>
+    {{-- <title>{{ $general->sitename($pageTitle ?? '') }}</title> --}}
+    <title>@yield('title') Haraj Alyawm</title>
     @include('partials.seo')
+    @stack('page_meta')
     <link rel="preconnect" href="//fonts.googleapis.com">
     <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
     <link
@@ -41,9 +42,28 @@
     @if (session()->get('lang') == 'ar')
         <link rel="stylesheet" href="{{ URL::asset('assets/frontend') }}/css/rtl.css">
     @endif
-    <script type='text/javascript'
-        src='//platform-api.sharethis.com/js/sharethis.js#property=633927585a306f001995daca&product=sticky-share-buttons'
-        async='async'></script>
+
+    <style>
+        #search-form{
+            position: relative;
+        }
+        .ui-front{
+            top: -420px !important;
+            left: 430px !important;
+            background: white;
+            /* display: none; */
+            display: inline-block;
+            box-shadow: rgb(0 10 18 / 20%) 0px 3px 8px, rgb(246 246 246 / 50%) 0px 0px 1px;
+            border-radius: 0 0 5px 5px;
+            padding: 10px 20px !important;
+            width: 935px !important;
+            margin: -10px;
+        }
+        .ui-menu-item{
+            margin: 10px;
+        }
+    </style>
+
     <script src="{{ asset('core/public/js/app.js') }}" defer></script>
     @stack('custom_css')
 </head>
@@ -71,7 +91,7 @@
                                     <form id="search-form" class="header-search-form" action="{{ url('ads/search') }}"
                                         method="get">
                                         <label class="search-icon"><i class="fas fa-search"></i></label>
-                                        <input type="text" name="search" id="search_text" class="form--control"
+                                        <input type="text" name="search" id="search_text" class="form--control ui-autocomplete-input"
                                             placeholder="@lang('Search')" />
                                     </form>
 
@@ -837,7 +857,7 @@
             data_src = "{{ route('frontend.ads.auto.search') }}";
             $("#search_text").autocomplete({
                 source: function(request, response) {
-                    console.log(response)
+                    // console.log(response)
                     $.ajax({
                         url: data_src,
                         data: {

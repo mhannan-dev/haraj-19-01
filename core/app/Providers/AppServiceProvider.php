@@ -8,7 +8,9 @@ use App\Models\Language;
 use App\Models\GeneralSetting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use App\Http\ViewComposers\MetaComposer;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        View::composer('frontend.layouts.main', MetaComposer::class);
     }
 
     /**
@@ -47,7 +49,12 @@ class AppServiceProvider extends ServiceProvider
                 'seo' => $seo ? $seo->data_values : $seo,
             ]);
         });
-        Paginator::useBootstrap();
 
+        // view()->composer('frontend.layout.main', function ($view) {
+		// 	$seoData = DB::table('frontends')->where('data_keys', 'seo.data')->first();
+		// 	$view->with('seoData', $seoData);
+		// });
+		Paginator::useBootstrap();
+		// View::composer('frontend.layout.main', 'App\Http\ViewComposers\MetaComposer');
     }
 }

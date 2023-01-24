@@ -1,4 +1,11 @@
 @extends('frontend.layout.main')
+@push('page_meta')
+    <meta name="keywords" content="{{ $item->meta_tags }}">
+    <meta name="title" Content="{{ $item->meta_title }}">
+@endpush
+@section('title')
+    @lang('Update your advertisement')
+@endsection
 @push('custom_css')
 @endpush
 @section('content')
@@ -43,10 +50,10 @@
                                                 </div>
                                             </div>
                                             <div class="form-group2">
-                                                <label>Explanation <span class="text--danger">*</span></label>
-                                                <textarea class="form--control nicEdit" name="description" placeholder="@lang('Description')">{{ $item->description }}</textarea>
+                                                <label>@lang('Description')<span class="text--danger">*</span></label>
+                                                <textarea class="form--control" name="description" placeholder="@lang('Description')">{{ $item->description }}</textarea>
                                                 <div class="text-limit-area">
-                                                    <span>Add information such as status, feature and reason for sale</span>
+                                                    <span>@lang('Add information such as status, feature and reason for sale')</span>
                                                     <span>0 / 1450</span>
                                                 </div>
                                             </div>
@@ -85,35 +92,6 @@
                                             <div class="add-more-details-thumb-wrapper">
                                                 <div class="add-more-details-thumb-area">
                                                     <div class="row" id="coba">
-                                                        <div class="col-4 spartan_item_wrapper" data-spartanindexrow="0"
-                                                            style="margin-bottom : 20px; ">
-                                                            <div style="position: relative;">
-                                                                <div class="spartan_item_loader" data-spartanindexloader="0"
-                                                                    style=" position: absolute; width: 100%; height: auto; background: rgba(255,255,255, 0.7); z-index: 22; text-align: center; align-items: center; margin: auto; justify-content: center; flex-direction: column; display : none; font-size : 1.7em; color: #CECECE">
-                                                                    <i class="fas fa-sync fa-spin"></i>
-                                                                </div><label class="file_upload"
-                                                                    style="width: 100%; height: auto; border: 2px dashed #ddd; border-radius: 3px; cursor: pointer; text-align: center; overflow: hidden; padding: 5px; margin-top: 5px; margin-bottom : 5px; position : relative; display: flex; align-items: center; margin: auto; justify-content: center; flex-direction: column;"><a
-                                                                        href="javascript:void(0)"
-                                                                        data-spartanindexremove="0"
-                                                                        style="position: absolute !important; right : 3px; top: 3px; display : none; background : transparent; border-radius: 3px; width: 30px; height: 30px; line-height : 30px; text-align: center; text-decoration : none; color : #ff0700;"
-                                                                        class="spartan_remove_row"><i
-                                                                            class="las la-trash"></i></a><img
-                                                                        style="width: 100%; margin: 0 auto; vertical-align: middle;"
-                                                                        data-spartanindexi="0"
-                                                                        src="assets/images/gallery.jpg"
-                                                                        class="spartan_image_placeholder">
-                                                                    <p data-spartanlbldropfile="0"
-                                                                        style="color : #5FAAE1; display: none; width : auto; ">
-                                                                        Drop Here</p><img
-                                                                        style="width: 100%; vertical-align: middle; display:none;"
-                                                                        class="img_" data-spartanindeximage="0"><input
-                                                                        class="form-control spartan_image_input"
-                                                                        accept="image/*" data-spartanindexinput="0"
-                                                                        style="display : none" name="images[]"
-                                                                        type="file">
-                                                                </label>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

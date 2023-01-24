@@ -3,7 +3,6 @@
     <meta name="description" content="{{ $seo->description }}">
     <meta name="keywords" content="{{ implode(',',$seo->keywords) }}">
     <link rel="shortcut icon" href="{{ getImage(imagePath()['logoIcon']['path'] .'/favicon.png') }}" type="image/x-icon">
-
     {{--<!-- Apple Stuff -->--}}
     <link rel="apple-touch-icon" href="{{ getImage(imagePath()['logoIcon']['path'] .'/logo.png') }}">
     <meta name="apple-mobile-web-app-capable" content="yes">

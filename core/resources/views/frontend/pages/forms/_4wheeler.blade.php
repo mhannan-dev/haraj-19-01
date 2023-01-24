@@ -8,7 +8,7 @@
         <input type="text" name="year_of_manufacture" class="form--control" placeholder="@lang('Year of Manufacture')" required>
     </div>
 
-    <div class="form-group col-8 sell-add-info-price-wrapper">
+    <div class="form-group col-8">
         <label>@lang('Condition ')</label>
         <select class="form--control" name="condition">
             <option value="">@lang('Select')</option>

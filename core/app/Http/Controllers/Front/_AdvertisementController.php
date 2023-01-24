@@ -21,9 +21,9 @@ class AdvertisementController extends Controller
     {
 
         $advertiser = Auth::guard('advertiser')->user()->id;
-        $data['my_ads'] = Advertisement::withCount('sub_category', 'ad_message', 'favourite_to_users')
-        ->with('category:id,title,category_type')->where('advertiser_id', $advertiser)->get();
+        $data['my_ads'] = Advertisement::withCount('sub_category', 'ad_message', 'favourite_to_users')->where('advertiser_id', $advertiser)->get();
         $data['favourite_ads'] = Favourite::with('ads')->where('advertiser_id', $advertiser)->take(10)->get();
+        // dd($data['favourite_ads']);
         return view('frontend.pages.user.dashboard', $data);
     }
 
@@ -189,13 +189,7 @@ class AdvertisementController extends Controller
         }
         return redirect()->back();
     }
-    public function getEdit($id)
-    {
-        $item =  Advertisement::findOrFail($id);
-        $sub_category = Category::where('parent_id', $item->category_id)->first();
-        return view('frontend.pages.user.ad_form.form_update', compact('item', 'sub_category'));
-    }
-    
+
     public function adUpdate(Request $request, $id)
     {
         $adv = Advertisement::find($id);
@@ -265,62 +259,66 @@ class AdvertisementController extends Controller
         }
         return redirect()->back();
     }
-    public function manageGeneralAd(Request $request, $c_id, $id = null)
+    public function manageGeneralAd(Request $request, $id)
     {
-        $image_validataion_rule = "required";
-        if ($id == "") {
-            $adv = new Advertisement();
-            $title = "New Ad";
-            $buttonText = "Save";
-            $notify[] = ['success', 'Ad saved successfully!!'];
-        } else {
-            $adv = Advertisement::findOrFail($id);
-            $title = "Update Ad";
-            $buttonText = "Update";
-            $notify[] = ['success', 'Ad updated successfully!!'];
-            $category = DB::table('categories')->where('parent_id', '=', 0)->where('id', $adv->category_id)->first();
-            $brand = DB::table('brands')->where('category_id', $category->id)->get();
-            $image_validataion_rule = "nullable";
+        // dd($id);
+        if ($id != null) {
+            if (Category::find($id) != null) {
+                // Add Bank
+                $adv = new Advertisement();
+                $title = "New Ad";
+                $buttonText = "Save";
+                $notify[] = ['success', 'Ad saved successfully!!'];
+                $category = DB::table('categories')->where('parent_id', '=', 0)->where('id', $id)->first();
+                $brands = DB::table('brands')->where('category_id', $category->id)->get();
+            } else {
+                $category = DB::table('categories')->where('parent_id', '=', 0)->first();
+                $brands= DB::table('brands')->where('category_id', $category->id)->get();
+            }
         }
-        //exit();
+
         if ($request->isMethod('POST')) {
             $data = $request->all();
             //Validation rules
             $rules = [
                 'title' => 'required',
-                'brand_id' => 'required',
+                'brand_id' => 'required|numeric',
                 'price' => 'required|numeric|gt:0',
                 'description' => 'required',
-                'image' => $image_validataion_rule,
+                'image' => 'required',
                 'condition' => 'required',
                 'meta_tags' => 'required',
                 'meta_title' => 'required',
             ];
+
             //Validation message
             $customMessage = [
                 'title.required' => 'Title is required',
                 'brand_id.required' => 'Brand is required',
+                'price.numeric' => 'Invalid price',
                 'price.required' => 'Price is required',
                 'price.gt' => 'Price must be greater then 0',
                 'description.required' => 'Description is required',
                 'image.required' => 'Image is required',
                 'condition.required' => 'Condition is required',
                 'meta_tags.required' => 'Meta Tag is required',
-                'meta_title.required' => 'Meta Title is required'
+                'meta_title.required' => 'Meta Title is required',
             ];
             $this->validate($request, $rules, $customMessage);
             if ($request->file('image')) {
                 $image = $request->file('image');
-                $imageName  = time() . '.' . $image->getClientOriginalExtension();
+                $thumbImage  = time() . '.' . $image->getClientOriginalExtension();
                 if (!Storage::disk('public')->exists('advertisement_images')) {
                     Storage::disk('public')->makeDirectory('advertisement_images');
                 }
                 $postImage = Image::make($image)->resize(100, 100)->save(storage_path('advertisement_images'))->stream("webp", 100);
-                Storage::disk('public')->put('advertisement_images/' . $imageName, $postImage);
+                Storage::disk('public')->put('advertisement_images/' . $thumbImage, $postImage);
             } else {
-                $imageName = $adv->image;
+                $thumbImage = $adv->image;
             }
-            $adv->image = $imageName;
+            $adv = new Advertisement();
+            // dd($adv);
+            $adv->image = $thumbImage;
             $adv->advertiser_id = Auth::guard('advertiser')->user()->id;
             $adv->category_id = $data['category_id'];
             $adv->city_id = Auth::guard('advertiser')->user()->city_id;
@@ -377,11 +375,13 @@ class AdvertisementController extends Controller
                 }
             }
             $request->session()->put('advertisement_id', $lastInsertedAdId);
+            $notify[] = ['success', 'Ad Posted successfully!!'];
             return redirect()->route('frontend.user.sellFaster')->withNotify($notify);
         }
-        $category = DB::table('categories')->where('parent_id', '=', 0)->where('id', $c_id)->first();
-        $brands = DB::table('brands')->where('category_id', $category->id)->get();
+        // if (Category::findOrFail($id)) {
+        // dd($category);
         return view('frontend.pages.user.manage_general_ad', compact('category', 'brands', 'buttonText', 'adv'));
+        // }
     }
 
     public function removeImage($id)
@@ -412,7 +412,12 @@ class AdvertisementController extends Controller
             return response()->json(['status' => true, 'message' => 'Added to Favourite!!']);
         }
     }
-
+    public function getEdit($id)
+    {
+        $item =  Advertisement::findOrFail($id);
+        $sub_category = Category::where('parent_id', $item->category_id)->first();
+        return view('frontend.pages.user.ad_form.form_update', compact('item', 'sub_category'));
+    }
 
     public function getDelete($id)
     {

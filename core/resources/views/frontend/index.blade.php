@@ -1,13 +1,6 @@
 @extends('frontend.layout.main')
 @push('custom_css')
-    {{-- <style>
-        .product-single-item .product-wishlist {
-            position: absolute;
-            top: 8px;
-            right: -210px;
-            z-index: 9;
-        }
-    </style> --}}
+
 @endpush
 @section('content')
     <!--~~~~~~~~~~~~~~Start Category~~~~~~~~~~~~~~~~-->

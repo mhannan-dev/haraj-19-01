@@ -205,7 +205,7 @@
             </li>
         @endif
         @if (hasAccessAbility('view_payment_gateway', $roles))
-            <li class="sidebar-menu-item sidebar-dropdown {{ Request::is('payment/gateway*') ? 'active' : ' ' }}">
+            {{-- <li class="sidebar-menu-item sidebar-dropdown {{ Request::is('payment/gateway*') ? 'active' : ' ' }}">
                 <a href="#">
                     <i class="menu-icon las la-cog"></i>
                     <span class="menu-title">Payment Gateways</span>
@@ -221,7 +221,7 @@
                     </li>
                 </ul>
 
-            </li>
+            </li> --}}
         @endif
         @if (hasAccessAbility('currency_view', $roles))
             <li class="sidebar-menu-item {{ Request::is('currency/list') ? 'active' : '' }}">

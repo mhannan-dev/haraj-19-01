@@ -96,13 +96,12 @@
                                 <th>@lang('Ad Category')</th>
                                 <th>@lang('City')</th>
                                 <th>@lang('Image')</th>
-                                <th>@lang('Action')</th>
+                                {{-- <th>@lang('Action')</th> --}}
                                 <th>@lang('View')</th>
                                 <th>@lang('Published At')</th>
                             </tr>
                         </thead>
                         <tbody>
-                          
                             @forelse($ads as $advert)
                                 <tr>
                                     <td>{{ $advert->title }}</td>
@@ -110,12 +109,12 @@
                                     <td>{{ $advert->category->title }}</td>
                                     <td>{{ $advert->city->title }}</td>
                                     <td><img style="width: 40px; height: 40px;"
-                                            src="{{ URL::asset('core/public/storage/image/' . $advert->image) }}"
+                                            src="{{ URL::asset('core/storage/app/public/advertisement_images/' . $advert->image) }}"
                                             alt="Thumbnail"></td>
-                                    <td><a title="Edit" href="{{ url('posted/ad/edit', $advert->id) }}"
+                                    {{-- <td><a title="Edit" href="{{ url('posted/ad/edit', $advert->id) }}"
                                             class="btn btn-warning btn-sm">
                                             <i class="fa fa-edit"></i>
-                                        </a></td>
+                                        </a></td> --}}
                                     <td>{{ $advert->view_count }}</td>
                                     <td>{{ date('d-M-y', strtotime($advert->created_at)) }}</td>
                                 </tr>

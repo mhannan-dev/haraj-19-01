@@ -12617,6 +12617,7 @@ option {
   right: -5px;
   display: none;
   text-align: center;
+  box-shadow: 0 5px 25px rgb(0 0 0 / 10%) !important;
 }
 
 .my-ads-card-action-btn .opsition-list button {

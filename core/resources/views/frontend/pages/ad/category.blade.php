@@ -10,18 +10,18 @@
 @section('content')
     <section class="sell-section pt-30">
         <div class="container">
-            <h1 class="sell-header-title pb-10">POST AN AD</h1>
+            <h1 class="sell-header-title pb-10">@lang('POST AN AD')</h1>
             <div class="row justify-content-center mb-30">
                 <div class="col-xl-8 mb-30">
                     <div class="sell-cetagory-main-wrapper">
-                        <h3 class="sell-cetagory-main-title">CHOOSE A CATEGORY</h3>
+                        <h3 class="sell-cetagory-main-title">@lang('CHOOSE A CATEGORY')</h3>
                         <div class="sell-cetagory-wrapper">
                             <div class="sell-category-wrapper-list">
                                 <ul class="sell-cetagory-left-list">
                                     @foreach ($categories as $item)
                                         <li @if ($item->sub_categories_count !== 0) class="has-child" @endif>
                                             @if ($item->sub_categories_count == 0)
-                                                <a href="{{ route('frontend.user.general.ad.manage', $item->id) }}"
+                                                <a href="{{ url('user/others/ad', ['c_id' => $item->id]) }}"
                                                     class="sell-cetagory-left-list-thumb-wrapper">
                                                     <img src="{{ asset('core/storage/app/public/category/' . $item->image) }}"
                                                         alt="category">

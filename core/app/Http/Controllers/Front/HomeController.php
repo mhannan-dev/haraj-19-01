@@ -444,7 +444,9 @@ class HomeController extends Controller
             ->inRandomOrder()->take(4)->get();
         $user_rating = Rating::where('advertiser_id', $details->advertiser_id)->select('rating')->get();
 
-        return view('frontend.pages.public_ads.details', compact('details', 'related_products', 'user_rating', 'checkFavourite'));
+        return view('frontend.pages.public_ads.details', compact('details', 'related_products',
+        'user_rating',
+        'checkFavourite'));
     }
 
 
@@ -486,8 +488,6 @@ class HomeController extends Controller
                 ->where(function ($query) use ($search_product) {
                     $query->where('advertisements.title', 'like', '%' . $search_product . '%')
                         ->orWhere('advertisements.price', 'like', '%' . $search_product . '%')
-                        ->orWhere('advertisements.brand', 'like', '%' . $search_product . '%')
-                        ->orWhere('advertisements.color', 'like', '%' . $search_product . '%')
                         ->orWhere('advertisements.condition', 'like', '%' . $search_product . '%')
                         ->orWhere('advertisements.authenticity', 'like', '%' . $search_product . '%')
                         ->orWhere('categories.title', 'like', '%' . $search_product . '%')
@@ -505,6 +505,7 @@ class HomeController extends Controller
     {
         $query = $request->get('term', '');
         $ads_data = Advertisement::where('title', 'LIKE', '%' . $query . '%')->select('id', 'title')->limit(8)->get();
+        //dd($query);
         $data = [];
         foreach ($ads_data as $item) {
             $data[] = [
