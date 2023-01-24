@@ -19,4 +19,8 @@ class Brand extends Model
     {
         return $this->belongsTo('App\Models\Category', 'category_id')->where('status', 1);
     }
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\City;
+use App\Models\Brand;
 use App\Models\AdImage;
 use App\Models\Category;
 use App\Models\Favourite;
@@ -184,7 +186,6 @@ class AdvertisementController extends Controller
                 return redirect()->route('frontend.user.sellFaster')->withNotify($notify);
             }
         } catch (\Exception $th) {
-            dd($th);
             info($th);
         }
         return redirect()->back();
@@ -193,9 +194,13 @@ class AdvertisementController extends Controller
     {
         $item =  Advertisement::findOrFail($id);
         $sub_category = Category::where('parent_id', $item->category_id)->first();
-        return view('frontend.pages.user.ad_form.form_update', compact('item', 'sub_category'));
+        $brands = Brand::active()->where('category_id', $sub_category->parent_id)->get();
+        $allCity = City::where('status', 1)->select('id', 'title','status')->get();
+        $allCity = json_decode(json_encode($allCity), true);
+        // dd($allCity);
+        return view('frontend.pages.user.ad_form.form_update', compact('item', 'sub_category','brands','allCity'));
     }
-    
+
     public function adUpdate(Request $request, $id)
     {
         $adv = Advertisement::find($id);
@@ -228,12 +233,17 @@ class AdvertisementController extends Controller
                 $adv->status = 1;
                 $adv->description = $data['description'];
 
-                $adv->details_informations = json_encode([
-                    'NETWORK' => $data['NETWORK'],
-                    'Display' => $data['Display'],
-                    'Memory' => $data['Memory'],
-                    'Battery' => $data['Battery']
-                ]);
+                if ($request->file('image')) {
+                    $image = $request->file('image');
+                    $imageName  = time() . '.' . $image->getClientOriginalExtension();
+                    if (!Storage::disk('public')->exists('advertisement_images')) {
+                        Storage::disk('public')->makeDirectory('advertisement_images');
+                    }
+                    $postImage = Image::make($image)->resize(100, 100)->save(storage_path('advertisement_images'))->stream("webp", 100);
+                    Storage::disk('public')->put('advertisement_images/' . $imageName, $postImage);
+                } else {
+                    $imageName = $adv->image;
+                }
 
                 $adv->condition = $data['condition'];
                 $adv->authenticity = $data['authenticity'];
@@ -241,7 +251,7 @@ class AdvertisementController extends Controller
                 $adv->location_embeded_map = $data['location_embeded_map'] ? $data['location_embeded_map'] : null;
                 $adv->brand_id = $data['brand_id'] ? $data['brand_id'] : null;
                 $adv->color = $data['color'] ? $data['color'] : null;
-                $adv->image = Generals::update('image/', $adv->image, 'png', $request->file('image'));
+                $adv->image = $imageName;
                 $adv->save();
 
                 $lastInsertedAdId = DB::getPdo()->lastInsertId();

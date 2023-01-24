@@ -29,6 +29,7 @@
                                 <a href="{{ route('frontend.user.post.ad') }}"
                                     class="change-cetagory-link">@lang('Change')</a>
                             </div>
+
                             <form class="sell-add-info-form" action="{{ route('frontend.user.update.ad', $item->id) }}"
                                 method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -129,17 +130,7 @@
                                                 {{ $item->condition == 'like new' ? 'selected' : '' }}>Like New</option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-8">
-                                        <label>Authenticity</label>
-                                        <select name="authenticity" class="form--control">
-                                            <option value="">@lang('Select')</option>
-                                            <option value="original"
-                                                {{ $item->authenticity == 'original' ? 'selected' : '' }}>Original</option>
-                                            <option value="refurbished"
-                                                {{ $item->authenticity == 'refurbished' ? 'selected' : '' }}>Refurbished
-                                            </option>
-                                        </select>
-                                    </div>
+
                                     <div class="form-group col-8">
                                         <label>Edition (optional)</label>
                                         <input type="text" name="edition" class="form--control"
@@ -147,53 +138,193 @@
                                     </div>
                                     <div class="form-group col-8">
                                         <label>Brand (optional)</label>
-                                        <input type="text" name="brand" class="form--control"
-                                            placeholder="@lang('Brand ')" value="{{ $item->brand }}">
+                                        <select name="brand_id" class="form--control">
+                                            <option value="">@lang('Select')</option>
+                                            @foreach ($brands as $brand)
+                                                <option value="{{ $brand->id }}"
+                                                    @if ($brand->id == $item->brand_id) selected @endif>{{ $brand->title }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
                                     <div class="form-group col-8">
                                         <label>Color</label>
                                         <select class="form--control" name="color">
                                             <option value="">@lang('Select Color')</option>
-                                            <option value="light-grey">Light grey</option>
-                                            <option value="light-blue">Light blue</option>
-                                            <option value="light-green">Light green</option>
-                                            <option value="beige">Beige</option>
-                                            <option value="white">White</option>
-                                            <option value="burgundy">burgundy</option>
-                                            <option value="brown">Brown</option>
-                                            <option value="red">Red</option>
-                                            <option value="dark-grey">Dark grey</option>
-                                            <option value="dark-blue">Dark blue</option>
-                                            <option value="dark-green">Dark green</option>
-                                            <option value="yellow">Yellow</option>
-                                            <option value="black">Black</option>
-                                            <option value="other">Other</option>
+
+                                            <option value="light-grey" @if ($item->color == 'light-grey') selected @endif>
+                                                Light grey</option>
+                                            <option value="light-blue"@if ($item->color == 'light-blue') selected @endif>
+                                                Light blue</option>
+                                            <option value="light-green"@if ($item->color == 'light-green') selected @endif>
+                                                Light green</option>
+                                            <option value="beige"@if ($item->color == 'beige') selected @endif>Beige
+                                            </option>
+                                            <option value="white"@if ($item->color == 'white') selected @endif>White
+                                            </option>
+                                            <option value="burgundy"@if ($item->color == 'burgundy') selected @endif>
+                                                burgundy</option>
+                                            <option value="brown"@if ($item->color == 'brown') selected @endif>Brown
+                                            </option>
+                                            <option value="red"@if ($item->color == 'red') selected @endif>Red
+                                            </option>
+                                            <option value="dark-grey"@if ($item->color == 'dark-grey') selected @endif>Dark
+                                                grey</option>
+                                            <option value="dark-blue"@if ($item->color == 'dark-blue') selected @endif>
+                                                Dark
+                                                blue</option>
+                                            <option value="dark-green"@if ($item->color == 'dark-green') selected @endif>
+                                                Dark green</option>
+                                            <option value="yellow"@if ($item->color == 'yellow') selected @endif>
+                                                Yellow</option>
+                                            <option value="black"@if ($item->color == 'black') selected @endif>Black
+                                            </option>
+                                            <option value="other"@if ($item->color == 'other') selected @endif>Other
+                                            </option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-8">
-                                        @php
-                                            $details = json_decode($item->details_informations);
-                                        @endphp
-                                        <label>@lang('NETWORK')</label>
-                                        <input type="text" name="NETWORK" placeholder="@lang('Network')"
-                                            class="form--control" value="{{ $details->NETWORK ?? null }}">
-                                    </div>
-                                    <div class="form-group col-8">
-                                        <label>@lang('Display')</label>
-                                        <input type="text" name="Display" placeholder="@lang('Display')"
-                                            value="{{ $details->Display ?? null }}" class="form--control">
-                                    </div>
-                                    <div class="form-group col-8">
-                                        <label>@lang('Memory')</label>
-                                        <input type="text" name="Memory" placeholder="@lang('MEMORY')"
-                                            value="{{ $details->Memory ?? null }}" class="form--control">
-                                    </div>
-                                    <div class="form-group col-8">
-                                        <label>@lang('Battery')</label>
-                                        <input type="text" name="Battery" placeholder="@lang('BATTERY')"
-                                            value="{{ $details->Battery ?? null }}" class="form--control">
-                                    </div>
+
+                                    @if ($item->category->category_type == 'mobiles')
+                                        <div class="form-group col-8">
+                                            @php
+                                                $details = json_decode($item->details_informations);
+                                            @endphp
+                                            <label>@lang('NETWORK')</label>
+                                            <input type="text" name="NETWORK" placeholder="@lang('Network')"
+                                                class="form--control" value="{{ $details->NETWORK ?? null }}">
+                                        </div>
+                                        <div class="form-group col-8">
+                                            <label>@lang('Display')</label>
+                                            <input type="text" name="Display" placeholder="@lang('Display')"
+                                                value="{{ $details->Display ?? null }}" class="form--control">
+                                        </div>
+                                        <div class="form-group col-8">
+                                            <label>@lang('Memory')</label>
+                                            <input type="text" name="Memory" placeholder="@lang('MEMORY')"
+                                                value="{{ $details->Memory ?? null }}" class="form--control">
+                                        </div>
+                                        <div class="form-group col-8">
+                                            <label>@lang('Battery')</label>
+                                            <input type="text" name="Battery" placeholder="@lang('BATTERY')"
+                                                value="{{ $details->Battery ?? null }}" class="form--control">
+                                        </div>
+                                    @endif
+                                    @if ($item->category->category_type == 'electronics')
+                                        Show other form for electronics
+                                    @endif
+                                    @if ($item->category->category_type == 'sports')
+                                        Show other form for sports
+                                    @endif
+                                    @if ($item->category->category_type == 'vehicles')
+                                        <div class="form-group col-8">
+                                            <label>Model<span class="text-danger">*</span></label>
+                                            <input type="text" name="model" class="form--control"
+                                                placeholder="Model" value="{{ old('model', $item->model) }}">
+                                        </div>
+                                        <div class="form-group col-8">
+                                            <label>Year</label>
+                                            <input type="text" name="year_of_manufacture" class="form--control"
+                                                placeholder="Year of Manufacture"
+                                                value="{{ old('year_of_manufacture', $item->year_of_manufacture) }}">
+                                        </div>
+
+                                        <div class="form-group col-8">
+                                            <label>Condition </label>
+                                            <select class="form--control" name="condition">
+                                                <option value="">Select</option>
+                                                <option value="new" @if ($item->condition == 'new') selected @endif>
+                                                    @lang('New')</option>
+                                                <option value="used" @if ($item->condition == 'used') selected @endif>
+                                                    @lang('Used')</option>
+                                                <option value="like new"
+                                                    @if ($item->condition == 'like new') selected @endif>@lang('Like new')
+                                                </option>
+                                                <option value="reconditon"
+                                                    @if ($item->condition == 'reconditon') selected @endif>@lang('Reconditioned')
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-8">
+                                            <label>Authenticity</label>
+                                            <select class="form--control" name="authenticity">
+                                                <option value="">Select</option>
+                                                <option value="original"
+                                                    @if ($item->authenticity == 'original') selected @endif>Original</option>
+                                                <option value="refubrished"
+                                                    @if ($item->authenticity == 'refubrished') selected @endif>Refubrished</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-8">
+                                            <label>Body Type</label>
+                                            <select class="form--control" name="body_type">
+                                                <option value="">Select</option>
+                                                <option value="saloon"@if ($item->body_type == 'saloon') selected @endif>
+                                                    Saloon</option>
+                                                <option
+                                                    value="hatchback"@if ($item->body_type == 'hatchback') selected @endif>
+                                                    Hatchback</option>
+                                                <option value="estate"@if ($item->body_type == 'estate') selected @endif>
+                                                    Estate</option>
+                                                <option
+                                                    value="convertible"@if ($item->body_type == 'convertible') selected @endif>
+                                                    Convertible</option>
+                                                <option
+                                                    value="coupe/Sports"@if ($item->body_type == 'coupe/Sports') selected @endif>
+                                                    Coupe/Sports</option>
+                                                <option value="suv4x4"@if ($item->body_type == 'suv4x4') selected @endif>
+                                                    SUV/4X4</option>
+                                                <option value="mpv"@if ($item->body_type == 'mpv') selected @endif>
+                                                    MPV</option>
+                                                <option value="pick-up"@if ($item->body_type == 'pick-up') selected @endif>
+                                                    pick-up</option>
+                                                <option
+                                                    value="roadster"@if ($item->body_type == 'roadster') selected @endif>
+                                                    roadster</option>
+                                                <option value="sedan"@if ($item->body_type == 'sedan') selected @endif>
+                                                    Sedan</option>
+                                                <option value="suv"@if ($item->body_type == 'suv') selected @endif>
+                                                    SUV</option>
+                                                <option
+                                                    value="suv-cabriolet"@if ($item->body_type == 'suv-cabriolet') selected @endif>
+                                                    SUV Cabriolet</option>
+                                                <option value="other"@if ($item->body_type == 'other') selected @endif>
+                                                    Other</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-8">
+                                            <label>Edition (Optional)</label>
+                                            <input type="text" name="edition" class="form--control"
+                                                placeholder="Edition" value="{{ old('edition', $item->edition )}}">
+                                        </div>
+                                        <div class="form-group col-8">
+                                            <label>Number of seats</label>
+                                            <input type="text" value="1" name="seat_qty" min="1"
+                                                placeholder="Number of seat" class="form--control" autocomplete="off">
+                                        </div>
+                                        
+                                    @endif
+                                    @if ($item->category->category_type == 'home_and_garden')
+                                        Show other form for home_and_garden
+                                    @endif
+                                    @if ($item->category->category_type == 'fashion_beauty')
+                                        Show other form for fashion_beauty
+                                    @endif
+                                    @if ($item->category->category_type == 'baby_and_child')
+                                        Show other form for baby_and_child
+                                    @endif
+                                    @if ($item->category->category_type == 'soft_products')
+                                        Show other form for soft_products
+                                    @endif
+                                    @if ($item->category->category_type == 'pet')
+                                        Show other form for pet
+                                    @endif
+                                    @if ($item->category->category_type == 'general')
+                                        Show other form for general
+                                    @endif
+
                                 </div>
 
                                 <div class="sell-add-info-price-wrapper">
@@ -204,10 +335,7 @@
                                                 <label>First name</label>
                                                 <input type="text" name="first_name" class="form--control"
                                                     value="{{ Auth::guard('advertiser')->user()->first_name }}">
-                                                <div class="text-limit-area">
-                                                    <span>text limite</span>
-                                                    <span>5 / 30</span>
-                                                </div>
+
                                             </div>
                                             @if (isset(Auth::guard('advertiser')->user()->last_name))
                                                 <div class="form-group">
@@ -255,9 +383,11 @@
                                                             <label>Province <span class="text--danger">*</span></label>
                                                             <select class="form--control">
                                                                 <option value=""></option>
-                                                                <option value="Demo-1">Demo-1</option>
-                                                                <option value="Demo-2">Demo-2</option>
-
+                                                                @foreach ($allCity as $city)
+                                                                    <option value="{{ $city['id'] }}"
+                                                                        @if (isset($item) && $item->city_id == $city['id']) selected @endif>
+                                                                        {{ $city['title'] }}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
