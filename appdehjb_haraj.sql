@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 23, 2023 at 05:18 PM
+-- Generation Time: Jan 24, 2023 at 05:30 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.0.22
 
@@ -100,12 +100,15 @@ CREATE TABLE `advertisements` (
 
 INSERT INTO `advertisements` (`id`, `advertiser_id`, `category_id`, `type_id`, `city_id`, `sub_category_id`, `title`, `slug`, `price`, `image`, `description`, `condition`, `authenticity`, `brand_id`, `model`, `color`, `edition`, `year_of_manufacture`, `features`, `details_informations`, `status`, `is_price_negotiable`, `created_at`, `updated_at`, `feature_expire_date`, `view_count`, `location_embeded_map`, `fuel_type`, `is_featured`, `latitude`, `longitude`, `ad_type_id`, `meta_tags`, `meta_title`) VALUES
 (121, 4, 21, 0, 1, 20, 'test', 'test', '500.00', '1674037054.webp', 'test', 'used', 'Refurbished', 1, 'teset', 'light-blue', '7th', '2017', NULL, NULL, 1, 0, '2023-01-18 04:17:35', '2023-01-20 03:11:05', NULL, 6, 'test', NULL, 0, '23.85624178300702', '90.3524957914746', NULL, 'test', 'test'),
-(122, 1, 22, 0, 1, 25, 'Oppo mobile mobile data', 'oppo-mobile-mobile-data', '12500.00', '1674384459.png', 'Oppo mobile mobile data', 'new', 'Original', 1, NULL, 'dark-grey', '8th', NULL, NULL, '{\"NETWORK\":\"5G\",\"Display\":\"Amuled\",\"Memory\":\"5000\",\"Battery\":\"5000\"}', 1, 0, '2023-01-22 04:47:39', '2023-01-22 05:14:10', '2023-01-25 04:47:39', 3, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m3!3e6!4m0!4m0!5e0!3m2!1sen!2sbd!4v1674382881583!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 1, NULL, NULL, 1, 'Tag1', 'Meta'),
-(123, 1, 26, 0, 1, 27, 'Football For Sale', 'football-for-sale', '20000.00', '1674389112.png', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'like-new', NULL, 4, NULL, NULL, NULL, NULL, NULL, '{\"sports_type\":\"Football\"}', 1, 0, '2023-01-22 06:05:12', '2023-01-22 06:05:50', '2023-01-29 06:05:12', 19, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674388034910!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 1, NULL, NULL, 5, 'Tag1', 'Meta title'),
-(124, 1, 29, 0, 1, 30, '7 A21 2012', '7-a21-2012', '3300000.00', '1674390486.png', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'new', 'original', 7, 'A21', 'dark-grey', '5th', NULL, NULL, '{\"transmission\":\"automatic\",\"body_type\":\"hatchback\",\"edition\":\"5th\",\"year_of_manufacture\":\"2012\",\"run_km\":\"25000\",\"engine_cc\":\"2500\",\"year_decade\":\"2014-2024\",\"gear\":\"direct drive\",\"traction\":\"4 wheel drive\"}', 1, 0, '2023-01-22 06:28:06', '2023-01-22 06:28:32', '2023-01-27 06:28:06', 10, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674388034910!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '[\"diesel\",\"petrol\",\"hybrid\",\"electric\"]', 1, '23.856353487742133', '90.35248541082501', 2, 'Tag', 'Meta'),
-(125, 1, 31, 0, 1, 32, 'Vaccum', 'vaccum', '27000.00', '1674391617.png', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'like new', NULL, 9, 'Non brand', 'other', NULL, NULL, NULL, NULL, 1, 0, '2023-01-22 06:46:58', '2023-01-22 06:48:42', '2023-01-29 06:46:58', 0, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674388034910!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 1, '23.85629294698326', '90.3524572123766', 5, 'Tag1', 'Meta'),
-(126, 1, 29, 0, 1, 33, '10 A60 2021', '10-a60-2021', '159998.00', '1674392536.jpg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'like new', 'original', 10, 'A60', 'black', NULL, NULL, NULL, '{\"transmission\":null,\"body_type\":\"other\",\"edition\":null,\"year_of_manufacture\":\"2021\",\"run_km\":\"5000\",\"engine_cc\":\"125\",\"year_decade\":\"2003-2013\",\"gear\":\"automatic\",\"traction\":\"other\"}', 1, 0, '2023-01-22 07:02:16', '2023-01-22 07:02:16', NULL, 67, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14594.303597560629!2d90.36368289999999!3d23.869188999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674388034910!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '[\"diesel\",\"petrol\",\"hybrid\"]', 0, '23.85626236301955', '90.35246953498239', NULL, 'Tag', 'Meta'),
-(127, 3, 29, 0, 1, 30, '10 A20 2021', '10-a20-2021', '200000.00', '1674448179.jpg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.', 'new', 'original', 10, 'A20', 'light-grey', NULL, NULL, NULL, '{\"transmission\":\"automatic\",\"body_type\":\"estate\",\"edition\":null,\"year_of_manufacture\":\"2021\",\"run_km\":\"5000\",\"engine_cc\":\"125\",\"year_decade\":\"2003-2013\",\"gear\":\"straight\",\"traction\":\"other\"}', 1, 0, '2023-01-22 22:29:40', '2023-01-22 22:29:40', NULL, 17, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7297.116964440375!2d90.36361852698361!3d23.869807105185313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674448069114!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '[\"diesel\",\"petrol\"]', 0, '23.856280696930313', '90.35244215143972', NULL, 'Tag', 'Meta');
+(127, 3, 29, 0, 1, 30, '10 A20 2021', '10-a20-2021', '200000.00', '1674448179.jpg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.', 'new', 'original', 10, 'A20', 'light-grey', NULL, NULL, NULL, '{\"transmission\":\"automatic\",\"body_type\":\"estate\",\"edition\":null,\"year_of_manufacture\":\"2021\",\"run_km\":\"5000\",\"engine_cc\":\"125\",\"year_decade\":\"2003-2013\",\"gear\":\"straight\",\"traction\":\"other\"}', 1, 0, '2023-01-22 22:29:40', '2023-01-22 22:29:40', NULL, 19, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7297.116964440375!2d90.36361852698361!3d23.869807105185313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674448069114!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '[\"diesel\",\"petrol\"]', 0, '23.856280696930313', '90.35244215143972', NULL, 'Tag', 'Meta'),
+(128, 3, 34, 0, 1, 35, 'Baby Powder', 'baby-powder', '2000.00', '1674541311.jpg', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'new', NULL, 11, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2023-01-24 00:21:52', '2023-01-24 00:21:52', NULL, 0, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14596.896203703413!2d90.34660635!3d23.846176500000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674540555570!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 0, '23.856302874870497', '90.35241249431787', NULL, 'Meta', 'Meta'),
+(129, 3, 36, 0, 1, 37, 'fashion ladies Cotton short sleeve casual girl\'s print new t-shirt', 'fashion-ladies-cotton-short-sleeve-casual-girls-print-new-t-shirt', '2498.00', '1674542154.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'new', NULL, 12, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2023-01-24 00:35:55', '2023-01-24 00:35:55', NULL, 9, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14596.896203703413!2d90.34660635!3d23.846176500000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674540555570!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 0, '23.85629256969348', '90.35240586415439', NULL, 'Tag', 'Meta title'),
+(131, 3, 38, 0, 1, NULL, 'Books for sale', 'books-for-sale', '1250.00', '1674545335.jpeg', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.', 'new', NULL, 13, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2023-01-24 01:28:56', '2023-01-24 01:28:56', NULL, 10, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14596.896203703413!2d90.34660635!3d23.846176500000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674540555570!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 0, '23.856325346746488', '90.35242947181746', NULL, 'Meta tag', 'Bookst for sale'),
+(132, 3, 38, 0, 1, 39, 'Big Bang theory for sale', 'big-bang-theory-for-sale', '3000.00', '1674546403.jpeg', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.', 'like new', NULL, 13, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2023-01-24 01:46:43', '2023-01-24 01:46:43', NULL, 0, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14596.896203703413!2d90.34660635!3d23.846176500000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674540555570!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 0, '23.85629080365156', '90.35244030302893', NULL, 'Tag', 'Meta'),
+(133, 3, 40, 0, 1, NULL, 'General Product', 'general-product', '1000.00', '1674547260.jpg', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.', 'used', NULL, 14, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2023-01-24 02:01:00', '2023-01-24 02:01:00', NULL, 18, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14596.896203703413!2d90.34660635!3d23.846176500000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674540555570!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 0, '23.856260163132657', '90.35246544659897', NULL, 'Tag', 'Meta'),
+(134, 3, 22, 0, 1, 25, 'New one plus mobile for sale', 'new-one-plus-mobile-for-sale', '25000.00', '1674547649.jpg', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.', 'new', 'Original', 2, NULL, 'light-blue', '10th', NULL, NULL, '{\"NETWORK\":\"5GB\",\"Display\":\"Amuled\",\"Memory\":\"128\",\"Battery\":\"5000\"}', 1, 0, '2023-01-24 02:07:29', '2023-01-24 02:07:29', NULL, 2, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14596.896203703413!2d90.34660635!3d23.846176500000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674540555570!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 0, '23.856300827300565', '90.35241623303662', NULL, 'Tag', 'meta'),
+(135, 1, 29, 0, 1, 30, '10 AD20 2015', '10-ad20-2015', '125000.00', '1674560347.jpg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 'new', 'refubrished', 10, 'AD20', 'light-grey', '8th', '2015\r\n', NULL, '{\"transmission\":\"manual\",\"body_type\":\"hatchback\",\"edition\":\"8th\",\"year_of_manufacture\":\"2015\",\"run_km\":\"25000\",\"engine_cc\":\"125\",\"year_decade\":\"1992-2002\",\"gear\":\"direct drive\",\"traction\":\"4 wheel drive\"}', 1, 0, '2023-01-24 05:39:07', '2023-01-24 05:39:07', NULL, 2, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14596.896203703413!2d90.34660635!3d23.846176500000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674560057165!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '[\"diesel\",\"cng\"]', 0, '23.856288930117383', '90.35245644004884', NULL, 'Tag one', 'Meta title'),
+(145, 1, 40, 0, 1, NULL, 'Non child category data', 'non-child-category-data', '2600.00', '1674569848.jpeg', 'Generate Lorem Ipsum placeholder text for use in your graphic, print and web layouts, and discover plugins for your favorite writing, design and blogging tools. Explore the origins, history and meaning of the famous passage, and learn how', 'new', NULL, 14, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2023-01-24 08:17:28', '2023-01-24 08:32:42', NULL, 0, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14596.896203703413!2d90.34660635!3d23.846176500000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1674567581643!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 0, '23.856284536484466', '90.35246238274071', NULL, 'Meta tag', 'Meta title');
 
 -- --------------------------------------------------------
 
@@ -127,9 +130,8 @@ CREATE TABLE `advertisement_advertiser` (
 
 INSERT INTO `advertisement_advertiser` (`id`, `advertisement_id`, `advertiser_id`, `created_at`, `updated_at`) VALUES
 (77, 121, 3, '2023-01-18 11:45:37', '2023-01-18 11:45:37'),
-(78, 124, 1, '2023-01-23 06:24:05', '2023-01-23 06:24:05'),
 (79, 121, 1, '2023-01-23 06:29:51', '2023-01-23 06:29:51'),
-(81, 124, 2, '2023-01-23 07:02:40', '2023-01-23 07:02:40');
+(82, 129, 3, '2023-01-24 00:41:14', '2023-01-24 00:41:14');
 
 -- --------------------------------------------------------
 
@@ -159,7 +161,13 @@ INSERT INTO `advertisement_interest_advertisement` (`id`, `interest_advertisemen
 (17, 124, 3, '127.0.0.1', '2023-01-23 05:35:18', '2023-01-23 05:35:18'),
 (18, 123, 1, '::1', '2023-01-23 11:05:17', '2023-01-23 11:05:17'),
 (19, 127, 1, '::1', '2023-01-23 13:11:37', '2023-01-23 13:11:37'),
-(20, 121, 1, '::1', '2023-01-23 13:13:28', '2023-01-23 13:13:28');
+(20, 121, 1, '::1', '2023-01-23 13:13:28', '2023-01-23 13:13:28'),
+(21, 129, 3, '127.0.0.1', '2023-01-24 06:36:23', '2023-01-24 06:36:23'),
+(22, 130, 3, '127.0.0.1', '2023-01-24 07:29:14', '2023-01-24 07:29:14'),
+(23, 125, 3, '127.0.0.1', '2023-01-24 07:36:59', '2023-01-24 07:36:59'),
+(24, 131, 3, '127.0.0.1', '2023-01-24 08:54:26', '2023-01-24 08:54:26'),
+(25, 134, 1, '::1', '2023-01-24 15:10:44', '2023-01-24 15:10:44'),
+(26, 135, 1, '::1', '2023-01-24 16:24:33', '2023-01-24 16:24:33');
 
 -- --------------------------------------------------------
 
@@ -198,9 +206,9 @@ CREATE TABLE `advertisers` (
 --
 
 INSERT INTO `advertisers` (`id`, `first_name`, `last_name`, `mobile_no`, `designation`, `email`, `username`, `password`, `provider_id`, `city_id`, `registration_code`, `about`, `status`, `show_mobile_no`, `last_seen`, `deleted_at`, `created_at`, `updated_at`, `remember_token`, `image`, `avatar`, `chat_status`, `chat_delete_by`) VALUES
-(1, 'Muhammad', 'Hannan', '01717000000', NULL, 'mdhannan.info@gmail.com', 'mdhannan.info@gmail.com', '$2y$10$cdACBs/iFbgmXKli/K5PpusSRxcf8kDZLtIm7tcXGgCtsPsAOJ0MC', NULL, 1, 882630, 'Laravel Developer', 1, 1, '2023-01-23 17:18:17', NULL, '2022-09-13 18:00:00', '2023-01-23 11:18:17', NULL, '2023-01-22-1674392134.png', NULL, 1, NULL),
-(2, 'Tanvir', 'Ahmed', '01718191912', NULL, 'ahannan.info@gmail.com', 'ahannan.info@gmail.com', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 519853, NULL, 1, 1, '2023-01-23 13:41:34', NULL, '2022-10-08 04:14:14', '2023-01-23 07:41:34', NULL, '2023-01-23-1674452316.png', NULL, 1, NULL),
-(3, 'John', 'Doe', '123456789', NULL, 'testuser@gmail.com', 'testuser', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 0, 'test', 1, 1, '2023-01-23 05:36:57', NULL, '2023-01-14 13:15:16', '2023-01-22 23:36:57', NULL, NULL, NULL, 0, NULL),
+(1, 'Muhammad', 'Hannan', '01717000000', NULL, 'mdhannan.info@gmail.com', 'mdhannan.info@gmail.com', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 882630, 'Laravel Developer', 1, 1, '2023-01-24 17:13:10', NULL, '2022-09-13 18:00:00', '2023-01-24 11:13:10', NULL, '2023-01-22-1674392134.png', NULL, 1, NULL),
+(2, 'Tanvir', 'Ahmed', '01718191912', NULL, 'ahannan.info@gmail.com', 'ahannan.info@gmail.com', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 519853, NULL, 1, 1, '2023-01-24 05:56:26', NULL, '2022-10-08 04:14:14', '2023-01-23 23:56:26', NULL, '2023-01-23-1674452316.png', NULL, 1, NULL),
+(3, 'John', 'Doe', '123456789', NULL, 'testuser@gmail.com', 'testuser', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 0, 'test', 1, 1, '2023-01-24 08:07:31', NULL, '2023-01-14 13:15:16', '2023-01-24 02:07:31', NULL, NULL, NULL, 0, NULL),
 (4, 'FR', 'Ranad', '123456789', NULL, 'frranad1@gmail.com', 'frranad1-9378', '$2y$10$Vw6DgPqi9cfi46HIPL6ZwOq12A1R4zJTlPMo.DnbwVsGq8sA.yrVa', NULL, 1, 1247185014, 'Test', 1, 1, '2023-01-18 13:02:00', NULL, '2023-01-11 06:39:23', '2023-01-18 07:02:00', NULL, '2023-01-12-1673503312.png', NULL, 0, NULL);
 
 -- --------------------------------------------------------
@@ -357,7 +365,22 @@ INSERT INTO `ad_images` (`id`, `advertisement_id`, `images`, `created_at`, `upda
 (134, 126, '167439253621324.jpg', '2023-01-22 07:02:17', '2023-01-22 07:02:17'),
 (135, 126, '167439253787077.png', '2023-01-22 07:02:19', '2023-01-22 07:02:19'),
 (136, 127, '167444818051136.jpg', '2023-01-22 22:29:41', '2023-01-22 22:29:41'),
-(137, 127, '167444818154588.png', '2023-01-22 22:29:43', '2023-01-22 22:29:43');
+(137, 127, '167444818154588.png', '2023-01-22 22:29:43', '2023-01-22 22:29:43'),
+(138, 128, '167454131211977.jpg', '2023-01-24 00:21:53', '2023-01-24 00:21:53'),
+(139, 128, '167454131329157.jpg', '2023-01-24 00:21:54', '2023-01-24 00:21:54'),
+(140, 129, '167454215591874.jpg', '2023-01-24 00:35:56', '2023-01-24 00:35:56'),
+(141, 130, '167454525692134.jpeg', '2023-01-24 01:27:38', '2023-01-24 01:27:38'),
+(142, 130, '167454525870538.jpg', '2023-01-24 01:27:39', '2023-01-24 01:27:39'),
+(143, 131, '167454533643476.jpeg', '2023-01-24 01:28:57', '2023-01-24 01:28:57'),
+(144, 131, '167454533739650.jpg', '2023-01-24 01:28:58', '2023-01-24 01:28:58'),
+(145, 132, '167454640335975.jpeg', '2023-01-24 01:46:44', '2023-01-24 01:46:44'),
+(146, 132, '167454640458616.jpg', '2023-01-24 01:46:45', '2023-01-24 01:46:45'),
+(147, 133, '167454726048463.jpg', '2023-01-24 02:01:02', '2023-01-24 02:01:02'),
+(148, 134, '167454764997704.jpg', '2023-01-24 02:07:30', '2023-01-24 02:07:30'),
+(149, 134, '167454765097613.jpg', '2023-01-24 02:07:31', '2023-01-24 02:07:31'),
+(150, 136, '167456067966366.jpg', '2023-01-24 05:44:41', '2023-01-24 05:44:41'),
+(151, 136, '167456068130635.jpg', '2023-01-24 05:44:44', '2023-01-24 05:44:44'),
+(152, 137, '167456089947978.jpg', '2023-01-24 05:48:20', '2023-01-24 05:48:20');
 
 -- --------------------------------------------------------
 
@@ -509,7 +532,11 @@ INSERT INTO `brands` (`id`, `title`, `category_id`, `slug`, `status`, `created_a
 (7, 'Tesla Brand', 29, 'tesla-brand', 1, '2023-01-22 06:22:58', '2023-01-22 06:22:58'),
 (8, 'Samsung', 31, 'samsung', 1, '2023-01-22 06:40:37', '2023-01-22 06:40:37'),
 (9, 'Non brand', 31, 'non-brand', 1, '2023-01-22 06:41:35', '2023-01-22 06:42:10'),
-(10, 'TVS', 29, 'tvs', 1, '2023-01-22 06:58:09', '2023-01-22 06:58:09');
+(10, 'TVS', 29, 'tvs', 1, '2023-01-22 06:58:09', '2023-01-22 06:58:09'),
+(11, 'Baby and Child Brand 1', 34, 'baby-and-child-brand-1', 1, '2023-01-24 00:08:01', '2023-01-24 00:08:01'),
+(12, 'Non Brand', 36, 'non-brand', 1, '2023-01-24 00:34:16', '2023-01-24 00:34:16'),
+(13, 'Non Brand', 38, 'non-brand', 1, '2023-01-24 00:44:47', '2023-01-24 00:44:47'),
+(14, 'Non Brand', 40, 'non-brand', 1, '2023-01-24 01:50:23', '2023-01-24 01:50:23');
 
 -- --------------------------------------------------------
 
@@ -549,7 +576,14 @@ INSERT INTO `categories` (`id`, `parent_id`, `title`, `slug`, `icon`, `bg_color`
 (30, 29, 'Car', 'car', '<i class=\"fas fa-mobile-alt\"></i>', '#490909', 'vehicles', '1674389467.png', '3', 1, '2023-01-22 06:11:07', '2023-01-22 06:11:07'),
 (31, 0, 'Home and Garden', 'home-and-garden', '<i class=\"fas fa-mobile-alt\"></i>', '#28d77d', 'home_and_garden', '1674391140.jpg', NULL, 1, '2023-01-22 06:39:03', '2023-01-22 06:39:03'),
 (32, 31, 'Vacuums', 'vacuums', '<i class=\"fas fa-mobile-alt\"></i>', '#3caa3e', 'home_and_garden', '1674391421.png', NULL, 1, '2023-01-22 06:43:42', '2023-01-22 06:44:38'),
-(33, 29, 'Bike', 'bike', '<i class=\"fas fa-mobile-alt\"></i>', '#3abfd9', 'vehicles', '1674392242.png', '2', 1, '2023-01-22 06:57:23', '2023-01-22 06:57:23');
+(33, 29, 'Bike', 'bike', '<i class=\"fas fa-mobile-alt\"></i>', '#3abfd9', 'vehicles', '1674392242.png', '2', 1, '2023-01-22 06:57:23', '2023-01-22 06:57:23'),
+(34, 0, 'Baby and Child', 'baby-and-child', '<i class=\"las la-exclamation-circle\"></i>', '#008000', 'baby_and_child', '1674540397.jpg', NULL, 1, '2023-01-24 00:06:37', '2023-01-24 00:06:37'),
+(35, 34, 'Bay Item Product', 'bay-item-product', '<i class=\"las la-exclamation-circle\"></i>', '#008040', 'baby_and_child', '1674540459.jpg', NULL, 1, '2023-01-24 00:07:39', '2023-01-24 00:07:39'),
+(36, 0, 'Fashion and Beauty', 'fashion-and-beauty', '<i class=\"las la-exclamation-circle\"></i>', '#408080', 'fashion_beauty', '1674541698.jpg', NULL, 1, '2023-01-24 00:28:18', '2023-01-24 00:28:18'),
+(37, 36, 'Fashion Product', 'fashion-product', '<i class=\"las la-exclamation-circle\"></i>', '#000000', 'fashion_beauty', '1674541793.jpg', NULL, 1, '2023-01-24 00:29:53', '2023-01-24 00:29:53'),
+(38, 0, 'Movies, Books and Music', 'movies-books-and-music', '<i class=\"las la-exclamation-circle\"></i>', '#ff8000', 'soft_products', '1674542669.jpeg', NULL, 1, '2023-01-24 00:44:29', '2023-01-24 00:44:29'),
+(39, 38, 'Books', 'books', '<i class=\"las la-exclamation-circle\"></i>', '#ff8000', 'soft_products', '1674546263.jpeg', NULL, 1, '2023-01-24 01:44:24', '2023-01-24 01:44:24'),
+(40, 0, 'Others', 'others', '<i class=\"las la-expand-arrows-alt\"></i>', '#008000', 'general', '1674546581.png', NULL, 1, '2023-01-24 01:49:41', '2023-01-24 01:49:41');
 
 -- --------------------------------------------------------
 
@@ -1964,19 +1998,19 @@ ALTER TABLE `admin_users`
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
 -- AUTO_INCREMENT for table `advertisement_advertiser`
 --
 ALTER TABLE `advertisement_advertiser`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `advertisement_interest_advertisement`
 --
 ALTER TABLE `advertisement_interest_advertisement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `advertisers`
@@ -1994,7 +2028,7 @@ ALTER TABLE `ad_complains`
 -- AUTO_INCREMENT for table `ad_images`
 --
 ALTER TABLE `ad_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
 -- AUTO_INCREMENT for table `ad_types`
@@ -2024,13 +2058,13 @@ ALTER TABLE `banners`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `category_items`
