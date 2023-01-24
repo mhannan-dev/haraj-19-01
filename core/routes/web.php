@@ -193,6 +193,9 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
             Route::get('chat', [DashboardController::class, 'chat'])->name('chat');
             Route::delete('chat/delete/all', [DashboardController::class, 'chatDeleteAll'])->name('all.chat.delete');
             Route::post('make/sold', [DashboardController::class, 'makeSold'])->name('makeSold');
+
+            //delete all chat
+            Route::get('delete-all-chat', [DashboardController::class, 'deleteAllChat']);
         });
     });
 

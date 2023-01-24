@@ -130,7 +130,8 @@
                                                 </a>
                                             </div>
 
-                                            <button class="opsition-item" data-aut-id="btnShare">
+                                            <button class="opsition-item" data-bs-toggle="modal"
+                                                data-bs-target="#shareModal">
                                                 <svg width="24" height="24" viewBox="0 0 24 24"
                                                     class="sc-AxjAm dJbVhz">
                                                     <path
@@ -474,6 +475,129 @@
             </div>
         </div>
     </div>
+    {{-- Share Modal --}}
+    <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="rating_modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        @lang('Share this with your friends')
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-4 mt-2">
+                            <button class="sharer social_btn" data-sharer="twitter" data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                                data-url="{{ URL::current() }}">
+                                <i class="lab la-twitter"></i>
+                                Twitter
+                            </button>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <button class="sharer social_btn" data-sharer="facebook"
+                                data-url="{{ URL::current() }}">
+                                <i class="lab la-facebook-square"></i>
+                                Facebook
+                            </button>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <button class="sharer social_btn" data-sharer="linkedin"
+                                data-url="{{ URL::current() }}">
+                                <i class="lab la-linkedin-in"></i>
+                                Linkedin
+                            </button>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <button class="sharer social_btn" data-sharer="googleplus"
+                                data-url="{{ URL::current() }}">
+                                <i class="lab la-google-plus"></i>
+                                Google Plus
+                            </button>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <button class="sharer social_btn" data-sharer="email" data-title=""
+                                data-to="" data-subject="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                                data-url="{{ URL::current() }}">
+                                <i class="las la-envelope"></i>
+                                Email
+                            </button>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <button class="sharer social_btn" data-sharer="whatsapp" data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                                data-url="{{ URL::current() }}">
+                                <i class="lab la-whatsapp"></i>
+                                WhatsApp
+                            </button>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <button class="sharer social_btn" data-sharer="telegram" data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                                data-url="{{ URL::current() }}">
+                                <i class="lab la-telegram"></i>
+                                Telegram
+                            </button>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <button class="sharer social_btn" data-sharer="viber" data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                                data-url="{{ URL::current() }}">
+                                <i class="lab la-viber"></i>
+                                Viber
+                            </button>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <button class="sharer social_btn" data-sharer="pinterest"
+                                data-url="{{ URL::current() }}">
+                                <i class="lab la-pinterest"></i>
+                                Pinterest
+                            </button>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <button class="sharer social_btn" data-caption="{{ 'Hey, Click on this URL : ' . URL::current() }}" data-sharer="tumblr"
+                                data-tags="html,javascript,css,php,ios,android" data-title="Merida Design">
+                                <i class="lab la-tumblr"></i>
+                                Tumblr
+                            </button>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <button class="sharer social_btn" data-sharer="hackernews" data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                                data-url="{{ URL::current() }}">
+                                <i class="lab la-hacker-news"></i>
+                                Hacker News
+                            </button>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <button class="sharer social_btn" data-sharer="reddit"
+                                data-url="{{ URL::current() }}">
+                                <i class="lab la-reddit"></i>
+                                Reddit
+                            </button>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <button class="sharer social_btn" data-caption="{{ 'Hey, Click on this URL : ' . URL::current() }}" data-sharer="vk"
+                                data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}" data-url="{{ URL::current() }}">
+                                <i class="lab la-vk"></i>
+                                VK
+                            </button>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <button class="sharer social_btn" data-sharer="buffer" data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                                data-twitter-url="meridadesign" data-url="{{ URL::current() }}">
+                                <i class="lab la-buffer"></i>
+                                Buffer
+                            </button>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <button class="sharer social_btn" data-sharer="xing" data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                                data-url="{{ URL::current() }}">
+                                <i class="lab la-xing"></i>
+                                Xing
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {{-- End Modal --}}
     {{-- Rating Modal --}}
     <div class="modal fade" id="rating_modal" tabindex="-1" aria-labelledby="rating_modalLabel" aria-hidden="true">
@@ -508,6 +632,9 @@
     </script>
 
     <script src="//cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/locales/LANG.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sharer.js/0.2.6/sharer.min.js"
+        integrity="sha512-xk5eEidlsrX83GN/H68Wa+kXe8dNImrtotgfcHFt0koTddEjVeUd7Yx0bCKOn2xx7YnIDJXHL6D12GnQxNpPQg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
         var swiper = new Swiper(".item-small-slider", {
@@ -576,4 +703,5 @@
             $('.write_message').val(sms);
         });
     </script>
+
 @endsection

@@ -1044,14 +1044,11 @@ class HomeController extends Controller
 
     public function searchMessage(Request $request)
     {
-        $user_id = auth()->user()->id;
         $data = $request->all();
+        $user_id = auth()->user()->id;
+        $message_user = MessageUser::where('from', $user_id)->where('is_deleted_from', 0)->orWhere('to', $user_id)->where('is_deleted_to', 0)->first();
         $messages = Message::with('user')->where('from', $user_id)->where('to', $user_id)->orWhere('message', 'like', '%' . $data['search_msg'] . '%')->get();
-        $messages = json_decode(json_encode($messages), true);
-        return  response()->json(['messages' => $messages]);
-    }
-    public function deleteConversation(Request $request){
-        dd('Delete All Chat');
+        // dd($messages);
+        return view('frontend.pages.user.msg_search', compact('messages', 'message_user'));
     }
 }
-

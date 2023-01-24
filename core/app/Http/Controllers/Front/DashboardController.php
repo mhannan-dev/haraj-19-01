@@ -143,7 +143,7 @@ class DashboardController extends Controller
         $importent_users = MessageUser::where('from', Auth::guard('advertiser')->user()->id)->orWhere('to', Auth::guard('advertiser')->user()->id)
             ->where('is_deleted_from', 0)->where('is_deleted_to', 0)->where('is_important_to', 1)->where('is_important_from', 0)
             ->orderBy('date', 'desc')->get();
-        
+
         return view('frontend.pages.user.chat_page', compact('message_users', 'importent_users'));
     }
     public function chatDeleteAll(Request $request)
