@@ -226,11 +226,7 @@
                                                             {{ $user->first_name ? $user->first_name : '' }}
                                                             {{ $user->last_name ? $user->last_name : '' }}
                                                         </h4>
-                                                        <span class="sub-title">
-                                                            @if ($message_user->is_important_from == 1)
-                                                                <i class="fas fa-star"></i>
-                                                            @endif
-                                                        </span>
+
                                                         @if ($user->isOnline())
                                                             <span class="sub-title text-success">Active Now</span>
                                                         @else
@@ -343,7 +339,6 @@
                                 <div class="tab-pane fade" id="important" role="tabpanel"
                                     aria-labelledby="important-tab">
                                     @foreach ($message_users as $message_user)
-                                        @if ($message_user->is_important_to == 1)
                                             @php
                                                 $my_id = Auth::guard('advertiser')->user()->id;
                                             @endphp
@@ -381,11 +376,7 @@
                                                                 {{ $user->first_name ? $user->first_name : '' }}
                                                                 {{ $user->last_name ? $user->last_name : '' }}
                                                             </h4>
-                                                            <span class="sub-title">
-                                                                @if ($message_user->is_important_from == 1)
-                                                                    <i class="fas fa-star"></i>
-                                                                @endif
-                                                            </span>
+                                                            
                                                             @if ($user->isOnline())
                                                                 <span class="sub-title text-success">Active Now</span>
                                                             @else
@@ -485,11 +476,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                        @else
-                                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                                <p class="nav-link">@lang('Not found')</p>
-                                            </div>
-                                        @endif
+
                                     @endforeach
                                 </div>
                             </div>
