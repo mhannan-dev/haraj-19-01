@@ -499,7 +499,6 @@ class HomeController extends Controller
             return view('frontend.pages.public_ads.listing', compact('all_ads', 'categoryDetails', 'page_name'));
         }
     }
-
     //Auto complete
     public function autoSearch(Request $request)
     {
