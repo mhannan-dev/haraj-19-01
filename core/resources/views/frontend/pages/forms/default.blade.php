@@ -164,6 +164,12 @@
                                     @include('frontend.pages.forms.home_and_garden')
                                 @elseif($sub_category->category_type == 'fashion_beauty')
                                     @include('frontend.pages.forms.fashion_beauty')
+                                @elseif($sub_category->category_type == 'baby_and_child')
+                                    @include('frontend.pages.forms._baby_and_child')
+                                @elseif($sub_category->category_type == 'soft_products')
+                                    @include('frontend.pages.forms._soft_products')
+                                {{-- @elseif($sub_category->category_type == 'general')
+                                    @include('frontend.pages.forms._general') --}}
                                 @else
                                     @include('frontend.pages.forms._basic')
                                 @endif

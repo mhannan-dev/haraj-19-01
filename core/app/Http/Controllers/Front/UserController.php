@@ -35,7 +35,7 @@ class UserController extends Controller
             $this->validate($request, $rules, $customMessage);
             $advertiser = Advertiser::where('email', $request->email)->first();
 
-            if(!Hash::check($data['password'], $advertiser->password)){
+            if (!Hash::check($data['password'], $advertiser->password)) {
                 $notify[] = ['error', 'Invalid Password'];
                 return redirect()->back()->withNotify($notify);
             }
@@ -84,11 +84,46 @@ class UserController extends Controller
         return view('frontend.pages.public_ads.user_listing', $data);
     }
 
+    public function resendPassword()
+    {
+        $email = session()->get('forgot_email');
+        $emailCount = Advertiser::where('email', $email)->count();
+        if ($emailCount == 0) {
+            $message = "This email does not exist";
+            return response()->json([
+                'status' => false,
+                'message' => $message
+            ]);
+        } else {
+            //$email = $data['pwd_recovery_email'];
+            try {
+                $random_password = rand(111111, 999999);
+                $new_password = Hash::make($random_password);
+                //Update password
+                Advertiser::where('email', $email)->update(['password' => $new_password]);
+                $user = Advertiser::where('email', $email)->first();
+                sendEmail($user, 'EVER_CODE', [
+                    'code' => $random_password
+                ]);
+                $message = "Check your email again for login with new password";
+                return response()->json([
+                    'status' => true,
+                    'message' => $message
+                ]);
+            } catch (\Exception $th) {
+                return response()->json([
+                    'status' => false,
+                    'message' => $th->getMessage()
+                ]);
+            }
+        }
+    }
 
     public function forgotPassword(Request $request)
     {
         Session::forget('error');
         Session::forget('success');
+        Session::forget('user_email');
         // dd($request->all());
         if ($request->isMethod('post')) {
             $data = $request->all();
@@ -133,6 +168,7 @@ class UserController extends Controller
                     ]);
                 }
             }
+            session()->put('forgot_email', $data['checkingEmail']);
             //Return back to login page
             $message = "Check your email for login with new password";
             return response()->json([

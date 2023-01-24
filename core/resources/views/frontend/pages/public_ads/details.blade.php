@@ -191,17 +191,16 @@
                                                 @lang('Condition'): @if ($details->condition == 'Like New')
                                                     <img src="{{ URL::asset('assets/frontend') }}/images/icon/1.png"
                                                         alt="👍">
-                                                    {{ $details->condition }}
-                                                @else
-                                                    {{ $details->condition }}
                                                 @endif
+                                                {{ $details->condition }}
                                             </h4>
-                                            <p>{!! $details->description !!} </p>
+                                        </div>
+                                        @if (isset($details->location_embeded_map))
                                             <h4 class="title">@lang('Location')</h4>
-                                        </div>
-                                        <div class="map-area">
-                                            {!! $details->location_embeded_map !!}
-                                        </div>
+                                            <div class="map-area">
+                                                {!! $details->location_embeded_map !!}
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -488,106 +487,111 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-4 mt-2">
-                            <button class="sharer social_btn" data-sharer="twitter" data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                            <button class="sharer social_btn" data-sharer="twitter"
+                                data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-url="{{ URL::current() }}">
                                 <i class="lab la-twitter"></i>
                                 Twitter
                             </button>
                         </div>
                         <div class="col-4 mt-2">
-                            <button class="sharer social_btn" data-sharer="facebook"
-                                data-url="{{ URL::current() }}">
+                            <button class="sharer social_btn" data-sharer="facebook" data-url="{{ URL::current() }}">
                                 <i class="lab la-facebook-square"></i>
                                 Facebook
                             </button>
                         </div>
                         <div class="col-4 mt-2">
-                            <button class="sharer social_btn" data-sharer="linkedin"
-                                data-url="{{ URL::current() }}">
+                            <button class="sharer social_btn" data-sharer="linkedin" data-url="{{ URL::current() }}">
                                 <i class="lab la-linkedin-in"></i>
                                 Linkedin
                             </button>
                         </div>
                         <div class="col-4 mt-2">
-                            <button class="sharer social_btn" data-sharer="googleplus"
-                                data-url="{{ URL::current() }}">
+                            <button class="sharer social_btn" data-sharer="googleplus" data-url="{{ URL::current() }}">
                                 <i class="lab la-google-plus"></i>
                                 Google Plus
                             </button>
                         </div>
                         <div class="col-4 mt-2">
-                            <button class="sharer social_btn" data-sharer="email" data-title=""
-                                data-to="" data-subject="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                            <button class="sharer social_btn" data-sharer="email" data-title="" data-to=""
+                                data-subject="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-url="{{ URL::current() }}">
                                 <i class="las la-envelope"></i>
                                 Email
                             </button>
                         </div>
                         <div class="col-4 mt-2">
-                            <button class="sharer social_btn" data-sharer="whatsapp" data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                            <button class="sharer social_btn" data-sharer="whatsapp"
+                                data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-url="{{ URL::current() }}">
                                 <i class="lab la-whatsapp"></i>
                                 WhatsApp
                             </button>
                         </div>
                         <div class="col-4 mt-2">
-                            <button class="sharer social_btn" data-sharer="telegram" data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                            <button class="sharer social_btn" data-sharer="telegram"
+                                data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-url="{{ URL::current() }}">
                                 <i class="lab la-telegram"></i>
                                 Telegram
                             </button>
                         </div>
                         <div class="col-4 mt-2">
-                            <button class="sharer social_btn" data-sharer="viber" data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                            <button class="sharer social_btn" data-sharer="viber"
+                                data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-url="{{ URL::current() }}">
                                 <i class="lab la-viber"></i>
                                 Viber
                             </button>
                         </div>
                         <div class="col-4 mt-2">
-                            <button class="sharer social_btn" data-sharer="pinterest"
-                                data-url="{{ URL::current() }}">
+                            <button class="sharer social_btn" data-sharer="pinterest" data-url="{{ URL::current() }}">
                                 <i class="lab la-pinterest"></i>
                                 Pinterest
                             </button>
                         </div>
                         <div class="col-4 mt-2">
-                            <button class="sharer social_btn" data-caption="{{ 'Hey, Click on this URL : ' . URL::current() }}" data-sharer="tumblr"
+                            <button class="sharer social_btn"
+                                data-caption="{{ 'Hey, Click on this URL : ' . URL::current() }}" data-sharer="tumblr"
                                 data-tags="html,javascript,css,php,ios,android" data-title="Merida Design">
                                 <i class="lab la-tumblr"></i>
                                 Tumblr
                             </button>
                         </div>
                         <div class="col-4 mt-2">
-                            <button class="sharer social_btn" data-sharer="hackernews" data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                            <button class="sharer social_btn" data-sharer="hackernews"
+                                data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-url="{{ URL::current() }}">
                                 <i class="lab la-hacker-news"></i>
                                 Hacker News
                             </button>
                         </div>
                         <div class="col-4 mt-2">
-                            <button class="sharer social_btn" data-sharer="reddit"
-                                data-url="{{ URL::current() }}">
+                            <button class="sharer social_btn" data-sharer="reddit" data-url="{{ URL::current() }}">
                                 <i class="lab la-reddit"></i>
                                 Reddit
                             </button>
                         </div>
                         <div class="col-4 mt-2">
-                            <button class="sharer social_btn" data-caption="{{ 'Hey, Click on this URL : ' . URL::current() }}" data-sharer="vk"
-                                data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}" data-url="{{ URL::current() }}">
+                            <button class="sharer social_btn"
+                                data-caption="{{ 'Hey, Click on this URL : ' . URL::current() }}" data-sharer="vk"
+                                data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                                data-url="{{ URL::current() }}">
                                 <i class="lab la-vk"></i>
                                 VK
                             </button>
                         </div>
                         <div class="col-4 mt-2">
-                            <button class="sharer social_btn" data-sharer="buffer" data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                            <button class="sharer social_btn" data-sharer="buffer"
+                                data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-twitter-url="meridadesign" data-url="{{ URL::current() }}">
                                 <i class="lab la-buffer"></i>
                                 Buffer
                             </button>
                         </div>
                         <div class="col-4 mt-2">
-                            <button class="sharer social_btn" data-sharer="xing" data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
+                            <button class="sharer social_btn" data-sharer="xing"
+                                data-title="{{ 'Buy - "' . $details->title . '" from ' . $general->sitename }}"
                                 data-url="{{ URL::current() }}">
                                 <i class="lab la-xing"></i>
                                 Xing
@@ -703,5 +707,4 @@
             $('.write_message').val(sms);
         });
     </script>
-
 @endsection

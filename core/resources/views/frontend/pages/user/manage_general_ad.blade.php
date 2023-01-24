@@ -16,7 +16,7 @@
                                         <a href="">{{ $category->title ?? null }}</a>
                                     </li>
                                 </ul>
-                                
+
                                 <a href="{{ route('frontend.user.post.ad') }}" class="change-cetagory-link">Change</a>
 
                             </div>
@@ -49,7 +49,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Brand / Author <span class="text--danger">*</span></label>
-                                                <select class="form--control" name="brand">
+                                                <select class="form--control" name="brand_id">
                                                     <option value="">Select Brand</option>
                                                     @foreach ($brands as $brand)
                                                         <option value="{{ $brand->id }}">{{ $brand->title }}</option>
@@ -88,14 +88,14 @@
                                                         class="btn btn-danger btn-sm">@lang('Delete')</a>
                                                 @endif
                                             </div>
-                                            {{-- <div class="form-group2 mt-2">
+                                            <div class="form-group2 mt-2">
                                                 <label>@lang('Condition')<span class="text--danger">*</span></label>
                                                 <select name="condition" class="form--control">
                                                     <option value="new">New</option>
                                                     <option value="used">Used</option>
                                                     <option value="like new">Like new</option>
                                                 </select>
-                                            </div> --}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -137,18 +137,18 @@
 
                                 </div>
                                 <div class="sell-add-info-price-wrapper">
-                                <h3 class="sell-add-info-price-title two">YOU CAN UPLOAD UP TO 10 PHOTOS</h3>
-                                <span class="image-up-alart-text pb-10">(Alart: Heigh 1000x800 px / size 2MB)</span>
-                                <div class="row mb-30-none">
-                                    <div class="col-xl-8 mb-30">
-                                        <div class="add-more-details-thumb-wrapper">
-                                            <div class="add-more-details-thumb-area">
-                                                <div class="row" id="coba"></div>
+                                    <h3 class="sell-add-info-price-title two">YOU CAN UPLOAD UP TO 10 PHOTOS</h3>
+                                    <span class="image-up-alart-text pb-10">(Alart: Heigh 1000x800 px / size 2MB)</span>
+                                    <div class="row mb-30-none">
+                                        <div class="col-xl-8 mb-30">
+                                            <div class="add-more-details-thumb-wrapper">
+                                                <div class="add-more-details-thumb-area">
+                                                    <div class="row" id="coba"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
                                 @if ($category->category_type == 'vehicles' && ($category->wheels = 2))
                                     @include('frontend.pages.forms._4wheeler')
@@ -158,12 +158,19 @@
                                 @elseif($category->category_type == 'mobiles')
                                     {{-- @dd('ok mobile form working and ad posting successfull'); --}}
                                     @include('frontend.pages.forms.mobiles')
+
                                 @elseif($category->category_type == 'electronics')
+
                                     @include('frontend.pages.forms.electronics')
+
                                 @elseif($category->category_type == 'home_and_garden')
                                     @include('frontend.pages.forms.home_and_garden')
+
                                 @elseif($category->category_type == 'fashion_beauty')
                                     @include('frontend.pages.forms.fashion_beauty')
+
+                                @elseif($category->category_type == 'soft_products')
+                                    @include('frontend.pages.forms._soft_products')
                                 @else
                                     @include('frontend.pages.forms._basic')
                                 @endif
@@ -231,49 +238,49 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize"></script>
     <script>
         $(document).ready(function() {
-        "use strict";
-        getLocation();
-
-        $('currenct_location').on('click', function() {
+            "use strict";
             getLocation();
-        });
 
-
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                alert("Geolocation is not supported by this browser.");
-            }
-        }
-
-        function showPosition(position) {
-            var lat = position.coords.latitude;
-            var lon = position.coords.longitude;
-
-            document.getElementById('latitude').value = lat
-            document.getElementById('longitude').value = lon
-            var latlon = new google.maps.LatLng(lat, lon)
-            var mapholder = document.getElementById('mapHolder')
-            mapholder.style.height = '250px';
-            mapholder.style.width = '100%';
-            var myOptions = {
-                center: latlon,
-                zoom: 14,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                mapTypeControl: false,
-                navigationControlOptions: {
-                    style: google.maps.NavigationControlStyle.SMALL
-                }
-            };
-            var map = new google.maps.Map(document.getElementById("mapHolder"), myOptions);
-            var marker = new google.maps.Marker({
-                position: latlon,
-                map: map,
-                title: "You are here!"
+            $('currenct_location').on('click', function() {
+                getLocation();
             });
 
-        }
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    alert("Geolocation is not supported by this browser.");
+                }
+            }
+
+            function showPosition(position) {
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
+
+                document.getElementById('latitude').value = lat
+                document.getElementById('longitude').value = lon
+                var latlon = new google.maps.LatLng(lat, lon)
+                var mapholder = document.getElementById('mapHolder')
+                mapholder.style.height = '250px';
+                mapholder.style.width = '100%';
+                var myOptions = {
+                    center: latlon,
+                    zoom: 14,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    mapTypeControl: false,
+                    navigationControlOptions: {
+                        style: google.maps.NavigationControlStyle.SMALL
+                    }
+                };
+                var map = new google.maps.Map(document.getElementById("mapHolder"), myOptions);
+                var marker = new google.maps.Marker({
+                    position: latlon,
+                    map: map,
+                    title: "You are here!"
+                });
+
+            }
         });
     </script>
 @endsection

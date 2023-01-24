@@ -236,6 +236,7 @@
                                 </div>
                             </div>
                         </div>
+                        <a href="{{ route('admin.admin-user') }}" class="btn btn--base bg--danger">@lang('Cancel')</a>
                         <button type="submit" class="btn btn--base">
                             @lang('Save')
                         </button>

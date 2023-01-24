@@ -27,7 +27,7 @@ class BrandStoreRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'title'              => 'required|unique:brands|max:255',
+            'title'              => 'required|max:255',
             'category_id'              => 'required',
         ];
         return $rules;

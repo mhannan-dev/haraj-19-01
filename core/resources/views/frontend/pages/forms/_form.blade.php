@@ -8,7 +8,7 @@
             </div>
             <div class="form-group">
                 <label>@lang('Brand ')<span class="text--danger">*</span></label>
-                <input type="text" name="brand" placeholder="@lang('Brand ')" class="form--control" required>
+                <input type="text" name="brand_id" placeholder="@lang('Brand ')" class="form--control" required>
             </div>
             <div class="form-group">
                 <label>@lang('Case Type')</label>

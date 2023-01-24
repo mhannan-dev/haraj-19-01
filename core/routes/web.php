@@ -157,6 +157,7 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
     Route::post('check/code', [HomeController::class, 'checkCode'])->name('code.check');
     Route::match(['get', 'post'], 'login', [UserController::class, 'getLogin'])->name('user.login');
     Route::match(['GET', 'POST'], 'forgot/password', [UserController::class, 'forgotPassword'])->name('forgot.password');
+    Route::get('resend/password-request', [UserController::class, 'resendPassword'])->name('resend.password');
 
     Route::prefix('user')->name('user.')->group(function () {
         Route::match(['get', 'post'], 'favourite/{id?}', [FavouriteController::class, 'addToFavourite'])->name('favourite');

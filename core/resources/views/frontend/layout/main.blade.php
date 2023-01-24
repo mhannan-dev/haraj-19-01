@@ -628,9 +628,11 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="forgot-item">
-                                            <label><a href="#0" class="text--base" data-bs-toggle="modal"
-                                                    data-bs-target="#forget_pwd_email_modal"
-                                                    data-bs-dismiss="modal">@lang('Did you forget                                                                                                                                                                                                                                                                                                                                                                                                                                    your password')?</a></label>
+                                            <label><a href="#0" class="text--base resendField d-none"
+                                                    id="resendRequest">@lang('Resend Request Password')?</a></label>
+                                            <label><a href="#0" class="text--base forgetText"
+                                                    data-bs-toggle="modal" data-bs-target="#forget_pwd_email_modal"
+                                                    data-bs-dismiss="modal">@lang('Did you forget your password')?</a></label>
                                         </div>
                                     </div>
                                 </div>
@@ -969,6 +971,48 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            // console.log('ready');
+            $("#resendRequest").click(function(e) {
+                // console.log('Check')
+                e.preventDefault();
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: "GET",
+                    url: "{{ url('resend/password-request') }}",
+                    beforeSend: function() {
+                        $('.email_field').addClass('d-none');
+                        $('.loader').removeClass('d-none');
+                    },
+                    success: function(resp) {
+                        // console.log(resp);
+                        $('.email_field').removeClass('d-none');
+                        $('.loader').addClass('d-none');
+                        if (resp.status == true) {
+                            $('#forget_pwd_email_modal').modal('hide');
+                            $('#passModal').modal('show');
+                            $('.forgetText').addClass('d-none');
+                            $('.resendField').removeClass('d-none');
+                            notify('success', resp.message);
+                        } else if (resp.status == false) {
+                            $('#passModal').modal('hide');
+                            $('.forgetText').removeClass('d-none');
+                            $('.resendField').addClass('d-none');
+                            $('#forget_pwd_email_modal').modal('show');
+                            notify('success', resp.message);
+                        }
+                        if (resp.status == 'invalid') {
+                            $('#forget_pwd_email_modal').modal('show');
+                            notify('error', resp.message.checkingEmail);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 
     <script>
         $(document).ready(function() {
@@ -1041,9 +1085,13 @@
                         if (resp.status == true) {
                             $('#forget_pwd_email_modal').modal('hide');
                             $('#passModal').modal('show');
+                            $('.forgetText').addClass('d-none');
+                            $('.resendField').removeClass('d-none');
                             notify('success', resp.message);
                         } else if (resp.status == false) {
                             $('#passModal').modal('hide');
+                            $('.forgetText').removeClass('d-none');
+                            $('.resendField').addClass('d-none');
                             $('#forget_pwd_email_modal').modal('show');
                             notify('success', resp.message);
                         }
