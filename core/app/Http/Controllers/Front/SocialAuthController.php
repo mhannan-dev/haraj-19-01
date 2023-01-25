@@ -12,18 +12,22 @@ class SocialAuthController extends Controller
 {
     public function facebookRedirect()
     {
+        // return Socialite::driver($provider)->stateless()->redirect();
         return Socialite::driver('facebook')->redirect();
     }
     public function loginWithFacebook()
     {
         try {
-            $user = Socialite::driver('facebook')->user();
-            $findUser = Advertiser::where('provider_id', $user->id)->first();
-            if ($findUser) {
+            $user = Socialite::driver('facebook')->stateless()->user();
+            $finduser = Advertiser::where('email', $user->email)->first();
+            //dd($finduser);
+
+            if (isset($findUser)) {
                 Auth::guard('advertiser')->login($findUser, true);
                 $notify[] = ['success', 'Login successful'];
                 return redirect()->route('frontend.user.post.ad')->withNotify($notify);
             } else {
+                //dd('create');
                 $new_user = new Advertiser();
                 $new_user->first_name = $user->name;
                 $new_user->username = $user->email;
@@ -51,7 +55,8 @@ class SocialAuthController extends Controller
     {
         try {
             $user = Socialite::driver('google')->stateless()->user();
-            $finduser = Advertiser::where('provider_id', $user->id)->first();
+            $finduser = Advertiser::where('email', $user->email)->first();
+            // dd($finduser);
             if ($finduser) {
                 Auth::guard('advertiser')->login($finduser, true);
                 $notify[] = ['success', 'Login successful'];

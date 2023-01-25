@@ -11,6 +11,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Http\ViewComposers\MetaComposer;
+use App\Models\SocialMedia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,6 +40,7 @@ class AppServiceProvider extends ServiceProvider
         $viewShare['currency'] = $currency ? $currency : 'TL';
 
         $viewShare['languages'] = Language::all();
+        $viewShare['socials'] = DB::table('social_media')->where('status', '=', 1)->get();
 
         $viewShare['activeTemplate'] = $activeTemplate ? $activeTemplate : '';
         $viewShare['activeTemplateTrue'] = activeTemplate(true);

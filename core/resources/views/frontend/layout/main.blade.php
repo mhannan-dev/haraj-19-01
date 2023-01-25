@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" @if (session()->get('lang') == 'ar') dir="rtl" @endif>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,10 +45,11 @@
     @endif
 
     <style>
-        #search-form{
+        #search-form {
             position: relative;
         }
-        .ui-front{
+
+        .ui-front {
             top: -420px !important;
             left: 430px !important;
             background: white;
@@ -59,7 +61,8 @@
             width: 935px !important;
             margin: -10px;
         }
-        .ui-menu-item{
+
+        .ui-menu-item {
             margin: 10px;
         }
     </style>
@@ -91,7 +94,8 @@
                                     <form id="search-form" class="header-search-form" action="{{ url('ads/search') }}"
                                         method="get">
                                         <label class="search-icon"><i class="fas fa-search"></i></label>
-                                        <input type="text" name="search" id="search_text" class="form--control ui-autocomplete-input"
+                                        <input type="text" name="search" id="search_text"
+                                            class="form--control ui-autocomplete-input"
                                             placeholder="@lang('Search')" />
                                     </form>
 
@@ -449,11 +453,13 @@
                                     {{ __($item->name) }}</option>
                             @endforeach
                         </select>
+
                         <div class="social-area text-end">
                             <ul class="footer-social pb-10">
-                                <li><a href="#0"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#0"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#0"><i class="fab fa-instagram"></i></a></li>
+                                @foreach ($socials as $social)
+                                    <li><a href="{{ $social->social_link }}"
+                                            target="_blank">{!! $social->icon !!}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -464,12 +470,15 @@
                     <div class="copyright-area">
                         <p>© {{ $general->sitename($pageTitle ?? '') }} {{ Carbon\Carbon::now()->format('Y') }}</p>
                         <ul class="copyright-list">
-                            <li><a href="{{ route('frontend.cms.section', 'terms-conditions') }}">Terms &
-                                    Conditions</a>
+                            <li><a
+                                    href="{{ route('frontend.cms.section', 'terms-conditions') }}">@lang('Terms &
+                                                                    Conditions')</a>
                             </li>
-                            <li><a href="{{ route('frontend.cms.section', 'ad-policy') }}">Ad Policy</a></li>
-                            <li><a href="{{ route('frontend.cms.section', 'legal-and-privacy-information') }}">Privacy
-                                    Policy</a></li>
+                            <li><a href="{{ route('frontend.cms.section', 'ad-policy') }}">@lang('Ad Policy')</a></li>
+                            <li><a
+                                    href="{{ route('frontend.cms.section', 'legal-and-privacy-information') }}">@lang('Privacy
+                                                                    Policy')</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -506,7 +515,7 @@
                                 <div class="modal-account-wrapper">
                                     <h6 class="title">@lang('QUICKLY CONNECT WITH')</h6>
                                     <div class="modal-account-btn">
-                                        <a href="#0" class="btn--base w-100 facebook">
+                                        <a href="{{ url('login/facebook') }}" class="btn--base w-100 facebook">
                                             <svg viewBox="0 0 24 24" width="24" height="24"
                                                 class="SvgIcon__SvgIconStyled-sc-1fos6oe-0 hbbopy">
                                                 <path
