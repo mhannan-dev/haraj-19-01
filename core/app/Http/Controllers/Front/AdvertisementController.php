@@ -203,6 +203,7 @@ class AdvertisementController extends Controller
 
     public function adUpdate(Request $request, $id)
     {
+        dd($request->all());
         $adv = Advertisement::find($id);
         try {
             if ($request->isMethod('POST')) {

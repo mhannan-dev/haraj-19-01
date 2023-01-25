@@ -50,15 +50,15 @@
         }
 
         .ui-front {
-            top: -420px !important;
-            left: 430px !important;
+            top: -517px !important;
+            left: 199px !important;
             background: white;
             /* display: none; */
             display: inline-block;
             box-shadow: rgb(0 10 18 / 20%) 0px 3px 8px, rgb(246 246 246 / 50%) 0px 0px 1px;
             border-radius: 0 0 5px 5px;
             padding: 10px 20px !important;
-            width: 935px !important;
+            width: 763px !important;
             margin: -10px;
         }
 
@@ -431,17 +431,15 @@
                                 </div>
                             </div>
                             <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 mb-20">
-                                <div class="footer-widget">
-                                    <h4 class="title">Download app</h4>
-                                    <ul class="footer-app-list">
-                                        <li><a href="#"><img
-                                                    src="{{ URL::asset('assets/frontend') }}/images/footer/footer_app_store.svg"
-                                                    alt="footer"></a></li>
-                                        <li><a href="#0"><img
-                                                    src="{{ URL::asset('assets/frontend') }}/images/footer/footer_google_play.svg"
-                                                    alt="footer"></a></li>
-                                    </ul>
-                                </div>
+                                <h4 class="title">@lang('Download app')</h4>
+                                <ul class="footer-app-list">
+                                    <li><a href="{{ $app_links->ios_app_link }}" target="_blank"><img
+                                                src="{{ URL::asset('assets/frontend') }}/images/footer/footer_app_store.svg"
+                                                alt="footer"></a></li>
+                                    <li><a href="{{ $app_links->play_store_app_link }}" target="_blank"><img
+                                                src="{{ URL::asset('assets/frontend') }}/images/footer/footer_google_play.svg"
+                                                alt="footer"></a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -472,12 +470,12 @@
                         <ul class="copyright-list">
                             <li><a
                                     href="{{ route('frontend.cms.section', 'terms-conditions') }}">@lang('Terms &
-                                                                    Conditions')</a>
+                                                                                                        Conditions')</a>
                             </li>
                             <li><a href="{{ route('frontend.cms.section', 'ad-policy') }}">@lang('Ad Policy')</a></li>
                             <li><a
                                     href="{{ route('frontend.cms.section', 'legal-and-privacy-information') }}">@lang('Privacy
-                                                                    Policy')</a>
+                                                                                                        Policy')</a>
                             </li>
                         </ul>
                     </div>

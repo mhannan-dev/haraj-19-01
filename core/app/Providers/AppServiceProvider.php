@@ -41,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
 
         $viewShare['languages'] = Language::all();
         $viewShare['socials'] = DB::table('social_media')->where('status', '=', 1)->get();
-
+        $viewShare['app_links'] = json_decode($general->apps_settings);
         $viewShare['activeTemplate'] = $activeTemplate ? $activeTemplate : '';
         $viewShare['activeTemplateTrue'] = activeTemplate(true);
         view()->share($viewShare);
