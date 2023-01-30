@@ -37,15 +37,5 @@
 @endsection
 
 @section('scripts')
-    <script>
-        $('.kyc-form').on('click', '.add-row-btn', function() {
-            $('.add-row-btn').closest('.kyc-form').find('.add-row-wrapper').last().clone().show().appendTo(
-                '.results');
-        });
-
-        $(document).on('click', '.kyc-cross-btn', function(e) {
-            e.preventDefault();
-            $(this).parent().parent().hide(300);
-        });
-    </script>
+    
 @endsection

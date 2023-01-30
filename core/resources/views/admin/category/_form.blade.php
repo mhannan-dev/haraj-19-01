@@ -93,7 +93,7 @@
 </div>
 <hr>
 
-<div class="custom-card kyc-form">
+{{-- <div class="custom-card kyc-form">
     <div class="card-header">
         <h6 class="title">Category Form</h6>
         <button type="button" class="btn--base add-row-btn"><i class="fas fa-plus"></i>
@@ -136,6 +136,6 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <a href="{{ route('admin.category.index') }}" class="btn btn--base bg--danger">@lang('Cancel')</a>
 <button type="submit" class="btn btn--base">{{ $buttonText }}</button>

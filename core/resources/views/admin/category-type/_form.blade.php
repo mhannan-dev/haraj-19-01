@@ -9,11 +9,17 @@
         align-items: center;
         justify-content: space-between;
     }
+
     .kyc-form select {
         padding: 10px 14px;
     }
 
-    .kyc-form .kyc-cross-btn {
+    /* .kyc-form .kyc-cross-btn {
+        background-color: #ea5455;
+        color: #ffffff !important;
+        padding: 13px 20px;
+    } */
+    .kyc-form .row-cross-btn {
         background-color: #ea5455;
         color: #ffffff !important;
         padding: 13px 20px;
@@ -33,49 +39,218 @@
         @endif
     </div>
 </div>
-<div class="custom-card kyc-form">
+<div class="custom-card kyc-form input-field-generator" data-source="manual_gateway_input_fields">
     <div class="card-header">
         <h6 class="title">Necessary Fields</h6>
         <button type="button" class="btn--base add-row-btn"><i class="fas fa-plus"></i>
             @lang('Add')</button>
     </div>
-    <div class="custom-inner-card input-field-generator mt-2" data-source="manual_gateway_input_fields">
+    <div class="custom-inner-card mt-2">
         <div class="card-inner-body">
             <div class="results">
                 <div class="row add-row-wrapper align-items-end">
-                    <div class="col-xl-3 col-lg-3 form-group">
+                    <div class="col-xl-4 col-lg-4 form-group">
                         @include('admin.components.form.input', [
                             'label' => 'Advertisement title*',
-                            'name' => 'form_title[]',
-                            'attribute' => 'required',
+                            'name' => 'title[]',
+                            'value' => 'title',
+                            'attribute' => 'required readonly',
                         ])
                     </div>
-                    <div class="col-xl-2 col-lg-2 form-group">
+                    <div class="col-xl-4 col-lg-4 form-group">
                         <label>{{ __('Field Types*') }}</label>
                         <select class="form--control nice-select field-input-type" name="input_type[]">
                             <option value="text" selected>Input Text</option>
-                            <option value="file">File</option>
-                            <option value="textarea">Textarea</option>
                         </select>
                     </div>
-                    <div class="field_type_input col-lg-4 col-xl-4">
-                    </div>
-                    <div class="col-xl-2 col-lg-2 form-group">
-                        <label>Field Necessity</label>
-                        <select name="field_necessity" class="form--control">
-                            <option value="">Select option</option>
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
+
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>@lang('Field Necessity')</label>
+                        <select name="field_necessity[]" class="form--control">
+                            <option value="yes" selected>Yes</option>
                         </select>
                     </div>
-                    <div class="col-xl-1 col-lg-1 form-group">
-                        <button type="button" class="custom-btn btn--base btn--danger kyc-cross-btn w-100">
-                            <i class="las la-times"></i></button>
+                </div>
+                <div class="row add-row-wrapper align-items-end">
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        @include('admin.components.form.input', [
+                            'label' => 'Condition*',
+                            'name' => 'condition[]',
+                            'value' => 'condition',
+                            'attribute' => 'required readonly',
+                        ])
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>{{ __('Field Types*') }}</label>
+                        <select class="form--control nice-select field-input-type" name="input_type[]">
+                            <option value="select" selected>@lang('Select')</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>@lang('Field Necessity')</label>
+                        <select name="field_necessity[]" class="form--control">
+                            <option value="yes" selected>Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row add-row-wrapper align-items-end">
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        @include('admin.components.form.input', [
+                            'label' => 'Brand*',
+                            'name' => 'brand_id[]',
+                            'value' => 'brand_id',
+                            'attribute' => 'required readonly',
+                        ])
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>{{ __('Field Types*') }}</label>
+                        <select class="form--control nice-select field-input-type" name="input_type[]">
+                            <option value="text" selected>@lang('Text')</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>@lang('Field Necessity')</label>
+                        <select name="field_necessity[]" class="form--control">
+                            <option value="yes" selected>Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row add-row-wrapper align-items-end">
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        @include('admin.components.form.input', [
+                            'label' => 'Explation*',
+                            'name' => 'description[]',
+                            'value' => 'description',
+                            'attribute' => 'required readonly',
+                        ])
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>{{ __('Field Types*') }}</label>
+                        <select class="form--control nice-select field-input-type" name="input_type[]">
+                            <option value="textarea" selected>Textarea</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>@lang('Field Necessity')</label>
+                        <select name="field_necessity[]" class="form--control">
+                            <option value="yes" selected>Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row add-row-wrapper align-items-end">
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        @include('admin.components.form.input', [
+                            'label' => 'Thumbnail*',
+                            'name' => 'image[]',
+                            'value' => 'image',
+                            'attribute' => 'required readonly',
+                        ])
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>{{ __('Field Types*') }}</label>
+                        <select class="form--control nice-select field-input-type" name="input_type[]">
+                            <option value="file" selected>@lang('File')</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>@lang('Field Necessity')</label>
+                        <select name="field_necessity[]" class="form--control">
+                            <option value="yes" selected>Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row add-row-wrapper align-items-end">
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        @include('admin.components.form.input', [
+                            'label' => 'Price*',
+                            'name' => 'price[]',
+                            'value' => 'price',
+                            'attribute' => 'required readonly',
+                        ])
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>{{ __('Field Types*') }}</label>
+                        <select class="form--control nice-select field-input-type" name="input_type[]">
+                            <option value="number" selected>@lang('Number')</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>@lang('Field Necessity')</label>
+                        <select name="field_necessity[]" class="form--control">
+                            <option value="yes" selected>Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row add-row-wrapper align-items-end">
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        @include('admin.components.form.input', [
+                            'label' => 'Meta tags*',
+                            'name' => 'meta_tags[]',
+                            'value' => 'meta_tags',
+                            'attribute' => 'required readonly',
+                        ])
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>{{ __('Field Types*') }}</label>
+                        <select class="form--control nice-select field-input-type" name="input_type[]">
+                            <option value="text" selected>@lang('Text')</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>@lang('Field Necessity')</label>
+                        <select name="field_necessity[]" class="form--control">
+                            <option value="yes" selected>Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row add-row-wrapper align-items-end">
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        @include('admin.components.form.input', [
+                            'label' => 'Meta Title*',
+                            'name' => 'meta_title[]',
+                            'value' => 'meta_title',
+                            'attribute' => 'required readonly',
+                        ])
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>{{ __('Field Types*') }}</label>
+                        <select class="form--control nice-select field-input-type" name="input_type[]">
+                            <option value="text" selected>@lang('Text')</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>@lang('Field Necessity')</label>
+                        <select name="field_necessity[]" class="form--control">
+                            <option value="yes" selected>Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row add-row-wrapper align-items-end">
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        @include('admin.components.form.input', [
+                            'label' => 'Multiple Images*',
+                            'name' => 'images[]',
+                            'value' => 'images',
+                            'attribute' => 'required readonly',
+                        ])
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>{{ __('Field Types*') }}</label>
+                        <select class="form--control nice-select field-input-type" name="input_type[]">
+                            <option value="file" selected>@lang('File')</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>@lang('Field Necessity')</label>
+                        <select name="field_necessity[]" class="form--control">
+                            <option value="yes" selected>Yes</option>
+                        </select>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<a href="{{ route('admin.category.index') }}" class="btn btn--base bg--danger">@lang('Cancel')</a>
+<a href="#" class="btn btn--base bg--danger">@lang('Cancel')</a>
 <button type="submit" class="btn btn--base">{{ $buttonText }}</button>

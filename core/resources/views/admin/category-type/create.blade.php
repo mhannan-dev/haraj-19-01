@@ -31,21 +31,10 @@
             @endif
         </div>
     </div>
-    <form action="{{ route('admin.category.type.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('admin.category.type.store') }}" method="post">
         @include('admin.category-type._form', ['buttonText' => 'Save'])
     </form>
 @endsection
 
 @section('scripts')
-    <script>
-        $('.kyc-form').on('click', '.add-row-btn', function() {
-            $('.add-row-btn').closest('.kyc-form').find('.add-row-wrapper').last().clone().show().appendTo(
-                '.results');
-        });
-
-        $(document).on('click', '.kyc-cross-btn', function(e) {
-            e.preventDefault();
-            $(this).parent().parent().hide(300);
-        });
-    </script>
 @endsection

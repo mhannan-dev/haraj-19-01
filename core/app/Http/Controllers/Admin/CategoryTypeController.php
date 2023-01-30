@@ -27,13 +27,14 @@ class CategoryTypeController extends Controller
 
     public function getCreate()
     {
-        $data['category'] = new Category();
+        $data['category'] = new CategoryType();
         $data['buttonText'] = "Save";
         return view('admin.category-type.create', $data);
     }
 
     public function postStore(CategoryTypeStoreRequest $request)
     {
+        dd($request->all());
         $this->resp = $this->category_type->postStore($request);
         return redirect()->route($this->resp->redirect_to)->with($this->resp->redirect_class, $this->resp->msg);
     }

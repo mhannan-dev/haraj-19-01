@@ -34,8 +34,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $activeTemplate = activeTemplate();
         $currency = Currency::select('currency_code', 'currency_symbol')->first();
-        // $currency = Currency::select('currency_code', 'currency_symbol')->where('status', '=', 1)->first();
-        // dd($currency);
         $general = GeneralSetting::with('currency')->first();
 
         $viewShare['general'] = $general ? $general : '';
@@ -54,12 +52,6 @@ class AppServiceProvider extends ServiceProvider
                 'seo' => $seo ? $seo->data_values : $seo,
             ]);
         });
-
-        // view()->composer('frontend.layout.main', function ($view) {
-		// 	$seoData = DB::table('frontends')->where('data_keys', 'seo.data')->first();
-		// 	$view->with('seoData', $seoData);
-		// });
 		Paginator::useBootstrap();
-		// View::composer('frontend.layout.main', 'App\Http\ViewComposers\MetaComposer');
     }
 }
