@@ -144,6 +144,15 @@
                 </a>
             </li>
         @endif
+
+        @if (hasAccessAbility('view_category_form', $roles))
+            <li class="sidebar-menu-item">
+                <a href="{{ route('admin.category.type.index') }}">
+                    <i class="menu-icon las la-terminal"></i>
+                    <span class="menu-title">@lang('Category Form')</span>
+                </a>
+            </li>
+        @endif
         @if (hasAccessAbility('view_category', $roles))
             <li class="sidebar-menu-item">
                 <a href="{{ route('admin.category.index') }}">
@@ -152,7 +161,6 @@
                 </a>
             </li>
         @endif
-
         @if (hasAccessAbility('view_brand', $roles))
             <li class="sidebar-menu-item">
                 <a href="{{ route('admin.brand.index') }}">

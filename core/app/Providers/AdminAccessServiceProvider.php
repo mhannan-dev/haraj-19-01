@@ -42,10 +42,10 @@ class AdminAccessServiceProvider extends ServiceProvider
             'CMS',
             'City',
             'Category',
+            'CategoryType',
             'CategoryItem',
             'AdType',
             'SocialMedia',
-            'Banner',
             'Brand',
             'Contact',
         ];

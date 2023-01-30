@@ -1,26 +1,27 @@
 <?php
 namespace App\Http\Controllers\Admin;
 use App\Models\Category;
+use App\Models\CategoryType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CategoryStoreRequest;
-use App\Http\Requests\Admin\CategoryUpdateRequest;
+use App\Http\Requests\Admin\CategoryTypeStoreRequest;
+use App\Http\Requests\Admin\CategoryTypeUpdateRequest;
+use App\Repositories\Admin\CategoryType\CategoryTypeInterface;
 
-use App\Repositories\Admin\Category\CategoryInterface;
 
-class CategoryController extends Controller
+class CategoryTypeController extends Controller
 {
-    protected $category;
-    public function __construct(CategoryInterface $category)
+    protected $category_type;
+    public function __construct(CategoryTypeInterface $category_type)
     {
-        $this->category = $category;
+        $this->category_type = $category_type;
     }
 
     public function getIndex(Request $request)
     {
-        $this->resp = $this->category->getPaginatedList($request, 10);
+        $this->resp = $this->category_type->getPaginatedList($request, 10);
         $emptyMessage = "No data found";
-        return view('admin.category.index', compact('emptyMessage'))
+        return view('admin.category-type.index', compact('emptyMessage'))
             ->withRows($this->resp->data);
     }
 
@@ -28,35 +29,35 @@ class CategoryController extends Controller
     {
         $data['category'] = new Category();
         $data['buttonText'] = "Save";
-        return view('admin.category.create', $data);
+        return view('admin.category-type.create', $data);
     }
 
-    public function postStore(CategoryStoreRequest $request)
+    public function postStore(CategoryTypeStoreRequest $request)
     {
-        $this->resp = $this->category->postStore($request);
+        $this->resp = $this->category_type->postStore($request);
         return redirect()->route($this->resp->redirect_to)->with($this->resp->redirect_class, $this->resp->msg);
     }
 
     public function getEdit(Request $request, $id)
     {
-        $this->resp = $this->category->getShow($id);
+        $this->resp = $this->category_type->getShow($id);
         $buttonText = "Update";
         if (!$this->resp->status) {
             return redirect()->route($this->resp->redirect_to)->with($this->resp->redirect_class, $this->resp->msg);
         }
-        return view('admin.category.edit', compact('buttonText'))->withRow($this->resp->data);
+        return view('admin.category-type.edit', compact('buttonText'))->withRow($this->resp->data);
 
     }
 
-    public function postUpdate(CategoryUpdateRequest $request, $id)
+    public function postUpdate(CategoryTypeUpdateRequest $request, $id)
     {
-        $this->resp = $this->category->postUpdate($request, $id);
+        $this->resp = $this->category_type->postUpdate($request, $id);
         return redirect()->route($this->resp->redirect_to)->with($this->resp->redirect_class, $this->resp->msg);
     }
 
     public function getDelete($id)
     {
-        $this->resp = $this->category->delete($id);
+        $this->resp = $this->category_type->delete($id);
         return redirect()->route($this->resp->redirect_to)->with($this->resp->redirect_class, $this->resp->msg);
     }
     public function postUpdateStatus(Request $request)
@@ -68,17 +69,8 @@ class CategoryController extends Controller
             } else {
                 $status = 1;
             }
-            Category::where('id', $data['item_id'])->update(['status' => $status]);
+            CategoryType::where('id', $data['item_id'])->update(['status' => $status]);
             return  response()->json(['status' => $status, 'item_id' => $data['item_id']]);
-        }
-    }
-    public function append_category_level(Request $request)
-    {
-        if ($request->ajax()) {
-            $data = $request->all();
-            $getCategories = Category::with('subCategories')->where(['parent_id' => 0, 'status' => 1])->get();
-            $data['getCategories'] = json_decode(json_encode($getCategories), true);
-            return view('admin.category._append', $data);
         }
     }
 }
