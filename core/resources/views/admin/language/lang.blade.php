@@ -31,12 +31,12 @@
             </a>
         </div>
         <div class="view-prodact">
-            @if (hasAccessAbility('language_create', $roles))
+            {{-- @if (hasAccessAbility('language_create', $roles))
                 <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="las la-plus"></i>
                     New Language
                 </a>
-            @endif
+            @endif --}}
         </div>
     </div>
     <div class="row">

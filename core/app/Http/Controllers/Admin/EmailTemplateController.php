@@ -116,21 +116,18 @@ class EmailTemplateController extends Controller
         $request->validate([
             'email' => 'required|email'
         ]);
-
         $general = GeneralSetting::first();
         $config = $general->mail_config;
         $receiver_name = explode('@', $request->email)[0];
         $subject = 'Testing ' . strtoupper($config->name) . ' Mail';
         $message = 'This is a test email, please ignore it if you are not meant to get this email.';
-
         try {
             sendGeneralEmail($request->email, $subject, $message, $receiver_name);
         } catch (\Exception $exp) {
-            //dd($exp);
+            dd($exp);
             $notify[] = ['error', 'Invalid credential'];
             return back()->withNotify($notify);
         }
-
         $notify[] = ['success', 'You should receive a test mail at ' . $request->email . ' shortly.'];
         return back()->withNotify($notify);
     }

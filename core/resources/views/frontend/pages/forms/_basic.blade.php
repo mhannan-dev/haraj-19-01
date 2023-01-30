@@ -26,9 +26,9 @@
                 <label>phone number</label>
                 <input type="number" name="mobile_no" class="form--control"
                     value="{{ Auth::guard('advertiser')->user()->mobile_no }}">
-                <span>+90</span>
+                <span>+93</span>
             </div>
-            
+
         </div>
     </div>
 </div>

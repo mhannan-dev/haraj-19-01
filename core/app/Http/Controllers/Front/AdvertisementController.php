@@ -14,6 +14,7 @@ use App\Http\Helpers\Generals;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,7 +25,7 @@ class AdvertisementController extends Controller
 
         $advertiser = Auth::guard('advertiser')->user()->id;
         $data['my_ads'] = Advertisement::withCount('sub_category', 'ad_message', 'favourite_to_users')
-        ->with('category:id,title,category_type')->where('advertiser_id', $advertiser)->get();
+            ->with('category:id,title,category_type')->where('advertiser_id', $advertiser)->get();
         $data['favourite_ads'] = Favourite::with('ads')->where('advertiser_id', $advertiser)->take(10)->get();
         return view('frontend.pages.user.dashboard', $data);
     }
@@ -195,15 +196,15 @@ class AdvertisementController extends Controller
         $item =  Advertisement::findOrFail($id);
         $sub_category = Category::where('parent_id', $item->category_id)->first();
         $brands = Brand::active()->where('category_id', $sub_category->parent_id)->get();
-        $allCity = City::where('status', 1)->select('id', 'title','status')->get();
+        $allCity = City::where('status', 1)->select('id', 'title', 'status')->get();
         $allCity = json_decode(json_encode($allCity), true);
         // dd($allCity);
-        return view('frontend.pages.user.ad_form.form_update', compact('item', 'sub_category','brands','allCity'));
+        return view('frontend.pages.user.ad_form.form_update', compact('item', 'sub_category', 'brands', 'allCity'));
     }
 
     public function adUpdate(Request $request, $id)
     {
-        dd($request->all());
+        // dd($request->all());
         $adv = Advertisement::find($id);
         try {
             if ($request->isMethod('POST')) {
@@ -222,7 +223,8 @@ class AdvertisementController extends Controller
                     'price.required' => 'Price is required'
                 ];
                 $this->validate($request, $rules, $validationMessages);
-                $adv->advertiser_id = Auth::guard('advertiser')->user()->id;
+
+                $adv->advertiser_id = $data['advertiser_id'];
                 $adv->category_id = $data['category_id'];
                 $adv->sub_category_id = $data['sub_category_id'];
                 $adv->type_id = 0;
@@ -402,6 +404,17 @@ class AdvertisementController extends Controller
         if (file_exists($small_image_path . $ad_image->image)) {
             unlink($small_image_path . $ad_image->image);
         }
+        $notify[] = ['success', 'Image deleted successfully!!'];
+        return redirect()->back()->withNotify($notify);
+    }
+
+    public function removeMultiImage($image_id, $ad_id)
+    {
+        $multiImage =  AdImage::select('images','id')->where('id', $image_id)->where('advertisement_id', $ad_id)->first();
+        if (Storage::disk('public')->exists('advertisement_images/' . $multiImage->images)) {
+            Storage::disk('public')->delete('advertisement_images/' . $multiImage->images);
+        }
+        $multiImage->delete();
         $notify[] = ['success', 'Image deleted successfully!!'];
         return redirect()->back()->withNotify($notify);
     }

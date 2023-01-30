@@ -804,7 +804,6 @@ class HomeController extends Controller
 
     public function detailsSendMessage(Request $request)
     {
-        // dd($request->all());
         if (isset(Auth::guard('advertiser')->user()->id)) {
             $from = Auth::guard('advertiser')->user()->id;
             $to = $request->recever_id;

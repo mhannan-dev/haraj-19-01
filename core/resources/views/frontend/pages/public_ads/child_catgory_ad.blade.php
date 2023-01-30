@@ -4,7 +4,7 @@
     <div class="container">
         <ul class="breadcrumb-list">
             <li>
-                <a href="index.html">Home</a>
+                <a href="{{ url('/') }}">Home</a>
             </li>
             <li>
                 <a href="#"><i class="las la-angle-right"></i> <span class="category-title">All Category</span> </a>
@@ -22,7 +22,7 @@
         <div class="short-by-top-area">
             <div class="nice-filter-item">
                 <div class="icon-area">
-                    <a href="index.html"><i class="fas fa-sliders-h"></i></a>
+                    <a href="{{ url('/') }}"><i class="fas fa-sliders-h"></i></a>
                 </div>
                 <div class="nice-filter-item-select-area two me-2">
                     <input type="hidden" name="latitude">

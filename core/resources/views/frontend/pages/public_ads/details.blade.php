@@ -22,6 +22,16 @@
         .btn-primary {
             background-color: rgba(0, 170, 255, 0.5) border-color: rgba(0, 170, 255, 0.5) border-radius: 50px !important;
         }
+
+        .seller-profile-card-bottom-wrapper .send-chat-btn button,
+        .seller-profile-card-bottom-wrapper .send-chat-btn input[type=button],
+        .seller-profile-card-bottom-wrapper .send-chat-btn input[type=reset],
+        .seller-profile-card-bottom-wrapper .send-chat-btn input[type=submit] {
+            background-color: rgba(0, 170, 255, 0.5);
+            cursor: text;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
     </style>
 @endpush
 @php
@@ -116,6 +126,7 @@
                             <div class="product-details-content">
                                 <div class="top-area">
                                     <div class="top-wrapper">
+
                                         <h2 class="price-title">{{ $details->price }} {{ $currency->currency_code }}</h2>
                                         <div class="opsition-wrapper">
                                             <div class="opsition-item">
@@ -229,7 +240,7 @@
                                                         data-bs-target="#rating_modal">
 
                                                         <a href="#" class="text-warning">{{ count($user_rating) }}
-                                                            &nbsp; Rating</a>
+                                                            &nbsp; @lang('Rating')</a>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -280,7 +291,7 @@
                                             <input type="hidden" name="advertiser_id"
                                                 value="{{ $details->advertiser_id }}">
                                             <input type="text" class="form--control mb-2 write_message"
-                                                placeholder="@lang('Send message to seller')" name="message">
+                                                placeholder="@lang('Send message to seller')" name="message" required>
                                             <div class="send-chat-btn">
                                                 <button type="submit" class="btn--base w-100">@lang('Send') <i
                                                         class="las la-paper-plane ms-1"></i></button>

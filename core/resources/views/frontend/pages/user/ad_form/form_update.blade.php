@@ -11,7 +11,7 @@
 @section('content')
     <section class="sell-car-section pt-30">
         <div class="container">
-            <h1 class="sell-header-title pb-10">@lang('POST AN AD')</h1>
+            <h1 class="sell-header-title pb-10 text-uppercase">@lang('Update your advertisement')</h1>
             <div class="row justify-content-center mb-30">
                 <div class="col-xl-8 mb-30">
                     <div class="sell-add-info-area">
@@ -87,6 +87,28 @@
                                 </div>
                                 <div class="sell-add-info-price-wrapper">
                                     <h3 class="sell-add-info-price-title two">PHOTOS</h3>
+                                    @if (isset($item->images))
+                                        <table class="table table-striped">
+                                            <tbody>
+                                                @foreach ($item->images as $multiImage)
+                                                    <tr>
+                                                        <td>
+
+                                                            <img width="100px"
+                                                                src="{{ asset('core/storage/app/public/advertisement_images/' . $multiImage->images) }}"
+                                                                alt="">
+                                                        </td>
+                                                        <td>
+                                                            <a
+                                                                href="{{ url('user/remove/multi/img', ['image_id' => $multiImage->id, 'ad_id' => $item->id]) }}">
+                                                                <i class="las la-trash-alt text-danger"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    @endif
                                     <span class="image-up-alart-text pb-10">(Alart: Heigh 1000x800 px / size 2MB)</span>
                                     <div class="row mb-30-none">
                                         <div class="col-xl-8 mb-30">
@@ -169,7 +191,8 @@
                                             </option>
                                             <option value="red"@if ($item->color == 'red') selected @endif>Red
                                             </option>
-                                            <option value="dark-grey"@if ($item->color == 'dark-grey') selected @endif>Dark
+                                            <option value="dark-grey"@if ($item->color == 'dark-grey') selected @endif>
+                                                Dark
                                                 grey</option>
                                             <option value="dark-blue"@if ($item->color == 'dark-blue') selected @endif>
                                                 Dark
@@ -294,17 +317,12 @@
 
                                             </select>
                                         </div>
-                                        <div class="form-group col-8">
-                                            <label>Edition (Optional)</label>
-                                            <input type="text" name="edition" class="form--control"
-                                                placeholder="Edition" value="{{ old('edition', $item->edition )}}">
-                                        </div>
+
                                         <div class="form-group col-8">
                                             <label>Number of seats</label>
                                             <input type="text" value="1" name="seat_qty" min="1"
                                                 placeholder="Number of seat" class="form--control" autocomplete="off">
                                         </div>
-                                        
                                     @endif
                                     @if ($item->category->category_type == 'home_and_garden')
                                         Show other form for home_and_garden
@@ -328,23 +346,23 @@
                                 </div>
 
                                 <div class="sell-add-info-price-wrapper">
-                                    <h3 class="sell-add-info-price-title">REVİEW YOUR İNFORMATİON</h3>
+                                    <h3 class="sell-add-info-price-title text-uppercase">@lang('review your information')</h3>
                                     <div class="row mb-30-none">
                                         <div class="col-xl-8 mb-30">
+                                            <input type="hidden" name="advertiser_id" value="{{ Auth::guard('advertiser')->user()->id }}">
                                             <div class="form-group">
-                                                <label>First name</label>
-                                                <input type="text" name="first_name" class="form--control"
-                                                    value="{{ Auth::guard('advertiser')->user()->first_name }}">
+                                                <label>@lang('First name')</label>
+                                                <input id="first_name" type="text" name="first_name" class="form--control"
+                                                    value="{{ Auth::guard('advertiser')->user()->first_name }}" maxlength="30">
 
                                             </div>
                                             @if (isset(Auth::guard('advertiser')->user()->last_name))
                                                 <div class="form-group">
-                                                    <label>Last name</label>
+                                                    <label>@lang('Last name')</label>
                                                     <input type="text" name="last_name" class="form--control"
                                                         value="{{ Auth::guard('advertiser')->user()->last_name }}">
                                                     <div class="text-limit-area">
-                                                        <span>text limite</span>
-                                                        <span>5 / 30</span>
+                                                        <span id="text-count">1</span>/ 30
                                                     </div>
                                                 </div>
                                             @endif
@@ -352,7 +370,7 @@
                                                 <label>phone number</label>
                                                 <input type="number" name="mobile_no" class="form--control"
                                                     value="{{ Auth::guard('advertiser')->user()->mobile_no }}">
-                                                <span>+90</span>
+                                                <span>+93</span>
                                             </div>
 
                                         </div>

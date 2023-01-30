@@ -19,13 +19,13 @@ class GeneralSettingController extends Controller
         $general = GeneralSetting::first();
         $pageTitle = 'General Setting';
         $timezones = json_decode(file_get_contents(resource_path('views/admin/partials/timezone.json')));
-        $currencies = DB::table('currencies')->select('id', 'currency_code', 'currency_symbol', 'currency_fullname', 'currency_type')->get();
+        $currencies = DB::table('currencies')->select('id', 'currency_code', 'currency_symbol', 'currency_fullname')->get();
         return view('admin.setting.general_setting', compact('pageTitle', 'general', 'timezones', 'currencies'));
     }
 
     public function update(Request $request)
     {
-        
+
         $general = GeneralSetting::first();
         $general->ev = $request->ev ? 1 : 0;
         $general->en = $request->en ? 1 : 0;

@@ -7,12 +7,7 @@
             <button class="navbar__mobile_expand pe-3">
                 <i class="las la-bars"></i>
             </button>
-            <form class="app-search d-none d-lg-block col p-0">
-                <div class="position-relative">
-                    <input class="form-control" type="text" placeholder="Search . . . ." aria-label="Search">
-                    <span class="las la-search"></span>
-                </div>
-            </form>
+            
         </div>
         <div class="navbar__right">
             <ul class="navbar__action-list">

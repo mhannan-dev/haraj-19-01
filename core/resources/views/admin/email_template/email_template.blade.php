@@ -5,9 +5,7 @@
 @section('page-name')
     @lang('Email Global Templte Page')
 @endsection
-@php
 
-@endphp
 @section('content')
     <div class="row">
         <div class="table-area">

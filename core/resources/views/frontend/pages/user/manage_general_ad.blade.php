@@ -228,17 +228,14 @@
     </section>
 @endsection
 @section('scripts')
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize"></script>
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize"></script>
     <script>
         $(document).ready(function() {
             "use strict";
             getLocation();
-
             $('currenct_location').on('click', function() {
                 getLocation();
             });
-
-
             function getLocation() {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(showPosition);

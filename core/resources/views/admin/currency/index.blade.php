@@ -1,9 +1,9 @@
 @extends('admin.layout.master')
 @section('title')
-    Currency
+    @lang('Currency')
 @endsection
 @section('page-name')
-    Currency
+    @lang('Currency')
 @endsection
 @php
     $roles = userRolePermissionArray();
@@ -21,12 +21,12 @@
             </a>
         </div>
         <div class="view-prodact">
-            @if (hasAccessAbility('currency_add_edit', $roles))
+            {{-- @if (hasAccessAbility('currency_add_edit', $roles))
                 <a href="{{ route('admin.currency.manage') }}">
                     <i class="las la-plus"></i>
                     <span>Add Currency</span>
                 </a>
-            @endif
+            @endif --}}
         </div>
     </div>
 
@@ -38,7 +38,7 @@
                         <tr>
                             <th scope="col">@lang('Name/Code')</th>
                             <th scope="col">@lang('Currency Symbol')</th>
-                            <th scope="col">@lang('Status')</th>
+                            {{-- <th scope="col">@lang('Status')</th> --}}
                             <th scope="col">@lang('Action')</th>
                         </tr>
                     </thead>
@@ -54,7 +54,7 @@
                                 </td>
                                 <td data-label="@lang('Currency')"><span
                                         class="font-weight-bold">{{ $item->currency_symbol }}</span></td>
-                                <td data-label="@lang('Status')">
+                                {{-- <td data-label="@lang('Status')">
                                     @if (hasAccessAbility('currency_status_change', $roles))
                                         @if ($item['status'] == 1)
                                             <a class="item_status" id="item-{{ $item['id'] }}"
@@ -71,7 +71,7 @@
                                         @endif
                                     @endif
 
-                                </td>
+                                </td> --}}
                                 <td data-label="@lang('Action')">
                                     @if (hasAccessAbility('currency_add_edit', $roles))
                                         <a title="@lang('Edit')" class="btn btn-primary"

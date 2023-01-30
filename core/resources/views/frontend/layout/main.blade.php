@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" @if (session()->get('lang') == 'ar') dir="rtl" @endif>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    {{-- <title>{{ $general->sitename($pageTitle ?? '') }}</title> --}}
-    <title>@yield('title') Haraj Alyawm</title>
+    <title>@yield('title') {{ $general->sitename($pageTitle ?? '') }}</title>
     @include('partials.seo')
     @stack('page_meta')
     <link rel="preconnect" href="//fonts.googleapis.com">
@@ -739,7 +737,7 @@
                             <div class="modal-body">
                                 <div class="modal-body-wrapper">
                                     <div class="modal-logo">
-                                        <a href="index.html">
+                                        <a href="{{ url('/') }}">
                                             <img width="65" height="42"
                                                 src="{{ getImage(imagePath()['logoIcon']['path'] . '/logo.png', '?' . time()) }}"
                                                 alt="Logo" class="">
@@ -787,7 +785,7 @@
                         <div class="modal-body">
                             <div class="modal-body-wrapper">
                                 <div class="modal-logo">
-                                    <a href="index.html">
+                                    <a href="{{ url('/') }}">
                                         <img width="65" height="42"
                                             src="{{ getImage(imagePath()['logoIcon']['path'] . '/logo.png', '?' . time()) }}"
                                             alt="Logo" class="">

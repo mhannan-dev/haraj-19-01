@@ -16,7 +16,7 @@
                             @if ($errors->any())
                                 <div id="msgDiv" class="alert alert-danger">
                                     <button type="button" class="close" data-dismiss="alert">×</button>
-                                    Please check the form below for errors
+                                    @lang('Please check the form below for errors')
                                 </div>
                             @endif
                             <form class="sell-add-info-form" action="{{ route('frontend.user.adStore') }}" method="POST"
@@ -30,12 +30,12 @@
                                 <input type="hidden" name="longitude" id="longitude"
                                     value="{{ $category->longitude ?? null }}">
                                 <div class="row mb-30-none">
-                                    <div class="col-xl-12 mb-30">
+                                    <div class="col-xl-8 mb-30">
                                         <div class="sell-add-info-body-wrapper">
                                             <h3 class="sell-add-info-body-title">@lang('ADD SOME INFO')</h3>
                                             @if ($category->category_type != 'vehicles')
                                                 <div class="form-group">
-                                                    <label>Advert title <span class="text--danger">*</span></label>
+                                                    <label>@lang('Advert title') <span class="text--danger">*</span></label>
                                                     <input type="text" name="title" class="form--control"
                                                         placeholder="@lang('Advert title')" value="{{ old('title') }}">
                                                     <div class="text-limit-area">

@@ -1,9 +1,9 @@
 @extends('admin.layout.master')
 @section('title')
-    General Settings
+    @lang('General Settings')
 @endsection
 @section('page-name')
-    General Settings Page
+    @lang('General Settings')
 @endsection
 @php
 @endphp

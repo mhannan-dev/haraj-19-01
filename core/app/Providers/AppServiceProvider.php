@@ -33,10 +33,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $activeTemplate = activeTemplate();
-        $currency = Currency::select('currency_code', 'currency_symbol')->where('status', '=', 1)->first();
+        $currency = Currency::select('currency_code', 'currency_symbol')->first();
+        // $currency = Currency::select('currency_code', 'currency_symbol')->where('status', '=', 1)->first();
+        // dd($currency);
         $general = GeneralSetting::with('currency')->first();
 
         $viewShare['general'] = $general ? $general : '';
+        $viewShare['currency'] = $currency ? $currency : 'TL';
         $viewShare['currency'] = $currency ? $currency : 'TL';
 
         $viewShare['languages'] = Language::all();

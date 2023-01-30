@@ -14,7 +14,7 @@ class CurrencyController extends Controller
     {
         $search = $request->search;
         $pageTitle = "Manage Currencies";
-        $currencies = Currency::orderBy('is_default', 'desc');
+        $currencies = Currency::orderBy('id', 'desc');
         if ($search) {
             $pageTitle = "Search Results of $search";
             $currencies = Currency::where('currency_code', 'like', "%$search%")->orWhere('currency_fullname', 'like', "%$search%")->orderBy('id', 'desc');
@@ -76,7 +76,7 @@ class CurrencyController extends Controller
             //     $general->cur_sym = $data['currency_symbol'];
             //     $general->save();
             // }
-            $currency->is_default = $request->is_default ? 1 : 0;
+            // $currency->is_default = $request->is_default ? 1 : 0;
 			$currency->save();
 			return back()->withNotify($notify);
 		}

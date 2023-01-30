@@ -5,9 +5,6 @@
 @section('page-name')
     @lang('Email Configuration Page')
 @endsection
-@php
-
-@endphp
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -17,9 +14,8 @@
                         <div class="user-info-header two">
                             <h5 class="title">@lang('Email Configuration')</h5>
                             <div class="info-btn">
-
                                 <a href="#" class="btn btn--base" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModalTwo"> Send Test Mail <i class="las la-paper-plane"></i></a>
+                                    data-bs-target="#exampleModalTwo"> @lang('Send') @lang('Test') @lang('Mail')<i class="las la-paper-plane"></i></a>
                             </div>
                         </div>
                         <div class="dashboard-form-area two mt-10">
@@ -28,7 +24,7 @@
                                 @csrf
                                 <div class="row justify-content-center mb-10-none">
                                     <div class="col-lg-12 form-group">
-                                        <label>Email Send Method</label>
+                                        <label>@lang('Email') @lang('Send') @lang('Method')</label>
                                         <select name="email_method" class="form-control">
                                             <option value="php" @if ( $general->mail_config->name == 'php') selected @endif>
                                                 @lang('PHP Mail')</option>
@@ -118,7 +114,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12 form-group mt-10">
-                                        <button type="submit" class="btn btn--base w-100">Update</button>
+                                        <button type="submit" class="btn btn--base w-100">@lang('Update')</button>
                                     </div>
                                 </div>
                             </form>
@@ -135,14 +131,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">@lang('Test Mail Setup')</h5>
+                    <h5 class="modal-title">@lang('Test Mail')</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
                             class="las la-times"></i></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('admin.email.template.test.mail') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="id">
                         <div class="modal-body">
                             <div class="form-row">
                                 <div class="form-group col-md-12">
@@ -153,8 +148,8 @@
                             </div>
                         </div>
                         <div class="modal-footer mt-20">
-                            <a class="btn--base bg--danger" data-bs-dismiss="modal">Close</a>
-                            <button type="submit" class="btn--base">Submit</button>
+                            <a class="btn--base bg--danger" data-bs-dismiss="modal">@lang('Close')</a>
+                            <button type="submit" class="btn--base">@lang('Submit')</button>
                         </div>
                     </form>
                 </div>
