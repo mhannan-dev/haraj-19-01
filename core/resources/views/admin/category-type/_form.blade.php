@@ -9,7 +9,6 @@
         align-items: center;
         justify-content: space-between;
     }
-
     .kyc-form select {
         padding: 10px 14px;
     }
