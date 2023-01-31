@@ -67,6 +67,7 @@
     @include('admin.layout.includes.js')
     {{-- @include('admin.layout.includes.home_js') --}}
     @yield('scripts')
+
 </body>
 <!-- END: Body-->
 </html>

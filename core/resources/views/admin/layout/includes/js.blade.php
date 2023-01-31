@@ -3,7 +3,7 @@
 <!-- bootstrap js -->
 <script src="{{ URL::asset('assets/admin') }}/js/bootstrap.bundle.min.js"></script>
 <!-- grid.bundle js -->
-<script src="{{ URL::asset('assets/admin') }}/js/grid.bundle.min.js"></script>
+{{-- <script src="{{ URL::asset('assets/admin') }}/js/grid.bundle.min.js"></script> --}}
 <!-- select2 js -->
 <script src="{{ URL::asset('assets/admin') }}/js/select2.min.js"></script>
 <!-- toggle js -->
@@ -12,10 +12,6 @@
 <script src="{{ URL::asset('assets/admin') }}/js/nicEdit.js"></script>
 <!-- bootstrap-iconpicker js -->
 <script src="{{ URL::asset('assets/admin') }}/js/bootstrap-iconpicker.bundle.min.js"></script>
-<!-- apexcharts js -->
-{{-- <script src="{{ URL::asset('assets/admin') }}/js/apexcharts.min.js"></script> --}}
-<!-- dashboard-chart js -->
-<script src="{{ URL::asset('assets/admin') }}/js/dashboard-chart.js"></script>
 <!-- main -->
 <script src="{{ URL::asset('assets/admin') }}/js/main.js"></script>
 

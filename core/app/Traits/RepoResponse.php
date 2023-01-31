@@ -3,11 +3,9 @@
 trait RepoResponse {
     public function formatResponse(bool $status, string $msg, string $redirect_to, $data = null, string $flash_type = '') : object
     {
-
         if ($flash_type == '') {
-            $flash_type = $status ? 'flashMessageSuccess' : 'flashMessageError'; // flashMessageWarning
+            $flash_type = $status ? 'flashMessageSuccess' : 'flashMessageError';
         }
-
         return (object) array(
             'status'         => $status,
             'msg'            => $msg,

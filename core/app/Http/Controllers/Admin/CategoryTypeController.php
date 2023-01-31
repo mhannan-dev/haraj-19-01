@@ -1,13 +1,13 @@
 <?php
 namespace App\Http\Controllers\Admin;
 use App\Models\Category;
+use Illuminate\Support\Arr;
 use App\Models\CategoryType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CategoryTypeStoreRequest;
-use App\Http\Requests\Admin\CategoryTypeUpdateRequest;
+use Illuminate\Support\Facades\Validator;
 use App\Repositories\Admin\CategoryType\CategoryTypeInterface;
-
 
 class CategoryTypeController extends Controller
 {
@@ -27,33 +27,116 @@ class CategoryTypeController extends Controller
 
     public function getCreate()
     {
-        $data['category'] = new CategoryType();
+        $data['row'] = new CategoryType();
         $data['buttonText'] = "Save";
         return view('admin.category-type.create', $data);
     }
 
-    public function postStore(CategoryTypeStoreRequest $request)
+    public function postStore(Request $request)
     {
-        dd($request->all());
-        $this->resp = $this->category_type->postStore($request);
-        return redirect()->route($this->resp->redirect_to)->with($this->resp->redirect_class, $this->resp->msg);
+        //  dd($request->all());
+        // Form Data Validate
+        $validator = Validator::make($request->all(),[
+            'title'                 => 'required|string|max:255',
+            'label'                 => 'nullable|array',
+            'label.*'               => 'nullable|string|max:50',
+            'input_type'            => 'nullable|array',
+            'input_type.*'          => 'nullable|string|max:20',
+            'min_char'              => 'nullable|array',
+            'min_char.*'            => 'nullable|numeric',
+            'max_char'              => 'nullable|array',
+            'max_char.*'            => 'nullable|numeric',
+            'field_necessity'       => 'nullable|array',
+            'field_necessity.*'     => 'nullable|string|max:20',
+            'file_extensions'       => 'nullable|array',
+            'file_extensions.*'     => 'nullable|string|max:255',
+            'file_max_size'         => 'nullable|array',
+            'file_max_size.*'       => 'nullable|numeric',
+            'select_options'        => 'nullable|array',
+            'select_options.*'      => 'nullable|string|max:60',
+            'editable'              => 'nullable|array',
+            'editable.*'            => 'nullable|numeric',
+
+        ]);
+        $validated = $validator->validate();
+        $validated['fields'] = decorate_input_fields($validated);
+        // dd($validated['fields']);
+        $validated = Arr::except($validated,[
+            'label',
+            'input_type',
+            'editable',
+            'min_char',
+            'max_char',
+            'field_necessity',
+            'file_extensions',
+            'file_max_size',
+            'select_options']);
+        DB::beginTransaction();
+        try {
+            // $form_data = json_encode($validated['fields']);
+            $c_form = new CategoryType();
+            $c_form->title = $request->title;
+            $c_form->fields = $validated['fields'];
+            $c_form->save();
+        } catch (\Exception $e) {
+            info($e);
+            DB::rollback();
+            return redirect()->route('admin.category.type.index');
+        }
+        DB::commit();
+        return redirect()->route('admin.category.type.index');
     }
 
     public function getEdit(Request $request, $id)
     {
-        $this->resp = $this->category_type->getShow($id);
+        $c_form = CategoryType::where('id', $id)->firstOrfail();
         $buttonText = "Update";
-        if (!$this->resp->status) {
-            return redirect()->route($this->resp->redirect_to)->with($this->resp->redirect_class, $this->resp->msg);
-        }
-        return view('admin.category-type.edit', compact('buttonText'))->withRow($this->resp->data);
+        return view('admin.category-type.edit', compact('buttonText'))->withRow($c_form);
 
     }
 
-    public function postUpdate(CategoryTypeUpdateRequest $request, $id)
+    public function postUpdate(Request $request, $id)
     {
-        $this->resp = $this->category_type->postUpdate($request, $id);
-        return redirect()->route($this->resp->redirect_to)->with($this->resp->redirect_class, $this->resp->msg);
+        // Form Data Validate
+        $validator = Validator::make($request->all(),[
+            'title'                 => 'required|string|max:255',
+            'label'                 => 'nullable|array',
+            'label.*'               => 'nullable|string|max:50',
+            'input_type'            => 'nullable|array',
+            'input_type.*'          => 'nullable|string|max:20',
+            'min_char'              => 'nullable|array',
+            'min_char.*'            => 'nullable|numeric',
+            'max_char'              => 'nullable|array',
+            'max_char.*'            => 'nullable|numeric',
+            'field_necessity'       => 'nullable|array',
+            'field_necessity.*'     => 'nullable|string|max:20',
+            'file_extensions'       => 'nullable|array',
+            'file_extensions.*'     => 'nullable|string|max:255',
+            'file_max_size'         => 'nullable|array',
+            'file_max_size.*'       => 'nullable|numeric',
+            'select_options'        => 'nullable|array',
+            'select_options.*'      => 'nullable|string|max:60',
+            'editable'              => 'nullable|array',
+            'editable.*'            => 'nullable|numeric',
+
+        ]);
+        $validated = $validator->validate();
+        $validated['fields'] = decorate_input_fields($validated);
+        $validated = Arr::except($validated,['label','input_type','min_char','editable','max_char','field_necessity','file_extensions','file_max_size','select_options']);
+        DB::beginTransaction();
+        // dd($validated);
+        try {
+            $c_form = CategoryType::findOrFail($id);
+            $c_form->title = $request->title;
+            $c_form->fields = $validated['fields'];
+            $c_form->update();
+        } catch (\Exception $e) {
+            info($e);
+            DB::rollback();
+            return redirect()->route('admin.category.type.index')->with('error','Type has been updated successfully !');
+        }
+        DB::commit();
+        return redirect()->route('admin.category.type.index')->with('flashMessageSuccess','Type has been updated successfully !');
     }
 
     public function getDelete($id)

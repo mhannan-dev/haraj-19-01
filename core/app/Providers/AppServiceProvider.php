@@ -32,19 +32,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $activeTemplate = activeTemplate();
-        $currency = Currency::select('currency_code', 'currency_symbol')->first();
+        $currency = Currency::first();
         $general = GeneralSetting::with('currency')->first();
-
         $viewShare['general'] = $general ? $general : '';
-        $viewShare['currency'] = $currency ? $currency : 'TL';
         $viewShare['currency'] = $currency ? $currency : 'TL';
 
         $viewShare['languages'] = Language::all();
         $viewShare['socials'] = DB::table('social_media')->where('status', '=', 1)->get();
         $viewShare['app_links'] = json_decode($general->apps_settings);
-        $viewShare['activeTemplate'] = $activeTemplate ? $activeTemplate : '';
-        $viewShare['activeTemplateTrue'] = activeTemplate(true);
         view()->share($viewShare);
         view()->composer('partials.seo', function ($view) {
             $seo = Frontend::where('data_keys', 'seo.data')->first();

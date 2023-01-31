@@ -11,6 +11,10 @@ class CategoryType extends Model
     use HasFactory;
     protected $fillable = ['title', 'slug', 'status', 'created_at', 'updated_at', 'fields'];
 
+    protected $casts = [
+        'fields' => "object",
+    ];
+
     public function setTitleAttribute($value)
     {
         $this->attributes['title'] = $value;
@@ -24,4 +28,5 @@ class CategoryType extends Model
     {
         return $query->where('status', 1);
     }
+
 }

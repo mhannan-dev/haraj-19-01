@@ -120,12 +120,28 @@
     $(this).parent().siblings('.icon').val(`<i class="${e.icon}"></i>`);
   });
 
-  // Forms
-  $('.add-row-btn').click(function ($e) {
-    $e.preventDefault();
+  // input-field-generator
+  $('.input-field-generator').on('click', '.add-row-btn', function () {
+    var source = $('.input-field-generator').attr("data-source");
+    $(this).closest('.input-field-generator').find('.results').children().removeClass("last-add");
+    $(this).closest('.input-field-generator').find('.results').prepend(storedHtmlMarkup[source]);
+    var lastAddedElement = $(this).closest('.input-field-generator').find('.results').children().first();
+    lastAddedElement.addClass("last-add");
+    var inputTypeField = lastAddedElement.find(".field-input-type");
+    if (inputTypeField.length > 0) {
+      inputFieldValidationRuleFieldsShow(inputTypeField);
+    }
   });
 
+  $(document).on('click', '.row-cross-btn', function (e) {
+    e.preventDefault();
+    $(this).parent().parent().hide(300);
+    setTimeout(timeOutFunc, 300, $(this));
 
+    function timeOutFunc(element) {
+      $(element).parent().parent().remove();
+    }
+  });
 
 
   $(document).ready(function () {
@@ -262,6 +278,7 @@ var storedHtmlMarkup = {
 </div>`,
   payment_gateway_currencies_wrapper: `<div class="payment-gateway-currencies-wrapper"></div>`,
   manual_gateway_input_fields: `<div class="row add-row-wrapper align-items-end">
+  <input type="hidden" name="editable[]" value="1">
 <div class="col-xl-3 col-lg-3 form-group">
   <label>Field Name*</label>
   <input type="text" class="form--control" placeholder="Type Here..." name="label[]" value="" required>
@@ -269,7 +286,7 @@ var storedHtmlMarkup = {
 <div class="col-xl-2 col-lg-2 form-group">
     <label>Field Types*</label>
     <select class="form--control nice-select field-input-type" name="input_type[]">
-        <option value="text" selected>Select first</option>
+        <option value="text" selected>Text</option>
         <option value="file">File</option>
         <option value="textarea">Textarea</option>
     </select>
@@ -278,13 +295,10 @@ var storedHtmlMarkup = {
 </div>
 <div class="col-xl-2 col-lg-2 form-group">
   <label for="fieldnecessity">Is required*</label>
-  <<div class="toggle-container">
-    <div data-clickable="true" class="switch-toggles default two active">
-      <input type="hidden" name="field_necessity[]" value="1">
-      <span class="switch " data-value="1">Required</span>
-      <span class="switch " data-value="0">Optional</span>
-    </div>
-  </div>>
+  <select name="field_necessity[]" class="form--control">
+      <option value="yes" selected>Yes</option>
+      <option value="no" selected>No</option>
+  </select>
 </div>
 <div class="col-xl-1 col-lg-1 form-group">
     <button type="button" class="custom-btn btn--base btn--danger row-cross-btn w-100"><i class="las la-times"></i></button>

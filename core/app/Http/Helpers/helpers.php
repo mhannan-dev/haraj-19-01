@@ -497,10 +497,10 @@ function sendSms($user, $type, $shortCodes = [])
     if ($general->sn == 1 && $smsTemplate) {
         $template = $smsTemplate->sms_body;
         foreach ($shortCodes as $code => $value) {
-            $template = shortCodeReplacer('{{' . $code . '}}', $value, $template);
+            $template = shortCodeReplacer('{{ ' . $code . ' }}', $value, $template);
         }
-        $message = shortCodeReplacer("{{message}}", $template, $general->sms_api);
-        $message = shortCodeReplacer("{{name}}", $user->username, $message);
+        $message = shortCodeReplacer("{{ message }}", $template, $general->sms_api);
+        $message = shortCodeReplacer("{{ name }}", $user->username, $message);
         $sendSms->$gateway($user->mobile, $general->sitename, $message, $general->sms_config);
     }
 }
@@ -513,16 +513,16 @@ function sendEmail($user, $type = null, $shortCodes = [])
     if ($general->en != 1 || !$emailTemplate) {
         return;
     }
-    $message = shortCodeReplacer("{{fullname}}", $user->first_name, $general->email_template);
-    $message = shortCodeReplacer("{{username}}", $user->username, $message);
-    $message = shortCodeReplacer("{{message}}", $emailTemplate->email_body, $message);
+    $message = shortCodeReplacer("{{ fullname }}", $user->first_name, $general->email_template);
+    $message = shortCodeReplacer("{{ username }}", $user->username, $message);
+    $message = shortCodeReplacer("{{ message }}", $emailTemplate->email_body, $message);
 
     if (empty($message)) {
         $message = $emailTemplate->email_body;
     }
 
     foreach ($shortCodes as $code => $value) {
-        $message = shortCodeReplacer('{{' . $code . '}}', $value, $message);
+        $message = shortCodeReplacer('{{ ' . $code . ' }}', $value, $message);
     }
 
     $config = $general->mail_config;
@@ -555,7 +555,7 @@ function sendPhpMail($receiver_email, $receiver_name, $subject, $message, $gener
     $headers .= "Reply-To: $general->sitename <$general->email_from> \r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=utf-8\r\n";
-    @mail($receiver_email, $subject, $message, $headers);
+@mail($receiver_email, $subject, $message, $headers);
 }
 
 
@@ -749,9 +749,9 @@ function sendGeneralEmail($email, $subject, $message, $receiver_name = '')
         return;
     }
 
-    $message = shortCodeReplacer("{{message}}", $message, $general->email_template);
-    $message = shortCodeReplacer("{{fullname}}", $receiver_name, $message);
-    $message = shortCodeReplacer("{{username}}", $email, $message);
+    $message = shortCodeReplacer("{{ message }}", $message, $general->email_template);
+    $message = shortCodeReplacer("{{ fullname }}", $receiver_name, $message);
+    $message = shortCodeReplacer("{{ username }}", $email, $message);
 
     $config = $general->mail_config;
     //dd($config);
@@ -866,4 +866,87 @@ function sanitizedParam($param)
 function defaultCurrency()
 {
     return Currency::where('is_default', 1)->first()->currency_code ?? 'USD';
+}
+
+
+
+function make_input_name($string)
+{
+    $string         = preg_replace('/[^A-Za-z0-9]/', ' ', $string);
+    $string         = preg_replace("/ /i", "_", $string);
+    $string         = Str::lower($string);
+    return $string;
+}
+
+function decorate_input_fields($validated)
+{
+
+    $input_fields = [];
+
+    $field_necessity_list = [
+        '1'             => true,
+        '0'             => false,
+    ];
+    $file_array_key = 0;
+    $select_array_key = 0;
+    $select_number_array_key = 0;
+    foreach ($validated['input_type'] ?? [] as $key => $item) {
+        $field_necessity = $validated['field_necessity'][$key] ?? "";
+        $validation_rules = ['min' => 0, 'mimes' => []];
+        if ($item == "file") {
+            $extensions = $validated['file_extensions'][$file_array_key] ?? "";
+            $extensions = explode(",", $extensions);
+
+            $validation_rules = [
+                'max'       => $validated['file_max_size'][$file_array_key] ?? 0,
+                'mimes'     => $extensions,
+                'min'       => 0,
+                'options'  => [],
+            ];
+
+            $file_array_key++;
+        } else if ($item == "select") {
+            $options = $validated['select_options'][$select_array_key] ?? "";
+            $options = explode(",", $options);
+
+            $validation_rules = [
+                'max'       => 0,
+                'min'       => 0,
+                'mimes'     => [],
+                'options'   => $options,
+            ];
+
+            $select_array_key++;
+        } else if ($item == "number") {
+            $options = $validated['select_options'][$select_number_array_key] ?? "";
+            $validation_rules = [
+                'max'       => 0,
+                'min'       => 0,
+                'mimes'     => [],
+                'options'   => [],
+            ];
+            $select_number_array_key++;
+        }
+        else {
+            // print_r($validated['max_char'][$key]);
+            $validation_rules = [
+                'max'      => $validated['max_char'][$key] ?? 0,
+                'mimes'    => [],
+                'min'      => $validated['min_char'][$key] ?? 0,
+                'options'  => [],
+            ];
+        }
+
+        $validation_rules['required'] = $field_necessity_list[$field_necessity] ?? false;
+
+        $input_fields[]     = [
+            'type'          => $item,
+            'label'         => $validated['label'][$key] ?? "",
+            'name'          => make_input_name($validated['label'][$key] ?? ""),
+            'required'      => $field_necessity_list[$field_necessity] ?? false,
+            'validation'    => $validation_rules,
+            'editable'         => $validated['editable'][$key] ?? "",
+        ];
+    }
+    return $input_fields;
 }

@@ -20,11 +20,6 @@ class CategoryTypeAbstract implements CategoryTypeInterface
     public function getPaginatedList($request,$per_page = 20)
     {
         $data = $this->category_type::get();
-        // echo '<pre>';
-        // echo '======================<br>';
-        // print_r($data);
-        // echo '<br>======================<br>';
-        // exit();
         return $this->formatResponse(true, '', '', $data);
     }
     public function postStore($request)
@@ -39,7 +34,7 @@ class CategoryTypeAbstract implements CategoryTypeInterface
         }
 
         DB::commit();
-        return $this->formatResponse(true, 'Type has been Created successfully !', 'admin.category-type.index');
+        return $this->formatResponse(true, 'Type has been Created successfully !', 'admin.category.type.index');
     }
 
     public function postUpdate($request, int $id)
@@ -52,10 +47,10 @@ class CategoryTypeAbstract implements CategoryTypeInterface
         } catch (\Exception $e) {
             info($e);
             DB::rollback();
-            return $this->formatResponse(false, 'Unable to update!', 'admin.category-type.index');
+            return $this->formatResponse(false, 'Unable to update!', 'admin.category.type.index');
         }
         DB::commit();
-        return $this->formatResponse(true, 'Type has been updated successfully !', 'admin.category-type.index');
+        return $this->formatResponse(true, 'Type has been updated successfully !', 'admin.category.type.index');
     }
 
     public function getShow(int $id)
@@ -71,14 +66,14 @@ class CategoryTypeAbstract implements CategoryTypeInterface
     {
         DB::begintransaction();
         try {
-            DB::table('categories')->where('id', $id)->delete();
+            DB::table('category_types')->where('id', $id)->delete();
             DB::commit();
             echo 'deleted successfully';
         } catch (\Exception $e) {
            info($e);
             DB::rollback();
-           return $this->formatResponse(false, 'Unable to delete this action !', 'admin.category-type.index');
+           return $this->formatResponse(false, 'Unable to delete this action !', 'admin.category.type.index');
         }
-        return $this->formatResponse(true, 'Successfully delete this action !', 'admin.category-type.index');
+        return $this->formatResponse(true, 'Successfully delete this action !', 'admin.category.type.index');
     }
 }
