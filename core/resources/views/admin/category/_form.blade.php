@@ -59,21 +59,10 @@
         <select id="graph_select" name="category_type"
             class="form-control form--control {{ $errors->has('category_type') ? 'is-invalid' : '' }}">
             <option value="">--@lang('Select')--</option>
-            <option value="mobiles" @if (isset($row->category_type) && $row->category_type == 'mobiles') selected="" @endif>Mobiles & Gadget</option>
-            <option value="electronics" @if (isset($row->category_type) && $row->category_type == 'electronics') selected="" @endif>Electronics</option>
-            <option value="sports" @if (isset($row->category_type) && $row->category_type == 'sports') selected="" @endif>Sports</option>
-            <option value="vehicles" id="vehicles" @if (isset($row->category_type) && $row->category_type == 'vehicles') selected="" @endif>Vehicles
-            </option>
-            <option value="home_and_garden" @if (isset($row->category_type) && $row->category_type == 'home_and_garden') selected="" @endif>Home and Garden
-            </option>
-            <option value="fashion_beauty" @if (isset($row->category_type) && $row->category_type == 'fashion_beauty') selected="" @endif>Fashion and Beauty
-            </option>
-            <option value="baby_and_child" @if (isset($row->category_type) && $row->category_type == 'baby_and_child') selected="" @endif>Baby and Child</option>
-            <option value="soft_products" @if (isset($row->category_type) && $row->category_type == 'soft_products') selected="" @endif>Movies, Music and
-                Software</option>
-            <option value="pet" @if (isset($row->category_type) && $row->category_type == 'pet') selected="" @endif>Pet animals</option>
-            <option value="general" @if (isset($row->category_type) && $row->category_type == 'general') selected="" @endif>General</option>
-
+            @foreach ($category_type as $c_type)
+                <option value="{{ $c_type->id }}" @if (isset($row->category_type_id) && $row->category_type_id == $c_type->id) selected="" @endif>
+                    {{ $c_type->title }}</option>
+            @endforeach
         </select>
     </div>
     <div class="col-4 mb-2" id="wheels">
@@ -87,55 +76,11 @@
         </select>
     </div>
     <div class="col-4 mb-2">
-        <label for="image">@lang('Image') <span class="text-primary">Select it for Child cateogry</span></label>
+        <label for="image">@lang('Image') <span class="text-primary">@lang('Select it for Child cateogry')</span></label>
         <input type="file" name="image" class="form--control" accept="image/*">
     </div>
 </div>
 <hr>
 
-{{-- <div class="custom-card kyc-form">
-    <div class="card-header">
-        <h6 class="title">Category Form</h6>
-        <button type="button" class="btn--base add-row-btn"><i class="fas fa-plus"></i>
-            @lang('Add')</button>
-    </div>
-    <div class="custom-inner-card input-field-generator mt-2" data-source="manual_gateway_input_fields">
-        <div class="card-inner-body">
-            <div class="results">
-                <div class="row add-row-wrapper align-items-end">
-                    <div class="col-xl-3 col-lg-3 form-group">
-                        @include('admin.components.form.input', [
-                            'label' => 'Advertisement title*',
-                            'name' => 'form_title[]',
-                            'attribute' => 'required',
-                        ])
-                    </div>
-                    <div class="col-xl-2 col-lg-2 form-group">
-                        <label>{{ __('Field Types*') }}</label>
-                        <select class="form--control nice-select field-input-type" name="input_type[]">
-                            <option value="text" selected>Input Text</option>
-                            <option value="file">File</option>
-                            <option value="textarea">Textarea</option>
-                        </select>
-                    </div>
-                    <div class="field_type_input col-lg-4 col-xl-4">
-                    </div>
-                    <div class="col-xl-2 col-lg-2 form-group">
-                        <label>Field Necessity</label>
-                        <select name="field_necessity" class="form--control">
-                            <option value="">Select option</option>
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                        </select>
-                    </div>
-                    <div class="col-xl-1 col-lg-1 form-group">
-                        <button type="button" class="custom-btn btn--base btn--danger kyc-cross-btn w-100">
-                            <i class="las la-times"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 <a href="{{ route('admin.category.index') }}" class="btn btn--base bg--danger">@lang('Cancel')</a>
 <button type="submit" class="btn btn--base">{{ $buttonText }}</button>

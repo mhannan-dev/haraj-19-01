@@ -26,9 +26,7 @@ class CategoryStoreRequest extends FormRequest
         $rules = [
             'title' => 'required|unique:categories|max:255',
             'icon' => 'required',
-            'form_title' => 'required',
-            'input_type' => 'required',
-            'field_necessity' => 'required'
+            'category_type' => 'required',
         ];
 
         return $rules;
@@ -39,9 +37,7 @@ class CategoryStoreRequest extends FormRequest
         return [
             'title.required'  => 'Please enter Name!',
             'icon.required'  => 'Please enter icon code!',
-            'form_title.required'  => 'Please select form title!',
-            'input_type.required'  => 'Please select type!',
-            'field_necessity.required'  => 'Please select field necessity!'
+            'category_type.required'  => 'Please select category type!',
         ];
     }
 }

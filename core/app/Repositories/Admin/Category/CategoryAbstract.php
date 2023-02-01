@@ -44,7 +44,7 @@ class CategoryAbstract implements CategoryInterface
             $category->parent_id = $request->parent_id;
             $category->bg_color = $request->bg_color;
             $category->icon = $request->icon;
-            $category->category_type = $request->category_type;
+            $category->category_type_id = $request->category_type;
             $category->wheels = $request->wheels ?? null;
             if ($request->file('image')) {
                 $image = $request->file('image');
@@ -60,6 +60,7 @@ class CategoryAbstract implements CategoryInterface
             // dd($request->all());
             $category->save();
         } catch (\Exception $e) {
+            dd($e);
             info($e);
             DB::rollback();
             return $this->formatResponse(false, 'Unable to create !', 'admin.category.index');
@@ -78,7 +79,7 @@ class CategoryAbstract implements CategoryInterface
             $category->parent_id = $request->parent_id;
             $category->bg_color = $request->bg_color;
             $category->icon = $request->icon;
-            $category->category_type = $request->category_type;
+            $category->category_type_id = $request->category_type;
             $category->wheels = $request->wheels;
             if (isset($image)) {
                 $imageName  = time() . '.' . $image->getClientOriginalExtension();
@@ -96,7 +97,6 @@ class CategoryAbstract implements CategoryInterface
                 $imageName = $category->image;
             }
             $category->image = $imageName;
-            $category->status = 1;
             $category->update();
         } catch (\Exception $e) {
             info($e);

@@ -1,11 +1,13 @@
 <?php
 namespace App\Http\Controllers\Admin;
 use App\Models\Category;
+use App\Models\CategoryType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+
 use App\Http\Requests\Admin\CategoryStoreRequest;
 use App\Http\Requests\Admin\CategoryUpdateRequest;
-
 use App\Repositories\Admin\Category\CategoryInterface;
 
 class CategoryController extends Controller
@@ -27,6 +29,7 @@ class CategoryController extends Controller
     public function getCreate()
     {
         $data['category'] = new Category();
+        $data['category_type'] = DB::table('category_types')->select('title','status','id')->where('status', '=' , 1)->get();
         $data['buttonText'] = "Save";
         return view('admin.category.create', $data);
     }

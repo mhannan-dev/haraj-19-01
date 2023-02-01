@@ -90,8 +90,6 @@ class HomeController extends Controller
         $data['category'] = DB::table('categories')->where('parent_id', 0)->get();
         $data['sub_category'] =  Category::withCount('subCategories')->orderBy('id', 'DESC')->where('parent_id', 0)->active()->get();
         $data['cities'] =  City::orderBy('id', 'DESC')->active()->get();
-        // dd($data['cities']);
-
         return view('frontend.pages.public_ads.catgory_ad', $data);
     }
     public function  checkFav(Request $request)
@@ -120,7 +118,6 @@ class HomeController extends Controller
 
     public function fetchBrand(Request $request)
     {
-
         //by only category
         if ($request->brand_id == 'all_category') {
             $data['brands'] =  DB::table('brands')->orderBy('id', "DESC")->get();
