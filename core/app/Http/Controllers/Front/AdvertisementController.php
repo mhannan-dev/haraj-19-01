@@ -7,14 +7,11 @@ use App\Models\Brand;
 use App\Models\AdImage;
 use App\Models\Category;
 use App\Models\Favourite;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Advertisement;
-use App\Http\Helpers\Generals;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,15 +19,12 @@ class AdvertisementController extends Controller
 {
     public function dashboard()
     {
-
         $advertiser = Auth::guard('advertiser')->user()->id;
         $data['my_ads'] = Advertisement::withCount('sub_category', 'ad_message', 'favourite_to_users')
             ->with('category:id,title,category_type')->where('advertiser_id', $advertiser)->get();
         $data['favourite_ads'] = Favourite::with('ads')->where('advertiser_id', $advertiser)->take(10)->get();
         return view('frontend.pages.user.dashboard', $data);
     }
-
-
     /**
      * Show the application dashboard.
      *
@@ -410,7 +404,7 @@ class AdvertisementController extends Controller
 
     public function removeMultiImage($image_id, $ad_id)
     {
-        $multiImage =  AdImage::select('images','id')->where('id', $image_id)->where('advertisement_id', $ad_id)->first();
+        $multiImage =  AdImage::select('images', 'id')->where('id', $image_id)->where('advertisement_id', $ad_id)->first();
         if (Storage::disk('public')->exists('advertisement_images/' . $multiImage->images)) {
             Storage::disk('public')->delete('advertisement_images/' . $multiImage->images);
         }

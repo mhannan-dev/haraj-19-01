@@ -75,10 +75,10 @@
                                                 </div>
 
                                                 @if ($field->type == 'file' && $field->name == 'images')
-                                                    <h3 class="sell-add-info-price-title two">YOU CAN UPLOAD UP TO 10
-                                                        PHOTOS</h3>
-                                                    <span class="image-up-alart-text pb-10">(Alart: Heigh 1000x800 px /
-                                                        size 2MB)</span>
+                                                    <h3 class="sell-add-info-price-title two">
+                                                        @lang('YOU CAN UPLOAD UP TO 10 PHOTOS')
+                                                    </h3>
+                                                    <span class="image-up-alart-text pb-10">(@lang('Alert: Heigh 1000x800 px')/@lang('size 3MB'))</span>
                                                     <div class="row mb-30-none">
                                                         <div class="col-xl-8 mb-30">
                                                             <div class="add-more-details-thumb-wrapper">
@@ -94,7 +94,7 @@
                                     </div>
                                 </div>
                                 <div class="sell-add-info-price-wrapper">
-                                    <h3 class="sell-add-info-price-title">CONFIRM YOUR LOCATION</h3>
+                                    <h3 class="sell-add-info-price-title">@lang('CONFIRM YOUR LOCATION')</h3>
                                     <div class="row mb-30-none">
                                         <div class="col-xl-8 mb-30">
                                             <div class="location-tab">
@@ -103,18 +103,20 @@
                                                         <button class="nav-link active" id="category-tab"
                                                             data-bs-toggle="tab" data-bs-target="#category" type="button"
                                                             role="tab" aria-controls="category"
-                                                            aria-selected="true">CHOOSE FROM LIST</button>
+                                                            aria-selected="true">@lang('CHOOSE FROM LIST')</button>
                                                         <button class="nav-link" id="apps-tab" data-bs-toggle="tab"
                                                             data-bs-target="#apps" type="button" role="tab"
-                                                            aria-controls="apps" aria-selected="false">CURRENT
-                                                            LOCATION</button>
+                                                            aria-controls="apps"
+                                                            aria-selected="false">@lang('CURRENT
+                                                                                                                        LOCATION')</button>
                                                     </div>
                                                 </nav>
                                                 <div class="tab-content" id="nav-tabContent">
                                                     <div class="tab-pane fade show active" id="category" role="tabpanel"
                                                         aria-labelledby="category-tab">
                                                         <div class="form-group pt-60">
-                                                            <label>Province <span class="text--danger">*</span></label>
+                                                            <label>@lang('Province') <span
+                                                                    class="text--danger">*</span></label>
                                                             <select class="form--control" name="city_id" id="city_id">
                                                                 <option value="">@lang('Select')</option>
                                                                 @foreach (\DB::table('cities')->where('status', 1)->get() as $city)
@@ -158,11 +160,9 @@
         $(document).ready(function() {
             "use strict";
             getLocation();
-
             $('currenct_location').on('click', function() {
                 getLocation();
             });
-
 
             function getLocation() {
                 if (navigator.geolocation) {
@@ -175,10 +175,8 @@
             function showPosition(position) {
                 var lat = position.coords.latitude;
                 var lon = position.coords.longitude;
-
                 document.getElementById('latitude').value = lat
                 document.getElementById('longitude').value = lon
-
                 var latlon = new google.maps.LatLng(lat, lon)
                 var mapholder = document.getElementById('mapHolder')
                 mapholder.style.height = '250px';
@@ -198,7 +196,6 @@
                     map: map,
                     title: "You are here!"
                 });
-
             }
         });
     </script>

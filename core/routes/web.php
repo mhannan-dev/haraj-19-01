@@ -9,7 +9,6 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Front\PayPalController;
 use App\Http\Controllers\Front\StripeController;
-use App\Http\Controllers\Front\PaystackController;
 use App\Http\Controllers\Front\DashboardController;
 use App\Http\Controllers\Front\FavouriteController;
 use App\Http\Controllers\Front\FeatureAdController;
@@ -29,8 +28,11 @@ use App\Http\Controllers\Front\AdvertisementController;
 */
 
 Route::get('cc', function () {
+    $stack = array("orange", "banana", "apple", "raspberry");
+    $fruit = array_shift($stack);
+    print_r($stack);
     Artisan::call('optimize:clear');
-    return "Cleared!";
+    //return "Cleared!";
 });
 
 Route::get('admin', ['uses' => '\App\Http\Controllers\Admin\AdminAuthController@getLogin'])->name('login');

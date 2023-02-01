@@ -63,6 +63,7 @@ class CategoryTypeController extends Controller
         $validated = $validator->validate();
         $validated['fields'] = decorate_input_fields($validated);
         // dd($validated['fields']);
+
         $validated = Arr::except($validated,[
             'label',
             'input_type',

@@ -34,15 +34,14 @@
         @endif
     </div>
 </div>
-<div class="custom-card kyc-form input-field-generator" data-source="manual_gateway_input_fields">
-    <div class="card-header">
-        <h6 class="title">@lang('Necessary Fields')</h6>
-        <button type="button" class="btn--base add-row-btn"><i class="fas fa-plus"></i>
-            @lang('Add')</button>
-    </div>
-    <div class="custom-inner-card mt-2">
-        <div class="card-inner-body">
-            <div class="results">
+<p>
+    <button class="btn btn--base" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse"
+        aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">@lang('Default Inputs')</button>
+</p>
+<div class="row">
+    <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample2">
+            <div class="card card-body">
                 <div class="row add-row-wrapper align-items-end">
                     <input type="hidden" name="editable[]" value="0">
                     <div class="col-xl-2 col-lg-2 form-group">
@@ -118,7 +117,6 @@
                             <option value="yes" selected>Yes</option>
                         </select>
                     </div>
-
                 </div>
                 <div class="row add-row-wrapper align-items-end">
                     <input type="hidden" name="editable[]" value="0">
@@ -310,6 +308,19 @@
                         </select>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="custom-card kyc-form input-field-generator" data-source="manual_gateway_input_fields">
+    <div class="card-header">
+        <h6 class="title">@lang('More Fiels')</h6>
+        <button type="button" class="btn--base add-row-btn"><i class="fas fa-plus"></i>
+            @lang('Add')</button>
+    </div>
+    <div class="custom-inner-card mt-2">
+        <div class="card-inner-body">
+            <div class="results">
             </div>
         </div>
     </div>
