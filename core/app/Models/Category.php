@@ -30,6 +30,10 @@ class Category extends Model
     {
         return $this->belongsTo('App\Models\Category', 'parent_id');
     }
+    public function type()
+    {
+        return $this->belongsTo(CategoryType::class, 'category_type_id');
+    }
 
 
     public function ads()

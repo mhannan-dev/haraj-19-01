@@ -7,6 +7,7 @@ use App\Models\EmailLog;
 use App\Models\Frontend;
 use App\Models\Extension;
 use App\Models\SmsTemplate;
+use Illuminate\Support\Str;
 use App\Models\EmailTemplate;
 use PHPMailer\PHPMailer\SMTP;
 use App\Models\GeneralSetting;
@@ -890,6 +891,7 @@ function decorate_input_fields($validated)
     $file_array_key = 0;
     $select_array_key = 0;
     $select_number_array_key = 0;
+    $global_key = 0;
     foreach ($validated['input_type'] ?? [] as $key => $item) {
         $field_necessity = $validated['field_necessity'][$key] ?? "";
         $validation_rules = ['min' => 0, 'mimes' => []];
@@ -918,23 +920,23 @@ function decorate_input_fields($validated)
 
             $select_array_key++;
         } else if ($item == "number") {
-            $options = $validated['select_options'][$select_number_array_key] ?? "";
+            // $options = $validated['select_options'][$select_number_array_key] ?? "";
             $validation_rules = [
-                'max'       => 0,
+                'max'       => $validated['max_digit'][$select_number_array_key] ?? 0,
                 'min'       => 0,
                 'mimes'     => [],
                 'options'   => [],
             ];
             $select_number_array_key++;
-        }
-        else {
+        }else {
             // print_r($validated['max_char'][$key]);
             $validation_rules = [
-                'max'      => $validated['max_char'][$key] ?? 0,
+                'max'      => $validated['max_char'][$global_key] ?? 0,
                 'mimes'    => [],
-                'min'      => $validated['min_char'][$key] ?? 0,
+                'min'      => $validated['min_char'][$global_key] ?? 0,
                 'options'  => [],
             ];
+            $global_key++;
         }
 
         $validation_rules['required'] = $field_necessity_list[$field_necessity] ?? false;
@@ -948,5 +950,6 @@ function decorate_input_fields($validated)
             'editable'         => $validated['editable'][$key] ?? "",
         ];
     }
+    // dd($input_fields);
     return $input_fields;
 }

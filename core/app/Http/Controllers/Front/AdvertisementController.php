@@ -43,11 +43,11 @@ class AdvertisementController extends Controller
     }
     public function postAdForm(Request $request, $category_id = null, $sub_category_id = null)
     {
-        $category = DB::table('categories')->where('id', $category_id)->first();
-        $sub_category = DB::table('categories')->where('id', $sub_category_id)->first();
-        $brands = DB::table('brands')->where('category_id', $category->id)->get();
         $title = "New ad";
         $buttonText = "Save";
+        $category = Category::with('type')->where('id', $category_id)->first();
+        $sub_category = DB::table('categories')->where('id', $sub_category_id)->first();
+        $brands = DB::table('brands')->where('category_id', $category->id)->get();
         return view('frontend.pages.forms.default', compact('category', 'brands', 'sub_category', 'buttonText', 'title'));
     }
 

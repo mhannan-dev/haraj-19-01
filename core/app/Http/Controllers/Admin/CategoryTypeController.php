@@ -56,6 +56,8 @@ class CategoryTypeController extends Controller
             'select_options.*'      => 'nullable|string|max:60',
             'editable'              => 'nullable|array',
             'editable.*'            => 'nullable|numeric',
+            'max_digit'              => 'nullable|array',
+            'max_digit.*'            => 'nullable|numeric',
 
         ]);
         $validated = $validator->validate();

@@ -287,6 +287,7 @@ var storedHtmlMarkup = {
     <label>Field Types*</label>
     <select class="form--control nice-select field-input-type" name="input_type[]">
         <option value="text" selected>Text</option>
+        <option value="select">Select</option>
         <option value="file">File</option>
         <option value="textarea">Textarea</option>
     </select>
@@ -315,8 +316,8 @@ var storedHtmlMarkup = {
     <select class="form--control nice-select field-input-type" name="input_type[]">
         <option value="text" selected>Input Text</option>
         <option value="file">File</option>
-        <option value="textarea">Textarea</option>
         <option value="select">Select</option>
+        <option value="textarea">Textarea</option>
     </select>
 </div>
 <div class="field_type_input col-lg-4 col-xl-4">

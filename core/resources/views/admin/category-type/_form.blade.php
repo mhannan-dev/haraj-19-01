@@ -55,7 +55,6 @@
                             <option value="text" selected>@lang('Input Text')</option>
                         </select>
                     </div>
-
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label>{{ __('Min character*') }}</label>
                         <input type="text" class="form--control" value="10" name="min_char[]">
@@ -64,7 +63,6 @@
                         <label>{{ __('Max character*') }}</label>
                         <input type="text" class="form--control" value="200" name="max_char[]">
                     </div>
-
                     <div class="col-xl-4 col-lg-4 form-group">
                         <label>@lang('Field Necessity')</label>
                         <select name="field_necessity[]" class="form--control">
@@ -96,6 +94,7 @@
                         </select>
                     </div>
                 </div>
+                <hr>
                 <div class="row add-row-wrapper align-items-end">
                     <input type="hidden" name="editable[]" value="0">
                     <div class="col-xl-3 col-lg-3 form-group">
@@ -148,6 +147,7 @@
                         </select>
                     </div>
                 </div>
+                <hr>
                 <div class="row add-row-wrapper align-items-end">
                     <input type="hidden" name="editable[]" value="0">
                     <div class="col-xl-2 col-lg-2 form-group">
@@ -185,7 +185,7 @@
                     <input type="hidden" name="editable[]" value="0">
                     <div class="col-xl-2 col-lg-2 form-group">
                         @include('admin.components.form.input', [
-                            'label' => 'Label*',
+                            'label' => 'Label',
                             'name' => 'label[]',
                             'value' => 'price',
                             'attribute' => 'required readonly',
@@ -197,13 +197,9 @@
                             <option value="number" selected>@lang('Number')</option>
                         </select>
                     </div>
-                    <div class="col-xl-2 col-lg-2 form-group">
-                        <label>{{ __('Min character*') }}</label>
-                        <input type="text" class="form--control" value="2" name="min_char[]">
-                    </div>
-                    <div class="col-xl-2 col-lg-2 form-group">
-                        <label>{{ __('Max character*') }}</label>
-                        <input type="text" class="form--control" value="10" name="max_char[]">
+                    <div class="col-xl-4 col-lg-4 form-group">
+                        <label>{{ __('Max digits') }}</label>
+                        <input type="text" class="form--control" value="10" name="max_digit[]">
                     </div>
 
                     <div class="col-xl-4 col-lg-4 form-group">
@@ -213,6 +209,7 @@
                         </select>
                     </div>
                 </div>
+                <hr>
                 <div class="row add-row-wrapper align-items-end">
                     <input type="hidden" name="editable[]" value="0">
                     <div class="col-xl-2 col-lg-2 form-group">
@@ -286,15 +283,17 @@
                         ])
                     </div>
                     <div class="col-xl-2 col-lg-2 form-group">
-                        <label>{{ __('Max File Size *') }}</label>
-                        <input type="text" name="file_max_size[]" class="form--control" value="3">
-                    </div>
-                    <div class="col-xl-2 col-lg-2 form-group">
                         <label>{{ __('Field Types*') }}</label>
                         <select class="form--control nice-select field-input-type" name="input_type[]">
                             <option value="file" selected>@lang('File')</option>
                         </select>
                     </div>
+
+                    <div class="col-xl-2 col-lg-2 form-group">
+                        <label>{{ __('Max File Size *') }}</label>
+                        <input type="text" name="file_max_size[]" class="form--control" value="3">
+                    </div>
+
                     <div class="col-xl-2 col-lg-2 form-group">
                         @include('admin.components.form.input', [
                             'label' => 'File Extension*',
@@ -315,5 +314,5 @@
         </div>
     </div>
 </div>
-<a href="#" class="btn btn--base bg--danger">@lang('Cancel')</a>
 <button type="submit" class="btn btn--base">{{ $buttonText }}</button>
+<a href="#" class="btn btn--base bg--danger">@lang('Cancel')</a>
