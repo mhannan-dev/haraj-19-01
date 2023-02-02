@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\AdImage;
 use App\Models\Category;
 use App\Models\Favourite;
+use App\Models\CategoryType;
 use Illuminate\Http\Request;
 use App\Models\Advertisement;
 use Illuminate\Support\Facades\DB;
@@ -42,17 +43,39 @@ class AdvertisementController extends Controller
         $category = Category::with('type')->where('id', $category_id)->first();
         $sub_category = DB::table('categories')->where('id', $sub_category_id)->first();
         $brands = DB::table('brands')->where('category_id', $category->id)->get();
-        return view('frontend.pages.forms.default', compact('category', 'brands', 'sub_category', 'buttonText', 'title'));
+        return view('frontend.pages.forms.ad_post_form', compact('category', 'brands', 'sub_category', 'buttonText', 'title'));
     }
 
     public function adStore(Request $request)
     {
+        $data = $request->all();
+        // dd($data);
+        $category_type = Category::with('type')->where('id', $data['category_id'])->first()->type->fields;
+        $default = [];
+        $editable = [];
+        foreach ($category_type as $c_type) {
+            foreach ($data as $key => $request_value) {
+                if ($c_type->name == $key) {
+                    if ($c_type->editable == 0) {
+                        $default_row = $c_type;
+                        $default_row->value = $request_value;
+                        $default[] = $default_row;
+                    } else {
+                        $editable_row = $c_type;
+                        $editable_row->value = $request_value;
+                        $editable[] = $editable_row;
+                    }
+                    break;
+                }
+            }
+        }
+        // dd($editable);
         $adv = new Advertisement();
         try {
             if ($request->isMethod('POST')) {
                 $data = $request->all();
                 $rules = [
-                    'brand_id' => 'required',
+                    'brand' => 'required',
                     'description' => 'required',
                     'condition' => 'required',
                     'price' => 'required',
@@ -61,7 +84,7 @@ class AdvertisementController extends Controller
                     'image' => 'required'
                 ];
                 $validationMessages = [
-                    'brand_id.required' => 'Brand is required',
+                    'brand.required' => 'Brand is required',
                     'description.required' => 'Description is required',
                     'condition.required' => 'Condition is required',
                     'image.required' => 'Thumbnail is required',
@@ -70,81 +93,24 @@ class AdvertisementController extends Controller
                     'price.required' => 'Price is required'
                 ];
                 $this->validate($request, $rules, $validationMessages);
+                $adv->title = $data['ad_title'];
+                $adv->slug = $data['title'] ?? rand(100, 999);
                 $adv->advertiser_id = Auth::guard('advertiser')->user()->id;
                 $adv->category_id = $data['category_id'];
-                $adv->brand_id = $data['brand_id'];
+                $adv->brand_id = $data['brand'];
                 $adv->sub_category_id = $data['sub_category_id'];
                 $adv->latitude = $data['latitude'] ?? null;
                 $adv->longitude = $data['longitude'] ?? null;
+                $adv->price = $data['price'];
                 $adv->type_id = 0;
                 if (Auth::guard('advertiser')->user()->city_id == null) {
                     $notify[] = ['warning', 'Please update your profile and select city!!'];
                     return redirect()->back()->withNotify($notify);
                 }
-                $adv->city_id = Auth::guard('advertiser')->user()->city_id;
-                if ($request->title) {
-                    $adv->title = $data['title'];
-                }
-                $adv->price = $data['price'];
-                if ($request->model) {
-                    $adv->model = $data['model'];
-                }
-                // dd($request->all());
-                if ($request->title == null) {
-                    $adv->title = $data['brand_id'] . ' ' . $data['model'] . ' ' . $data['year_of_manufacture'];
-                }
-
                 $adv->status = 1;
+                $adv->city_id = Auth::guard('advertiser')->user()->city_id;
                 $adv->description = $data['description'];
-
-                if ($data['category_type'] == "mobiles") {
-                    $adv->details_informations = json_encode([
-                        'NETWORK' => $data['NETWORK'] ? $data['NETWORK'] : null,
-                        'Display' => $data['Display'] ? $data['Display'] : null,
-                        'Memory' => $data['Memory'] ? $data['Memory'] : null,
-                        'Battery' => $data['Battery'] ? $data['Battery'] : null
-                    ]);
-                }
-                if ($data['category_type'] == "sports") {
-                    $adv->details_informations = json_encode([
-                        'sports_type' => $data['sports_type'] ? $data['sports_type'] : null,
-                    ]);
-                }
-                // if ($data['category_type'] == "electronics") {
-                //     $adv->details_informations = json_encode([
-                //         'model' => $data['model'] ? $data['model'] : null,
-                //     ]);
-                // }
-
-                if ($data['category_type'] == "vehicles") {
-                    $adv->details_informations = json_encode([
-                        'transmission' => $data['transmission'] ? $data['transmission'] : null,
-                        'body_type' => $data['body_type'] ? $data['body_type'] : null,
-                        'edition' => $data['edition'] ? $data['edition'] : null,
-                        'year_of_manufacture' => $data['year_of_manufacture'] ? $data['year_of_manufacture'] : null,
-                        'run_km' => $data['run_km'] ? $data['run_km'] : null,
-                        'engine_cc' => $data['engine_cc'] ? $data['engine_cc'] : null,
-                        'year_decade' => $data['year_decade'] ? $data['year_decade'] : null,
-                        'gear' => $data['gear'] ? $data['gear'] : null,
-                        'traction' => $data['traction'] ? $data['traction'] : null,
-                    ]);
-                    $adv->fuel_type = json_encode($data['fuel_type'] ? $data['fuel_type'] : null);
-                }
                 $adv->condition = $data['condition'];
-                if ($request->authenticity) {
-                    $adv->authenticity = $data['authenticity'] ? $data['authenticity'] : null;
-                }
-                if ($request->edition) {
-                    $adv->edition = $data['edition'] ? $data['edition'] : null;
-                }
-
-                $adv->location_embeded_map = $data['location_embeded_map'] ? $data['location_embeded_map'] : null;
-                $adv->brand_id = $data['brand_id'] ? $data['brand_id'] : null;
-                if ($request->color) {
-                    $adv->color = $data['color'] ? $data['color'] : null;
-                }
-
-                //$adv->image = Generals::upload('image/', 'png', $request->file('image'));
                 // Thumbnail Image
                 if ($request->file('image')) {
                     $image = $request->file('image');
@@ -155,12 +121,10 @@ class AdvertisementController extends Controller
                     $postImage = Image::make($image)->resize(100, 100)->save(storage_path('advertisement_images'))->stream("webp", 100);
                     Storage::disk('public')->put('advertisement_images/' . $imageName, $postImage);
                 }
-
                 $adv->meta_tags = $data['meta_tags'] ? $data['meta_tags'] : null;
                 $adv->meta_title = $data['meta_title'] ? $data['meta_title'] : null;
                 $adv->image = $imageName;
                 $adv->save();
-
                 $lastInsertedAdId = DB::getPdo()->lastInsertId();
                 if ($request->has('images')) {
                     foreach ($request->file('images') as $image) {
@@ -176,11 +140,13 @@ class AdvertisementController extends Controller
                         ]);
                     }
                 }
-                $request->session()->put('advertisement_id', $lastInsertedAdId);
                 $notify[] = ['success', 'Ad Posted Successfully!!'];
+                $request->session()->put('advertisement_id', $lastInsertedAdId);
+                // dd($lastInsertedAdId);
                 return redirect()->route('frontend.user.sellFaster')->withNotify($notify);
             }
         } catch (\Exception $th) {
+            //dd($th);
             info($th);
         }
         return redirect()->back();
@@ -272,8 +238,29 @@ class AdvertisementController extends Controller
         }
         return redirect()->back();
     }
-    public function manageGeneralAd(Request $request, $c_id, $id = null)
+    public function nonSubCategoryAdPost(Request $request, $c_id, $id = null)
     {
+        $data = $request->all();
+        $category_type = Category::with('type')->where('category_type_id', $c_id)->first()->type->fields;
+        $default = [];
+        $editable = [];
+        foreach ($category_type as $c_type) {
+            foreach ($data as $key => $request_value) {
+                if ($c_type->name == $key) {
+                    if ($c_type->editable == 0) {
+                        $default_row = $c_type;
+                        $default_row->value = $request_value;
+                        $default[] = $default_row;
+                    } else {
+                        $editable_row = $c_type;
+                        $editable_row->value = $request_value;
+                        $editable[] = $editable_row;
+                    }
+                    break;
+                }
+            }
+        }
+        // dd($editable);
         $image_validataion_rule = "required";
         if ($id == "") {
             $adv = new Advertisement();
@@ -294,8 +281,8 @@ class AdvertisementController extends Controller
             $data = $request->all();
             //Validation rules
             $rules = [
-                'title' => 'required',
-                'brand_id' => 'required',
+                'ad_title' => 'required',
+                'brand' => 'required',
                 'price' => 'required|numeric|gt:0',
                 'description' => 'required',
                 'image' => $image_validataion_rule,
@@ -305,8 +292,8 @@ class AdvertisementController extends Controller
             ];
             //Validation message
             $customMessage = [
-                'title.required' => 'Title is required',
-                'brand_id.required' => 'Brand is required',
+                'ad_title.required' => 'Title is required',
+                'brand.required' => 'Brand is required',
                 'price.required' => 'Price is required',
                 'price.gt' => 'Price must be greater then 0',
                 'description.required' => 'Description is required',
@@ -331,7 +318,8 @@ class AdvertisementController extends Controller
             $adv->advertiser_id = Auth::guard('advertiser')->user()->id;
             $adv->category_id = $data['category_id'];
             $adv->city_id = Auth::guard('advertiser')->user()->city_id;
-            $adv->title = $data['title'];
+            $adv->brand_id = $data['brand'] ? $data['brand'] : null;
+            $adv->title = $data['ad_title'];
             $adv->price = $data['price'];
             $adv->condition = $data['condition'];
             $adv->latitude = $data['latitude'] ?? null;
@@ -339,35 +327,11 @@ class AdvertisementController extends Controller
             $adv->status = 1;
             $adv->type_id = 0;
             $adv->description = $data['description'];
-            if ($data['category_type'] == "vehicles") {
-                $adv->details_informations = json_encode([
-                    'transmission' => $data['transmission'] ? $data['transmission'] : null,
-                    'body_type' => $data['body_type'] ? $data['body_type'] : null,
-                    'edition' => $data['edition'] ? $data['edition'] : null,
-                    'year_of_manufacture' => $data['year_of_manufacture'] ? $data['year_of_manufacture'] : null,
-                    'run_km' => $data['run_km'] ? $data['run_km'] : null,
-                    'engine_cc' => $data['engine_cc'] ? $data['engine_cc'] : null,
-                    'year_decade' => $data['year_decade'] ? $data['year_decade'] : null,
-                    'gear' => $data['gear'] ? $data['gear'] : null,
-                    'traction' => $data['traction'] ? $data['traction'] : null,
-                ]);
-                $adv->fuel_type = json_encode($data['fuel_type'] ? $data['fuel_type'] : null);
-            }
-            if ($request->authenticity) {
-                $adv->authenticity = $data['authenticity'] ? $data['authenticity'] : null;
-            }
-            if ($request->edition) {
-                $adv->edition = $data['edition'] ? $data['edition'] : null;
-            }
-
-            $adv->location_embeded_map = $data['location_embeded_map'] ? $data['location_embeded_map'] : null;
-            $adv->brand_id = $data['brand_id'] ? $data['brand_id'] : null;
-            if ($request->color) {
-                $adv->color = $data['color'] ? $data['color'] : null;
-            }
             $adv->meta_tags = $data['meta_tags'] ? $data['meta_tags'] : null;
             $adv->meta_title = $data['meta_title'] ? $data['meta_title'] : null;
+            $adv->details_informations = json_encode($editable);
             $adv->save();
+
             $lastInsertedAdId = DB::getPdo()->lastInsertId();
             if ($request->has('images')) {
                 foreach ($request->file('images') as $image) {
@@ -386,7 +350,7 @@ class AdvertisementController extends Controller
             $request->session()->put('advertisement_id', $lastInsertedAdId);
             return redirect()->route('frontend.user.sellFaster')->withNotify($notify);
         }
-        $category = DB::table('categories')->where('parent_id', '=', 0)->where('id', $c_id)->first();
+        $category = Category::with('type:id,fields')->where('parent_id', '=', 0)->where('id', $c_id)->first();
         $brands = DB::table('brands')->where('category_id', $category->id)->get();
         return view('frontend.pages.user.manage_general_ad', compact('category', 'brands', 'buttonText', 'adv'));
     }

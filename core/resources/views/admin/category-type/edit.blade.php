@@ -9,11 +9,9 @@
             align-items: center;
             justify-content: space-between;
         }
-
         .kyc-form select {
             padding: 10px 14px;
         }
-
         .kyc-form .row-cross-btn {
             background-color: #ea5455;
             color: #ffffff !important;
@@ -24,7 +22,6 @@
 @section('page-name')
     @lang('Update category type')
 @endsection
-
 @php
     $roles = userRolePermissionArray();
 @endphp
@@ -183,14 +180,12 @@
                                 @endif
                             </div>
                         @endforeach
-
                     </div>
                 </div>
             </div>
         </div>
-        <a href="#" class="btn btn--base bg--danger">@lang('Cancel')</a>
         <button type="submit" class="btn btn--base">{{ $buttonText }}</button>
-
+        <a href="{{ url("category-type/index") }}" class="btn btn--base bg--danger">@lang('Cancel')</a>
     </form>
 @endsection
 @section('scripts')

@@ -31,7 +31,6 @@
                                     <div class="col-xl-8 mb-30">
                                         <div class="sell-add-info-body-wrapper">
                                             <h3 class="sell-add-info-body-title">@lang('ADD SOME INFO')</h3>
-
                                             @foreach ($category->type->fields as $field)
                                                 <div class="form-group">
                                                     <label for="label">
@@ -40,20 +39,25 @@
                                                             <span class="text-danger">*</span>
                                                         @endif
                                                     </label>
-
                                                     @if ($field->type == 'text')
                                                         <input type="text" name="{{ $field->label }}"
                                                             class="form--control" min="{{ $field->validation->min }}"
                                                             max="{{ $field->validation->max }}"
                                                             required="{{ $field->validation->required }}">
-                                                    @elseif ($field->type == 'file' && $field->name == 'thumbnail')
+                                                        <input type="hidden" name="editable"
+                                                            value="{{ $field->editable }}">
+                                                    @elseif ($field->type == 'file' && $field->label == 'image')
                                                         <input type="{{ $field->type }}" name="{{ $field->label }}"
                                                             class="form--control"
                                                             required="{{ $field->validation->required }}">
+                                                        <input type="hidden" name="editable"
+                                                            value="{{ $field->editable }}">
                                                     @elseif ($field->type == 'number')
                                                         <input type="{{ $field->type }}" name="{{ $field->label }}"
                                                             class="form--control"
                                                             required="{{ $field->validation->required }}">
+                                                        <input type="hidden" name="editable"
+                                                            value="{{ $field->editable }}">
                                                     @elseif ($field->type == 'select' && $field->name == 'brand')
                                                         <select name="{{ $field->label }}" class="form--control">
                                                             <option value="">@lang('Select Brand')</option>
@@ -62,23 +66,28 @@
                                                                 </option>
                                                             @endforeach
                                                         </select>
+                                                        <input type="hidden" name="editable"
+                                                            value="{{ $field->editable }}">
                                                     @elseif ($field->type == 'select')
                                                         <select name="{{ $field->label }}" class="form--control">
                                                             <option value="">@lang('Select')</option>
                                                             @foreach ($field->validation->options as $op)
-                                                                <option value="">{{ ucfirst($op) }}</option>
+                                                                <option value="{{ $op }}">{{ ucfirst($op) }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
+                                                        <input type="hidden" name="editable"
+                                                            value="{{ $field->editable }}">
                                                     @elseif ($field->type == 'textarea')
                                                         <textarea name="{{ $field->label }}" class="form--control"></textarea>
                                                     @endif
                                                 </div>
-
                                                 @if ($field->type == 'file' && $field->name == 'images')
                                                     <h3 class="sell-add-info-price-title two">
                                                         @lang('YOU CAN UPLOAD UP TO 10 PHOTOS')
                                                     </h3>
-                                                    <span class="image-up-alart-text pb-10">(@lang('Alert: Heigh 1000x800 px')/@lang('size 3MB'))</span>
+                                                    <span
+                                                        class="image-up-alart-text pb-10">(@lang('Alert: Heigh 1000x800 px')/@lang('size 3MB'))</span>
                                                     <div class="row mb-30-none">
                                                         <div class="col-xl-8 mb-30">
                                                             <div class="add-more-details-thumb-wrapper">
@@ -88,6 +97,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <input type="hidden" name="editable" value="{{ $field->editable }}">
                                                 @endif
                                             @endforeach
                                         </div>
@@ -101,26 +111,25 @@
                                                 <nav>
                                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                                         <button class="nav-link active" id="category-tab"
-                                                            data-bs-toggle="tab" data-bs-target="#category" type="button"
-                                                            role="tab" aria-controls="category"
+                                                            data-bs-toggle="tab" data-bs-target="#category"
+                                                            type="button" role="tab" aria-controls="category"
                                                             aria-selected="true">@lang('CHOOSE FROM LIST')</button>
                                                         <button class="nav-link" id="apps-tab" data-bs-toggle="tab"
                                                             data-bs-target="#apps" type="button" role="tab"
                                                             aria-controls="apps"
-                                                            aria-selected="false">@lang('CURRENT
-                                                                                                                        LOCATION')</button>
+                                                            aria-selected="false">@lang('CURRENT LOCATION')</button>
                                                     </div>
                                                 </nav>
                                                 <div class="tab-content" id="nav-tabContent">
                                                     <div class="tab-pane fade show active" id="category" role="tabpanel"
                                                         aria-labelledby="category-tab">
                                                         <div class="form-group pt-60">
-                                                            <label>@lang('Province') <span
-                                                                    class="text--danger">*</span></label>
+                                                            <label>@lang('Province')</label>
                                                             <select class="form--control" name="city_id" id="city_id">
                                                                 <option value="">@lang('Select')</option>
                                                                 @foreach (\DB::table('cities')->where('status', 1)->get() as $city)
-                                                                    <option value="{{ $city->id }}">
+                                                                    <option value="{{ $city->id }}"
+                                                                        @if (isset($adv) && $adv->city_id == $city->id) selected @endif>
                                                                         {{ $city->title }}
                                                                     </option>
                                                                 @endforeach
@@ -136,12 +145,11 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="sell-add-info-price-wrapper">
                                     <div class="row mb-30-none">
                                         <div class="col-xl-8 mb-30">
                                             <div class="sell-add-btn-area">
-                                                <button type="submit" class="btn--base">@lang('Advertise now')</button>
+                                                <button type="submit" class="btn--base">{{ $buttonText }}</button>
                                             </div>
                                         </div>
                                     </div>

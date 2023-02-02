@@ -181,13 +181,13 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
             Route::get('ad/edit/{id}', [AdvertisementController::class, 'getEdit'])->name('edit.ad');
             Route::post('ad/update/{id}', [AdvertisementController::class, 'adUpdate'])->name('update.ad');
 
-            Route::match(['get', 'post'], '/others/ad/{c_id}/{id?}', [AdvertisementController::class, 'manageGeneralAd'])->name('general.ad.manage');
+            Route::match(['get', 'post'], '/others/ad/{c_id}/{id?}', [AdvertisementController::class, 'nonSubCategoryAdPost'])->name('general.ad.manage');
             Route::match(['get', 'post'], '/remove/img/{id?}', [AdvertisementController::class, 'removeImage'])->name('remove.image');
             Route::match(['get', 'post'], '/remove/multi/img/{image_id}/{ad_id}', [AdvertisementController::class, 'removeMultiImage'])->name('remove.multi.image');
 
             Route::post('store/ad', [AdvertisementController::class, 'adStore'])->name('adStore');
             Route::match(['get', 'post'], 'proceed/to/pay', [FeatureAdController::class, 'proceedToPay'])->name('sellFaster');
-            Route::match(['get', 'post'], '/manage/ad/{category_id}/{sub_category_id}', [AdvertisementController::class, 'postAdForm'])->name('ad.form');
+            Route::match(['get', 'post'], '/manage/ad/{category_id}/{sub_category_id?}', [AdvertisementController::class, 'postAdForm'])->name('ad.form');
 
             Route::get('ad/category', [AdvertisementController::class, 'adCategoryId'])->name('category.id');
             Route::get('logout',  [UserController::class, 'logout'])->name('logout');

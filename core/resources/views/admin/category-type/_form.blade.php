@@ -46,7 +46,7 @@
                     <input type="hidden" name="editable[]" value="0">
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label for="title">@lang('Label')</label>
-                        <input type="text" name="label[]" class="form--control" readonly value="Ad title">
+                        <input type="text" name="label[]" class="form--control" value="ad_title" readonly>
                     </div>
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label>{{ __('Field Types*') }}</label>
@@ -56,11 +56,11 @@
                     </div>
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label>{{ __('Min character*') }}</label>
-                        <input type="text" class="form--control" value="10" name="min_char[]">
+                        <input type="text" class="form--control" value="10" name="min_char[]" readonly>
                     </div>
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label>{{ __('Max character*') }}</label>
-                        <input type="text" class="form--control" value="200" name="max_char[]">
+                        <input type="text" class="form--control" value="200" name="max_char[]" readonly>
                     </div>
                     <div class="col-xl-4 col-lg-4 form-group">
                         <label>@lang('Field Necessity')</label>
@@ -73,7 +73,32 @@
                     <input type="hidden" name="editable[]" value="0">
                     <div class="col-xl-3 col-lg-3 form-group">
                         <label>@lang('Label')</label>
-                        <input type="text" name="label[]" value="condition" class="form--control">
+                        <input type="text" name="label[]" value="condition" class="form--control" readonly>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 form-group">
+                        <label>{{ __('Field Types*') }}</label>
+                        <select class="form--control nice-select field-input-type" name="input_type[]">
+                            <option value="select" selected>@lang('Select')</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 form-group">
+                        <label>{{ __('Options') }}</label>
+                        <input type="text" placeholder="Type Here..." name="select_options[]" class="form--control"
+                            value="used, new, like new" required readonly>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 form-group">
+                        <label>@lang('Field Necessity')</label>
+                        <select name="field_necessity[]" class="form--control">
+                            <option value="yes" selected>@lang("Yes")</option>
+                        </select>
+                    </div>
+                </div>
+                <hr>
+                <div class="row add-row-wrapper align-items-end">
+                    <input type="hidden" name="editable[]" value="0">
+                    <div class="col-xl-3 col-lg-3 form-group">
+                        <label>@lang('Label')</label>
+                        <input type="text" name="label[]" value="authenticity" class="form--control" readonly>
                     </div>
                     <div class="col-xl-3 col-lg-3 form-group">
                         <label>{{ __('Field Types*') }}</label>
@@ -84,16 +109,16 @@
                     <div class="col-xl-3 col-lg-3 form-group">
                         <label>{{ __('Options*') }} (@lang('Comma seperated'))</label>
                         <input type="text" placeholder="Type Here..." name="select_options[]" class="form--control"
-                            value="used, new, like new" required>
+                            value="original, refubrished, reconditioned" required readonly>
                     </div>
                     <div class="col-xl-3 col-lg-3 form-group">
                         <label>@lang('Field Necessity')</label>
                         <select name="field_necessity[]" class="form--control">
-                            <option value="yes" selected>Yes</option>
+                            <option value="yes" selected>@lang('Yes')</option>
                         </select>
                     </div>
                 </div>
-                <hr>
+
                 <div class="row add-row-wrapper align-items-end">
                     <input type="hidden" name="editable[]" value="0">
                     <div class="col-xl-3 col-lg-3 form-group">
@@ -109,12 +134,12 @@
                     <div class="col-xl-3 col-lg-3 form-group">
                         <label>{{ __('Options*') }} (@lang('Comma seperated'))</label>
                         <input type="text" placeholder="Type Here..." name="select_options[]" class="form--control"
-                            value="used, new, like new" required>
+                            value="used, new, like new" required readonly>
                     </div>
                     <div class="col-xl-3 col-lg-3 form-group">
                         <label>@lang('Field Necessity')</label>
                         <select name="field_necessity[]" class="form--control">
-                            <option value="yes" selected>Yes</option>
+                            <option value="yes" selected>@lang('Yes')</option>
                         </select>
                     </div>
                 </div>
@@ -122,15 +147,15 @@
                     <input type="hidden" name="editable[]" value="0">
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label>@lang('Label')</label>
-                        <input type="text" name="label[]" class="form--control" value="description">
+                        <input type="text" name="label[]" class="form--control" value="description" readonly>
                     </div>
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label>{{ __('Min character*') }}</label>
-                        <input type="text" class="form--control" value="100" name="min_char[]">
+                        <input type="text" class="form--control" value="100" name="min_char[]" readonly>
                     </div>
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label>{{ __('Max character*') }}</label>
-                        <input type="text" class="form--control" value="1000" name="max_char[]">
+                        <input type="text" class="form--control" value="1000" name="max_char[]" readonly>
                     </div>
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label>{{ __('Field Types*') }}</label>
@@ -150,12 +175,12 @@
                     <input type="hidden" name="editable[]" value="0">
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label>@lang('Label')</label>
-                        <input type="text" class="form--control" name="label[]" value="thumbnail" readonly
+                        <input type="text" class="form--control" name="label[]" value="image" readonly
                             required>
                     </div>
                     <div class="col-xl-2 col-lg-2 form-group">
-                        <label>{{ __('Max File Size *') }}/MB</label>
-                        <input type="number" name="file_max_size[]" class="form--control" value="3">
+                        <label>{{ __('Max File Size *') }}/@lang('MB')</label>
+                        <input type="number" name="file_max_size[]" class="form--control" value="3" readonly>
                     </div>
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label>{{ __('Field Types*') }}</label>
@@ -197,7 +222,7 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 form-group">
                         <label>{{ __('Max digits') }}</label>
-                        <input type="text" class="form--control" value="10" name="max_digit[]">
+                        <input type="text" class="form--control" value="10" name="max_digit[]" readonly>
                     </div>
 
                     <div class="col-xl-4 col-lg-4 form-group">
@@ -226,7 +251,7 @@
                     </div>
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label>{{ __('Min character*') }}</label>
-                        <input type="text" class="form--control" value="10" name="min_char[]">
+                        <input type="text" class="form--control" value="10" name="min_char[]" readonly>
                     </div>
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label>{{ __('Max character*') }}</label>
@@ -257,11 +282,11 @@
                     </div>
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label>{{ __('Min character') }}</label>
-                        <input type="text" class="form--control" value="10" name="min_char[]">
+                        <input type="text" class="form--control" value="10" name="min_char[]" readonly>
                     </div>
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label>{{ __('Max character*') }}</label>
-                        <input type="text" class="form--control" value="200" name="max_char[]">
+                        <input type="text" class="form--control" value="200" name="max_char[]" readonly>
                     </div>
                     <div class="col-xl-4 col-lg-4 form-group">
                         <label>@lang('Field Necessity')</label>
@@ -289,7 +314,7 @@
 
                     <div class="col-xl-2 col-lg-2 form-group">
                         <label>{{ __('Max File Size *') }}</label>
-                        <input type="text" name="file_max_size[]" class="form--control" value="3">
+                        <input type="text" name="file_max_size[]" class="form--control" value="3" readonly>
                     </div>
 
                     <div class="col-xl-2 col-lg-2 form-group">
@@ -326,4 +351,4 @@
     </div>
 </div>
 <button type="submit" class="btn btn--base">{{ $buttonText }}</button>
-<a href="#" class="btn btn--base bg--danger">@lang('Cancel')</a>
+<a href="{{ url("category-type/index") }}" class="btn btn--base bg--danger">@lang('Cancel')</a>

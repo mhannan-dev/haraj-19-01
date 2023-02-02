@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 01, 2023 at 11:14 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Feb 01, 2023 at 02:16 PM
+-- Server version: 5.7.33
+-- PHP Version: 8.0.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `haraj_latest`
+-- Database: `appdehjb_haraj`
 --
 
 -- --------------------------------------------------------
@@ -29,14 +29,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin_users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `designation` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `designation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `auth_id` bigint(20) UNSIGNED NOT NULL,
-  `profile_pic` varchar(255) DEFAULT NULL,
-  `profile_pic_url` varchar(255) DEFAULT NULL,
-  `pic_mime_type` varchar(50) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `profile_pic` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profile_pic_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pic_mime_type` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -62,36 +62,36 @@ CREATE TABLE `advertisements` (
   `advertiser_id` int(10) UNSIGNED NOT NULL COMMENT 'PK on Advertiser table',
   `category_id` int(10) UNSIGNED NOT NULL COMMENT 'PK on Category table',
   `type_id` int(10) UNSIGNED NOT NULL COMMENT 'PK on Types table',
-  `city_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'PK on City table',
+  `city_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'PK on City table',
   `sub_category_id` int(10) UNSIGNED DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `slug` varchar(255) DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` decimal(24,2) NOT NULL,
-  `image` varchar(255) NOT NULL DEFAULT 'def.png',
-  `description` text NOT NULL,
-  `condition` varchar(255) NOT NULL,
-  `authenticity` varchar(255) DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'def.png',
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `condition` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `authenticity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `brand_id` int(11) DEFAULT NULL,
-  `model` varchar(255) DEFAULT NULL,
-  `color` varchar(255) DEFAULT NULL,
-  `edition` varchar(255) DEFAULT NULL,
-  `year_of_manufacture` varchar(255) DEFAULT NULL,
-  `features` varchar(255) DEFAULT NULL,
-  `details_informations` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0 == Pending, 1 == Published, 2 == Sold',
-  `is_price_negotiable` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0 == No, 1 == Yes',
+  `model` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `edition` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `year_of_manufacture` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `features` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `details_informations` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 == Pending, 1 == Published, 2 == Sold',
+  `is_price_negotiable` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 == No, 1 == Yes',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `feature_expire_date` timestamp NULL DEFAULT NULL,
-  `view_count` int(11) NOT NULL DEFAULT 0,
-  `location_embeded_map` text DEFAULT NULL,
-  `fuel_type` varchar(300) DEFAULT NULL,
-  `is_featured` tinyint(4) DEFAULT 0,
-  `latitude` varchar(255) DEFAULT NULL,
-  `longitude` varchar(255) DEFAULT NULL,
+  `view_count` int(11) NOT NULL DEFAULT '0',
+  `location_embeded_map` text COLLATE utf8mb4_unicode_ci,
+  `fuel_type` varchar(300) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_featured` tinyint(4) DEFAULT '0',
+  `latitude` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `longitude` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ad_type_id` int(11) DEFAULT NULL,
-  `meta_tags` varchar(255) NOT NULL,
-  `meta_title` varchar(255) DEFAULT NULL
+  `meta_tags` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meta_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -145,8 +145,8 @@ CREATE TABLE `advertisement_interest_advertisement` (
   `visitor_id` int(255) DEFAULT NULL,
   `ip_address` varchar(255) NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `advertisement_interest_advertisement`
@@ -177,27 +177,27 @@ INSERT INTO `advertisement_interest_advertisement` (`id`, `interest_advertisemen
 
 CREATE TABLE `advertisers` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
-  `mobile_no` varchar(14) DEFAULT NULL,
-  `designation` varchar(255) DEFAULT NULL,
-  `email` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `provider_id` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mobile_no` varchar(14) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `designation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `provider_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
   `registration_code` int(11) NOT NULL,
-  `about` varchar(1000) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0 == Not varified, 1 == Verified',
-  `show_mobile_no` tinyint(4) NOT NULL DEFAULT 1 COMMENT '0 == No, 1 == Yes',
-  `last_seen` datetime DEFAULT current_timestamp(),
+  `about` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 == Not varified, 1 == Verified',
+  `show_mobile_no` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0 == No, 1 == Yes',
+  `last_seen` datetime DEFAULT CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `remember_token` varchar(255) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `avatar` varchar(255) DEFAULT NULL,
-  `chat_status` tinyint(4) NOT NULL DEFAULT 0,
+  `remember_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `chat_status` tinyint(4) NOT NULL DEFAULT '0',
   `chat_delete_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -208,7 +208,7 @@ CREATE TABLE `advertisers` (
 INSERT INTO `advertisers` (`id`, `first_name`, `last_name`, `mobile_no`, `designation`, `email`, `username`, `password`, `provider_id`, `city_id`, `registration_code`, `about`, `status`, `show_mobile_no`, `last_seen`, `deleted_at`, `created_at`, `updated_at`, `remember_token`, `image`, `avatar`, `chat_status`, `chat_delete_by`) VALUES
 (1, 'Muhammad', 'Hannan', '01717000000', NULL, 'mdhannan.info@gmail.com', 'mdhannan.info@gmail.com', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 882630, 'Laravel Developer', 1, 1, '2023-01-24 17:56:20', NULL, '2022-09-13 18:00:00', '2023-01-24 11:56:20', NULL, '2023-01-22-1674392134.png', NULL, 1, NULL),
 (2, 'Tanvir', 'Ahmed', '01718191912', NULL, 'ahannan.info@gmail.com', 'ahannan.info@gmail.com', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 519853, NULL, 1, 1, '2023-01-24 05:56:26', NULL, '2022-10-08 04:14:14', '2023-01-23 23:56:26', NULL, '2023-01-23-1674452316.png', NULL, 1, NULL),
-(3, 'John', 'Doe', '123456789', NULL, 'testuser@gmail.com', 'testuser', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 0, 'test', 1, 1, '2023-02-01 04:45:29', NULL, '2023-01-14 13:15:16', '2023-01-31 22:45:29', NULL, NULL, NULL, 0, NULL),
+(3, 'John', 'Doe', '123456789', NULL, 'testuser@gmail.com', 'testuser', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 0, 'test', 1, 1, '2023-02-01 13:48:19', NULL, '2023-01-14 13:15:16', '2023-02-01 07:48:19', NULL, NULL, NULL, 0, NULL),
 (4, 'FR', 'Ranad', '123456789', NULL, 'frranad1@gmail.com', 'frranad1-9378', '$2y$10$Vw6DgPqi9cfi46HIPL6ZwOq12A1R4zJTlPMo.DnbwVsGq8sA.yrVa', NULL, 1, 1247185014, 'Test', 1, 1, '2023-01-18 13:02:00', NULL, '2023-01-11 06:39:23', '2023-01-18 07:02:00', NULL, '2023-01-12-1673503312.png', NULL, 0, NULL);
 
 -- --------------------------------------------------------
@@ -220,8 +220,8 @@ INSERT INTO `advertisers` (`id`, `first_name`, `last_name`, `mobile_no`, `design
 CREATE TABLE `ad_complains` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `advertisement_id` int(10) UNSIGNED NOT NULL,
-  `complain` varchar(255) NOT NULL,
-  `complain_details` text DEFAULT NULL,
+  `complain` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `complain_details` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -244,7 +244,7 @@ INSERT INTO `ad_complains` (`id`, `advertisement_id`, `complain`, `complain_deta
 CREATE TABLE `ad_images` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `advertisement_id` int(10) UNSIGNED NOT NULL COMMENT 'PK on advertisements table',
-  `images` varchar(255) NOT NULL,
+  `images` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -387,8 +387,8 @@ INSERT INTO `ad_images` (`id`, `advertisement_id`, `images`, `created_at`, `upda
 
 CREATE TABLE `ad_types` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `slug` varchar(255) DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) NOT NULL,
   `duration` int(10) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -413,32 +413,32 @@ INSERT INTO `ad_types` (`id`, `title`, `slug`, `status`, `duration`, `created_at
 
 CREATE TABLE `auths` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `first_name` varchar(100) DEFAULT NULL,
-  `last_name` varchar(100) DEFAULT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `email` varchar(150) NOT NULL,
-  `mobile_no` varchar(14) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `model_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '1 = Admin',
-  `gender` tinyint(4) NOT NULL DEFAULT 1,
+  `first_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `username` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mobile_no` varchar(14) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '1 = Admin',
+  `gender` tinyint(4) NOT NULL DEFAULT '1',
   `dob` date DEFAULT NULL,
-  `about` varchar(500) DEFAULT NULL,
+  `about` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `facebook_id` bigint(20) DEFAULT NULL,
   `google_id` bigint(20) DEFAULT NULL,
-  `activation_code` varchar(255) DEFAULT NULL,
-  `salt` varchar(255) DEFAULT NULL,
+  `activation_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `activation_code_expire` datetime DEFAULT NULL,
-  `is_first_login` tinyint(4) NOT NULL DEFAULT 1,
-  `user_type` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0 = Admin',
-  `can_login` tinyint(4) NOT NULL DEFAULT 1 COMMENT '1 = Can login, 0 = Can not login',
-  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '1 = Active, 0 = Inactive',
-  `created_by` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `updated_by` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `is_first_login` tinyint(4) NOT NULL DEFAULT '1',
+  `user_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 = Admin',
+  `can_login` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 = Can login, 0 = Can not login',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 = Active, 0 = Inactive',
+  `created_by` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `updated_by` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `is_user` tinyint(4) NOT NULL DEFAULT 0 COMMENT '1 == Admin, 0 == User'
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_user` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 == Admin, 0 == User'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -460,7 +460,7 @@ CREATE TABLE `auth_roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `auth_id` bigint(20) UNSIGNED NOT NULL,
   `role_id` bigint(20) UNSIGNED NOT NULL,
-  `user_group_id` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `user_group_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -484,12 +484,12 @@ INSERT INTO `auth_roles` (`id`, `auth_id`, `role_id`, `user_group_id`, `created_
 
 CREATE TABLE `banners` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `banner_image` varchar(255) NOT NULL,
-  `alt` varchar(255) DEFAULT NULL,
-  `link` varchar(255) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `banner_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -509,10 +509,10 @@ INSERT INTO `banners` (`id`, `title`, `slug`, `banner_image`, `alt`, `link`, `st
 
 CREATE TABLE `brands` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `category_id` int(10) UNSIGNED NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '0 = Inactive 1 = Active',
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0 = Inactive 1 = Active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -522,18 +522,8 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`id`, `title`, `category_id`, `slug`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Oppo', 22, 'oppo', 1, '2023-01-22 03:40:25', '2023-01-22 03:40:25'),
-(2, 'One Plus', 22, 'one-plus', 1, '2023-01-22 03:40:55', '2023-01-22 03:40:55'),
-(3, 'Real me', 22, 'real-me', 1, '2023-01-22 03:48:05', '2023-01-22 03:48:05'),
-(4, 'Nike', 26, 'nike', 1, '2023-01-22 05:45:42', '2023-01-22 05:45:42'),
-(7, 'Tesla Brand', 29, 'tesla-brand', 1, '2023-01-22 06:22:58', '2023-01-22 06:22:58'),
-(8, 'Samsung', 31, 'samsung', 1, '2023-01-22 06:40:37', '2023-01-22 06:40:37'),
-(9, 'Non brand', 31, 'non-brand', 1, '2023-01-22 06:41:35', '2023-01-22 06:42:10'),
-(10, 'TVS', 29, 'tvs', 1, '2023-01-22 06:58:09', '2023-01-22 06:58:09'),
-(11, 'Baby and Child Brand 1', 34, 'baby-and-child-brand-1', 1, '2023-01-24 00:08:01', '2023-01-24 00:08:01'),
-(12, 'Non Brand', 36, 'non-brand', 1, '2023-01-24 00:34:16', '2023-01-24 00:34:16'),
-(13, 'Non Brand', 38, 'non-brand', 1, '2023-01-24 00:44:47', '2023-01-24 00:44:47'),
-(14, 'Non Brand', 40, 'non-brand', 1, '2023-01-24 01:50:23', '2023-01-24 01:50:23');
+(1, 'Electronics Brand one', 1, 'electronics-brand-one', 1, '2023-02-01 06:25:04', '2023-02-01 06:25:04'),
+(2, 'Electronics Brand Two', 1, 'electronics-brand-two', 1, '2023-02-01 06:25:20', '2023-02-01 06:25:20');
 
 -- --------------------------------------------------------
 
@@ -544,18 +534,29 @@ INSERT INTO `brands` (`id`, `title`, `category_id`, `slug`, `status`, `created_a
 CREATE TABLE `categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `parent_id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `icon` varchar(1000) DEFAULT NULL,
-  `bg_color` varchar(255) NOT NULL DEFAULT '#a3ce71',
-  `category_type` varchar(255) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `wheels` varchar(255) DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bg_color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '#a3ce71',
+  `category_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `wheels` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `category_type_id` int(11) NOT NULL,
-  `status` tinyint(4) DEFAULT 1 COMMENT '1=Active and 0=Inactive',
+  `status` tinyint(4) DEFAULT '1' COMMENT '1=Active and 0=Inactive',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `parent_id`, `title`, `slug`, `icon`, `bg_color`, `category_type`, `image`, `wheels`, `category_type_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 0, 'Electronics', 'electronics', '<i class=\"fas fa-mobile-alt\"></i>', '#000000', NULL, '1675246641.jpg', NULL, 1, 1, '2023-02-01 04:17:21', '2023-02-01 04:17:21'),
+(2, 0, 'Fashion and Beauty', 'fashion-and-beauty', '<i class=\"fas fa-basketball-ball\"></i>', '#d03535', NULL, '1675246696.jpeg', NULL, 2, 1, '2023-02-01 04:18:16', '2023-02-01 04:18:16'),
+(3, 1, 'Mobiles', 'mobiles', '<i class=\"fas fa-basketball-ball\"></i>', '#f92424', NULL, '1675246808.jpg', NULL, 1, 1, '2023-02-01 04:20:09', '2023-02-01 04:20:09'),
+(4, 0, 'Vehilces', 'vehilces', '<i class=\"fas fa-mobile-alt\"></i>', '#e95353', NULL, '1675257937.png', NULL, 7, 1, '2023-02-01 07:25:38', '2023-02-01 07:25:38'),
+(5, 4, 'Car', 'car', '<i class=\"fas fa-basketball-ball\"></i>', '#ec5f5f', NULL, '1675257965.png', NULL, 7, 1, '2023-02-01 07:26:05', '2023-02-01 07:26:05');
 
 -- --------------------------------------------------------
 
@@ -567,11 +568,11 @@ CREATE TABLE `category_types` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) DEFAULT NULL,
-  `fields` mediumtext DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `fields` mediumtext,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `category_types`
@@ -580,7 +581,11 @@ CREATE TABLE `category_types` (
 INSERT INTO `category_types` (`id`, `title`, `slug`, `fields`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Electronics', 'electronics', '[{\"type\":\"text\",\"label\":\"test_input\",\"name\":\"test_input\",\"required\":false,\"validation\":{\"max\":\"100\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"1\"},{\"type\":\"text\",\"label\":\"Ad title\",\"name\":\"ad_title\",\"required\":false,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"condition\",\"name\":\"condition\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"brand\",\"name\":\"brand\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"0\"},{\"type\":\"textarea\",\"label\":\"description\",\"name\":\"description\",\"required\":false,\"validation\":{\"max\":\"100\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"thumbnail\",\"name\":\"thumbnail\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"number\",\"label\":\"price\",\"name\":\"price\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_tags\",\"name\":\"meta_tags\",\"required\":false,\"validation\":{\"max\":0,\"mimes\":[],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_title\",\"name\":\"meta_title\",\"required\":false,\"validation\":{\"max\":0,\"mimes\":[],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"images\",\"name\":\"images\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"}]', 1, '2023-01-31 09:15:52', '2023-01-31 09:15:52'),
 (2, 'Fashion and beauty', 'fashion-and-beauty', '[{\"type\":\"text\",\"label\":\"test_input\",\"name\":\"test_input\",\"required\":false,\"validation\":{\"max\":\"100\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"\"},{\"type\":\"text\",\"label\":\"Ad title\",\"name\":\"ad_title\",\"required\":false,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"\"},{\"type\":\"select\",\"label\":\"condition\",\"name\":\"condition\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"\"},{\"type\":\"select\",\"label\":\"brand\",\"name\":\"brand\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"\"},{\"type\":\"text\",\"label\":\"description\",\"name\":\"description\",\"required\":false,\"validation\":{\"max\":\"0\",\"mimes\":[],\"min\":\"0\",\"options\":[],\"required\":false},\"editable\":\"\"},{\"type\":\"file\",\"label\":\"thumbnail\",\"name\":\"thumbnail\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"\"},{\"type\":\"text\",\"label\":\"price\",\"name\":\"price\",\"required\":false,\"validation\":{\"max\":\"0\",\"mimes\":[],\"min\":\"0\",\"options\":[],\"required\":false},\"editable\":\"\"},{\"type\":\"text\",\"label\":\"meta_tags\",\"name\":\"meta_tags\",\"required\":false,\"validation\":{\"max\":0,\"mimes\":[],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"\"},{\"type\":\"text\",\"label\":\"meta_title\",\"name\":\"meta_title\",\"required\":false,\"validation\":{\"max\":0,\"mimes\":[],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"\"},{\"type\":\"text\",\"label\":\"images\",\"name\":\"images\",\"required\":false,\"validation\":{\"max\":0,\"mimes\":[],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"\"}]', 1, '2023-01-31 09:25:04', '2023-01-31 09:35:34'),
-(3, 'Tree', 'tree', '[{\"type\":\"text\",\"label\":\"test_input\",\"name\":\"test_input\",\"required\":false,\"validation\":{\"max\":\"100\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"1\"},{\"type\":\"text\",\"label\":\"Ad title\",\"name\":\"ad_title\",\"required\":false,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"condition\",\"name\":\"condition\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"brand\",\"name\":\"brand\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"0\"},{\"type\":\"textarea\",\"label\":\"description\",\"name\":\"description\",\"required\":false,\"validation\":{\"max\":\"100\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"thumbnail\",\"name\":\"thumbnail\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"number\",\"label\":\"price\",\"name\":\"price\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_tags\",\"name\":\"meta_tags\",\"required\":false,\"validation\":{\"max\":0,\"mimes\":[],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_title\",\"name\":\"meta_title\",\"required\":false,\"validation\":{\"max\":0,\"mimes\":[],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"images\",\"name\":\"images\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"}]', 1, '2023-01-31 09:52:54', '2023-01-31 09:52:54');
+(4, 'Movies, Books and Music', 'movies-books-and-music', '[{\"type\":\"text\",\"label\":\"Another Field\",\"name\":\"another_field\",\"required\":false,\"validation\":{\"max\":\"100\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"1\"},{\"type\":\"text\",\"label\":\"Ad title\",\"name\":\"ad_title\",\"required\":false,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"condition\",\"name\":\"condition\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"brand\",\"name\":\"brand\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"0\"},{\"type\":\"textarea\",\"label\":\"description\",\"name\":\"description\",\"required\":false,\"validation\":{\"max\":\"100\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"thumbnail\",\"name\":\"thumbnail\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"number\",\"label\":\"price\",\"name\":\"price\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_tags\",\"name\":\"meta_tags\",\"required\":false,\"validation\":{\"max\":0,\"mimes\":[],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_title\",\"name\":\"meta_title\",\"required\":false,\"validation\":{\"max\":0,\"mimes\":[],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"images\",\"name\":\"images\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"}]', 1, '2023-02-01 06:39:41', '2023-02-01 06:39:41'),
+(5, 'Home and Garden', 'home-and-garden', '[{\"type\":\"select\",\"label\":\"Another select field\",\"name\":\"another_select_field\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"one\",\" two\",\" three\"],\"required\":false},\"editable\":\"1\"},{\"type\":\"text\",\"label\":\"Ad title\",\"name\":\"ad_title\",\"required\":false,\"validation\":{\"max\":\"1000\",\"mimes\":[],\"min\":\"100\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"condition\",\"name\":\"condition\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"brand\",\"name\":\"brand\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"0\"},{\"type\":\"textarea\",\"label\":\"description\",\"name\":\"description\",\"required\":false,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"thumbnail\",\"name\":\"thumbnail\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"number\",\"label\":\"price\",\"name\":\"price\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_tags\",\"name\":\"meta_tags\",\"required\":false,\"validation\":{\"max\":0,\"mimes\":[],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_title\",\"name\":\"meta_title\",\"required\":false,\"validation\":{\"max\":0,\"mimes\":[],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"images\",\"name\":\"images\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"}]', 1, '2023-02-01 06:48:47', '2023-02-01 06:48:47'),
+(6, 'Testing category type update', 'testing-category-type-update', '[{\"type\":\"select\",\"label\":\"Extra field\",\"name\":\"extra_field\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"one\",\" two\",\" three\"],\"required\":false},\"editable\":\"\"},{\"type\":\"text\",\"label\":\"Ad title\",\"name\":\"ad_title\",\"required\":false,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"\"},{\"type\":\"select\",\"label\":\"condition\",\"name\":\"condition\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"\"},{\"type\":\"select\",\"label\":\"brand\",\"name\":\"brand\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"\"},{\"type\":\"textarea\",\"label\":\"description\",\"name\":\"description\",\"required\":false,\"validation\":{\"max\":\"1000\",\"mimes\":[],\"min\":\"100\",\"options\":[],\"required\":false},\"editable\":\"\"},{\"type\":\"file\",\"label\":\"thumbnail\",\"name\":\"thumbnail\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"\"},{\"type\":\"text\",\"label\":\"price\",\"name\":\"price\",\"required\":false,\"validation\":{\"max\":\"10\",\"mimes\":[],\"min\":\"0\",\"options\":[],\"required\":false},\"editable\":\"\"},{\"type\":\"text\",\"label\":\"meta_tags\",\"name\":\"meta_tags\",\"required\":false,\"validation\":{\"max\":\"100\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"\"},{\"type\":\"text\",\"label\":\"meta_title\",\"name\":\"meta_title\",\"required\":false,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"\"},{\"type\":\"file\",\"label\":\"images\",\"name\":\"images\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"\"}]', 1, '2023-02-01 07:14:59', '2023-02-01 07:15:29'),
+(7, 'Vehicles', 'vehicles', '[{\"type\":\"select\",\"label\":\"Gear Type\",\"name\":\"gear_type\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"Auto\",\" Semi auto\",\" Mannual\"],\"required\":false},\"editable\":\"1\"},{\"type\":\"text\",\"label\":\"Ad title\",\"name\":\"ad_title\",\"required\":false,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"condition\",\"name\":\"condition\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"brand\",\"name\":\"brand\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"0\"},{\"type\":\"textarea\",\"label\":\"description\",\"name\":\"description\",\"required\":false,\"validation\":{\"max\":\"1000\",\"mimes\":[],\"min\":\"100\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"thumbnail\",\"name\":\"thumbnail\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"number\",\"label\":\"price\",\"name\":\"price\",\"required\":false,\"validation\":{\"max\":\"10\",\"min\":0,\"mimes\":[],\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_tags\",\"name\":\"meta_tags\",\"required\":false,\"validation\":{\"max\":\"100\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_title\",\"name\":\"meta_title\",\"required\":false,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"images\",\"name\":\"images\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"}]', 1, '2023-02-01 07:24:12', '2023-02-01 07:24:12'),
+(8, 'Baby and Child', 'baby-and-child', '[{\"type\":\"text\",\"label\":\"Ad title\",\"name\":\"ad_title\",\"required\":false,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"condition\",\"name\":\"condition\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"brand\",\"name\":\"brand\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":false},\"editable\":\"0\"},{\"type\":\"textarea\",\"label\":\"description\",\"name\":\"description\",\"required\":false,\"validation\":{\"max\":\"1000\",\"mimes\":[],\"min\":\"100\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"thumbnail\",\"name\":\"thumbnail\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"number\",\"label\":\"price\",\"name\":\"price\",\"required\":false,\"validation\":{\"max\":\"10\",\"min\":0,\"mimes\":[],\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_tags\",\"name\":\"meta_tags\",\"required\":false,\"validation\":{\"max\":\"100\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_title\",\"name\":\"meta_title\",\"required\":false,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"images\",\"name\":\"images\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"textarea\",\"label\":\"Extra field\",\"name\":\"extra_field\",\"required\":false,\"validation\":{\"max\":\"1000\",\"mimes\":[],\"min\":\"100\",\"options\":[],\"required\":false},\"editable\":\"1\"}]', 1, '2023-02-01 08:13:03', '2023-02-01 08:13:03');
 
 -- --------------------------------------------------------
 
@@ -590,10 +595,10 @@ INSERT INTO `category_types` (`id`, `title`, `slug`, `fields`, `status`, `create
 
 CREATE TABLE `cities` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `country_id` int(10) UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 = Turkey for now',
-  `title` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '0 = Inactive 1 = Active',
+  `country_id` int(10) UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 = Turkey for now',
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0 = Inactive 1 = Active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -614,13 +619,13 @@ INSERT INTO `cities` (`id`, `country_id`, `title`, `slug`, `status`, `created_at
 
 CREATE TABLE `cms_pages` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `meta_title` varchar(255) DEFAULT NULL,
-  `meta_tags` varchar(255) DEFAULT NULL,
-  `meta_description` mediumtext DEFAULT NULL,
-  `description` mediumtext NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '0 = Inactive 1 = Active',
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meta_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_tags` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_description` mediumtext COLLATE utf8mb4_unicode_ci,
+  `description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0 = Inactive 1 = Active',
   `position` tinyint(4) NOT NULL,
   `vote_count` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -653,10 +658,10 @@ INSERT INTO `cms_pages` (`id`, `title`, `slug`, `meta_title`, `meta_tags`, `meta
 
 CREATE TABLE `currencies` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `currency_code` varchar(255) NOT NULL,
-  `currency_symbol` varchar(255) NOT NULL,
-  `currency_fullname` varchar(255) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '1 => active, 0 => inactive',
+  `currency_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `currency_symbol` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `currency_fullname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 => active, 0 => inactive',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -677,12 +682,12 @@ INSERT INTO `currencies` (`id`, `currency_code`, `currency_symbol`, `currency_fu
 CREATE TABLE `email_logs` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `advertiser_id` int(10) UNSIGNED DEFAULT NULL COMMENT 'PK users table',
-  `user_type` varchar(255) DEFAULT NULL,
-  `mail_sender` varchar(255) DEFAULT NULL,
-  `email_from` varchar(255) DEFAULT NULL,
-  `email_to` varchar(255) DEFAULT NULL,
-  `subject` varchar(255) DEFAULT NULL,
-  `message` text DEFAULT NULL,
+  `user_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mail_sender` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_from` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_to` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subject` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -736,14 +741,14 @@ INSERT INTO `email_logs` (`id`, `advertiser_id`, `user_type`, `mail_sender`, `em
 
 CREATE TABLE `email_sms_templates` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `act` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `subj` varchar(255) NOT NULL,
-  `email_body` text DEFAULT NULL,
-  `sms_body` text DEFAULT NULL,
-  `shortcodes` text DEFAULT NULL,
-  `email_status` tinyint(4) NOT NULL DEFAULT 1,
-  `sms_status` tinyint(4) NOT NULL DEFAULT 1,
+  `act` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subj` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_body` text COLLATE utf8mb4_unicode_ci,
+  `sms_body` text COLLATE utf8mb4_unicode_ci,
+  `shortcodes` text COLLATE utf8mb4_unicode_ci,
+  `email_status` tinyint(4) NOT NULL DEFAULT '1',
+  `sms_status` tinyint(4) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -785,13 +790,13 @@ INSERT INTO `email_sms_templates` (`id`, `act`, `name`, `subj`, `email_body`, `s
 
 CREATE TABLE `extensions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `act` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `script` text DEFAULT NULL,
-  `shortcode` text DEFAULT NULL,
-  `support` text DEFAULT NULL COMMENT 'Help section',
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `act` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `script` text COLLATE utf8mb4_unicode_ci,
+  `shortcode` text COLLATE utf8mb4_unicode_ci,
+  `support` text COLLATE utf8mb4_unicode_ci COMMENT 'Help section',
   `status` tinyint(4) DEFAULT NULL COMMENT '1=>enable, 2=>disable	',
   `deleted_at` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -806,12 +811,12 @@ CREATE TABLE `extensions` (
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -858,7 +863,7 @@ CREATE TABLE `feature_ads` (
 
 CREATE TABLE `frontends` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `data_keys` varchar(255) NOT NULL,
+  `data_keys` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `data_values` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -879,17 +884,17 @@ INSERT INTO `frontends` (`id`, `data_keys`, `data_values`, `created_at`, `update
 
 CREATE TABLE `gateways` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `code` varchar(255) NOT NULL,
-  `alias` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alias` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(4) DEFAULT NULL,
-  `gateway_parameters` text NOT NULL,
-  `supported_currencies` text NOT NULL,
+  `gateway_parameters` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `supported_currencies` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `crypto` tinyint(4) DEFAULT NULL,
-  `extra` text DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `input_form` text DEFAULT NULL,
+  `extra` text COLLATE utf8mb4_unicode_ci,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `input_form` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -910,27 +915,27 @@ INSERT INTO `gateways` (`id`, `name`, `code`, `alias`, `image`, `status`, `gatew
 
 CREATE TABLE `general_settings` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `sitename` varchar(255) DEFAULT NULL,
-  `site_sub_title` varchar(255) DEFAULT NULL,
+  `sitename` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `site_sub_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `dark` tinyint(4) DEFAULT NULL,
-  `cur_text` varchar(255) DEFAULT NULL,
-  `cur_sym` varchar(255) DEFAULT NULL,
-  `email_from` varchar(255) DEFAULT NULL,
-  `sms_api` varchar(255) DEFAULT NULL,
-  `mail_config` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `cur_text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cur_sym` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_from` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sms_api` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mail_config` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `ev` tinyint(4) DEFAULT NULL,
   `en` tinyint(4) DEFAULT NULL,
   `sv` tinyint(4) DEFAULT NULL,
   `sn` tinyint(4) DEFAULT NULL,
-  `timezone` varchar(255) DEFAULT NULL,
+  `timezone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `agree` tinyint(4) DEFAULT NULL,
   `registration` tinyint(4) DEFAULT NULL,
-  `active_template` varchar(255) DEFAULT NULL,
-  `email_template` text DEFAULT NULL,
-  `sys_version` varchar(255) DEFAULT NULL,
+  `active_template` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_template` text COLLATE utf8mb4_unicode_ci,
+  `sys_version` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `apps_settings` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
+  `apps_settings` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -948,7 +953,7 @@ INSERT INTO `general_settings` (`id`, `sitename`, `site_sub_title`, `dark`, `cur
 
 CREATE TABLE `google_ads` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `google_code` varchar(255) NOT NULL,
+  `google_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -961,11 +966,11 @@ CREATE TABLE `google_ads` (
 
 CREATE TABLE `languages` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `code` varchar(255) NOT NULL,
-  `icon` varchar(255) DEFAULT NULL,
-  `text_align` varchar(255) NOT NULL DEFAULT '0' COMMENT '0: left to right text align, 1: right to left text align',
-  `is_default` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0: not default language, 1: default language',
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `text_align` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '0: left to right text align, 1: right to left text align',
+  `is_default` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0: not default language, 1: default language',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -988,10 +993,10 @@ CREATE TABLE `messages` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `from` int(11) NOT NULL,
   `to` int(11) NOT NULL,
-  `message` varchar(255) NOT NULL,
+  `message` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_read` tinyint(4) DEFAULT NULL,
-  `deleted_from` tinyint(4) DEFAULT 0,
-  `deleted_to` tinyint(4) DEFAULT 0,
+  `deleted_from` tinyint(4) DEFAULT '0',
+  `deleted_to` tinyint(4) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1081,7 +1086,7 @@ INSERT INTO `message_users` (`id`, `from`, `to`, `is_block`, `is_deleted_from`, 
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1159,8 +1164,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1172,12 +1177,12 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `payments` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `payment_id` varchar(255) DEFAULT NULL,
-  `payer_id` varchar(255) DEFAULT NULL,
-  `payer_email` varchar(255) DEFAULT NULL,
+  `payment_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payer_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payer_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `amount` double(10,2) DEFAULT NULL,
-  `currency` varchar(255) DEFAULT NULL,
-  `payment_status` varchar(255) DEFAULT NULL,
+  `currency` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payment_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1211,10 +1216,10 @@ INSERT INTO `payments` (`id`, `payment_id`, `payer_id`, `payer_email`, `amount`,
 
 CREATE TABLE `permissions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `display_name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `permission_group_id` bigint(20) UNSIGNED NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1300,8 +1305,8 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `permission_group_id`, 
 
 CREATE TABLE `permission_groups` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `group_name` varchar(255) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 0,
+  `group_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1343,11 +1348,11 @@ INSERT INTO `permission_groups` (`id`, `group_name`, `status`, `deleted_at`, `cr
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1384,8 +1389,8 @@ INSERT INTO `ratings` (`id`, `advertiser_id`, `rating`, `created_at`, `updated_a
 
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `role_name` varchar(255) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 0,
+  `role_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
   `created_by` int(11) NOT NULL,
   `edited_by` int(11) NOT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -1410,7 +1415,7 @@ INSERT INTO `roles` (`id`, `role_name`, `status`, `created_by`, `edited_by`, `de
 
 CREATE TABLE `role_permission` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `permissions` text NOT NULL,
+  `permissions` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `role_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1433,10 +1438,10 @@ INSERT INTO `role_permission` (`id`, `permissions`, `role_id`, `created_at`, `up
 
 CREATE TABLE `social_media` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `icon` varchar(255) NOT NULL,
-  `social_link` varchar(255) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `social_link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1458,7 +1463,7 @@ INSERT INTO `social_media` (`id`, `title`, `icon`, `social_link`, `status`, `cre
 CREATE TABLE `support_attachments` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `support_message_id` int(10) UNSIGNED NOT NULL,
-  `attachment` varchar(255) DEFAULT NULL,
+  `attachment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1473,7 +1478,7 @@ CREATE TABLE `support_messages` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `support_ticket_id` int(10) UNSIGNED NOT NULL COMMENT 'PK support_tickets table',
   `admin_id` int(10) UNSIGNED NOT NULL COMMENT 'PK admin_users table',
-  `message` text DEFAULT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1486,20 +1491,20 @@ CREATE TABLE `support_messages` (
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `auth_id` int(10) UNSIGNED NOT NULL DEFAULT 11 COMMENT 'PK on auths table 11 = Registerd user',
-  `first_name` varchar(255) NOT NULL,
-  `middle_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `alt_mobile_no` varchar(14) DEFAULT NULL,
-  `designation` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `profile_pic` varchar(255) DEFAULT NULL,
-  `profile_pic_url` varchar(255) DEFAULT NULL,
-  `facebook_id` varchar(255) DEFAULT NULL,
-  `pic_mime_type` varchar(50) DEFAULT NULL,
-  `user_type` tinyint(4) NOT NULL DEFAULT 0,
-  `status` tinyint(4) NOT NULL DEFAULT 0,
+  `auth_id` int(10) UNSIGNED NOT NULL DEFAULT '11' COMMENT 'PK on auths table 11 = Registerd user',
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `middle_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alt_mobile_no` varchar(14) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `designation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profile_pic` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profile_pic_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pic_mime_type` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_type` tinyint(4) NOT NULL DEFAULT '0',
+  `status` tinyint(4) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -1523,7 +1528,7 @@ CREATE TABLE `user_contacts` (
   `advertisement_id` int(10) UNSIGNED NOT NULL,
   `message_sender_id` int(10) UNSIGNED NOT NULL,
   `advertiser_id` int(11) NOT NULL,
-  `advertisement_title` varchar(255) DEFAULT NULL,
+  `advertisement_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `advertisement_price` double(24,2) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1565,10 +1570,10 @@ CREATE TABLE `user_groups` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `role_id` int(11) NOT NULL COMMENT 'PK of Roles table',
   `auth_roles` int(11) NOT NULL,
-  `code` varchar(255) DEFAULT NULL,
-  `group_name` varchar(255) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '1=Active and 0=Inactive',
-  `deleted_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `group_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1=Active and 0=Inactive',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1589,11 +1594,11 @@ INSERT INTO `user_groups` (`id`, `role_id`, `auth_roles`, `code`, `group_name`, 
 
 CREATE TABLE `user_queries` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `subject` varchar(255) NOT NULL,
-  `user_message` varchar(255) NOT NULL,
-  `attachment` varchar(255) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_message` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attachment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1614,15 +1619,15 @@ INSERT INTO `user_queries` (`id`, `name`, `email`, `subject`, `user_message`, `a
 
 CREATE TABLE `visitor_histories` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `ip_address` varchar(45) NOT NULL,
-  `mac_address` varchar(255) NOT NULL,
-  `iso_code` varchar(45) DEFAULT NULL,
-  `country` varchar(45) DEFAULT NULL,
-  `city` varchar(45) DEFAULT NULL,
-  `state_name` varchar(45) DEFAULT NULL,
-  `lat` varchar(45) DEFAULT NULL,
-  `lon` varchar(45) DEFAULT NULL,
-  `timezone` varchar(45) DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mac_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `iso_code` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state_name` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lat` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lon` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timezone` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_ip_view_count` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -2023,19 +2028,19 @@ ALTER TABLE `banners`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `category_types`
 --
 ALTER TABLE `category_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `cities`

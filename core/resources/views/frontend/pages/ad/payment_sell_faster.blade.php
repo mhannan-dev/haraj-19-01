@@ -37,58 +37,6 @@
                                 </a>
                             </div>
                         </div>
-                        {{-- <form role="form" class="payment-form require-validation" data-cc-on-file="false"
-                            data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form"
-                            action="{{ route('frontend.payment.stripe.post') }}" method="post">
-                            @csrf
-                            <div class="payment-card" id="payment-card" style="display: none">
-                                <div class="row mb-10-none">
-                                    <div class="col-lg-12 form-group">
-                                        <label>@lang('Name on card')</label>
-                                        <input class='form-control form--control' size='4' type='text'
-                                            placeholder='E.g: My Test Card' autocomplete='off'>
-                                    </div>
-                                    <div class="col-lg-12 form-group">
-                                        <label>@lang('Card number')</label>
-                                        <input autocomplete='off' class='form-control form--control card-number'
-                                            size='20' type='text' placeholder='4242 4242 4242 4242'>
-                                    </div>
-
-                                    <div class='col-lg-12 cvc required'>
-                                        <label>CVC/CSV</label><input autocomplete='off'
-                                            class='form-control form--control card-cvc' placeholder='ex. 311' size='4'
-                                            type='text'>
-                                    </div>
-
-                                    <div class='col-lg-6 form-group expiration required'>
-                                        <label>Expiration Month</label><input
-                                            class='form-control form--control card-expiry-month' placeholder='MM'
-                                            size='2' type='text'>
-                                    </div>
-                                    <div class='col-lg-6 form-group expiration required'>
-                                        <label>Expiration Year</label><input
-                                            class='form-control form--control card-expiry-year' placeholder='YYYY'
-                                            size='4' type='text'>
-                                    </div>
-                                </div>
-                            </div>
-                            @if (Session::has('error'))
-                                <div class='form-row row'>
-                                    <div class='col-md-12 error form-group hide'>
-                                        <div class='alert-danger alert'>@lang('Please correct the errors and try
-                                                                                    again.')</div>
-                                    </div>
-                                </div>
-                            @endif
-                            <div class="row">
-
-                                <div class="col-lg-12">
-                                    <button class="btn--base w-100" type="submit">Pay Now
-                                        ({{ $currency->currency_code }} {{ $feature_ad->price }})</button>
-                                </div>
-                            </div>
-                        </form> --}}
-                        {{-- @dd($feature_ad_price) --}}
                         <form role="form" class="payment-form require-validation" data-cc-on-file="false"
                             data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form"
                             action="{{ route('frontend.payment.stripe.post') }}" method="post">

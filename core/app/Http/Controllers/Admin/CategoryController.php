@@ -43,11 +43,12 @@ class CategoryController extends Controller
     public function getEdit(Request $request, $id)
     {
         $this->resp = $this->category->getShow($id);
+        $category_type = DB::table('category_types')->select('title','status','id')->where('status', '=' , 1)->get();
         $buttonText = "Update";
         if (!$this->resp->status) {
             return redirect()->route($this->resp->redirect_to)->with($this->resp->redirect_class, $this->resp->msg);
         }
-        return view('admin.category.edit', compact('buttonText'))->withRow($this->resp->data);
+        return view('admin.category.edit', compact('buttonText','category_type'))->withRow($this->resp->data);
 
     }
 

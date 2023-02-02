@@ -16,12 +16,10 @@ class Category extends Model
 		$this->attributes['title'] = $value;
 		$this->attributes['slug'] = Str::slug($value);
 	}
-
     public function subCategories()
     {
         return $this->hasMany(Category::class, 'parent_id')->where('status', 1);;
     }
-
     public function items()
     {
         return $this->hasMany(CategoryItem::class)->where('status', 1);
@@ -34,8 +32,6 @@ class Category extends Model
     {
         return $this->belongsTo(CategoryType::class, 'category_type_id');
     }
-
-
     public function ads()
     {
         return $this->hasMany(Advertisement::class);

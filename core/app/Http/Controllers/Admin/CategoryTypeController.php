@@ -76,7 +76,6 @@ class CategoryTypeController extends Controller
             'select_options']);
         DB::beginTransaction();
         try {
-            // $form_data = json_encode($validated['fields']);
             $c_form = new CategoryType();
             $c_form->title = $request->title;
             $c_form->fields = $validated['fields'];
@@ -127,7 +126,6 @@ class CategoryTypeController extends Controller
         $validated['fields'] = decorate_input_fields($validated);
         $validated = Arr::except($validated,['label','input_type','min_char','editable','max_char','field_necessity','file_extensions','file_max_size','select_options']);
         DB::beginTransaction();
-        // dd($validated);
         try {
             $c_form = CategoryType::findOrFail($id);
             $c_form->title = $request->title;
