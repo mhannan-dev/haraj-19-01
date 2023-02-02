@@ -241,7 +241,8 @@ class AdvertisementController extends Controller
     public function nonSubCategoryAdPost(Request $request, $c_id, $id = null)
     {
         $data = $request->all();
-        $category_type = Category::with('type')->where('category_type_id', $c_id)->first()->type->fields;
+        $category_type = Category::with('type')->where('id', $c_id)->first()->type->fields;
+        // $category_type = Category::with('type')->where('category_type_id', $c_id)->first()->type->fields;
         $default = [];
         $editable = [];
         foreach ($category_type as $c_type) {

@@ -41,6 +41,7 @@
                             data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form"
                             action="{{ route('frontend.payment.stripe.post') }}" method="post">
                             @csrf
+                            {{-- @dd($feature_ad_price); --}}
                             <input type="hidden" name="feature_ad_price" value="{{ $feature_ad_price->price }}">
                             <input type="hidden" name="feature_ad_id" value="{{ $feature_ad_price->id }}">
                             <div class="payment-card" id="payment-card" style="display: none">

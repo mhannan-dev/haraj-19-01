@@ -186,6 +186,7 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
             Route::match(['get', 'post'], '/remove/multi/img/{image_id}/{ad_id}', [AdvertisementController::class, 'removeMultiImage'])->name('remove.multi.image');
 
             Route::post('store/ad', [AdvertisementController::class, 'adStore'])->name('adStore');
+            Route::get('payment/option', [FeatureAdController::class, 'paymentForm'])->name('payment.form');
             Route::match(['get', 'post'], 'proceed/to/pay', [FeatureAdController::class, 'proceedToPay'])->name('sellFaster');
             Route::match(['get', 'post'], '/manage/ad/{category_id}/{sub_category_id?}', [AdvertisementController::class, 'postAdForm'])->name('ad.form');
 
