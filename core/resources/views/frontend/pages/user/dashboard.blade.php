@@ -32,9 +32,8 @@
                         <div class="my-ads-card-item-wrapper pt-30">
                             <div class="row mb-20-none">
                                 @forelse($my_ads as $item)
-                                    {{-- @dd($item->category->category_type); --}}
-                                    @if ($item->category->category_type == 'general')
-                                        <!-- Non child category ads -->
+                                    @if ($item->sub_category_id == null)
+                                        {{-- @dd($item->category); --}}
                                         <div class="col-xxl-4 col-xl-6 col-lg-6 mb-20">
                                             <div class="my-ads-card-item">
                                                 <div class="my-ads-card-wrapper">
@@ -48,7 +47,7 @@
                                                             </button>
 
                                                             <div class="opsition-list">
-                                                                <a href="{{ url('user/others/ad', ['c_id' => $item->category_id, 'id' => $item->id]) }}"
+                                                                <a href="{{ url('user/others/ad/update', ['c_id' => $item->category_id, 'id' => $item->id]) }}"
                                                                     class="opsition-link">
                                                                     <span>@lang('Edit now')</span>
                                                                 </a>
@@ -76,14 +75,11 @@
                                                                     <h3>{{ $item->title }}</h3>
                                                                 </a><br>
                                                                 @if (!empty($item->details_informations) && $item->details_informations != null)
-                                                                    @foreach (json_decode($item->details_informations) as $key => $details_info)
-                                                                        <span>{{ str_replace('_', ' ', ucfirst($key)) }} :
-                                                                            {!! $details_info !!}</span> <br>
+                                                                    @foreach ($item->details_informations as $key => $details_info)
+                                                                        <span>{{ $details_info->label }} :
+                                                                            {{ ucfirst($details_info->value) }}</span> <br>
                                                                     @endforeach
-                                                                @else
-                                                                    {{ Str::limit($item->description, 50) }}
                                                                 @endif
-
                                                             </div>
                                                         </div>
                                                         <div class="badge-area">

@@ -127,9 +127,9 @@
                                             <span class="sub-title">{{ $item->city ? $item->city->title : '' }}</span>
                                             <h5 class="title">
                                                 @if ($item->title == null)
-                                                    {{ $item->getCustomTitle }}
+                                                    {{ $item->getCustomTitle ?? '' }}
                                                 @else
-                                                    {{ $item->title }}
+                                                    {{ $item->title ?? ''}}
                                                 @endif
                                             </h5>
                                             <span class="inner-sub-title">{{ $item->category->title ?? '' }}</span>

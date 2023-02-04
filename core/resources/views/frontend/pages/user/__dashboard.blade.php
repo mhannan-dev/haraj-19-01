@@ -32,7 +32,9 @@
                         <div class="my-ads-card-item-wrapper pt-30">
                             <div class="row mb-20-none">
                                 @forelse($my_ads as $item)
-                                    @if ($item->sub_category_count == 0)
+                                    {{-- @dd($item->category); --}}
+                                    @if ($item->category->category_type == 'general')
+                                        <!-- Non child category ads -->
                                         <div class="col-xxl-4 col-xl-6 col-lg-6 mb-20">
                                             <div class="my-ads-card-item">
                                                 <div class="my-ads-card-wrapper">
@@ -46,7 +48,7 @@
                                                             </button>
 
                                                             <div class="opsition-list">
-                                                                <a href="{{ route('frontend.user.general.ad.manage', $item->id) }}"
+                                                                <a href="{{ url('user/others/ad', ['c_id' => $item->category_id, 'id' => $item->id]) }}"
                                                                     class="opsition-link">
                                                                     <span>@lang('Edit now')</span>
                                                                 </a>
@@ -113,30 +115,32 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Non child category ads -->
                                     @else
                                         <div class="col-xxl-4 col-xl-6 col-lg-6 mb-20">
                                             <div class="my-ads-card-item">
                                                 <div class="my-ads-card-wrapper">
                                                     <div class="my-ads-card-header">
                                                         <h3 class="my-ads-card-header-title">@lang('From '): <span>
-
                                                                 {{ $item->created_at->format('d M y') }}
-
                                                             </span></h3>
                                                         <div class="my-ads-card-action-btn">
                                                             <button class="opsition-btn">
                                                                 <i class="fas fa-ellipsis-h"></i>
                                                             </button>
+
                                                             <div class="opsition-list">
+                                                                <a href="{{ url('user/ad/edit', $item->id) }}"
+                                                                    class="opsition-link">
+                                                                    <span>@lang('Edit now')</span>
+                                                                </a>
                                                                 <form
                                                                     action="{{ route('frontend.user.delete.ad', $item->id) }}"
                                                                     method="post">
                                                                     @method('DELETE')
                                                                     @csrf
-                                                                    <button
-                                                                        class="dropdown-menu__item d-flex align-items-center px-3 py-2">
-                                                                        <span
-                                                                            class="dropdown-menu__caption">@lang('Remove')</span>
+                                                                    <button class="opsition-link">
+                                                                        <span>@lang('Remove')</span>
                                                                     </button>
                                                                 </form>
                                                             </div>
@@ -149,26 +153,30 @@
                                                                     alt="product">
                                                             </div>
                                                             <div class="title-area">
-                                                                <h3>{{ $item->title }}</h3>
+                                                                <a
+                                                                    href="{{ route('frontend.ads.details', [$item->slug, $item->id]) }}">
+                                                                    <h3>{{ $item->title }}</h3>
+                                                                </a><br>
                                                                 @if (!empty($item->details_informations) && $item->details_informations != null)
                                                                     @foreach (json_decode($item->details_informations) as $key => $details_info)
                                                                         <span>{{ str_replace('_', ' ', ucfirst($key)) }} :
                                                                             {!! $details_info !!}</span> <br>
                                                                     @endforeach
                                                                 @else
-                                                                    {{ $item->description }}
+                                                                    {{ Str::limit($item->description, 50) }}
                                                                 @endif
 
                                                             </div>
                                                         </div>
                                                         <div class="badge-area">
+
                                                             @if ($item->status == 0)
                                                                 @lang('Pending')
                                                             @elseif($item->status == 1)
                                                                 <span class="badge badge--success">
                                                                     @lang('Active')
                                                                 </span>
-                                                            @elseif($item->status == 2)
+                                                            @else
                                                                 <span class="badge badge--danger">
                                                                     @lang('Sold')
                                                                 </span>
@@ -176,12 +184,13 @@
                                                         </div>
                                                     </div>
                                                     <ul class="my-ads-status-list">
-                                                        <li><i class="las la-eye"></i> Views: {{ $item->view_count }}</li>
-                                                        <li><i class="las la-phone"></i> Tel: 0</li>
-                                                        <li><i class="las la-heart"></i> Likes:
+                                                        <li><i class="las la-eye"></i> @lang('Views'):
+                                                            {{ $item->view_count }}</li>
+                                                        <li><i class="las la-phone"></i> @lang('Tel'): 0</li>
+                                                        <li><i class="las la-heart"></i> @lang('Likes'):
                                                             {{ $item->favourites_count ?? '0' }}
                                                         </li>
-                                                        <li><i class="las la-comment"></i> Chats:
+                                                        <li><i class="las la-comment"></i> @lang('Chats'):
                                                             {{ $item->ad_message_count }}</li>
 
                                                     </ul>
@@ -190,7 +199,7 @@
                                         </div>
                                     @endif
                                 @empty
-                                    @lang('No Ad Active')
+                                    @lang('No Active Ad')
                                 @endforelse
                             </div>
                         </div>
@@ -199,7 +208,6 @@
                         <div class="my-ads-card-item-wrapper pt-30">
                             <div class="row mb-20-none">
                                 @forelse ($favourite_ads as $fav)
-                                    {{-- @dd($item->ads) --}}
                                     <div class="col-xxl-4 col-xl-6 col-lg-6 mb-20">
                                         <div class="my-ads-card-item">
                                             <div class="my-ads-card-wrapper">

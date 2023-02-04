@@ -126,7 +126,6 @@
                             <div class="product-details-content">
                                 <div class="top-area">
                                     <div class="top-wrapper">
-
                                         <h2 class="price-title">{{ $details->price }} {{ $currency->currency_code }}</h2>
                                         <div class="opsition-wrapper">
                                             <div class="opsition-item">
@@ -181,24 +180,17 @@
                                             </svg>{{ $details->view_count }}</span>
                                     </div>
                                     <div class="product-details-list-area">
+                                        {{ $details->description }} <br> <br>
                                         @if (!empty($details->details_informations) && $details->details_informations != null)
                                             <ul class="product-details-list proudct_info">
-                                                @foreach (json_decode($details->details_informations) as $key => $details_info)
-                                                    <li>{{ str_replace('_', ' ', ucfirst($key)) }}</strong>
-                                                        &nbsp;{{ $details_info }}
+                                                @foreach ($details->details_informations as $key => $details_info)
+                                                    <li>
+                                                        {{ $details_info->label }} : {{ ucfirst($details_info->value) }}
                                                     </li>
                                                 @endforeach
                                             </ul>
-                                        @else
-                                            {{ $details->description }}
-                                        @endif
-                                        @if (isset($details->fuel_type) && $details->fuel_type != null)
-                                            <ul class="product-details-list proudct_info">
-                                                <li>@lang('Fuel Type'): {!! str_replace('"', ' ', (string) $details->fuel_type) !!} </li>
-                                            </ul>
                                         @endif
                                     </div>
-
                                     <div class="bottom-area">
                                         <div class="title-wrapper">
                                             <h4 class="title">

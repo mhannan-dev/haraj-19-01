@@ -16,12 +16,10 @@
                                         <a href="">{{ $category->title ?? null }}</a>
                                     </li>
                                 </ul>
-
-                                <a href="{{ route('frontend.user.post.ad') }}" class="change-cetagory-link">Change</a>
-
+                                <a href="{{ route('frontend.user.post.ad') }}"
+                                    class="change-cetagory-link">@lang('Change')</a>
                             </div>
-                            <form class="sell-add-info-form"
-                                action="{{ url('user/others/ad', $adv->id) }}" method="post"
+                            <form class="sell-add-info-form" action="{{ url('user/others/ad', $adv->id) }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="category_id" value="{{ $category->id ?? null }}">
@@ -42,7 +40,7 @@
                                                     class="form--control {{ $errors->has('title') ? 'is-invalid' : '' }}"
                                                     placeholder="@lang('Advert title')" value="{{ old('title', $adv->title) }}">
                                                 <div class="text-limit-area">
-                                                    <span>Mention key features of your product (e.g. make, model)</span>
+                                                    <span>@lang('Mention key features of your product') (@lang('e.g. make, model'))</span>
                                                     <span id="text-count">1 </span>/ 100
                                                 </div>
                                             </div>
@@ -51,7 +49,9 @@
                                                 <select class="form--control" name="brand_id">
                                                     <option value="">@lang('Select Brand')</option>
                                                     @foreach ($brands as $brand)
-                                                        <option value="{{ $brand->id }}" @if (isset($adv) && $adv->brand_id == $brand->id) selected @endif>{{ $brand->title }}</option>
+                                                        <option value="{{ $brand->id }}"
+                                                            @if (isset($adv) && $adv->brand_id == $brand->id) selected @endif>
+                                                            {{ $brand->title }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -68,7 +68,7 @@
 
                                             <div class="form-group2">
                                                 <label>@lang('Google Map Location') <a target="_blank" class="text-primary"
-                                                        href="https://support.google.com/maps/answer/144361?hl=en&co=GENIE.Platform%3DDesktop#:~:text=Embed%20a%20map%20or%20directions&text=Click%20Share%20or%20embed%20map,Click%20Embed%20map.&text=Copy%20the%20text%20in%20the,of%20your%20website%20or%20blog.">@lang('Instruction')</a></label>
+                                                        href="//support.google.com/maps/answer/144361?hl=en&co=GENIE.Platform%3DDesktop#:~:text=Embed%20a%20map%20or%20directions&text=Click%20Share%20or%20embed%20map,Click%20Embed%20map.&text=Copy%20the%20text%20in%20the,of%20your%20website%20or%20blog.">@lang('Instruction')</a></label>
                                                 <textarea class="form--control" name="location_embeded_map" placeholder="@lang('Google Map Location')">{{ old('location_embeded_map', $adv->location_embeded_map) }}</textarea>
 
                                             </div>
@@ -119,8 +119,9 @@
                                             <div class="form-group">
                                                 <label>@lang('Meta Tags') <span class="text--danger">* Tag1,
                                                         Tag2</span></label>
-                                                <input type="text" name="meta_tags" value="{{ old('meta_tags', $adv->meta_tags) }}"
-                                                    class="form--control" placeholder="@lang('Meta Tags')" required>
+                                                <input type="text" name="meta_tags"
+                                                    value="{{ old('meta_tags', $adv->meta_tags) }}" class="form--control"
+                                                    placeholder="@lang('Meta Tags')" required>
                                             </div>
                                         </div>
                                     </div>
@@ -128,8 +129,9 @@
                                         <div class="col-xl-8 mb-30">
                                             <div class="form-group">
                                                 <label>@lang('Meta Title') <span class="text--danger">*</span></label>
-                                                <input type="text" name="meta_title" value="{{ old('meta_title', $adv->title) }}"
-                                                    class="form--control" placeholder="@lang('Meta Title')" required>
+                                                <input type="text" name="meta_title"
+                                                    value="{{ old('meta_title', $adv->title) }}" class="form--control"
+                                                    placeholder="@lang('Meta Title')" required>
                                             </div>
                                         </div>
                                     </div>
@@ -157,17 +159,12 @@
                                 @elseif($category->category_type == 'mobiles')
                                     {{-- @dd('ok mobile form working and ad posting successfull'); --}}
                                     @include('frontend.pages.forms.mobiles')
-
                                 @elseif($category->category_type == 'electronics')
-
                                     @include('frontend.pages.forms.electronics')
-
                                 @elseif($category->category_type == 'home_and_garden')
                                     @include('frontend.pages.forms.home_and_garden')
-
                                 @elseif($category->category_type == 'fashion_beauty')
                                     @include('frontend.pages.forms.fashion_beauty')
-
                                 @elseif($category->category_type == 'soft_products')
                                     @include('frontend.pages.forms._soft_products')
                                 @else
@@ -199,10 +196,10 @@
                                                             <select class="form--control" name="city_id" id="city_id">
                                                                 <option value="">@lang('Select')</option>
                                                                 @foreach (\DB::table('cities')->where('status', 1)->get() as $city)
-                                                                    <option value="{{ $city->id }}" @if (isset($adv) && $adv->city_id == $city->id) selected @endif>
+                                                                    <option value="{{ $city->id }}"
+                                                                        @if (isset($adv) && $adv->city_id == $city->id) selected @endif>
                                                                         {{ $city->title }}
                                                                     </option>
-
                                                                 @endforeach
                                                             </select>
                                                         </div>
