@@ -1,6 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
-use App\Models\Category;
+
 use Illuminate\Support\Arr;
 use App\Models\CategoryType;
 use Illuminate\Http\Request;
@@ -34,9 +35,8 @@ class CategoryTypeController extends Controller
 
     public function postStore(Request $request)
     {
-        //  dd($request->all());
-        // Form Data Validate
-        $validator = Validator::make($request->all(),[
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
             'title'                 => 'required|string|max:255',
             'label'                 => 'nullable|array',
             'label.*'               => 'nullable|string|max:50',
@@ -58,13 +58,12 @@ class CategoryTypeController extends Controller
             'editable.*'            => 'nullable|numeric',
             'max_digit'              => 'nullable|array',
             'max_digit.*'            => 'nullable|numeric',
-
+            'checkboxes'        => 'nullable|array',
+            'checkboxes.*'      => 'nullable|string|max:60',
         ]);
         $validated = $validator->validate();
         $validated['fields'] = decorate_input_fields($validated);
-        // dd($validated['fields']);
-
-        $validated = Arr::except($validated,[
+        $validated = Arr::except($validated, [
             'label',
             'input_type',
             'editable',
@@ -73,7 +72,11 @@ class CategoryTypeController extends Controller
             'field_necessity',
             'file_extensions',
             'file_max_size',
-            'select_options']);
+            'file_max_size',
+            'select_options',
+            'checkboxes'
+        ]);
+        // dd($validated['fields']);
         DB::beginTransaction();
         try {
             $c_form = new CategoryType();
@@ -94,13 +97,13 @@ class CategoryTypeController extends Controller
         $c_form = CategoryType::where('id', $id)->firstOrfail();
         $buttonText = "Update";
         return view('admin.category-type.edit', compact('buttonText'))->withRow($c_form);
-
     }
 
     public function postUpdate(Request $request, $id)
     {
+        // dd($request->all());
         // Form Data Validate
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'title'                 => 'required|string|max:255',
             'label'                 => 'nullable|array',
             'label.*'               => 'nullable|string|max:50',
@@ -120,11 +123,25 @@ class CategoryTypeController extends Controller
             'select_options.*'      => 'nullable|string|max:60',
             'editable'              => 'nullable|array',
             'editable.*'            => 'nullable|numeric',
+            'checkboxes'        => 'nullable|array',
+            'checkboxes.*'      => 'nullable|string|max:60',
 
         ]);
         $validated = $validator->validate();
         $validated['fields'] = decorate_input_fields($validated);
-        $validated = Arr::except($validated,['label','input_type','min_char','editable','max_char','field_necessity','file_extensions','file_max_size','select_options']);
+        // dd($validated['fields']);
+        $validated = Arr::except($validated, [
+            'label',
+            'input_type',
+            'min_char',
+            'editable',
+            'max_char',
+            'field_necessity',
+            'file_extensions',
+            'file_max_size',
+            'select_options',
+            'checkboxes'
+        ]);
         DB::beginTransaction();
         try {
             $c_form = CategoryType::findOrFail($id);
@@ -134,10 +151,10 @@ class CategoryTypeController extends Controller
         } catch (\Exception $e) {
             info($e);
             DB::rollback();
-            return redirect()->route('admin.category.type.index')->with('error','Type has been updated successfully !');
+            return redirect()->route('admin.category.type.index')->with('error', 'Type has been updated successfully !');
         }
         DB::commit();
-        return redirect()->route('admin.category.type.index')->with('flashMessageSuccess','Type has been updated successfully !');
+        return redirect()->route('admin.category.type.index')->with('flashMessageSuccess', 'Type has been updated successfully !');
     }
 
     public function getDelete($id)

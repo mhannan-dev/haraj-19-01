@@ -132,7 +132,7 @@
                                                     {{ $item->title }}
                                                 @endif
                                             </h5>
-                                            <span class="inner-sub-title">{{ $item->category->title }}</span>
+                                            <span class="inner-sub-title">{{ $item->category->title ?? '' }}</span>
                                             <h5 class="inner-title">{{ $item->price }} {{ $currency->currency_code }}
                                             </h5>
                                         </div>
@@ -234,7 +234,7 @@
                                                     {{ $item->title }}
                                                 @endif
                                             </h5>
-                                            <span class="inner-sub-title">{{ $item->category->title }}</span>
+                                            <span class="inner-sub-title">{{ $item->category->title ?? ''}}</span>
                                             <h5 class="inner-title">{{ $item->price }} {{ $currency->currency_code }}
                                             </h5>
                                         </div>

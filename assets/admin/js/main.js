@@ -290,6 +290,7 @@ var storedHtmlMarkup = {
         <option value="select">Select</option>
         <option value="file">File</option>
         <option value="textarea">Textarea</option>
+        <option value="checkbox">Checkbox</option>
     </select>
 </div>
 <div class="field_type_input col-lg-4 col-xl-4">
@@ -297,8 +298,8 @@ var storedHtmlMarkup = {
 <div class="col-xl-2 col-lg-2 form-group">
   <label for="fieldnecessity">Is required*</label>
   <select name="field_necessity[]" class="form--control">
-      <option value="yes" selected>Yes</option>
-      <option value="no" selected>No</option>
+      <option value="1" selected>Yes</option>
+      <option value="0" selected>No</option>
   </select>
 </div>
 <div class="col-xl-1 col-lg-1 form-group">
@@ -318,6 +319,7 @@ var storedHtmlMarkup = {
         <option value="file">File</option>
         <option value="select">Select</option>
         <option value="textarea">Textarea</option>
+        <option value="checkbox">Checkbox</option>
     </select>
 </div>
 <div class="field_type_input col-lg-4 col-xl-4">
@@ -363,6 +365,12 @@ var storedHtmlMarkup = {
 <input type="text" class="form--control" placeholder="Type Here..." name="select_options[]" required>
 </div>
 </div>`,
+  manual_gateway_checkbox_validation_field: `<div class="row">
+<div class="col-xl-12 col-lg-12 form-group">
+<label>Options*</label>
+<input type="text" class="form--control" placeholder="Type Here..." name="checkboxes[]" required>
+</div>
+</div>`,
 };
 
 /**
@@ -384,6 +392,9 @@ function inputFieldValidationRuleFieldsShow(element) {
     $(select2Input).select2();
   } else if (value == "select") {
     var textValidationFields = getHtmlMarkup().manual_gateway_select_validation_field;
+    validationFieldsPlaceElement.html(textValidationFields);
+  }else if (value == "checkbox") {
+    var textValidationFields = getHtmlMarkup().manual_gateway_checkbox_validation_field;
     validationFieldsPlaceElement.html(textValidationFields);
   }
   // Refresh all file extension input name

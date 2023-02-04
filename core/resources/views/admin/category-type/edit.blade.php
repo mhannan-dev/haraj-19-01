@@ -9,9 +9,11 @@
             align-items: center;
             justify-content: space-between;
         }
+
         .kyc-form select {
             padding: 10px 14px;
         }
+
         .kyc-form .row-cross-btn {
             background-color: #ea5455;
             color: #ffffff !important;
@@ -69,88 +71,70 @@
                     <div class="results">
                         @foreach ($row->fields ?? [] as $key => $item)
                             <div class="row add-row-wrapper align-items-end">
+                                <input type="hidden" name="editable[]" value="{{ $item->editable }}">
                                 <div class="col-xl-3 col-lg-3 form-group">
-                                    {{-- @include('admin.components.form.input', [
-                                        'label' => 'Field Name*',
-                                        'name' => 'label[]',
-                                        'attribute' => 'required',
-                                        'value' => old('label[]', $item->label),
-                                    ]) --}}
-                                    <input type="text" name="label[]" value="{{ old('label[]', $item->label) }}" class="form--control" @if ($item->editable == 1) readonly @else '' @endif>
+                                    <label for="">@lang('Label')</label>
+                                    <input type="text" name="label[]" value="{{ old('label[]', $item->label) }}"
+                                        class="form--control" @if ($item->editable == 0) readonly @else ' ' @endif>
                                 </div>
                                 <div class="col-xl-2 col-lg-2 form-group">
                                     @php
-                                        $selectOptions = ['text' => 'Input Text', 'file' => 'File', 'textarea' => 'Textarea', 'select' => 'Select'];
+                                        $selectOptions = ['text' => 'Input Text', 'file' => 'File', 'textarea' => 'Textarea', 'select' => 'Select', 'checkbox' => 'Checkbox'];
                                     @endphp
-                                    <label>{{ __('Field Types*') }}</label>
+                                    <label>{{ __('Field Types') }} <span class="text-danger">*</span> </label>
                                     <select class="form--control nice-select field-input-type" name="input_type[]"
                                         data-old="{{ $item->type }}" data-show-db="true">
                                         @foreach ($selectOptions as $key => $value)
-                                            <option value="{{ $key }}" {{ $key == $item->type ? 'selected' : '' }}>
+                                            <option value="{{ $key }}"
+                                                {{ $key == $item->type ? 'selected' : '' }}>
                                                 {{ $value }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-
                                 <div class="field_type_input col-lg-4 col-xl-4">
                                     @if ($item->type == 'file')
                                         <div class="row">
                                             <div class="col-xl-6 col-lg-6 form-group">
-                                                @include('admin.components.form.input', [
-                                                    'label' => 'Max File Size (mb)',
-                                                    'name' => 'file_max_size[]',
-                                                    'type' => 'number',
-                                                    'attribute' => 'required',
-                                                    'value' => old('file_max_size[]', $item->validation->max),
-                                                    'placeholder' => 'ex: 10',
-                                                ])
+                                                <label>@lang('Max file size')</label>
+                                                <input type="text"
+                                                    value="{{ old('file_max_size[]', $item->validation->max) }}"
+                                                    class="form--control">
                                             </div>
                                             <div class="col-xl-6 col-lg-6 form-group">
-                                                @include('admin.components.form.input', [
-                                                    'label' => 'File Extension*',
-                                                    'name' => 'file_extensions[]',
-                                                    'attribute' => 'required',
-                                                    'value' => old(
-                                                        'file_extensions[]',
-                                                        implode(',', $item->validation->mimes)),
-                                                    'placeholder' => 'ex: jpg, png, pdf',
-                                                ])
+                                                <label>@lang('File Extension')</label>
+                                                <input type="text" class="form--control" name="file_extensions[]"
+                                                    value="{{ old('file_extensions[]', implode(',', $item->validation->mimes)) }}"
+                                                    readonly>
                                             </div>
                                         </div>
                                     @elseif ($item->type == 'select')
                                         <div class="row">
                                             <div class="col-xl-12 col-lg-12 form-group">
-                                                @include('admin.components.form.input', [
-                                                    'label' => 'Options*',
-                                                    'name' => 'select_options[]',
-                                                    'attribute' => 'required=true',
-                                                    'value' => old(
-                                                        'select_options[]',
-                                                        implode(',', $item->validation->options)),
-                                                ])
+                                                <label>@lang('Options') <span class="text-danger">*</span> </label>
+                                                <input type="text" name="select_options[]" class="form--control"
+                                                    value="{{ old('select_options[]', implode(',', $item->validation->options)) }}">
+                                            </div>
+                                        </div>
+                                    @elseif ($item->type == 'checkbox')
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 form-group">
+                                                <label>@lang('Options')<span class="text-danger">*</span> </label>
+                                                <input type="text" name="checkboxes[]" class="form--control"
+                                                    value="{{ old('checkboxes[]', implode(',', $item->validation->options)) }}"
+                                                    required>
                                             </div>
                                         </div>
                                     @else
                                         <div class="row">
                                             <div class="col-xl-6 col-lg-6 form-group">
-                                                @include('admin.components.form.input', [
-                                                    'label' => 'Min Character*',
-                                                    'name' => 'min_char[]',
-                                                    'type' => 'number',
-                                                    'attribute' => 'required',
-                                                    'value' => old('min_char[]', $item->validation->min),
-                                                    'placeholder' => 'ex: 6',
-                                                ])
+                                                <label>@lang('Min Character') <span class="text-danger">*</span></label>
+                                                <input type="number" name="min_char[]" class="form--control"
+                                                    value={{ old('min_char[]', $item->validation->min) }}>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 form-group">
-                                                @include('admin.components.form.input', [
-                                                    'label' => 'Max Character*',
-                                                    'name' => 'max_char[]',
-                                                    'type' => 'number',
-                                                    'attribute' => 'required',
-                                                    'value' => old('max_char[]', $item->validation->max),
-                                                    'placeholder' => 'ex: 16',
-                                                ])
+                                                <label for="Max Char">@lang('Max Char')</label>
+                                                <input type="number" class="form--control" name='max_char[]'
+                                                    value="{{ old('max_char[]', $item->validation->max) }}">
                                             </div>
                                         </div>
                                     @endif
@@ -159,15 +143,15 @@
                                     <div class="col-xl-2 col-lg-2 form-group">
                                         <label>@lang('Field Necessity')</label>
                                         <select name="field_necessity[]" class="form--control">
-                                            <option value="yes" selected>Yes</option>
-                                            <option value="No" selected>No</option>
+                                            <option value="1" selected>@lang('Yes')</option>
+                                            <option value="0" selected>@lang('No')</option>
                                         </select>
                                     </div>
                                 @else
                                     <div class="col-xl-2 col-lg-2 form-group">
                                         <label>@lang('Field Necessity')</label>
                                         <select name="field_necessity[]" class="form--control">
-                                            <option value="yes" selected>Yes</option>
+                                            <option value="1" selected>@lang('Yes')</option>
                                         </select>
                                     </div>
                                 @endif
@@ -185,7 +169,7 @@
             </div>
         </div>
         <button type="submit" class="btn btn--base">{{ $buttonText }}</button>
-        <a href="{{ url("category-type/index") }}" class="btn btn--base bg--danger">@lang('Cancel')</a>
+        <a href="{{ url('category-type/index') }}" class="btn btn--base bg--danger">@lang('Cancel')</a>
     </form>
 @endsection
 @section('scripts')

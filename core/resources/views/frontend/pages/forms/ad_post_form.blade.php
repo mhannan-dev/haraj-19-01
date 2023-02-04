@@ -11,12 +11,6 @@
                             <div class="change-cetagory-wrapper">
                                 @include('frontend.pages.forms.breadcrumb')
                             </div>
-                            @if ($errors->any())
-                                <div id="msgDiv" class="alert alert-danger">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                    @lang('Please check the form below for errors')
-                                </div>
-                            @endif
                             <form class="sell-add-info-form" action="{{ route('frontend.user.adStore') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
@@ -35,7 +29,7 @@
                                                 <div class="form-group">
                                                     <label for="label">
                                                         {{ str_replace('_', ' ', ucfirst($field->label)) }}
-                                                        @if ($field->required == true)
+                                                        @if ($field->required == "true")
                                                             <span class="text-danger">*</span>
                                                         @endif
                                                     </label>
@@ -80,6 +74,18 @@
                                                             value="{{ $field->editable }}">
                                                     @elseif ($field->type == 'textarea')
                                                         <textarea name="{{ $field->label }}" class="form--control"></textarea>
+                                                    @endif
+                                                </div>
+                                                <div class="form-group">
+                                                    @if ($field->type == 'checkbox')
+                                                        @foreach ($field->validation->options as $data_checkbox)
+                                                            <div class="d-inline-block me-2">
+                                                                <input type="checkbox" class="w-auto" name="option1"
+                                                                    value="something">
+                                                                <label
+                                                                    class="form-check-label d-inline-block">{{ ucfirst($data_checkbox) }}</label>
+                                                            </div>
+                                                        @endforeach
                                                     @endif
                                                 </div>
                                                 @if ($field->type == 'file' && $field->name == 'images')

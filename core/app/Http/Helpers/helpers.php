@@ -891,6 +891,7 @@ function decorate_input_fields($validated)
     $file_array_key = 0;
     $select_array_key = 0;
     $select_number_array_key = 0;
+    $checkbox_array_key = 0;
     $global_key = 0;
     foreach ($validated['input_type'] ?? [] as $key => $item) {
         $field_necessity = $validated['field_necessity'][$key] ?? "";
@@ -910,15 +911,23 @@ function decorate_input_fields($validated)
         } else if ($item == "select") {
             $options = $validated['select_options'][$select_array_key] ?? "";
             $options = explode(",", $options);
-
             $validation_rules = [
                 'max'       => 0,
                 'min'       => 0,
                 'mimes'     => [],
                 'options'   => $options,
             ];
-
             $select_array_key++;
+        }else if ($item == "checkbox") {
+            $options = $validated['checkboxes'][$checkbox_array_key] ?? "";
+            $options = explode(",", $options);
+            $validation_rules = [
+                'max'       => 0,
+                'min'       => 0,
+                'mimes'     => [],
+                'options'   => $options,
+            ];
+            $checkbox_array_key++;
         } else if ($item == "number") {
             // $options = $validated['select_options'][$select_number_array_key] ?? "";
             $validation_rules = [
@@ -938,9 +947,7 @@ function decorate_input_fields($validated)
             ];
             $global_key++;
         }
-
         $validation_rules['required'] = $field_necessity_list[$field_necessity] ?? false;
-
         $input_fields[]     = [
             'type'          => $item,
             'label'         => $validated['label'][$key] ?? "",

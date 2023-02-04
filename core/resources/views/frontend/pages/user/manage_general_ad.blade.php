@@ -34,7 +34,6 @@
                                         <div class="sell-add-info-body-wrapper">
                                             <h3 class="sell-add-info-body-title">@lang('ADD SOME INFO')</h3>
                                             @foreach ($category->type->fields as $field)
-
                                                 <div class="form-group">
                                                     <label for="label">
                                                         {{ str_replace('_', ' ', ucfirst($field->label)) }}
@@ -47,17 +46,20 @@
                                                             class="form--control" min="{{ $field->validation->min }}"
                                                             max="{{ $field->validation->max }}"
                                                             required="{{ $field->validation->required }}">
-                                                            <input type="hidden" name="editable" value="{{ $field->editable }}">
-                                                    @elseif ($field->type == 'file' && $field->label == "image")
+                                                        <input type="hidden" name="editable"
+                                                            value="{{ $field->editable }}">
+                                                    @elseif ($field->type == 'file' && $field->label == 'image')
                                                         <input type="{{ $field->type }}" name="{{ $field->label }}"
                                                             class="form--control"
                                                             required="{{ $field->validation->required }}">
-                                                            <input type="hidden" name="editable" value="{{ $field->editable }}">
+                                                        <input type="hidden" name="editable"
+                                                            value="{{ $field->editable }}">
                                                     @elseif ($field->type == 'number')
                                                         <input type="{{ $field->type }}" name="{{ $field->label }}"
                                                             class="form--control"
                                                             required="{{ $field->validation->required }}">
-                                                            <input type="hidden" name="editable" value="{{ $field->editable }}">
+                                                        <input type="hidden" name="editable"
+                                                            value="{{ $field->editable }}">
                                                     @elseif ($field->type == 'select' && $field->name == 'brand')
                                                         <select name="{{ $field->label }}" class="form--control">
                                                             <option value="">@lang('Select Brand')</option>
@@ -66,18 +68,34 @@
                                                                 </option>
                                                             @endforeach
                                                         </select>
-                                                        <input type="hidden" name="editable" value="{{ $field->editable }}">
+                                                        <input type="hidden" name="editable"
+                                                            value="{{ $field->editable }}">
                                                     @elseif ($field->type == 'select')
                                                         <select name="{{ $field->label }}" class="form--control">
                                                             <option value="">@lang('Select')</option>
                                                             @foreach ($field->validation->options as $op)
-                                                                <option value="{{ $op }}">{{ ucfirst($op) }}</option>
+                                                                <option value="{{ $op }}">{{ ucfirst($op) }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
-                                                        <input type="hidden" name="editable" value="{{ $field->editable }}">
+                                                        <input type="hidden" name="editable"
+                                                            value="{{ $field->editable }}">
                                                     @elseif ($field->type == 'textarea')
                                                         <textarea name="{{ $field->label }}" class="form--control"></textarea>
                                                     @endif
+                                                </div>
+                                                <div class="form-group">
+                                                    @if ($field->type == 'checkbox')
+                                                        @foreach ($field->validation->options as $data_checkbox)
+                                                            <div class="d-inline-block me-2">
+                                                                <input type="checkbox" class="w-auto" name="option1"
+                                                                    value="something">
+                                                                <label
+                                                                    class="form-check-label d-inline-block">{{ ucfirst($data_checkbox) }}</label>
+                                                            </div>
+                                                        @endforeach
+                                                    @endif
+
                                                 </div>
                                                 @if ($field->type == 'file' && $field->name == 'images')
                                                     <h3 class="sell-add-info-price-title two">
@@ -108,8 +126,8 @@
                                                 <nav>
                                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                                         <button class="nav-link active" id="category-tab"
-                                                            data-bs-toggle="tab" data-bs-target="#category" type="button"
-                                                            role="tab" aria-controls="category"
+                                                            data-bs-toggle="tab" data-bs-target="#category"
+                                                            type="button" role="tab" aria-controls="category"
                                                             aria-selected="true">@lang('CHOOSE FROM LIST')</button>
                                                         <button class="nav-link" id="apps-tab" data-bs-toggle="tab"
                                                             data-bs-target="#apps" type="button" role="tab"
