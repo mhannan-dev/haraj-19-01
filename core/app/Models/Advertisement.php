@@ -5,6 +5,7 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Stripe\Treasury\ReceivedDebit;
 
 class Advertisement extends Model
 {
@@ -55,9 +56,9 @@ class Advertisement extends Model
     {
         return $this->belongsToMany(Advertiser::class)->withTimestamps();
     }
-    public function visited_by_visitors()
+    public function recent_visited_by_visitors()
     {
-        return $this->belongsToMany(InterestAdvertisement::class)->withTimestamps();
+        return $this->belongsToMany(RecentlyViewAd::class)->withTimestamps();
     }
 
     public function complains()

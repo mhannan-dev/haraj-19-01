@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Front;
-
 use App\Models\City;
 use App\Models\Rating;
 use App\Models\CMSPage;
@@ -18,6 +17,7 @@ use App\Events\MessageEvent;
 use Illuminate\Http\Request;
 use App\Models\Advertisement;
 use App\Http\Helpers\Generals;
+use App\Models\RecentlyViewAd;
 use App\Models\VisitorHistory;
 use Illuminate\Support\Carbon;
 use Torann\GeoIP\Facades\GeoIP;
@@ -26,26 +26,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\InterestAdvertisement;
-use App\Models\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
-
     public function home()
     {
-        // $MAC  = exec('getmac');
-        // $visitorDeviceMac = strtok($MAC, ' ');
         $data['pageTitle'] = 'Home';
         $data['main_category'] = Category::with('ads', 'subCategories')->has('ads')->parent()->active()->orderBy('id', 'desc')->paginate(getPaginate());
         $data['sub_category'] =  Category::where(function ($query) {
             $query->where('parent_id', '!=', 0)->orWhereNull('parent_id');
         })->paginate(getPaginate());
-        $user = Auth::guard('advertiser')->user();
-        if ($user) {
-            $data['mac_wise_ads'] = InterestAdvertisement::with('ad')->where('visitor_id', $user->id)->get(); //pivot table ads
-        }
         $data['featured_ads'] = Advertisement::featured()->with(
             [
                 'city' => function ($query) {
@@ -58,14 +50,29 @@ class HomeController extends Controller
             ->orderBy('created_at', 'desc')
             ->take(12)
             ->get();
-
         //Taking Visitor Information
-        $visitorIp  = $_SERVER['REMOTE_ADDR'];
-        $visitorDetails = GeoIP::getLocation($visitorIp);
+        // $visitorIp  = $_SERVER['REMOTE_ADDR'];
+        // $visitorDetails = GeoIP::getLocation($visitorIp);
+        // $checkVisitorIp = VisitorHistory::where('mac_address', $visitorDeviceMac)->first();
+        // if ($checkVisitorIp == null) {
+        //     $visitor = new VisitorHistory();
+        //     $visitor->ip_address = $visitorDetails->ip;
+        //     $visitor->mac_address = $visitorDeviceMac;
+        //     $visitor->country = $visitorDetails->country;
+        //     $visitor->city = $visitorDetails->city;
+        //     $visitor->state_name = $visitorDetails->state_name;
+        //     $visitor->lat = $visitorDetails->lat;
+        //     $visitor->lon = $visitorDetails->lon;
+        //     $visitor->user_ip_view_count = 1;
+        //     $visitor->save();
+        // } else {
+        //     DB::table('visitor_histories')->where('mac_address', $checkVisitorIp->mac_address)->increment('user_ip_view_count');
+        // }
         //Taking Visitor Information end code block
+        $recent_viewed_ids = DB::table('recently_view_ads')->select('advertisement_id')->inRandomOrder()->take(8)->get()->pluck('advertisement_id');
+        $data['recent_viewed_ads'] = Advertisement::whereIn('id', $recent_viewed_ids)->inRandomOrder()->get();
         return view('frontend.index', $data);
     }
-
     public function cms_page(Request $request)
     {
         $domain_name = DB::table('general_settings')->pluck('domain_name')->first();
@@ -158,7 +165,6 @@ class HomeController extends Controller
     public function getAddsByBrandFilters(Request $request)
     {
         //by category and brand
-
         if ($request->category_id == 'all_category') {
             $data['results'] =  Advertisement::with('category', 'city', 'favourite_to_users')->where('brand_id', $request->brand_id)->orderBy('id', 'desc')->paginate(12);
             $data['pagination'] = (string)  $data['results']->links();
@@ -206,8 +212,6 @@ class HomeController extends Controller
         $categoryId = $request->category_id;
         $subCategoryId = $request->sub_category_id;
         $brandId = $request->brand_id;
-
-
         //===============releace date Start===================
         if ($request->sort_type == 'releace_date') {
             if ($categoryId == 'all_category' &&  $subCategoryId == null &&  $brandId == null) {
@@ -382,7 +386,6 @@ class HomeController extends Controller
                 return response()->json($data);
             }
         }
-
         //===============releace date End===================
     }
 
@@ -404,20 +407,34 @@ class HomeController extends Controller
         return view('frontend.pages.public_ads.city_ad', $data);
     }
 
-    public function details($slug, $id)
+    public function details(Request $request, $slug, $id)
     {
+        $session_id = Session::get('session_id');
+        // dd($sess);
         $details = Advertisement::with('advertiser', 'city', 'category', 'images')->where('slug', $slug)->first();
-
+        // Set session to get recently viewed product
+        if (isset($session_id)) {
+            $session_id = $session_id;
+        } else {
+            $session_id = Str::uuid()->toString();
+        }
+        Session::put('session_id', $session_id);
+        $countRecentViewAds = RecentlyViewAd::where('session_id', $session_id)->where('advertisement_id', $id)->count();
+        if($countRecentViewAds == 0){
+            // dd('insert');
+            $recent_ad = new RecentlyViewAd();
+            $recent_ad->session_id = $session_id;
+            $recent_ad->advertisement_id = $id;
+            $recent_ad->save();
+        }
         $checkFavourite = DB::table('advertisement_advertiser')
-            ->where('advertiser_id', '=', $details->advertiser_id)
-            ->where('advertisement_id', '=', $details->id)
-            ->first();
-
+        ->where('advertiser_id', '=', $details->advertiser_id)
+        ->where('advertisement_id', '=', $details->id)
+        ->first();
         //Taking Visitor Information
         $visited_ad_count = InterestAdvertisement::where('interest_advertisement_id', $details->id)->first();
         if (isset($visited_ad_count)) {
             $visieted_interest = InterestAdvertisement::where('id', $visited_ad_count->id)->first();
-            // dd($visieted_interest);
             $visieted_interest->interest_advertisement_id  = $visited_ad_count->interest_advertisement_id;
             $visieted_interest->update();
         } else {
@@ -435,15 +452,18 @@ class HomeController extends Controller
         if (isset($details)) {
             DB::table('advertisements')->where('id', $id)->increment('view_count');
         }
+        // Related product
         $related_products = Advertisement::with('category')
             ->where('category_id', $details->category_id)
             ->where('slug', '!=', $details->slug)
             ->inRandomOrder()->take(4)->get();
         $user_rating = Rating::where('advertiser_id', $details->advertiser_id)->select('rating')->get();
-
-        return view('frontend.pages.public_ads.details', compact('details', 'related_products',
-        'user_rating',
-        'checkFavourite'));
+        return view('frontend.pages.public_ads.details', compact(
+            'details',
+            'related_products',
+            'user_rating',
+            'checkFavourite'
+        ));
     }
 
 
