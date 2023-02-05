@@ -74,12 +74,16 @@
                                                                     href="{{ route('frontend.ads.details', [$item->slug, $item->id]) }}">
                                                                     <h3>{{ $item->title }}</h3>
                                                                 </a><br>
+                                                                {{-- @dd($item->details_informations)
                                                                 @if (!empty($item->details_informations) && $item->details_informations != null)
                                                                     @foreach ($item->details_informations as $key => $details_info)
                                                                         <span>{{ $details_info->label }} :
                                                                             {{ ucfirst($details_info->value) }}</span> <br>
                                                                     @endforeach
-                                                                @endif
+                                                                @endif --}}
+                                                                {{ $item->authenticity }} <br>
+                                                                {{ $item->condition }} <br>
+                                                                {{ $item->category->title }} <br>
                                                             </div>
                                                         </div>
                                                         <div class="badge-area">

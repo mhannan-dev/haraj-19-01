@@ -161,6 +161,7 @@
 
                                         </div>
                                     </div>
+
                                     <h1 class="top-sub-title">{{ $details->title }}</h1>
                                 </div>
                                 <div class="center-area">
@@ -183,10 +184,24 @@
                                         {{ $details->description }} <br> <br>
                                         @if (!empty($details->details_informations) && $details->details_informations != null)
                                             <ul class="product-details-list proudct_info">
-                                                @foreach ($details->details_informations as $key => $details_info)
-                                                    <li>
-                                                        {{ $details_info->label }} : {{ ucfirst($details_info->value) }}
-                                                    </li>
+                                                @foreach (json_decode($details->details_informations) as $key => $details_info)
+                                                    <h5 class="title">{{ $details_info->label }}</h5>
+                                                    @if ($details_info->type == 'text')
+                                                        <p>{{  str_replace('_',' ', $details_info->value) }}</p>
+                                                    @endif
+                                                    @if ($details_info->type == 'number')
+                                                        <p>{{  str_replace('_',' ', $details_info->value) }}</p>
+                                                    @endif
+                                                    @if ($details_info->type == 'textarea')
+                                                        <p>{{  str_replace('_',' ', $details_info->value) }}</p>
+                                                    @endif
+                                                    @if ($details_info->type == 'checkbox')
+                                                        @foreach ($details_info->value as $details_info)
+                                                            <li>
+                                                                {{ ucfirst($details_info) }}
+                                                            </li>
+                                                        @endforeach
+                                                    @endif
                                                 @endforeach
                                             </ul>
                                         @endif

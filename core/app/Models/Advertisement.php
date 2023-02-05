@@ -12,9 +12,9 @@ class Advertisement extends Model
     use HasFactory;
     protected $table = "advertisements";
     protected $fillable = ['title', 'status', 'image', 'slug', 'created_at', 'updated_at'];
-    protected $casts = [
-        'details_informations' => "object",
-    ];
+    // protected $casts = [
+    //     'details_informations' => "object",
+    // ];
     public function setTitleAttribute($value)
     {
         $this->attributes['title'] = $value;

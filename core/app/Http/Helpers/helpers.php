@@ -881,9 +881,7 @@ function make_input_name($string)
 
 function decorate_input_fields($validated)
 {
-
     $input_fields = [];
-
     $field_necessity_list = [
         '1'             => true,
         '0'             => false,
@@ -929,7 +927,6 @@ function decorate_input_fields($validated)
             ];
             $checkbox_array_key++;
         } else if ($item == "number") {
-            // $options = $validated['select_options'][$select_number_array_key] ?? "";
             $validation_rules = [
                 'max'       => $validated['max_digit'][$select_number_array_key] ?? 0,
                 'min'       => 0,
@@ -957,6 +954,5 @@ function decorate_input_fields($validated)
             'editable'         => $validated['editable'][$key] ?? "",
         ];
     }
-    // dd($input_fields);
     return $input_fields;
 }

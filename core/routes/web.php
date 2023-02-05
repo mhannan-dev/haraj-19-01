@@ -179,7 +179,7 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
             Route::post('ad/update/{id}', [AdvertisementController::class, 'adUpdate'])->name('update.ad');
 
             Route::match(['get', 'post'], '/others/ad/{c_id}/{id?}', [AdvertisementController::class, 'nonSubCategoryAdPost'])->name('general.ad.manage');
-            Route::match(['get', 'post'], '/others/ad/update/{c_id}/{id?}', [AdvertisementController::class, 'nonSubCategoryAdUpdate'])->name('general.ad.update');
+            Route::match(['get', 'post'], '/others/ad/update/{c_id}/{ad_id}', [AdvertisementController::class, 'nonSubCategoryAdUpdate'])->name('general.ad.update');
             Route::match(['get', 'post'], '/remove/img/{id?}', [AdvertisementController::class, 'removeImage'])->name('remove.image');
             Route::match(['get', 'post'], '/remove/multi/img/{image_id}/{ad_id}', [AdvertisementController::class, 'removeMultiImage'])->name('remove.multi.image');
 

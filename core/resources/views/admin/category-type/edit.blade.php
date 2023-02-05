@@ -66,6 +66,10 @@
             </div>
         </div>
         <div class="custom-card kyc-form input-field-generator" data-source="manual_gateway_input_fields">
+            <div class="card-header">
+                <button type="button" class="btn--base add-row-btn"><i class="fas fa-plus"></i>
+                    @lang('Add')</button>
+            </div>
             <div class="custom-inner-card mt-2">
                 <div class="card-inner-body">
                     <div class="results">
