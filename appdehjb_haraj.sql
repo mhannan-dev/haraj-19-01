@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 04, 2023 at 03:02 PM
+-- Generation Time: Feb 05, 2023 at 03:14 PM
 -- Server version: 5.7.33
--- PHP Version: 8.0.22
+-- PHP Version: 8.1.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -92,11 +92,7 @@ CREATE TABLE `advertisements` (
 --
 
 INSERT INTO `advertisements` (`id`, `advertiser_id`, `category_id`, `type_id`, `city_id`, `sub_category_id`, `title`, `slug`, `price`, `image`, `description`, `condition`, `authenticity`, `brand_id`, `details_informations`, `status`, `is_price_negotiable`, `created_at`, `updated_at`, `feature_expire_date`, `view_count`, `is_featured`, `latitude`, `longitude`, `ad_type_id`, `meta_tags`, `meta_title`) VALUES
-(164, 3, 1, 0, 1, 3, 'Testing Car Data', '616', '1200000.00', '1675514698.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'used', NULL, 3, NULL, 1, 0, '2023-02-04 06:44:58', '2023-02-04 06:45:36', '2023-02-11 06:44:58', 9, 1, '23.85630753770144', '90.35247908792898', 5, 'Meta tags', 'Meta title'),
-(165, 3, 4, 0, 1, NULL, 'General Category Product', 'general-category-productg', '2500.00', '1675514908.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'used', NULL, 7, '[]', 1, 0, '2023-02-04 06:48:28', '2023-02-04 06:48:28', NULL, 2, 0, '23.856295721234474', '90.35249192650323', NULL, 'Meta tag', 'Meta title'),
-(166, 3, 1, 0, 1, 3, 'Car one', '372', '1200000.00', '1675516734.jpeg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'new', NULL, 6, '[]', 1, 0, '2023-02-04 07:18:55', '2023-02-04 07:18:55', NULL, 0, 0, '23.856296774694545', '90.35246363106236', NULL, 'Meta', 'Meta title'),
-(167, 3, 4, 0, 1, NULL, 'General Ad testing', 'general-ad-testing', '12500.00', '1675517749.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'new', NULL, 7, '[]', 1, 0, '2023-02-04 07:35:49', '2023-02-04 07:35:49', NULL, 1, 0, '23.856297499015874', '90.35248763910049', NULL, 'Meta', 'Meta title'),
-(169, 3, 4, 0, 1, NULL, 'Apple', 'apple', '1250.00', '1675518310.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'new', NULL, 7, '[{\"type\":\"checkbox\",\"label\":\"Multiple Checkbox\",\"name\":\"multiple_checkbox\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"One\",\" Four\",\" Three\"],\"required\":true},\"editable\":\"1\",\"value\":\"three\"}]', 1, 0, '2023-02-04 07:45:10', '2023-02-04 07:45:10', NULL, 23, 0, '23.85631315295845', '90.3524976205026', NULL, 'Meta tags', 'Meta title');
+(181, 3, 5, 0, 1, 6, 'New honda bike update', 'new-honda-bike-update', '125000.00', '1675607583.jpg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 'used', NULL, 6, '[{\"type\":\"checkbox\",\"label\":\"Multiple Checkbox\",\"name\":\"multiple_checkbox\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"one\",\" two\",\" three\"],\"required\":false},\"editable\":\"1\",\"value\":[\"one\",\"two\",\"three\"]}]', 1, 0, '2023-02-05 08:33:03', '2023-02-05 09:06:08', NULL, 0, 0, NULL, NULL, NULL, 'Meta tags', 'Meta title');
 
 -- --------------------------------------------------------
 
@@ -160,7 +156,15 @@ INSERT INTO `advertisement_interest_advertisement` (`id`, `interest_advertisemen
 (37, 164, 3, '::1', '2023-02-04 12:45:48', '2023-02-04 12:45:48'),
 (38, 165, 3, '::1', '2023-02-04 12:48:37', '2023-02-04 12:48:37'),
 (39, 169, 3, '::1', '2023-02-04 13:46:05', '2023-02-04 13:46:05'),
-(40, 167, 3, '::1', '2023-02-04 14:11:24', '2023-02-04 14:11:24');
+(40, 167, 3, '::1', '2023-02-04 14:11:24', '2023-02-04 14:11:24'),
+(41, 166, 3, '::1', '2023-02-05 07:30:47', '2023-02-05 07:30:47'),
+(42, 171, 3, '::1', '2023-02-05 08:35:23', '2023-02-05 08:35:23'),
+(43, 175, 3, '::1', '2023-02-05 09:04:29', '2023-02-05 09:04:29'),
+(44, 174, 3, '::1', '2023-02-05 09:04:44', '2023-02-05 09:04:44'),
+(45, 176, 3, '::1', '2023-02-05 09:13:40', '2023-02-05 09:13:40'),
+(46, 177, 3, '::1', '2023-02-05 10:15:09', '2023-02-05 10:15:09'),
+(47, 178, 3, '::1', '2023-02-05 10:21:31', '2023-02-05 10:21:31'),
+(48, 179, 3, '::1', '2023-02-05 10:56:18', '2023-02-05 10:56:18');
 
 -- --------------------------------------------------------
 
@@ -201,7 +205,7 @@ CREATE TABLE `advertisers` (
 INSERT INTO `advertisers` (`id`, `first_name`, `last_name`, `mobile_no`, `designation`, `email`, `username`, `password`, `provider_id`, `city_id`, `registration_code`, `about`, `status`, `show_mobile_no`, `last_seen`, `deleted_at`, `created_at`, `updated_at`, `remember_token`, `image`, `avatar`, `chat_status`, `chat_delete_by`) VALUES
 (1, 'Muhammad', 'Hannan', '01717000000', NULL, 'mdhannan.info@gmail.com', 'mdhannan.info@gmail.com', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 882630, 'Laravel Developer', 1, 1, '2023-01-24 17:56:20', NULL, '2022-09-13 18:00:00', '2023-01-24 11:56:20', NULL, '2023-01-22-1674392134.png', NULL, 1, NULL),
 (2, 'Tanvir', 'Ahmed', '01718191912', NULL, 'ahannan.info@gmail.com', 'ahannan.info@gmail.com', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 519853, NULL, 1, 1, '2023-01-24 05:56:26', NULL, '2022-10-08 04:14:14', '2023-01-23 23:56:26', NULL, '2023-01-23-1674452316.png', NULL, 1, NULL),
-(3, 'John', 'Doe', '123456789', NULL, 'testuser@gmail.com', 'testuser', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 0, 'test', 1, 1, '2023-02-04 14:44:44', NULL, '2023-01-14 13:15:16', '2023-02-04 08:44:44', NULL, NULL, NULL, 0, NULL),
+(3, 'John', 'Doe', '123456789', NULL, 'testuser@gmail.com', 'testuser', '$2y$10$DVSsh3CmzAEj273eUqLviOmhYWirFyK5foSmlSze6DJuc5AELeFty', NULL, 1, 0, 'test', 1, 1, '2023-02-05 15:12:54', NULL, '2023-01-14 13:15:16', '2023-02-05 09:12:54', NULL, NULL, NULL, 0, NULL),
 (4, 'FR', 'Ranad', '123456789', NULL, 'frranad1@gmail.com', 'frranad1-9378', '$2y$10$Vw6DgPqi9cfi46HIPL6ZwOq12A1R4zJTlPMo.DnbwVsGq8sA.yrVa', NULL, 1, 1247185014, 'Test', 1, 1, '2023-01-18 13:02:00', NULL, '2023-01-11 06:39:23', '2023-01-18 07:02:00', NULL, '2023-01-12-1673503312.png', NULL, 0, NULL);
 
 -- --------------------------------------------------------
@@ -397,7 +401,20 @@ INSERT INTO `ad_images` (`id`, `advertisement_id`, `images`, `created_at`, `upda
 (176, 166, '167551673583966.jpg', '2023-02-04 07:18:56', '2023-02-04 07:18:56'),
 (177, 167, '167551774962224.jpg', '2023-02-04 07:35:50', '2023-02-04 07:35:50'),
 (178, 168, '167551788498008.jpg', '2023-02-04 07:38:05', '2023-02-04 07:38:05'),
-(179, 169, '167551831012235.jpg', '2023-02-04 07:45:11', '2023-02-04 07:45:11');
+(179, 169, '167551831012235.jpg', '2023-02-04 07:45:11', '2023-02-04 07:45:11'),
+(180, 170, '167558221773410.jpg', '2023-02-05 01:30:18', '2023-02-05 01:30:18'),
+(181, 171, '167558281186189.jpg', '2023-02-05 01:40:13', '2023-02-05 01:40:13'),
+(182, 172, '167558567358246.jpg', '2023-02-05 02:27:54', '2023-02-05 02:27:54'),
+(183, 173, '167558620833999.jpg', '2023-02-05 02:36:49', '2023-02-05 02:36:49'),
+(184, 174, '167558743166723.jpg', '2023-02-05 02:57:12', '2023-02-05 02:57:12'),
+(185, 175, '167558782633967.jpg', '2023-02-05 03:03:47', '2023-02-05 03:03:47'),
+(186, 176, '167558834869039.jpg', '2023-02-05 03:12:30', '2023-02-05 03:12:30'),
+(187, 177, '167559207141464.jpg', '2023-02-05 04:14:33', '2023-02-05 04:14:33'),
+(188, 178, '167559246551731.jpg', '2023-02-05 04:21:06', '2023-02-05 04:21:06'),
+(189, 179, '167559456074554.jpg', '2023-02-05 04:56:01', '2023-02-05 04:56:01'),
+(190, 179, '167559456199800.jfif', '2023-02-05 04:56:02', '2023-02-05 04:56:02'),
+(191, 180, '167560627993038.jfif', '2023-02-05 08:11:20', '2023-02-05 08:11:20'),
+(192, 181, '167560758319676.jpg', '2023-02-05 08:33:04', '2023-02-05 08:33:04');
 
 -- --------------------------------------------------------
 
@@ -545,7 +562,7 @@ INSERT INTO `brands` (`id`, `title`, `category_id`, `slug`, `status`, `created_a
 (3, 'Bobbi Brown', 1, 'bobbi-brown', 1, '2023-02-01 23:45:24', '2023-02-02 00:00:54'),
 (4, 'L’Oreal', 1, 'loreal', 1, '2023-02-01 23:46:22', '2023-02-02 00:01:01'),
 (5, 'Non Brand', 1, 'non-brand', 1, '2023-02-02 00:01:13', '2023-02-02 00:01:13'),
-(6, 'X Corolla', 1, 'x-corolla', 1, '2023-02-02 07:10:33', '2023-02-04 06:46:56'),
+(6, 'Honda', 5, 'honda', 1, '2023-02-02 07:10:33', '2023-02-05 08:24:04'),
 (7, 'Non Category', 4, 'non-category', 1, '2023-02-02 07:49:26', '2023-02-04 06:47:05');
 
 -- --------------------------------------------------------
@@ -574,10 +591,8 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `parent_id`, `title`, `slug`, `icon`, `bg_color`, `image`, `wheels`, `category_type_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 0, 'Vehicles', 'vehicles', '<i class=\"fas fa-mobile-alt\"></i>', '#000000', '1675514085.jpg', NULL, 18, 1, '2023-02-04 06:34:45', '2023-02-04 06:34:45'),
-(2, 1, 'Bike', 'bike', '<i class=\"fas fa-mobile-alt\"></i>', '#d95e5e', '1675514106.jpg', NULL, 18, 1, '2023-02-04 06:35:06', '2023-02-04 06:35:06'),
-(3, 1, 'Car', 'car', '<i class=\"fas fa-mobile-alt\"></i>', '#000000', '1675514329.png', NULL, 18, 1, '2023-02-04 06:38:50', '2023-02-04 06:38:50'),
-(4, 0, 'General', 'general', '<i class=\"fas fa-basketball-ball\"></i>', '#f23131', '1675514358.jpg', NULL, 20, 1, '2023-02-04 06:39:18', '2023-02-04 06:39:18');
+(5, 0, 'Vehicles', 'vehicles', '<i class=\"fas fa-mobile-alt\"></i>', '#ce4646', '1675606986.jpg', NULL, 21, 1, '2023-02-05 08:23:07', '2023-02-05 08:23:07'),
+(6, 5, 'Bike', 'bike', '<i class=\"fas fa-mobile-alt\"></i>', '#da2f2f', '1675607004.jpg', NULL, 21, 1, '2023-02-05 08:23:25', '2023-02-05 08:23:25');
 
 -- --------------------------------------------------------
 
@@ -600,10 +615,7 @@ CREATE TABLE `category_types` (
 --
 
 INSERT INTO `category_types` (`id`, `title`, `slug`, `fields`, `status`, `created_at`, `updated_at`) VALUES
-(17, 'Sport and Hobbies', 'sport-and-hobbies', '[{\"type\":\"text\",\"label\":\"ad_title\",\"name\":\"ad_title\",\"required\":true,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"condition\",\"name\":\"condition\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":true},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"authenticity\",\"name\":\"authenticity\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"original\",\" refubrished\",\" reconditioned\"],\"required\":true},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"brand\",\"name\":\"brand\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":true},\"editable\":\"0\"},{\"type\":\"textarea\",\"label\":\"description\",\"name\":\"description\",\"required\":true,\"validation\":{\"max\":\"1000\",\"mimes\":[],\"min\":\"100\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"image\",\"name\":\"image\",\"required\":true,\"validation\":{\"max\":0,\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"price\",\"name\":\"price\",\"required\":true,\"validation\":{\"max\":\"10\",\"mimes\":[],\"min\":\"0\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_tags\",\"name\":\"meta_tags\",\"required\":true,\"validation\":{\"max\":\"100\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_title\",\"name\":\"meta_title\",\"required\":true,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"images\",\"name\":\"images\",\"required\":true,\"validation\":{\"max\":0,\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"checkbox\",\"label\":\"Multiple Checkbox Two\",\"name\":\"multiple_checkbox_two\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"One\",\" Four\",\" Three update\"],\"required\":false},\"editable\":\"1\"},{\"type\":\"checkbox\",\"label\":\"Multiple Checkbox\",\"name\":\"multiple_checkbox\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"one\",\" two\",\" three\"],\"required\":false},\"editable\":\"1\"}]', 1, '2023-02-04 06:25:41', '2023-02-04 06:27:08'),
-(18, 'Vehicles', 'vehicles', '[{\"type\":\"text\",\"label\":\"ad_title\",\"name\":\"ad_title\",\"required\":true,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"condition\",\"name\":\"condition\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":true},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"authenticity\",\"name\":\"authenticity\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"original\",\" refubrished\",\" reconditioned\"],\"required\":true},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"brand\",\"name\":\"brand\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":true},\"editable\":\"0\"},{\"type\":\"textarea\",\"label\":\"description\",\"name\":\"description\",\"required\":true,\"validation\":{\"max\":\"1000\",\"mimes\":[],\"min\":\"100\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"image\",\"name\":\"image\",\"required\":true,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"number\",\"label\":\"price\",\"name\":\"price\",\"required\":true,\"validation\":{\"max\":\"10\",\"min\":0,\"mimes\":[],\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_tags\",\"name\":\"meta_tags\",\"required\":true,\"validation\":{\"max\":\"100\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_title\",\"name\":\"meta_title\",\"required\":true,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"images\",\"name\":\"images\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"checkbox\",\"label\":\"Multiple Checkbox\",\"name\":\"multiple_checkbox\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"One\",\" Four\",\" Three\"],\"required\":true},\"editable\":\"1\"}]', 1, '2023-02-04 06:28:11', '2023-02-04 06:28:11'),
-(19, 'Electronics', 'electronics', '[{\"type\":\"text\",\"label\":\"ad_title\",\"name\":\"ad_title\",\"required\":true,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"condition\",\"name\":\"condition\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":true},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"authenticity\",\"name\":\"authenticity\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"original\",\" refubrished\",\" reconditioned\"],\"required\":true},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"brand\",\"name\":\"brand\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":true},\"editable\":\"0\"},{\"type\":\"textarea\",\"label\":\"description\",\"name\":\"description\",\"required\":true,\"validation\":{\"max\":\"1000\",\"mimes\":[],\"min\":\"100\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"image\",\"name\":\"image\",\"required\":true,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"number\",\"label\":\"price\",\"name\":\"price\",\"required\":true,\"validation\":{\"max\":\"10\",\"min\":0,\"mimes\":[],\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_tags\",\"name\":\"meta_tags\",\"required\":true,\"validation\":{\"max\":\"100\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_title\",\"name\":\"meta_title\",\"required\":true,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"images\",\"name\":\"images\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"checkbox\",\"label\":\"Multiple Checkbox\",\"name\":\"multiple_checkbox\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"One\",\" Four\",\" Three\"],\"required\":true},\"editable\":\"1\"}]', 1, '2023-02-04 06:28:46', '2023-02-04 06:28:46'),
-(20, 'Others', 'others', '[{\"type\":\"text\",\"label\":\"ad_title\",\"name\":\"ad_title\",\"required\":true,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"condition\",\"name\":\"condition\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":true},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"authenticity\",\"name\":\"authenticity\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"original\",\" refubrished\",\" reconditioned\"],\"required\":true},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"brand\",\"name\":\"brand\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":true},\"editable\":\"0\"},{\"type\":\"textarea\",\"label\":\"description\",\"name\":\"description\",\"required\":true,\"validation\":{\"max\":\"1000\",\"mimes\":[],\"min\":\"100\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"image\",\"name\":\"image\",\"required\":true,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"number\",\"label\":\"price\",\"name\":\"price\",\"required\":true,\"validation\":{\"max\":\"10\",\"min\":0,\"mimes\":[],\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_tags\",\"name\":\"meta_tags\",\"required\":true,\"validation\":{\"max\":\"100\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_title\",\"name\":\"meta_title\",\"required\":true,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"images\",\"name\":\"images\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"checkbox\",\"label\":\"Multiple Checkbox\",\"name\":\"multiple_checkbox\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"One\",\" Four\",\" Three\"],\"required\":true},\"editable\":\"1\"}]', 1, '2023-02-04 06:30:24', '2023-02-04 06:30:24');
+(21, 'Vehicles', 'vehicles', '[{\"type\":\"text\",\"label\":\"ad_title\",\"name\":\"ad_title\",\"required\":true,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"condition\",\"name\":\"condition\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":true},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"authenticity\",\"name\":\"authenticity\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"original\",\" refubrished\",\" reconditioned\"],\"required\":true},\"editable\":\"0\"},{\"type\":\"select\",\"label\":\"brand\",\"name\":\"brand\",\"required\":true,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"used\",\" new\",\" like new\"],\"required\":true},\"editable\":\"0\"},{\"type\":\"textarea\",\"label\":\"description\",\"name\":\"description\",\"required\":true,\"validation\":{\"max\":\"1000\",\"mimes\":[],\"min\":\"100\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"image\",\"name\":\"image\",\"required\":true,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"number\",\"label\":\"price\",\"name\":\"price\",\"required\":true,\"validation\":{\"max\":\"10\",\"min\":0,\"mimes\":[],\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_tags\",\"name\":\"meta_tags\",\"required\":true,\"validation\":{\"max\":\"100\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"text\",\"label\":\"meta_title\",\"name\":\"meta_title\",\"required\":true,\"validation\":{\"max\":\"200\",\"mimes\":[],\"min\":\"10\",\"options\":[],\"required\":true},\"editable\":\"0\"},{\"type\":\"file\",\"label\":\"images\",\"name\":\"images\",\"required\":false,\"validation\":{\"max\":\"3\",\"mimes\":[\"jpg\"],\"min\":0,\"options\":[],\"required\":false},\"editable\":\"0\"},{\"type\":\"checkbox\",\"label\":\"Multiple Checkbox\",\"name\":\"multiple_checkbox\",\"required\":false,\"validation\":{\"max\":0,\"min\":0,\"mimes\":[],\"options\":[\"one\",\" two\",\" three\"],\"required\":false},\"editable\":\"1\"}]', 1, '2023-02-05 08:20:59', '2023-02-05 08:20:59');
 
 -- --------------------------------------------------------
 
@@ -1229,7 +1241,8 @@ INSERT INTO `payments` (`id`, `payment_id`, `payer_id`, `payer_email`, `amount`,
 (25, 'ch_3MX2llIjE4urvMaZ21xj6Bef', 'CRETIQUEIT', NULL, 120.00, 'usd', 'succeeded', '2023-02-02 07:24:04', '2023-02-02 07:24:04'),
 (26, 'ch_3MX3GMIjE4urvMaZ2qnQOufu', 'CRETIQUEIT', NULL, 120.00, 'usd', 'succeeded', '2023-02-02 07:55:41', '2023-02-02 07:55:41'),
 (27, 'ch_3MX3e5IjE4urvMaZ2ylhQkzC', 'CRETIQUEIT', NULL, 120.00, 'usd', 'succeeded', '2023-02-02 08:20:12', '2023-02-02 08:20:12'),
-(28, 'ch_3MXl7cIjE4urvMaZ0wdA7784', 'CRETIQUEIT', NULL, 120.00, 'usd', 'succeeded', '2023-02-04 06:45:36', '2023-02-04 06:45:36');
+(28, 'ch_3MXl7cIjE4urvMaZ0wdA7784', 'CRETIQUEIT', NULL, 120.00, 'usd', 'succeeded', '2023-02-04 06:45:36', '2023-02-04 06:45:36'),
+(29, 'ch_3MY5FRIjE4urvMaZ0pEhMYtJ', 'CRETIQUEIT', NULL, 120.00, 'usd', 'succeeded', '2023-02-05 04:15:00', '2023-02-05 04:15:00');
 
 -- --------------------------------------------------------
 
@@ -1426,7 +1439,15 @@ INSERT INTO `recently_view_ads` (`id`, `session_id`, `advertisement_id`, `create
 (1, '72d14ed3-db41-4bca-baee-ddb6b7752764', 164, '2023-02-04 06:45:48', '2023-02-04 06:45:48'),
 (2, '72d14ed3-db41-4bca-baee-ddb6b7752764', 165, '2023-02-04 06:48:37', '2023-02-04 06:48:37'),
 (3, '72d14ed3-db41-4bca-baee-ddb6b7752764', 169, '2023-02-04 07:46:05', '2023-02-04 07:46:05'),
-(4, '72d14ed3-db41-4bca-baee-ddb6b7752764', 167, '2023-02-04 08:11:24', '2023-02-04 08:11:24');
+(4, '72d14ed3-db41-4bca-baee-ddb6b7752764', 167, '2023-02-04 08:11:24', '2023-02-04 08:11:24'),
+(5, '72d14ed3-db41-4bca-baee-ddb6b7752764', 166, '2023-02-05 01:30:47', '2023-02-05 01:30:47'),
+(6, '72d14ed3-db41-4bca-baee-ddb6b7752764', 171, '2023-02-05 02:35:23', '2023-02-05 02:35:23'),
+(7, '72d14ed3-db41-4bca-baee-ddb6b7752764', 175, '2023-02-05 03:04:29', '2023-02-05 03:04:29'),
+(8, '72d14ed3-db41-4bca-baee-ddb6b7752764', 174, '2023-02-05 03:04:44', '2023-02-05 03:04:44'),
+(9, '72d14ed3-db41-4bca-baee-ddb6b7752764', 176, '2023-02-05 03:13:40', '2023-02-05 03:13:40'),
+(10, '72d14ed3-db41-4bca-baee-ddb6b7752764', 177, '2023-02-05 04:15:09', '2023-02-05 04:15:09'),
+(11, '72d14ed3-db41-4bca-baee-ddb6b7752764', 178, '2023-02-05 04:21:31', '2023-02-05 04:21:31'),
+(12, '72d14ed3-db41-4bca-baee-ddb6b7752764', 179, '2023-02-05 04:56:18', '2023-02-05 04:56:18');
 
 -- --------------------------------------------------------
 
@@ -2021,7 +2042,7 @@ ALTER TABLE `admin_users`
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
 
 --
 -- AUTO_INCREMENT for table `advertisement_advertiser`
@@ -2033,7 +2054,7 @@ ALTER TABLE `advertisement_advertiser`
 -- AUTO_INCREMENT for table `advertisement_interest_advertisement`
 --
 ALTER TABLE `advertisement_interest_advertisement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `advertisers`
@@ -2051,7 +2072,7 @@ ALTER TABLE `ad_complains`
 -- AUTO_INCREMENT for table `ad_images`
 --
 ALTER TABLE `ad_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=180;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=193;
 
 --
 -- AUTO_INCREMENT for table `ad_types`
@@ -2087,13 +2108,13 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `category_types`
 --
 ALTER TABLE `category_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `cities`
@@ -2201,7 +2222,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -2231,7 +2252,7 @@ ALTER TABLE `ratings`
 -- AUTO_INCREMENT for table `recently_view_ads`
 --
 ALTER TABLE `recently_view_ads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `roles`
