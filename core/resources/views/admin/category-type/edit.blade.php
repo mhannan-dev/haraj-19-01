@@ -116,7 +116,7 @@
                                             <div class="col-xl-12 col-lg-12 form-group">
                                                 <label>@lang('Options') <span class="text-danger">*</span> </label>
                                                 <input type="text" name="select_options[]" class="form--control"
-                                                    value="{{ old('select_options[]', implode(',', $item->validation->options)) }}">
+                                                    value="{{ old('select_options[]', implode(',', $item->validation->options)) }}" readonly>
                                             </div>
                                         </div>
                                     @elseif ($item->type == 'checkbox')
