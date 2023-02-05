@@ -13,6 +13,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class AdvertisementController extends Controller
 {
@@ -67,11 +69,10 @@ class AdvertisementController extends Controller
                 }
             }
         }
-        // dd($editable);
+        // dd($default, $editable);
         $adv = new Advertisement();
         try {
             if ($request->isMethod('POST')) {
-                $data = $request->all();
                 $rules = [
                     'brand' => 'required',
                     'description' => 'required',
@@ -142,7 +143,6 @@ class AdvertisementController extends Controller
                 }
                 $notify[] = ['success', 'Ad Posted Successfully!!'];
                 $request->session()->put('advertisement_id', $lastInsertedAdId);
-                // dd($lastInsertedAdId);
                 return redirect()->route('frontend.user.sellFaster')->withNotify($notify);
             }
         } catch (\Exception $th) {
@@ -151,45 +151,68 @@ class AdvertisementController extends Controller
         }
         return redirect()->back();
     }
-    public function getEdit($id)
+    public function getEdit($ad_id, $category_id)
     {
-        $item =  Advertisement::findOrFail($id);
-        $sub_category = Category::where('parent_id', $item->category_id)->first();
+        // dd($ad_id, $category_id);
+        $adv =  Advertisement::findOrFail($ad_id);
+        $sub_category = Category::with('type')->where('parent_id', $adv->category_id)->first();
         $brands = Brand::active()->where('category_id', $sub_category->parent_id)->get();
         $allCity = City::where('status', 1)->select('id', 'title', 'status')->get();
         $allCity = json_decode(json_encode($allCity), true);
-        // dd($allCity);
-        return view('frontend.pages.user.ad_form.form_update', compact('item', 'sub_category', 'brands', 'allCity'));
+        return view('frontend.pages.user.main_form_update', compact('adv', 'sub_category', 'brands', 'allCity'));
     }
 
-    public function adUpdate(Request $request, $id)
+    public function adUpdate(Request $request, $ad_id,$category_id)
     {
-        // dd($request->all());
-        $adv = Advertisement::find($id);
+        $data = $request->all();
+        // dd($data);
+        $adv = Advertisement::find($ad_id);
+        $category_type = Category::with('type')->where('id', $category_id)->first()->type->fields;
+        $default = [];
+        $editable = [];
+        foreach ($category_type as $c_type) {
+            foreach ($data as $key => $request_value) {
+                if ($c_type->name == $key) {
+                    if ($c_type->editable == 0) {
+                        $default_row = $c_type;
+                        $default_row->value = $request_value;
+                        $default[] = $default_row;
+                    } else {
+                        $editable_row = $c_type;
+                        $editable_row->value = $request_value;
+                        $editable[] = $editable_row;
+                    }
+                    break;
+                }
+            }
+        }
+        // dd($default, $editable);
         try {
             if ($request->isMethod('POST')) {
-                $data = $request->all();
                 $rules = [
-                    'title' => 'required',
+                    'ad_title' => 'required',
                     'description' => 'required',
                     'condition' => 'required',
                     'price' => 'required',
 
                 ];
                 $validationMessages = [
-                    'title.required' => 'The name field can not be blank',
+                    'ad_title.required' => 'The name field can not be blank',
                     'description.required' => 'Description is required',
                     'condition.required' => 'Condition is required',
                     'price.required' => 'Price is required'
                 ];
-                $this->validate($request, $rules, $validationMessages);
-
-                $adv->advertiser_id = $data['advertiser_id'];
+                // $this->validate($request, $rules, $validationMessages);
+                $validator = Validator::make($data, $rules, $validationMessages);
+                if ($validator->fails()) {
+                    return Redirect::back()->withErrors($validator);
+                }
+                $adv->advertiser_id = Auth::guard('advertiser')->user()->id;
                 $adv->category_id = $data['category_id'];
                 $adv->sub_category_id = $data['sub_category_id'];
                 $adv->type_id = 0;
                 $adv->city_id = Auth::guard('advertiser')->user()->city_id;
-                $adv->title = $data['title'];
+                $adv->title = $data['ad_title'];
                 $adv->price = $data['price'];
                 $adv->latitude = $data['latitude'] ?? null;
                 $adv->longitude = $data['longitude'] ?? null;
@@ -207,16 +230,13 @@ class AdvertisementController extends Controller
                 } else {
                     $imageName = $adv->image;
                 }
-
                 $adv->condition = $data['condition'];
                 $adv->authenticity = $data['authenticity'];
-                $adv->edition = $data['edition'] ? $data['edition'] : null;
-                $adv->location_embeded_map = $data['location_embeded_map'] ? $data['location_embeded_map'] : null;
-                $adv->brand_id = $data['brand_id'] ? $data['brand_id'] : null;
-                $adv->color = $data['color'] ? $data['color'] : null;
+                $adv->brand_id = $data['brand'] ? $data['brand'] : null;
                 $adv->image = $imageName;
+                $adv->details_informations = json_encode($editable);
+                // dd('okk');
                 $adv->save();
-
                 $lastInsertedAdId = DB::getPdo()->lastInsertId();
                 if ($request->has('images')) {
                     foreach ($request->file('images') as $image) {

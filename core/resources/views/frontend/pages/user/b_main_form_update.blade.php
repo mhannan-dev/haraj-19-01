@@ -44,25 +44,19 @@
                                                 <label>@lang('Advert title') <span class="text--danger">*</span></label>
                                                 <input type="text" name="title" class="form--control"
                                                     placeholder="@lang('Advert title')" value="{{ $item->title }}">
-                                                <div class="text-limit-area">
+                                                {{-- <div class="text-limit-area">
                                                     <span>Mention key features of your product (e.g. make, model, age,
                                                         type)</span>
                                                     <span>0 / 70</span>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                             <div class="form-group2">
                                                 <label>@lang('Description')<span class="text--danger">*</span></label>
                                                 <textarea class="form--control" name="description" placeholder="@lang('Description')">{{ $item->description }}</textarea>
-                                                <div class="text-limit-area">
+                                                {{-- <div class="text-limit-area">
                                                     <span>@lang('Add information such as status, feature and reason for sale')</span>
                                                     <span>0 / 1450</span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group2">
-                                                <label>@lang('Google Map Location') <a target="_blank" class="text-primary"
-                                                        href="https://support.google.com/maps/answer/144361?hl=en&co=GENIE.Platform%3DDesktop#:~:text=Embed%20a%20map%20or%20directions&text=Click%20Share%20or%20embed%20map,Click%20Embed%20map.&text=Copy%20the%20text%20in%20the,of%20your%20website%20or%20blog.">@lang('Instruction')</a></label>
-                                                <textarea class="form--control" name="location_embeded_map" placeholder="@lang('Google Map Location')">{{ $item->location_embeded_map }}</textarea>
-
+                                                </div> --}}
                                             </div>
                                             <div class="form-group2 mt-2">
                                                 <label>@lang('Thumbnail')<span class="text--danger">*</span></label>
@@ -169,182 +163,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-
-                                    <div class="form-group col-8">
-                                        <label>Color</label>
-                                        <select class="form--control" name="color">
-                                            <option value="">@lang('Select Color')</option>
-
-                                            <option value="light-grey" @if ($item->color == 'light-grey') selected @endif>
-                                                Light grey</option>
-                                            <option value="light-blue"@if ($item->color == 'light-blue') selected @endif>
-                                                Light blue</option>
-                                            <option value="light-green"@if ($item->color == 'light-green') selected @endif>
-                                                Light green</option>
-                                            <option value="beige"@if ($item->color == 'beige') selected @endif>Beige
-                                            </option>
-                                            <option value="white"@if ($item->color == 'white') selected @endif>White
-                                            </option>
-                                            <option value="burgundy"@if ($item->color == 'burgundy') selected @endif>
-                                                burgundy</option>
-                                            <option value="brown"@if ($item->color == 'brown') selected @endif>Brown
-                                            </option>
-                                            <option value="red"@if ($item->color == 'red') selected @endif>Red
-                                            </option>
-                                            <option value="dark-grey"@if ($item->color == 'dark-grey') selected @endif>
-                                                Dark
-                                                grey</option>
-                                            <option value="dark-blue"@if ($item->color == 'dark-blue') selected @endif>
-                                                Dark
-                                                blue</option>
-                                            <option value="dark-green"@if ($item->color == 'dark-green') selected @endif>
-                                                Dark green</option>
-                                            <option value="yellow"@if ($item->color == 'yellow') selected @endif>
-                                                Yellow</option>
-                                            <option value="black"@if ($item->color == 'black') selected @endif>Black
-                                            </option>
-                                            <option value="other"@if ($item->color == 'other') selected @endif>Other
-                                            </option>
-                                        </select>
-                                    </div>
-
-                                    @if ($item->category->category_type == 'mobiles')
-                                        <div class="form-group col-8">
-                                            @php
-                                                $details = json_decode($item->details_informations);
-                                            @endphp
-                                            <label>@lang('NETWORK')</label>
-                                            <input type="text" name="NETWORK" placeholder="@lang('Network')"
-                                                class="form--control" value="{{ $details->NETWORK ?? null }}">
-                                        </div>
-                                        <div class="form-group col-8">
-                                            <label>@lang('Display')</label>
-                                            <input type="text" name="Display" placeholder="@lang('Display')"
-                                                value="{{ $details->Display ?? null }}" class="form--control">
-                                        </div>
-                                        <div class="form-group col-8">
-                                            <label>@lang('Memory')</label>
-                                            <input type="text" name="Memory" placeholder="@lang('MEMORY')"
-                                                value="{{ $details->Memory ?? null }}" class="form--control">
-                                        </div>
-                                        <div class="form-group col-8">
-                                            <label>@lang('Battery')</label>
-                                            <input type="text" name="Battery" placeholder="@lang('BATTERY')"
-                                                value="{{ $details->Battery ?? null }}" class="form--control">
-                                        </div>
-                                    @endif
-                                    @if ($item->category->category_type == 'electronics')
-                                        Show other form for electronics
-                                    @endif
-                                    @if ($item->category->category_type == 'sports')
-                                        Show other form for sports
-                                    @endif
-                                    @if ($item->category->category_type == 'vehicles')
-                                        <div class="form-group col-8">
-                                            <label>Model<span class="text-danger">*</span></label>
-                                            <input type="text" name="model" class="form--control"
-                                                placeholder="Model" value="{{ old('model', $item->model) }}">
-                                        </div>
-                                        <div class="form-group col-8">
-                                            <label>Year</label>
-                                            <input type="text" name="year_of_manufacture" class="form--control"
-                                                placeholder="Year of Manufacture"
-                                                value="{{ old('year_of_manufacture', $item->year_of_manufacture) }}">
-                                        </div>
-
-                                        <div class="form-group col-8">
-                                            <label>Condition </label>
-                                            <select class="form--control" name="condition">
-                                                <option value="">Select</option>
-                                                <option value="new" @if ($item->condition == 'new') selected @endif>
-                                                    @lang('New')</option>
-                                                <option value="used" @if ($item->condition == 'used') selected @endif>
-                                                    @lang('Used')</option>
-                                                <option value="like new"
-                                                    @if ($item->condition == 'like new') selected @endif>@lang('Like new')
-                                                </option>
-                                                <option value="reconditon"
-                                                    @if ($item->condition == 'reconditon') selected @endif>@lang('Reconditioned')
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-8">
-                                            <label>Authenticity</label>
-                                            <select class="form--control" name="authenticity">
-                                                <option value="">Select</option>
-                                                <option value="original"
-                                                    @if ($item->authenticity == 'original') selected @endif>Original</option>
-                                                <option value="refubrished"
-                                                    @if ($item->authenticity == 'refubrished') selected @endif>Refubrished</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-8">
-                                            <label>Body Type</label>
-                                            <select class="form--control" name="body_type">
-                                                <option value="">Select</option>
-                                                <option value="saloon"@if ($item->body_type == 'saloon') selected @endif>
-                                                    Saloon</option>
-                                                <option
-                                                    value="hatchback"@if ($item->body_type == 'hatchback') selected @endif>
-                                                    Hatchback</option>
-                                                <option value="estate"@if ($item->body_type == 'estate') selected @endif>
-                                                    Estate</option>
-                                                <option
-                                                    value="convertible"@if ($item->body_type == 'convertible') selected @endif>
-                                                    Convertible</option>
-                                                <option
-                                                    value="coupe/Sports"@if ($item->body_type == 'coupe/Sports') selected @endif>
-                                                    Coupe/Sports</option>
-                                                <option value="suv4x4"@if ($item->body_type == 'suv4x4') selected @endif>
-                                                    SUV/4X4</option>
-                                                <option value="mpv"@if ($item->body_type == 'mpv') selected @endif>
-                                                    MPV</option>
-                                                <option value="pick-up"@if ($item->body_type == 'pick-up') selected @endif>
-                                                    pick-up</option>
-                                                <option
-                                                    value="roadster"@if ($item->body_type == 'roadster') selected @endif>
-                                                    roadster</option>
-                                                <option value="sedan"@if ($item->body_type == 'sedan') selected @endif>
-                                                    Sedan</option>
-                                                <option value="suv"@if ($item->body_type == 'suv') selected @endif>
-                                                    SUV</option>
-                                                <option
-                                                    value="suv-cabriolet"@if ($item->body_type == 'suv-cabriolet') selected @endif>
-                                                    SUV Cabriolet</option>
-                                                <option value="other"@if ($item->body_type == 'other') selected @endif>
-                                                    Other</option>
-
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-8">
-                                            <label>Number of seats</label>
-                                            <input type="text" value="1" name="seat_qty" min="1"
-                                                placeholder="Number of seat" class="form--control" autocomplete="off">
-                                        </div>
-                                    @endif
-                                    @if ($item->category->category_type == 'home_and_garden')
-                                        Show other form for home_and_garden
-                                    @endif
-                                    @if ($item->category->category_type == 'fashion_beauty')
-                                        Show other form for fashion_beauty
-                                    @endif
-                                    @if ($item->category->category_type == 'baby_and_child')
-                                        Show other form for baby_and_child
-                                    @endif
-                                    @if ($item->category->category_type == 'soft_products')
-                                        Show other form for soft_products
-                                    @endif
-                                    @if ($item->category->category_type == 'pet')
-                                        Show other form for pet
-                                    @endif
-                                    @if ($item->category->category_type == 'general')
-                                        Show other form for general
-                                    @endif
-
                                 </div>
-
                                 <div class="sell-add-info-price-wrapper">
                                     <h3 class="sell-add-info-price-title text-uppercase">@lang('review your information')</h3>
                                     <div class="row mb-30-none">
@@ -361,9 +180,9 @@
                                                     <label>@lang('Last name')</label>
                                                     <input type="text" name="last_name" class="form--control"
                                                         value="{{ Auth::guard('advertiser')->user()->last_name }}">
-                                                    <div class="text-limit-area">
+                                                    {{-- <div class="text-limit-area">
                                                         <span id="text-count">1</span>/ 30
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             @endif
                                             <div class="form-group price-input-badge two">

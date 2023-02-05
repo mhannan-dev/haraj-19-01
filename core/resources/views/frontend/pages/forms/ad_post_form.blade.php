@@ -80,8 +80,8 @@
                                                     @if ($field->type == 'checkbox')
                                                         @foreach ($field->validation->options as $data_checkbox)
                                                             <div class="d-inline-block me-2">
-                                                                <input type="checkbox" class="w-auto" name="option1"
-                                                                    value="something">
+                                                                <input type="checkbox" class="w-auto" name="{{ $field->name}}[]"
+                                                                    value="{{ $data_checkbox }}">
                                                                 <label
                                                                     class="form-check-label d-inline-block">{{ ucfirst($data_checkbox) }}</label>
                                                             </div>

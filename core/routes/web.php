@@ -175,8 +175,8 @@ Route::group(['namespace' => 'Front', 'as' => 'frontend.'], function () {
             Route::get('post/ad', [AdvertisementController::class, 'postAd'])->name('post.ad');
 
             Route::delete('ad/delete/{id}', [AdvertisementController::class, 'getDelete'])->name('delete.ad');
-            Route::get('ad/edit/{id}', [AdvertisementController::class, 'getEdit'])->name('edit.ad');
-            Route::post('ad/update/{id}', [AdvertisementController::class, 'adUpdate'])->name('update.ad');
+            Route::get('ad/edit/{ad_id}/{category_id}', [AdvertisementController::class, 'getEdit'])->name('edit.ad');
+            Route::post('ad/update/{ad_id}/{category_id}', [AdvertisementController::class, 'adUpdate'])->name('update.ad');
 
             Route::match(['get', 'post'], '/others/ad/{c_id}/{id?}', [AdvertisementController::class, 'nonSubCategoryAdPost'])->name('general.ad.manage');
             Route::match(['get', 'post'], '/others/ad/update/{c_id}/{ad_id}', [AdvertisementController::class, 'nonSubCategoryAdUpdate'])->name('general.ad.update');

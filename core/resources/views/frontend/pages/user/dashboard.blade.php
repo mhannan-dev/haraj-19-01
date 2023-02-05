@@ -1,6 +1,5 @@
 @extends('frontend.layout.main')
 @section('content')
-    <!--~~~~~~~~~~~~~~Start Breadcrumb~~~~~~~~~~~~~~-->
     <div class="breadcrumb-section pt-20">
         <div class="container">
             <ul class="breadcrumb-list">
@@ -33,7 +32,6 @@
                             <div class="row mb-20-none">
                                 @forelse($my_ads as $item)
                                     @if ($item->sub_category_id == null)
-                                        {{-- @dd($item->category); --}}
                                         <div class="col-xxl-4 col-xl-6 col-lg-6 mb-20">
                                             <div class="my-ads-card-item">
                                                 <div class="my-ads-card-wrapper">
@@ -128,9 +126,8 @@
                                                             <button class="opsition-btn">
                                                                 <i class="fas fa-ellipsis-h"></i>
                                                             </button>
-
                                                             <div class="opsition-list">
-                                                                <a href="{{ url('user/ad/edit', $item->id) }}"
+                                                                <a href="{{ url('user/ad/edit', ['ad_id' => $item->id, 'category_id' => $item->category_id]) }}"
                                                                     class="opsition-link">
                                                                     <span>@lang('Edit now')</span>
                                                                 </a>
@@ -157,15 +154,9 @@
                                                                     href="{{ route('frontend.ads.details', [$item->slug, $item->id]) }}">
                                                                     <h3>{{ $item->title }}</h3>
                                                                 </a><br>
-                                                                @if (!empty($item->details_informations) && $item->details_informations != null)
-                                                                    @foreach (json_decode($item->details_informations) as $key => $details_info)
-                                                                        <span>{{ str_replace('_', ' ', ucfirst($key)) }} :
-                                                                            {!! $details_info !!}</span> <br>
-                                                                    @endforeach
-                                                                @else
-                                                                    {{ Str::limit($item->description, 50) }}
-                                                                @endif
-
+                                                                {{ $item->authenticity }} <br>
+                                                                {{ $item->condition }} <br>
+                                                                {{ $item->category->title }} <br>
                                                             </div>
                                                         </div>
                                                         <div class="badge-area">

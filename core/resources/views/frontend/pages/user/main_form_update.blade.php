@@ -1,10 +1,17 @@
 @extends('frontend.layout.main')
+@push('page_meta')
+    <meta name="keywords" content="{{ $adv->meta_tags }}">
+    <meta name="title" Content="{{ $adv->meta_title }}">
+@endpush
+@section('title')
+    @lang('Update your advertisement')
+@endsection
 @push('custom_css')
 @endpush
 @section('content')
     <section class="sell-car-section pt-30">
         <div class="container">
-            <h1 class="sell-header-title pb-10">@lang('POST AN AD')</h1>
+            <h1 class="sell-header-title pb-10 text-uppercase">@lang('Update your advertisement')</h1>
             <div class="row justify-content-center mb-30">
                 <div class="col-xl-8 mb-30">
                     <div class="sell-add-info-area">
@@ -13,20 +20,23 @@
                             <div class="change-cetagory-wrapper">
                                 <ul class="breadcrumb-list">
                                     <li>
-                                        <a href="">{{ $category->title ?? null }}</a>
+                                        <a href=""> {{ $adv->category->title }}</a>
+                                    </li>
+                                    <li>
+                                        <a href="">/ {{ $sub_category->title }}</a>
                                     </li>
                                 </ul>
-                                <a href="{{ route('frontend.user.post.ad') }}" class="change-cetagory-link">Change</a>
+                                <a href="{{ route('frontend.user.post.ad') }}"
+                                    class="change-cetagory-link">@lang('Change')</a>
                             </div>
+
                             <form class="sell-add-info-form"
-                                action="{{ url('user/others/ad/update', ['c_id' => $category->id, 'id' => $adv->id]) }}"
+                                action="{{ route('frontend.user.update.ad', ['ad_id' => $adv->id, 'category_id' => $adv->category_id]) }}"
                                 method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" name="category_id" value="{{ $category->id ?? null }}">
-                                <input type="hidden" name="latitude" id="latitude"
-                                    value="{{ $category->latitude ?? null }}">
-                                <input type="hidden" name="longitude" id="longitude"
-                                    value="{{ $category->longitude ?? null }}">
+                                <input type="hidden" name="sub_category_id" value="{{ $sub_category->id }}">
+                                <input type="hidden" name="category_id" value="{{ $adv->category->id }}">
+
                                 <div class="row mb-30-none">
                                     <div class="col-xl-8 mb-30">
                                         <div class="sell-add-info-body-wrapper">
@@ -50,6 +60,17 @@
                                                     <option value="like new"
                                                         @if ($adv->condition == 'like new') selected @endif>@lang('Like new')
                                                     </option>
+                                                </select>
+                                                <input type="hidden" name="editable" value="0">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>@lang('Authenticity')</label>
+                                                <select name="authenticity" class="form--control">
+                                                    <option value="">@lang('Select')</option>
+                                                        <option value="original">@lang('Original')</option>
+                                                        <option value="refubrished">@lang('Refubrished')</option>
+                                                        <option value="reconditioned">@lang('Reconditioned')</option>
                                                 </select>
                                                 <input type="hidden" name="editable" value="0">
                                             </div>
@@ -111,20 +132,18 @@
                                                         <input type="hidden" name="editable" value="1">
                                                     @endif
                                                     @if ($details_info->type == 'checkbox')
+                                                        {{-- @dd($details_info); --}}
                                                         @foreach ($details_info->value as $detail_data)
-                                                            <div class="d-inline-block me-2">
-                                                                <input type="checkbox" class="w-auto"
+                                                            <input type="checkbox" class="w-auto"
                                                                 name="{{ $details_info->name }}[]"
                                                                 value="{{ $detail_data }}" checked>{{ $detail_data }}
-                                                                <input type="hidden" name="editable" value="1">
-                                                            </div>
+                                                            <input type="hidden" name="editable" value="1">
                                                         @endforeach
                                                     @endif
-                                                </div>
                                             @endforeach
+                                        </div>
                                     </div>
                                 </div>
-                            </form>
                         </div>
                         <div class="sell-add-info-price-wrapper">
                             <h3 class="sell-add-info-price-title">@lang('CONFIRM YOUR LOCATION')</h3>
@@ -176,6 +195,7 @@
                                 </div>
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -225,7 +245,6 @@
                     map: map,
                     title: "You are here!"
                 });
-
             }
         });
     </script>
