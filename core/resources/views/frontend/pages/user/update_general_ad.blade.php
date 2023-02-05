@@ -124,57 +124,57 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                    </div>
-                                    <div class="sell-add-info-price-wrapper">
-                                        <h3 class="sell-add-info-price-title two">PHOTOS</h3>
-                                        @if (isset($adv->images))
-                                            <table class="table table-striped">
-                                                <tbody>
-                                                    @foreach ($adv->images as $multiImage)
-                                                        <tr>
-                                                            <td>
+                                        <div class="sell-add-info-price-wrapper">
+                                            <h3 class="sell-add-info-price-title two">PHOTOS</h3>
+                                            @if (isset($adv->images))
+                                                <table class="table table-striped">
+                                                    <tbody>
+                                                        @foreach ($adv->images as $multiImage)
+                                                            <tr>
+                                                                <td>
 
-                                                                <img width="100px"
-                                                                    src="{{ asset('core/storage/app/public/advertisement_images/' . $multiImage->images) }}"
-                                                                    alt="">
-                                                            </td>
-                                                            <td>
-                                                                <a
-                                                                    href="{{ url('user/remove/multi/img', ['image_id' => $multiImage->id, 'ad_id' => $adv->id]) }}">
-                                                                    <i class="las la-trash-alt text-danger"></i>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        @endif
-                                        <span class="image-up-alart-text pb-10">(Alart: Heigh 1000x800 px / size 2MB)</span>
-                                        <div class="row mb-30-none">
-                                            <div class="col-xl-8 mb-30">
-                                                <div class="add-more-details-thumb-wrapper">
-                                                    <div class="add-more-details-thumb-area">
-                                                        <div class="row" id="coba">
+                                                                    <img width="100px"
+                                                                        src="{{ asset('core/storage/app/public/advertisement_images/' . $multiImage->images) }}"
+                                                                        alt="">
+                                                                </td>
+                                                                <td>
+                                                                    <a
+                                                                        href="{{ url('user/remove/multi/img', ['image_id' => $multiImage->id, 'ad_id' => $adv->id]) }}">
+                                                                        <i class="las la-trash-alt text-danger"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            @endif
+                                            <span class="image-up-alart-text pb-10">(Alart: Heigh 1000x800 px / size 2MB)</span>
+                                            <div class="row mb-30-none">
+                                                <div class="col-xl-8 mb-30">
+                                                    <div class="add-more-details-thumb-wrapper">
+                                                        <div class="add-more-details-thumb-area">
+                                                            <div class="row" id="coba">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group col-8">
-                                            <div class="sell-add-info-switcher pt-20">
-                                                <div class="title-area">
-                                                    <span class="title">@lang('Show my phone number in ads')</span>
-                                                </div>
-                                                <div class="setting-tab">
-                                                    <span
-                                                        class="setting-tab-switcher {{ Auth::guard('advertiser')->user()->show_mobile_no == 1 ? 'active' : ' ' }}">
-                                                        <input
-                                                            onclick="location.href='{{ route('frontend.user.mobile.status', [Auth::guard('advertiser')->user()->id, Auth::guard('advertiser')->user()->show_mobile_no ? 0 : 1]) }}'"
-                                                            type="checkbox"
-                                                            data-id="{{ Auth::guard('advertiser')->user()->id }}"
-                                                            name="show_mobile_no" class="dropzone toggle-class"
-                                                            autocomplete="off">
-                                                    </span>
+                                            <div class="form-group col-8">
+                                                <div class="sell-add-info-switcher pt-20">
+                                                    <div class="title-area">
+                                                        <span class="title">@lang('Show my phone number in ads')</span>
+                                                    </div>
+                                                    <div class="setting-tab">
+                                                        <span
+                                                            class="setting-tab-switcher {{ Auth::guard('advertiser')->user()->show_mobile_no == 1 ? 'active' : ' ' }}">
+                                                            <input
+                                                                onclick="location.href='{{ route('frontend.user.mobile.status', [Auth::guard('advertiser')->user()->id, Auth::guard('advertiser')->user()->show_mobile_no ? 0 : 1]) }}'"
+                                                                type="checkbox"
+                                                                data-id="{{ Auth::guard('advertiser')->user()->id }}"
+                                                                name="show_mobile_no" class="dropzone toggle-class"
+                                                                autocomplete="off">
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

@@ -149,12 +149,13 @@
                                             <table class="table table-striped">
                                                 <tbody>
                                                     @foreach ($adv->images as $multiImage)
+                                                    {{-- @dd($multiImage); --}}
                                                         <tr>
                                                             <td>
 
                                                                 <img width="100px"
                                                                     src="{{ asset('core/storage/app/public/advertisement_images/' . $multiImage->images) }}"
-                                                                    alt="">
+                                                                    alt="Image">
                                                             </td>
                                                             <td>
                                                                 <a
