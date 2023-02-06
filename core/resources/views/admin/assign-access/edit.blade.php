@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
-@section('role','active')
-@section('Role Management','open')
+@section('role', 'active')
+@section('Role Management', 'open')
 @section('title')
     @lang('admin_role.edit_page_title')
 @endsection
@@ -8,7 +8,7 @@
     @lang('admin_role.list_page_sub_title')
 @endsection
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{url('/admin.admin-user')}}">@lang('admin_role.edit_page_breadcrumb_title_1')</a>
+    <li class="breadcrumb-item"><a href="{{ url('/admin.admin-user') }}">@lang('admin_role.edit_page_breadcrumb_title_1')</a>
     </li>
     <li class="breadcrumb-item"><a href="{{ route('admin.role') }}">@lang('admin_role.edit_page_breadcrumb_title_2')</a>
     </li>
@@ -34,10 +34,16 @@
                 <div class="card-body">
                     @if ($errors->any())
                         @foreach ($errors->all() as $error)
-                            <div>{{$error}}</div>
+                            <div>{{ $error }}</div>
                         @endforeach
                     @endif
-                    {!! Form::open([ 'route' => ['admin.role.update', $role->id] , 'method' => 'post', 'class' => 'form-horizontal', 'files' => true , 'novalidate']) !!}
+                    {!! Form::open([
+                        'route' => ['admin.role.update', $role->id],
+                        'method' => 'post',
+                        'class' => 'form-horizontal',
+                        'files' => true,
+                        'novalidate',
+                    ]) !!}
                     @csrf
                     <div class="form-body">
                         <div class="row">
@@ -45,7 +51,12 @@
                                 <div class="form-group">
                                     <label><strong>@lang('Role') @lang('Name') :</strong></label>
                                     <div class="controls">
-                                        {!! Form::text('role_name',$role->role_name, [ 'class' => 'form-control', 'data-validation-required-message' => 'This field is required', 'placeholder' => 'Enter group name', 'tabindex' => 1 ]) !!}
+                                        {!! Form::text('role_name', $role->role_name, [
+                                            'class' => 'form-control',
+                                            'data-validation-required-message' => 'This field is required',
+                                            'placeholder' => 'Enter group name',
+                                            'tabindex' => 1,
+                                        ]) !!}
                                     </div>
                                     @if ($errors->has('role_name'))
                                         <div class="alert alert-danger">
@@ -57,57 +68,53 @@
                         </div>
                     </div>
                     @php
-                        $assigned_perms = explode(",",$role->permission->permissions);
+                        $assigned_perms = explode(',', $role->permission->permissions);
                     @endphp
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead class="bg-primary bg-darken-1 text-white text-center">
-                            <tr>
-                                <th>@lang('Menu')</th>
-                                <th>@lang('Action')</th>
-                            </tr>
+                                <tr>
+                                    <th>@lang('Menu')</th>
+                                    <th>@lang('Action')</th>
+                                </tr>
                             </thead>
                             <tbody class="text-center">
-                            @foreach($groups as $group)
-                                <tr>
-                                    <td class="text-left">{{ $group->group_name }}</td>
-                                    <td class="row skin skin-flat">
-                                        @foreach($group->permissions as $i => $permissions)
-                                            <fieldset style="margin-left: 68px;">
-                                                @if(in_array($group->permissions[$i]->name, $assigned_perms) && $group->permissions[$i]->name != '')
-                                                    <label class="m-checkbox" for="input-15">
-                                                        <input name="permission[]" type="checkbox" checked="checked"
-                                                               class="icheckbox_flat-pink checked"
-                                                               value="{{ $group->permissions[$i]->name }}"
-                                                               id="input-15">
-                                                        <span>{{ $group->permissions[$i]->display_name }}</span>
-                                                    </label>
-                                                @else
-                                                    <label class="m-checkbox" for="input-15">
-                                                        <input name="permission[]" type="checkbox"
-                                                               class="icheckbox_flat-pink"
-                                                               value="{{ $group->permissions[$i]->name }}"
-                                                               id="input-15">
-                                                        <span>{{ $group->permissions[$i]->display_name }}</span>
-                                                    </label>
-                                                @endif
-                                            </fieldset>
-                                        @endforeach
-                                    </td>
-                                </tr>
-                            @endforeach
+                                @foreach ($groups as $group)
+                                    <tr>
+                                        <td class="text-left">{{ $group->group_name }}</td>
+                                        <td class="row skin skin-flat">
+                                            @foreach ($group->permissions as $i => $permissions)
+                                                <fieldset style="margin-left: 68px;">
+                                                    @if (in_array($group->permissions[$i]->name, $assigned_perms) && $group->permissions[$i]->name != '')
+                                                        <label class="m-checkbox" for="input-15">
+                                                            <input name="permission[]" type="checkbox" checked="checked"
+                                                                class="icheckbox_flat-pink checked"
+                                                                value="{{ $group->permissions[$i]->name }}" id="input-15">
+                                                            <span>{{ $group->permissions[$i]->display_name }}</span>
+                                                        </label>
+                                                    @else
+                                                        <label class="m-checkbox" for="input-15">
+                                                            <input name="permission[]" type="checkbox"
+                                                                class="icheckbox_flat-pink"
+                                                                value="{{ $group->permissions[$i]->name }}" id="input-15">
+                                                            <span>{{ $group->permissions[$i]->display_name }}</span>
+                                                        </label>
+                                                    @endif
+                                                </fieldset>
+                                            @endforeach
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="form-actions text-center">
-                        <a href="{{ route('admin.role') }}">
-                            <button type="button" class="btn btn-warning mr-1">
-                                <i class="ft-x"></i> @lang('Cancel')
-                            </button>
-                        </a>
                         <button type="submit" class="btn bg-primary bg-darken-1 text-white">
                             <i class="la la-check-square-o"></i> @lang('Save') @lang('changes')
                         </button>
+                        <a href="{{ route('admin.role') }}" class="btn btn-warning mr-1">
+                            <i class="ft-x"></i> @lang('Cancel')
+                        </a>
                     </div>
                     {!! Form::close() !!}
                 </div>

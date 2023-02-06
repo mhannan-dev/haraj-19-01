@@ -13,7 +13,7 @@
     @lang('admin_role.list_page_title')
 @endsection
 @php
-$roles = userRolePermissionArray();
+    $roles = userRolePermissionArray();
 @endphp
 
 @section('content')
@@ -30,11 +30,11 @@ $roles = userRolePermissionArray();
             <span class="active-path g-color">Manage Action</span>
         </div>
         <div class="view-prodact">
-            @if(hasAccessAbility('new_action', $roles))
-            <a href="{{ route('admin.permission.new') }}">
-                <i class="las la-plus align-middle me-1"></i>
-                <span>@lang('form.new_action_form_title')</span>
-            </a>
+            @if (hasAccessAbility('new_action', $roles))
+                <a href="{{ route('admin.permission.new') }}">
+                    <i class="las la-plus align-middle me-1"></i>
+                    <span>@lang('form.new_action_form_title')</span>
+                </a>
             @endif
         </div>
     </div>
@@ -83,7 +83,7 @@ $roles = userRolePermissionArray();
                                     {!! Form::select('permission_group', $group, null, [
                                         'class' => 'form-control form--control',
                                         'placeholder' => __('form.new_action_form_placeholder_menu'),
-                                        'data-validation-required-message' => __('form.field_required')
+                                        'data-validation-required-message' => __('form.field_required'),
                                     ]) !!}
                                     @if ($errors->has('permission_group'))
                                         <div class="alert alert-danger">
@@ -96,10 +96,8 @@ $roles = userRolePermissionArray();
                     </div>
                     <div class="pro-btn-area">
                         <button type="submit" class="btn btn--base"> @lang('form.btn_save')</button>
-                        <a href="{{ route('admin.permission.new') }}">
-                            <button type="button" class="btm btn--base bg--danger">
-                                @lang('form.btn_cancle')
-                            </button>
+                        <a href="{{ route('admin.permission.new') }}" class="btm btn--base bg--danger">
+                            @lang('form.btn_cancle')
                         </a>
                     </div>
                     {!! Form::close() !!}

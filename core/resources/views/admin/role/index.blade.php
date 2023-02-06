@@ -60,10 +60,8 @@
                                             </a>
                                         @endif
                                         @if (hasAccessAbility('delete_role', $roles))
-                                            <a href="{{ route('admin.role.delete', [$row->id]) }}" onclick="return confirm('Are you sure?')">
-                                                <button type="button" class="btn btn-sm btn-outline-danger mr-1"><i
-                                                        class="la la-trash"></i>
-                                                </button>
+                                            <a class="btn btn-sm btn-outline-danger mr-1" href="{{ route('admin.role.delete', [$row->id]) }}" onclick="return confirm('Are you sure?')">
+                                               <i class="la la-trash"></i>
                                             </a>
                                         @endif
                                     </td>

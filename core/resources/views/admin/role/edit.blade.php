@@ -4,6 +4,9 @@
 @section('title')
     @lang('admin_role.edit_page_title')
 @endsection
+@php
+    $roles = userRolePermissionArray();
+@endphp
 @section('content')
     <div class="table-area">
         <div class="row">
@@ -58,12 +61,18 @@
                                             @foreach ($group->permissions as $i => $permissions)
                                                 @if (in_array($group->permissions[$i]->name, $assigned_perms) && $group->permissions[$i]->name != '')
                                                     <input name="permission[]" type="checkbox" checked="checked"
-                                                        value="{{ $group->permissions[$i]->name }}" id="input-{{ $group->permissions[$i]->name }}">
-                                                    <label for="input-{{ $group->permissions[$i]->name }}">{{ $group->permissions[$i]->display_name }}</label>&nbsp; &nbsp;
+                                                        value="{{ $group->permissions[$i]->name }}"
+                                                        id="input-{{ $group->permissions[$i]->name }}">
+                                                    <label
+                                                        for="input-{{ $group->permissions[$i]->name }}">{{ $group->permissions[$i]->display_name }}</label>&nbsp;
+                                                    &nbsp;
                                                 @else
                                                     <input name="permission[]" type="checkbox"
-                                                        value="{{ $group->permissions[$i]->name }}" id="{{ $group->permissions[$i]->name }}">
-                                                    <label for="{{ $group->permissions[$i]->name }}">{{ $group->permissions[$i]->display_name }}</label>&nbsp; &nbsp;
+                                                        value="{{ $group->permissions[$i]->name }}"
+                                                        id="{{ $group->permissions[$i]->name }}">
+                                                    <label
+                                                        for="{{ $group->permissions[$i]->name }}">{{ $group->permissions[$i]->display_name }}</label>&nbsp;
+                                                    &nbsp;
                                                 @endif
                                             @endforeach
                                         </div>
@@ -74,14 +83,12 @@
                     </table>
                 </div>
                 <div class="mt-2">
-                    <a href="{{ route('admin.role') }}">
-                        <button type="button" class="btn btn--base bg--danger">
-                            Cancel
-                        </button>
-                    </a>
                     <button type="submit" class="btn btn--base text-white btn-block">
                         Save changes
                     </button>
+                    <a href="{{ route('admin.role') }}" class="btn btn--base bg--danger">
+                        Cancel
+                    </a>
                 </div>
             </div>
             {!! Form::close() !!}

@@ -30,5 +30,5 @@
     </div>
 
 </div>
-<a href="{{ route('admin.brand.index') }}" class="btn btn--base bg--danger">@lang('Cancel')</a>
 <button type="submit" class="btn btn--base">{{ $buttonText }}</button>
+<a href="{{ route('admin.brand.index') }}" class="btn btn--base bg--danger">@lang('Cancel')</a>

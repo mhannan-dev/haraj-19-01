@@ -8,9 +8,8 @@
     @lang('admin_action.list_page_sub_title')
 @endsection
 @php
- ;
+    $roles = userRolePermissionArray();
 @endphp
-
 @section('content')
     <div class="dashboard-title-part">
         <h5 class="title">Dashboard</h5>

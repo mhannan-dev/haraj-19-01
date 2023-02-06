@@ -25,7 +25,6 @@
             </a>
         </div>
     </div>
-
     <form action="{{ route('admin.brand.update', $row['id']) }}" method="post">
         @include('admin.brand._form', ['buttonText' => 'Update'])
     </form>

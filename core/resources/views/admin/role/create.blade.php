@@ -7,6 +7,9 @@
 @section('page-name')
     Role Management
 @endsection
+@php
+    $roles = userRolePermissionArray();
+@endphp
 @section('content')
     <div class="dashboard-title-part">
         <div class="view-prodact">

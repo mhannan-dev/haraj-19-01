@@ -55,5 +55,5 @@
         </div>
     @endif
 </div>
-<a href="{{ route('admin.cms.index') }}" class="btn btn--base bg--danger">@lang('Cancel')</a>
 <button type="submit" class="btn btn--base">{{ $buttonText }}</button>
+<a href="{{ route('admin.cms.index') }}" class="btn btn--base bg--danger">@lang('Cancel')</a>

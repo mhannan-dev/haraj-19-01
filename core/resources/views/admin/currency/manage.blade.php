@@ -146,8 +146,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn--dark" data-bs-dismiss="modal">@lang('Close')</button>
                         <button type="submit" class="btn btn--primary">@lang('Update')</button>
+                        <button type="button" class="btn btn--dark" data-bs-dismiss="modal">@lang('Close')</button>
                     </div>
                 </div>
             </form>

@@ -7,6 +7,9 @@
 @section('page-name')
     @lang('admin_menu.new_page_sub_title')
 @endsection
+@php
+    $roles = userRolePermissionArray();
+@endphp
 @section('content')
 
     <div class="table-area">

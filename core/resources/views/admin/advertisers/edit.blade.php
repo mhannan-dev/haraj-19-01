@@ -68,8 +68,8 @@
             </div>
 
         </div>
-        <a href="{{ route('admin.advertiser.index') }}" class="btn btn--base bg--danger">@lang('Cancel')</a>
         <button type="submit" class="btn btn--base">{{ $buttonText }}</button>
+        <a href="{{ route('admin.advertiser.index') }}" class="btn btn--base bg--danger">@lang('Cancel')</a>
     </form>
 @endsection
 @section('scripts')
