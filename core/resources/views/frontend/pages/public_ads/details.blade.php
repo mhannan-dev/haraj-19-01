@@ -113,8 +113,6 @@
             </div>
         </section>
     @endif
-    <!--~~~~~~~~~End product details galary section~~~~~~~~~~~~~~~~~~~~-->
-
     <!--~~~~Start Product details section~~~~~~~~~~~~~~~~~-->
     <section class="product-details-sction">
         <div class="container">
