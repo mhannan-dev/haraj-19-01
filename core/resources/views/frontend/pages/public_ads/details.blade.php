@@ -78,18 +78,17 @@
                 <div class="product-details-galary-wrapper">
                     <div class="item-details-slider">
                         <div class="swiper-wrapper">
-                            {{-- @dd($details->images) --}}
                             @foreach ($details->images as $item)
                                 <div class="swiper-slide">
                                     <div class="item-details-thumb">
-                                        <a class="img-popup" data-rel="lightcase:myCollection" href="">
-                                            <img src="{{ asset('core/storage/app/public/advertisement_images/' . $item->images) }}"
+                                        <a class="img-popup" data-rel="lightcase:myCollection" href="{{ asset('core/storage/app/public/advertisement_images/' . $item->images) }}">
+                                            <img
+                                            src="{{ asset('core/storage/app/public/advertisement_images/' . $item->images) }}"
                                                 alt="item-banner">
                                         </a>
                                     </div>
                                 </div>
                             @endforeach
-
                         </div>
                         <div class="slider-prev">
                             <i class="las la-angle-left"></i>
