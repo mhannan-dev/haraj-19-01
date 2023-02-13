@@ -76,7 +76,7 @@
                         <div class="row add-row-wrapper align-items-end">
                             <input type="hidden" name="editable[]" value="0">
                             <div class="col-xl-2 col-lg-2 form-group">
-                                <label for="title">@lang('Label')</label>
+                                <label for="title">@lang('Label') <span class="text-danger">*</span> </label>
                                 <input type="text" name="label[]" class="form--control" value="ad_title" readonly>
                             </div>
                             <div class="col-xl-2 col-lg-2 form-group">
@@ -101,13 +101,14 @@
                             </div>
 
                             <div class="col-xl-1 col-lg-1 form-group">
-                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i class="las la-times"></i></button>
+                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i
+                                        class="las la-times"></i></button>
                             </div>
                         </div>
                         <div class="row add-row-wrapper align-items-end">
                             <input type="hidden" name="editable[]" value="0">
                             <div class="col-xl-2 col-lg-3 form-group">
-                                <label>@lang('Label')</label>
+                                <label>@lang('Label') <span class="text-danger">*</span></label>
                                 <input type="text" name="label[]" value="condition" class="form--control" readonly>
                             </div>
                             <div class="col-xl-2 col-lg-3 form-group">
@@ -128,14 +129,15 @@
                                 </select>
                             </div>
                             <div class="col-xl-2 col-lg-2 form-group">
-                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i class="las la-times"></i></button>
+                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i
+                                        class="las la-times"></i></button>
                             </div>
                         </div>
                         <hr>
                         <div class="row add-row-wrapper align-items-end">
                             <input type="hidden" name="editable[]" value="0">
                             <div class="col-xl-3 col-lg-3 form-group">
-                                <label>@lang('Label')</label>
+                                <label>@lang('Label') <span class="text-danger">*</span></label>
                                 <input type="text" name="label[]" value="authenticity" class="form--control" readonly>
                             </div>
                             <div class="col-xl-2 col-lg-2 form-group">
@@ -156,13 +158,14 @@
                                 </select>
                             </div>
                             <div class="col-xl-2 col-lg-2 form-group">
-                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i class="las la-times"></i></button>
+                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i
+                                        class="las la-times"></i></button>
                             </div>
                         </div>
                         <div class="row add-row-wrapper align-items-end">
                             <input type="hidden" name="editable[]" value="0">
                             <div class="col-xl-3 col-lg-3 form-group">
-                                <label>@lang('Label')</label>
+                                <label>@lang('Label') <span class="text-danger">*</span> </label>
                                 <input type="text" name="label[]" value="brand" class="form--control" readonly>
                             </div>
                             <div class="col-xl-2 col-lg-2 form-group">
@@ -174,7 +177,7 @@
                             <div class="col-xl-4 col-lg-4 form-group">
                                 <label>{{ __('Options*') }} (@lang('Comma seperated'))</label>
                                 <input type="text" placeholder="Type Here..." name="select_options[]"
-                                    class="form--control" value="used, new, like new" required readonly>
+                                    class="form--control" value="Created options" required readonly>
                             </div>
                             <div class="col-xl-3 col-lg-3 form-group">
                                 <label>@lang('Field Necessity')</label>
@@ -186,7 +189,7 @@
                         <div class="row add-row-wrapper align-items-end">
                             <input type="hidden" name="editable[]" value="0">
                             <div class="col-xl-2 col-lg-2 form-group">
-                                <label>@lang('Label')</label>
+                                <label>@lang('Label') <span class="text-danger">*</span> </label>
                                 <input type="text" name="label[]" class="form--control" value="description" readonly>
                             </div>
                             <div class="col-xl-2 col-lg-2 form-group">
@@ -210,14 +213,15 @@
                                 </select>
                             </div>
                             <div class="col-xl-2 col-lg-2 form-group">
-                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i class="las la-times"></i></button>
+                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i
+                                        class="las la-times"></i></button>
                             </div>
                         </div>
                         <hr>
                         <div class="row add-row-wrapper align-items-end">
                             <input type="hidden" name="editable[]" value="0">
                             <div class="col-xl-2 col-lg-2 form-group">
-                                <label>@lang('Label')</label>
+                                <label>@lang('Image') <span class="text-danger">*</span></label>
                                 <input type="text" class="form--control" name="label[]" value="image" readonly
                                     required>
                             </div>
@@ -248,7 +252,8 @@
                                 </select>
                             </div>
                             <div class="col-xl-2 col-lg-2 form-group">
-                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i class="las la-times"></i></button>
+                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i
+                                        class="las la-times"></i></button>
                             </div>
                         </div>
                         <div class="row add-row-wrapper align-items-end">
@@ -274,23 +279,23 @@
                                 <input type="text" class="form--control" value="10" name="max_digit[]" readonly>
                             </div>
 
-                            <div class="col-xl-4 col-lg-4 form-group">
+                            <div class="col-xl-2 col-lg-2 form-group">
                                 <label>@lang('Field Necessity')</label>
                                 <select name="field_necessity[]" class="form--control">
                                     <option value="1" selected>@lang('Yes')</option>
                                 </select>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 form-group">
+                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i
+                                        class="las la-times"></i></button>
                             </div>
                         </div>
                         <hr>
                         <div class="row add-row-wrapper align-items-end">
                             <input type="hidden" name="editable[]" value="0">
                             <div class="col-xl-2 col-lg-2 form-group">
-                                @include('admin.components.form.input', [
-                                    'label' => 'Label',
-                                    'name' => 'label[]',
-                                    'value' => 'meta_tags',
-                                    'attribute' => 'required readonly',
-                                ])
+                                <label for="label">Label <span class="text-danger">*</span></label>
+                                <input type="text" name="label[]"  value="meta_tags" class="form--control" readonly>
                             </div>
                             <div class="col-xl-2 col-lg-2 form-group">
                                 <label>{{ __('Field Types*') }}</label>
@@ -306,22 +311,23 @@
                                 <label>{{ __('Max character*') }}</label>
                                 <input type="text" class="form--control" value="100" name="max_char[]">
                             </div>
-                            <div class="col-xl-4 col-lg-4 form-group">
+                            <div class="col-xl-2 col-lg-2 form-group">
                                 <label>@lang('Field Necessity')</label>
                                 <select name="field_necessity[]" class="form--control">
                                     <option value="1" selected>@lang('Yes')</option>
                                 </select>
                             </div>
+                            <div class="col-xl-2 col-lg-2 form-group">
+                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i
+                                        class="las la-times"></i></button>
+                            </div>
                         </div>
                         <div class="row add-row-wrapper align-items-end">
                             <input type="hidden" name="editable[]" value="0">
                             <div class="col-xl-2 col-lg-2 form-group">
-                                @include('admin.components.form.input', [
-                                    'label' => 'Label',
-                                    'name' => 'label[]',
-                                    'value' => 'meta_title',
-                                    'attribute' => 'required readonly',
-                                ])
+
+                                <label for="label">Label <span class="text-danger">*</span></label>
+                                <input type="text" name="label[]" value="meta_title" class="form--control" required readonly>
                             </div>
                             <div class="col-xl-2 col-lg-2 form-group">
                                 <label>{{ __('Field Types*') }}</label>
@@ -337,23 +343,21 @@
                                 <label>{{ __('Max character*') }}</label>
                                 <input type="text" class="form--control" value="200" name="max_char[]" readonly>
                             </div>
-                            <div class="col-xl-4 col-lg-4 form-group">
+                            <div class="col-xl-2 col-lg-4 form-group">
                                 <label>@lang('Field Necessity')</label>
                                 <select name="field_necessity[]" class="form--control">
                                     <option value="1" selected>@lang('Yes')</option>
                                 </select>
                             </div>
+                            <div class="col-xl-2 col-lg-2 form-group">
+                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i
+                                        class="las la-times"></i></button>
+                            </div>
                         </div>
                         <div class="row add-row-wrapper align-items-end">
                             <input type="hidden" name="editable[]" value="0">
                             <div class="col-xl-2 col-lg-2 form-group">
-                                {{-- @include('admin.components.form.input', [
-                                    'label' => 'Label',
-                                    'name' => 'label[]',
-                                    'value' => 'images',
-                                    'attribute' => 'readonly',
-                                ]) --}}
-                                <label for="label">Image</label>
+                                <label for="label">Images</label>
                                 <input type="text" name="label[]" value="images" class="form--control">
                             </div>
                             <div class="col-xl-2 col-lg-2 form-group">
@@ -362,13 +366,11 @@
                                     <option value="file" selected>@lang('File')</option>
                                 </select>
                             </div>
-
                             <div class="col-xl-2 col-lg-2 form-group">
                                 <label>{{ __('Max File Size *') }}</label>
                                 <input type="text" name="file_max_size[]" class="form--control" value="3"
                                     readonly>
                             </div>
-
                             <div class="col-xl-2 col-lg-2 form-group">
                                 @include('admin.components.form.input', [
                                     'label' => 'File Extension*',
@@ -378,11 +380,15 @@
                                     'value' => 'jpg',
                                 ])
                             </div>
-                            <div class="col-xl-4 col-lg-4 form-group">
+                            <div class="col-xl-2 col-lg-3 form-group">
                                 <label>@lang('Field Necessity')</label>
                                 <select name="field_necessity[]" class="form--control">
                                     <option value="0" selected>@lang('No')</option>
                                 </select>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 form-group">
+                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i
+                                        class="las la-times"></i></button>
                             </div>
                         </div>
                     </div>
