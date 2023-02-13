@@ -93,20 +93,24 @@
                                 <label>{{ __('Max character*') }}</label>
                                 <input type="text" class="form--control" value="200" name="max_char[]" readonly>
                             </div>
-                            <div class="col-xl-4 col-lg-4 form-group">
+                            <div class="col-xl-3 col-lg-4 form-group">
                                 <label>@lang('Field Necessity')</label>
                                 <select name="field_necessity[]" class="form--control">
                                     <option value="1" selected>@lang('Yes')</option>
                                 </select>
                             </div>
+
+                            <div class="col-xl-1 col-lg-1 form-group">
+                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i class="las la-times"></i></button>
+                            </div>
                         </div>
                         <div class="row add-row-wrapper align-items-end">
                             <input type="hidden" name="editable[]" value="0">
-                            <div class="col-xl-3 col-lg-3 form-group">
+                            <div class="col-xl-2 col-lg-3 form-group">
                                 <label>@lang('Label')</label>
                                 <input type="text" name="label[]" value="condition" class="form--control" readonly>
                             </div>
-                            <div class="col-xl-3 col-lg-3 form-group">
+                            <div class="col-xl-2 col-lg-3 form-group">
                                 <label>{{ __('Field Types*') }}</label>
                                 <select class="form--control nice-select field-input-type" name="input_type[]">
                                     <option value="select" selected>@lang('Select')</option>
@@ -123,6 +127,9 @@
                                     <option value="1" selected>@lang('Yes')</option>
                                 </select>
                             </div>
+                            <div class="col-xl-2 col-lg-2 form-group">
+                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i class="las la-times"></i></button>
+                            </div>
                         </div>
                         <hr>
                         <div class="row add-row-wrapper align-items-end">
@@ -131,7 +138,7 @@
                                 <label>@lang('Label')</label>
                                 <input type="text" name="label[]" value="authenticity" class="form--control" readonly>
                             </div>
-                            <div class="col-xl-3 col-lg-3 form-group">
+                            <div class="col-xl-2 col-lg-2 form-group">
                                 <label>{{ __('Field Types*') }}</label>
                                 <select class="form--control nice-select field-input-type" name="input_type[]">
                                     <option value="select" selected>@lang('Select')</option>
@@ -142,11 +149,14 @@
                                 <input type="text" placeholder="Type Here..." name="select_options[]"
                                     class="form--control" value="original, refubrished, reconditioned" required readonly>
                             </div>
-                            <div class="col-xl-3 col-lg-3 form-group">
+                            <div class="col-xl-2 col-lg-2 form-group">
                                 <label>@lang('Field Necessity')</label>
                                 <select name="field_necessity[]" class="form--control">
                                     <option value="1" selected>@lang('Yes')</option>
                                 </select>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 form-group">
+                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i class="las la-times"></i></button>
                             </div>
                         </div>
                         <div class="row add-row-wrapper align-items-end">
@@ -155,13 +165,13 @@
                                 <label>@lang('Label')</label>
                                 <input type="text" name="label[]" value="brand" class="form--control" readonly>
                             </div>
-                            <div class="col-xl-3 col-lg-3 form-group">
+                            <div class="col-xl-2 col-lg-2 form-group">
                                 <label>{{ __('Field Types*') }}</label>
                                 <select class="form--control nice-select field-input-type" name="input_type[]">
                                     <option value="select" selected>@lang('Select')</option>
                                 </select>
                             </div>
-                            <div class="col-xl-3 col-lg-3 form-group">
+                            <div class="col-xl-4 col-lg-4 form-group">
                                 <label>{{ __('Options*') }} (@lang('Comma seperated'))</label>
                                 <input type="text" placeholder="Type Here..." name="select_options[]"
                                     class="form--control" value="used, new, like new" required readonly>
@@ -193,11 +203,14 @@
                                     <option value="textarea" selected>@lang('Textarea')</option>
                                 </select>
                             </div>
-                            <div class="col-xl-4 col-lg-4 form-group">
+                            <div class="col-xl-2 col-lg-2 form-group">
                                 <label>@lang('Field Necessity')</label>
                                 <select name="field_necessity[]" class="form--control">
                                     <option value="1" selected>Yes</option>
                                 </select>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 form-group">
+                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i class="las la-times"></i></button>
                             </div>
                         </div>
                         <hr>
@@ -228,22 +241,27 @@
                                     'value' => 'jpg',
                                 ])
                             </div>
-                            <div class="col-xl-4 col-lg-4 form-group">
+                            <div class="col-xl-2 col-lg-2 form-group">
                                 <label>@lang('Field Necessity')</label>
                                 <select name="field_necessity[]" class="form--control">
                                     <option value="1" selected>Yes</option>
                                 </select>
                             </div>
+                            <div class="col-xl-2 col-lg-2 form-group">
+                                <button type="button" class="btn btn--base bg--danger row-cross-btn w-100"><i class="las la-times"></i></button>
+                            </div>
                         </div>
                         <div class="row add-row-wrapper align-items-end">
                             <input type="hidden" name="editable[]" value="0">
                             <div class="col-xl-2 col-lg-2 form-group">
-                                @include('admin.components.form.input', [
-                                    'label' => 'Label',
+                                {{-- @include('admin.components.form.input', [
+                                    'label' => 'Label * ',
                                     'name' => 'label[]',
                                     'value' => 'price',
                                     'attribute' => 'required readonly',
-                                ])
+                                ]) --}}
+                                <label for="price">@lang('Price') <span class="text-danger">*</span></label>
+                                <input type="text" name="" value="" readonly required>
                             </div>
                             <div class="col-xl-2 col-lg-2 form-group">
                                 <label>{{ __('Field Types*') }}</label>
